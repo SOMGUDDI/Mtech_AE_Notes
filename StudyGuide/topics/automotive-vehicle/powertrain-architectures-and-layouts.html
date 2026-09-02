@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Powertrain Architectures &amp; Layout Topologies | Automotive Vehicle</title>
+    <meta name="description" content="The powertrain represents the complete mechanical and electrical chain responsible for generating propulsion power and delivering it to the tyre-road ">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body data-topic-id="powertrain-architectures-and-layouts" data-subject-id="automotive-vehicle">
+
+
+<header class="navbar">
+    <div class="navbar-container">
+        <a href="../../index.html" class="nav-brand">
+            <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="nav-brand-logo">
+            <div class="brand-details">
+                <span class="brand-inst">Birla Institute of Technology & Science, Pilani</span>
+                <span class="brand-dept">Work Integrated Learning Programmes • Automotive Engineering</span>
+            </div>
+        </a>
+        <div class="nav-search-box" onclick="openSearchModal()">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <span class="search-placeholder">Search curriculum, formulas, registers, questions...</span>
+            <span class="search-shortcut">Ctrl+K</span>
+        </div>
+        <div class="nav-actions">
+            <a href="../../semesters/sem1.html" class="nav-link">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></span>
+                <span>Semester 1 Hub</span>
+            </a>
+            <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Toggle Theme">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+                <span>Theme</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+
+<div class="topic-page-layout">
+    <aside class="topic-sidebar">
+        <div class="sidebar-header">
+            <a href="../../subjects/automotive-vehicle.html" class="sidebar-back">
+                <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span>
+                <span>Automotive Vehicle</span>
+            </a>
+            <div class="sidebar-subject-badge">AELZC441</div>
+        </div>
+        <div class="sidebar-toc">
+            <h4>Table of Contents</h4>
+            <ul>
+                <li><a href="#overview">Quick Overview</a></li>
+                <li><a href="#objectives">Learning Objectives</a></li>
+                <li><a href="#core-concept">Core Concept & Intuition</a></li>
+                <li><a href="#lecture-notes">In-Class Lecture Notes</a></li>
+                <li><a href="#extra-explanation">Comprehensive Theory</a></li>
+                
+                
+                <li><a href="#working-principle">Working Principle</a></li>
+                <li><a href="#application">Automotive Application</a></li>
+                <li><a href="#comparison">Specifications Table</a></li>
+                <li><a href="#formulas">Math Formulas & Numericals</a></li>
+                <li><a href="#code">Embedded Driver / Registers</a></li>
+                <li><a href="#exam-questions">Exam & Viva Q&A</a></li>
+                <li><a href="#revision-card">60-Second Flash Card</a></li>
+                <li><a href="#personal-notes">My Personal Notes</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-progress-widget">
+            <h4>Topic Status</h4>
+            <div class="status-btn-group">
+                <button class="status-btn" id="statusNotStarted" onclick="setTopicStatus('powertrain-architectures-and-layouts', 'not_started')">☐ Not Started</button>
+                <button class="status-btn" id="statusInProgress" onclick="setTopicStatus('powertrain-architectures-and-layouts', 'in_progress')">◐ In Progress</button>
+                <button class="status-btn" id="statusCompleted" onclick="setTopicStatus('powertrain-architectures-and-layouts', 'completed')">☑ Mastered</button>
+            </div>
+            <button class="bookmark-btn" id="bookmarkBtn" onclick="toggleBookmark('powertrain-architectures-and-layouts')">★ Bookmark for Revision</button>
+        </div>
+    </aside>
+
+    <main class="topic-main-content">
+        <header class="topic-header">
+            <div class="breadcrumbs">
+                <a href="../../index.html">Home</a> / 
+                <a href="../../semesters/sem1.html">Semester 1</a> / 
+                <a href="../../subjects/automotive-vehicle.html">Automotive Vehicle</a> / 
+                <span class="curr-crumb">Powertrain Architectures &amp; Layout Topologies</span>
+            </div>
+            
+            <div class="topic-meta-row">
+                <span class="meta-pill module-pill">MODULE: Powertrain Fundamentals</span>
+                <span class="meta-pill level-pill">LEVEL: Intermediate</span>
+                <span class="meta-pill importance-pill">WEIGHT: 5/5</span>
+                <span class="meta-pill code-pill">AELZC441</span>
+            </div>
+
+            <h1 class="topic-main-title">Powertrain Architectures &amp; Layout Topologies</h1>
+
+            <div class="action-bar-top">
+                <div class="read-estimate">Estimated Read Time: <strong>12–15 mins</strong></div>
+                <div class="action-buttons-group">
+                    <button class="print-btn" onclick="window.print()" title="Print this complete note page or save as PDF">
+                        <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg></span>
+                        <span>Print / Save PDF</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <section class="topic-section" id="overview">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 01]</span> Quick Overview</h2>
+            </div>
+            <p class="overview-lead">The powertrain represents the complete mechanical and electrical chain responsible for generating propulsion power and delivering it to the tyre-road contact patches. Powertrain architecture dictates engine/motor placement, transmission packaging, driveshaft routing, axle weight distribution, cabin space, and vehicle handling dynamics.</p>
+        </section>
+
+        <section class="topic-section" id="objectives">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 02]</span> Learning Objectives & Prerequisites</h2>
+            </div>
+            <div class="objectives-card">
+                <h5>What You Will Master:</h5>
+                <ul class="objectives-list">
+                    <li>Compare the four canonical powertrain layout topologies: FF, FR, RR, and 4WD/AWD.</li><li>Trace the mechanical component chain from prime mover to driven wheels.</li><li>Analyze the impact of layout on static axle weight distribution and dynamic handling balance (understeer vs oversteer).</li><li>Understand modern Dual-Motor and Quad-Motor Electric Vehicle powertrain architectures.</li>
+                </ul>
+                <div class="prereq-note">
+                    <strong>Prerequisites:</strong> Vehicle Classification, Tractive Force &amp; Road Loads.
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="core-concept">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 03]</span> Core Concept & Physical Intuition</h2>
+            </div>
+            <div class="concept-body">
+                <p>Where you place the engine/motor and which wheels you drive completely changes how a car behaves. Placing everything at the front (Front-Engine Front-Wheel Drive, FF) makes the car cheap to build and maximizes passenger cabin space, but causes front-heavy weight distribution and torque steer. Placing the engine at the front and driving the rear wheels (FR) yields a perfect 50:50 weight balance for sports handling, but requires a heavy central driveshaft that cuts into cabin foot space.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="lecture-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 04]</span> In-Class Lecture Transcript Breakdown</h2>
+            </div>
+            <div class="callout callout-lecture">
+                <div class="callout-header">// LECTURE TRANSCRIPT SYNTHESIS</div>
+                <div class="callout-body">
+                    <p>Lecture 2 and 3 transcripts covered Powertrain Architectures in detail. The professor explained: &#x27;The powertrain transfers and adapts energy from the prime mover to the wheels. In an ICE vehicle, this includes the clutch, gearbox, propeller shaft, differential, and half-shafts. In an EV, the multi-speed gearbox and prop-shaft are replaced by high-speed e-axles with single-speed reduction gears.&#x27; The lecturer highlighted the human skeleton-and-muscle analogy, showing how packaging constraints drive vehicle height and aerodynamic drag.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="extra-explanation">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 05]</span> Rigorous Engineering Theory & Derivations</h2>
+            </div>
+            <div class="callout callout-deep">
+                <div class="callout-header">// RIGOROUS ENGINEERING THEORY</div>
+                <div class="callout-body">
+                    <p>Let&#x27;s examine the four traditional internal-combustion layouts and modern EV layouts:
+
+1. **Front-Engine Front-Wheel Drive (FF):**
+   - Engine mounted transversally (east-west) directly above the front transaxle.
+   - **Advantages:** Compact packaging, no central driveshaft tunnel (flat cabin floor), lower manufacturing cost, good snow traction (engine weight over drive wheels).
+   - **Disadvantages:** Front-heavy weight distribution (60:40), prone to **Understeer** and **Torque Steer** during hard acceleration.
+
+2. **Front-Engine Rear-Wheel Drive (FR):**
+   - Engine mounted longitudinally (north-south) at the front; transmission sends power via a propeller shaft to a rear differential.
+   - **Advantages:** Near-ideal 50:50 static weight distribution, separated steering and driving duties, superior high-power acceleration (load transfers to rear drive wheels).
+   - **Disadvantages:** Central tunnel intrudes into passenger cabin, higher driveline mechanical losses (extra joints/shaft), higher manufacturing cost.
+
+3. **Rear-Engine Rear-Wheel Drive (RR) / Mid-Engine (MR):**
+   - Engine placed behind or between the axles (Porsche 911, supercars).
+   - **Advantages:** Incredible braking stability, ultra-fast corner turn-in.
+   - **Disadvantages:** Prone to lift-off **Oversteer** (snap spin) due to high rear pendulum polar inertia.
+
+4. **Electric Vehicle (EV) E-Axle Architectures:**
+   - **Single Motor (2WD):** Single compact e-axle on front or rear axle.
+   - **Dual Motor (AWD):** Independent front and rear electric drive units with zero mechanical link between axles; torque split is controlled 100% electronically via software within milliseconds.
+   - **Quad Motor (Torque Vectoring):** Four dedicated wheel motors allowing individual wheels to spin at different speeds and directions (e.g., tank turns).</p>
+                </div>
+            </div>
+        </section>
+
+        
+        
+
+        <section class="topic-section" id="working-principle">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 08]</span> Step-by-Step Operational Principle</h2>
+            </div>
+            <div class="principle-body">
+                <p>Differential Mechanism Operation:
+When a vehicle negotiates a turn, the outer wheel must travel a longer radius arc than the inner wheel ($v_{outer} &gt; v_{inner}$). If both wheels were locked to a solid axle, one tyre would violently scrub and slip on the pavement. The mechanical **Open Differential** uses bevel spider gears to split input torque 50:50 while allowing relative speed variation: $\omega_{input} = \frac{\omega_{left} + \omega_{right}}{2}$.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="application">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 09]</span> Real Automotive Application</h2>
+            </div>
+            <div class="callout callout-application">
+                <div class="callout-header">// AUTOMOTIVE OEM CASE STUDY</div>
+                <div class="callout-body">
+                    <p></p>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="topic-section table-section" id="comparison">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 10]</span> Technical Specifications & Benchmarks</h2>
+            </div>
+            <div class="table-responsive">
+                <table class="specs-table">
+                    <thead><tr><th>Architecture</th><th>Weight Distribution (F:R)</th><th>Packaging / Space</th><th>Handling Dynamic</th><th>Cost &amp; Complexity</th></tr></thead>
+                    <tbody><tr><td>FF (Front-Front)</td><td>60 : 40 (Front heavy)</td><td>Best cabin space (No tunnel)</td><td>Prone to Understeer; Torque Steer</td><td>Lowest cost (Compact transaxle)</td></tr><tr><td>FR (Front-Rear)</td><td>50 : 50 (Balanced)</td><td>Intruded cabin (Driveshaft tunnel)</td><td>Neutral / Controllable Oversteer</td><td>Moderate (Extra shaft + rear diff)</td></tr><tr><td>MR (Mid-Rear)</td><td>40 : 60 (Rear heavy)</td><td>Poor (2 seats only, no trunk)</td><td>Extreme agility; Sudden snap spin</td><td>High (Exotic mid-ship packaging)</td></tr><tr><td>Dual-Motor EV</td><td>48 : 52 (Low CG)</td><td>Best (Frunk + Trunk + Flat floor)</td><td>Software-defined Torque Vectoring</td><td>High battery/inverter cost; Simple mechanicals</td></tr></tbody>
+                </table>
+            </div>
+        </section>
+        
+        
+        <section class="topic-section formulas-section" id="formulas">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 11]</span> Mathematical Formulas & Numerical Breakdown</h2>
+            </div>
+            <div class="formulas-grid">
+                
+            <div class="formula-card">
+                <div class="formula-name">Overall Powertrain Gear Ratio and Wheel Speed</div>
+                <div class="formula-math"><code>i_{total} = i_g \cdot i_0, \quad N_{wheel} = \frac{N_{engine}}{i_{total}}, \quad v = \frac{2\pi \cdot r_{dyn} \cdot N_{wheel}}{60}</code></div>
+                <div class="formula-details">
+                    <h5>Parameter Definitions:</h5>
+                    <ul class="formula-vars"><li><code>i</code>: _</li><li><code>i</code>: _</li><li><code>N</code>: _</li><li><code>r</code>: _</li><li><code>v</code>:  </li></ul>
+                    <div class="formula-example"><strong>Worked Numerical Example:</strong><br>In 1st gear (ig = 3.5, i0 = 4.0 -&gt; itotal = 14.0), at N = 3000 RPM with tyre radius r = 0.30 m: N_wheel = 3000 / 14 = 214.3 RPM. Vehicle speed v = (2π × 0.30 × 214.3) / 60 = 6.73 m/s = 24.2 km/h.</div>
+                </div>
+            </div>
+            
+            </div>
+        </section>
+        
+        
+        <section class="topic-section code-section" id="code">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 12]</span> Embedded C Driver & Register Interface</h2>
+                <button class="copy-btn" onclick="copyCodeBlock('codeBlock')">
+                    <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+                    <span>Copy Code</span>
+                </button>
+            </div>
+            <div class="code-container">
+                <pre><code id="codeBlock" class="language-c">// C Function to Calculate Vehicle Speed for all Gear Ratios
+#include &lt;stdio.h&gt;
+
+void compute_gear_speeds(double engine_rpm, double r_dyn, double i_0, double* gear_ratios, int num_gears) {
+    printf(&quot;=== VEHICLE SPEED AT %.0f RPM (Final Drive: %.2f) ===\n&quot;, engine_rpm, i_0);
+    for (int g = 0; g &lt; num_gears; g++) {
+        double itotal = gear_ratios[g] * i_0;
+        double n_wheel = engine_rpm / itotal;
+        double speed_mps = (2.0 * 3.14159 * r_dyn * n_wheel) / 60.0;
+        double speed_kmh = speed_mps * 3.6;
+        printf(&quot;Gear %d (ratio: %.2f) -&gt; Speed: %6.1f km/h (%5.1f m/s)\n&quot;, 
+               g + 1, gear_ratios[g], speed_kmh, speed_mps);
+    }
+}</code></pre>
+            </div>
+        </section>
+        
+
+        <section class="topic-section" id="must-remember">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 13]</span> Must-Remember Key Points for Exams</h2>
+            </div>
+            <div class="must-remember-card">
+                <ul><li>[KEY] FF layout is space-efficient and cost-effective; prone to understeer.</li><li>[KEY] FR layout gives optimal 50:50 weight distribution and balanced dynamics.</li><li>[KEY] Differential splits torque 50:50 while allowing wheel speed differences during cornering.</li><li>[KEY] EV dual-motor architectures eliminate driveshafts and provide millisecond software torque vectoring.</li></ul>
+            </div>
+        </section>
+
+        
+        <div class="callout callout-warning">
+            <div class="callout-header">// COMMON EXAM TRAPS & MISCONCEPTIONS</div>
+            <div class="callout-body">
+                <ul><li><strong>Trap:</strong> Assuming 4WD and AWD are identical. 4WD is typically a part-time system with a locked transfer case for off-road use; AWD is a full-time system with a center differential or electronic clutches for all-weather on-road traction.</li><li><strong>Trap:</strong> Believing an open differential transfers more torque to the wheel with more grip. An open differential always splits torque 50:50; if one wheel hits ice, total delivered torque is limited to twice the zero grip of the spinning wheel.</li></ul>
+            </div>
+        </div>
+        
+
+        <section class="topic-section" id="exam-questions">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 15]</span> Exam Preparation & Model Questions</h2>
+            </div>
+            <div class="exam-qa-container">
+                
+        <div class="exam-qa-block">
+            <h3>Short Answer Questions (1–2 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> What is torque steer and in which powertrain layout is it most prevalent?</div>
+                <div class="qa-answer">Torque steer is the unwanted tendency of a front-wheel-drive (FF) car to pull to one side under hard acceleration. It is caused by unequal drive axle half-shaft lengths/angles transmitting unequal reactive moments to the steering knuckles.</div>
+            </div>
+            
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> What is the primary function of a mechanical differential?</div>
+                <div class="qa-answer">To allow the left and right driven wheels to rotate at different rotational speeds during a turn while transmitting equal torque to both wheels.</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Comprehensive Long Answer Questions (5–10 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item long-qa-item">
+                <div class="qa-question"><span class="q-badge">10 MARKS</span> Compare Front-Engine Front-Wheel Drive (FF), Front-Engine Rear-Wheel Drive (FR), and Dual-Motor EV architectures across weight distribution, packaging, handling characteristics, and manufacturing complexity.</div>
+                <div class="qa-answer">A complete answer covers: (1) Architectural layout diagrams for all three topologies; (2) Detailed pros and cons of FF, FR, and EV; (3) Analysis of static weight distribution and impact on understeer/oversteer; (4) Total gear ratio formula and wheel speed calculations; (5) Explanation of open differentials vs electronic torque vectoring.</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Viva Voce & Technical Interview Questions</h3>
+            <div class="qa-list">
+            <div class="qa-item viva-qa-item">
+                <div class="qa-question"><span class="q-badge">VIVA / INTERVIEW</span> What is a major handling danger of Rear-Engine Rear-Wheel Drive (RR) vehicles like early Porsche 911s?</div>
+                <div class="qa-answer">Because over 60% of the vehicle mass is concentrated behind the rear axle, the vehicle possesses high polar yaw inertia. When taking a corner at the limit, releasing the throttle (lift-off) transfers load off the rear tyres, causing the heavy rear end to act like a pendulum and produce violent snap oversteer.</div>
+            </div>
+            </div>
+        </div>
+        
+            </div>
+        </section>
+
+        <section class="topic-section" id="revision-card">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 18]</span> 60-Second Flash / Revision Card</h2>
+            </div>
+            <div class="flashcard">
+                <div class="flashcard-badge">// 60-SECOND REVISION SUMMARY</div>
+                <ul class="flashcard-points"><li>[REV] FF = Front-heavy (60:40), understeer, space-efficient.</li><li>[REV] FR = Balanced (50:50), rear drive, sport dynamics.</li><li>[REV] EV = Underfloor battery, ultra-low CG, dual e-axles.</li><li>[REV] i_total = i_gear * i_final_drive.</li></ul>
+            </div>
+        </section>
+
+        <section class="topic-section" id="personal-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 19]</span> Personal Study Notes (Auto-Saved)</h2>
+            </div>
+            <div class="personal-notes-widget">
+                <p class="notes-hint">Type personal notes or lab observations below. Content auto-saves to your local browser storage.</p>
+                <textarea id="personalNotePad" class="personal-notes-textarea" placeholder="Type personal study notes here..." oninput="savePersonalNote('powertrain-architectures-and-layouts', this.value)"></textarea>
+                <div class="notes-save-indicator" id="notesSavedTag">✓ Saved locally</div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="sources">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 20]</span> Source Traceability & Curriculum References</h2>
+            </div>
+            <div class="sources-box">
+                <p><strong>Primary Source Reference:</strong> Automotive Vehicle Lecture 2 &amp; 3 Transcripts; Sessions 2–3 Powertrain Fundamentals PDFs; Syllabus Section 3 (Powertrain Architecture).</p>
+            </div>
+        </section>
+
+        <nav class="topic-pagination">
+            <div class="pagination-prev"><a href="tractive-force-and-road-loads.html" class="nav-prev-btn"><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span><span>Previous: Tractive Effort &amp; Longitudinal Road Resistances</span></a></div>
+            <div class="pagination-next"><a href="ic-engine-thermodynamic-cycles.html" class="nav-next-btn"><span>Next: IC Engine Fundamentals: 4-Stroke Otto &amp; Diesel Cycles</span><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span></a></div>
+        </nav>
+    </main>
+</div>
+
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-col brand-col">
+            <div class="footer-brand">
+                <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="footer-bits-logo">
+                <div class="footer-brand-text">
+                    <span class="footer-title">Birla Institute of Technology & Science, Pilani</span>
+                    <span class="footer-sub">Work Integrated Learning Programmes (WILP)</span>
+                </div>
+            </div>
+            <p class="footer-desc">Institutional knowledge base engineered from official lecture transcripts, handouts, and laboratory sessions for M.Tech Automotive Engineering.</p>
+            <div class="footer-tags">
+                <span class="badge badge-info">BITS WILP</span>
+                <span class="badge badge-success">4 Core Courses</span>
+                <span class="badge badge-warning">Exam & Viva Ready</span>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Semester 1 Courses</h4>
+            <ul>
+                <li><a href="../../subjects/automotive-communication.html">Automotive Communication (AELZG513)</a></li>
+                <li><a href="../../subjects/automotive-vehicle.html">Automotive Vehicle (AELZC441)</a></li>
+                <li><a href="../../subjects/autotronics.html">Autotronics (AEZG533)</a></li>
+                <li><a href="../../subjects/embedded-system-design.html">Embedded System Design (AEZG512)</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="../../index.html">Master Portal Home</a></li>
+                <li><a href="../../semesters/sem1.html">Semester 1 Overview & Credits</a></li>
+                <li><a href="javascript:void(0)" onclick="openSearchModal()">Global Topic Search</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-bottom-content">
+            <span>© 2026 M.Tech Automotive Engineering Knowledge Base. Built for High-Performance Academic Study.</span>
+            <span>Birla Institute of Technology & Science, Pilani.</span>
+        </div>
+    </div>
+</footer>
+
+
+<div class="search-modal-overlay" id="searchModal" onclick="closeSearchModal(event)">
+    <div class="search-modal-container" onclick="event.stopPropagation()">
+        <div class="search-modal-header">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <input type="text" id="searchInput" class="search-modal-input" placeholder="Type to search curriculum, formulas, registers, exam questions..." autocomplete="off" oninput="handleSearch(this.value)">
+            <button class="search-modal-close" onclick="closeSearchModal()">&times;</button>
+        </div>
+        <div class="search-modal-filters">
+            <button class="search-filter-btn active" data-subject="all" onclick="setSearchFilter('all')">All Courses</button>
+            <button class="search-filter-btn" data-subject="automotive-communication" onclick="setSearchFilter('automotive-communication')">Communication</button>
+            <button class="search-filter-btn" data-subject="automotive-vehicle" onclick="setSearchFilter('automotive-vehicle')">Vehicle</button>
+            <button class="search-filter-btn" data-subject="autotronics" onclick="setSearchFilter('autotronics')">Autotronics</button>
+            <button class="search-filter-btn" data-subject="embedded-system-design" onclick="setSearchFilter('embedded-system-design')">Embedded</button>
+        </div>
+        <div class="search-modal-results" id="searchResults">
+            <div class="search-empty-state">
+                <span>Start typing to search across 33+ comprehensive M.Tech topics...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../../js/app.js"></script>
+<script src="../../js/search-index.js"></script>
+</body>
+</html>

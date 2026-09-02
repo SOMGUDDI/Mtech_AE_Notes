@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAN Frame Architecture &amp; Field Formats | Automotive Communication Systems</title>
+    <meta name="description" content="The CAN Data Link Layer defines four distinct frame types for bus communication: Data Frame (transmits payload data), Remote Frame (solicits data tran">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body data-topic-id="can-frame-format" data-subject-id="automotive-communication">
+
+
+<header class="navbar">
+    <div class="navbar-container">
+        <a href="../../index.html" class="nav-brand">
+            <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="nav-brand-logo">
+            <div class="brand-details">
+                <span class="brand-inst">Birla Institute of Technology & Science, Pilani</span>
+                <span class="brand-dept">Work Integrated Learning Programmes • Automotive Engineering</span>
+            </div>
+        </a>
+        <div class="nav-search-box" onclick="openSearchModal()">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <span class="search-placeholder">Search curriculum, formulas, registers, questions...</span>
+            <span class="search-shortcut">Ctrl+K</span>
+        </div>
+        <div class="nav-actions">
+            <a href="../../semesters/sem1.html" class="nav-link">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></span>
+                <span>Semester 1 Hub</span>
+            </a>
+            <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Toggle Theme">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+                <span>Theme</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+
+<div class="topic-page-layout">
+    <aside class="topic-sidebar">
+        <div class="sidebar-header">
+            <a href="../../subjects/automotive-communication.html" class="sidebar-back">
+                <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span>
+                <span>Automotive Communication Systems</span>
+            </a>
+            <div class="sidebar-subject-badge">AELZG513</div>
+        </div>
+        <div class="sidebar-toc">
+            <h4>Table of Contents</h4>
+            <ul>
+                <li><a href="#overview">Quick Overview</a></li>
+                <li><a href="#objectives">Learning Objectives</a></li>
+                <li><a href="#core-concept">Core Concept & Intuition</a></li>
+                <li><a href="#lecture-notes">In-Class Lecture Notes</a></li>
+                <li><a href="#extra-explanation">Comprehensive Theory</a></li>
+                
+                
+                <li><a href="#working-principle">Working Principle</a></li>
+                <li><a href="#application">Automotive Application</a></li>
+                <li><a href="#comparison">Specifications Table</a></li>
+                <li><a href="#formulas">Math Formulas & Numericals</a></li>
+                <li><a href="#code">Embedded Driver / Registers</a></li>
+                <li><a href="#exam-questions">Exam & Viva Q&A</a></li>
+                <li><a href="#revision-card">60-Second Flash Card</a></li>
+                <li><a href="#personal-notes">My Personal Notes</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-progress-widget">
+            <h4>Topic Status</h4>
+            <div class="status-btn-group">
+                <button class="status-btn" id="statusNotStarted" onclick="setTopicStatus('can-frame-format', 'not_started')">☐ Not Started</button>
+                <button class="status-btn" id="statusInProgress" onclick="setTopicStatus('can-frame-format', 'in_progress')">◐ In Progress</button>
+                <button class="status-btn" id="statusCompleted" onclick="setTopicStatus('can-frame-format', 'completed')">☑ Mastered</button>
+            </div>
+            <button class="bookmark-btn" id="bookmarkBtn" onclick="toggleBookmark('can-frame-format')">★ Bookmark for Revision</button>
+        </div>
+    </aside>
+
+    <main class="topic-main-content">
+        <header class="topic-header">
+            <div class="breadcrumbs">
+                <a href="../../index.html">Home</a> / 
+                <a href="../../semesters/sem1.html">Semester 1</a> / 
+                <a href="../../subjects/automotive-communication.html">Automotive Communication Systems</a> / 
+                <span class="curr-crumb">CAN Frame Architecture &amp; Field Formats</span>
+            </div>
+            
+            <div class="topic-meta-row">
+                <span class="meta-pill module-pill">MODULE: In-Vehicle Networks &amp; Protocols</span>
+                <span class="meta-pill level-pill">LEVEL: Intermediate</span>
+                <span class="meta-pill importance-pill">WEIGHT: 5/5</span>
+                <span class="meta-pill code-pill">AELZG513</span>
+            </div>
+
+            <h1 class="topic-main-title">CAN Frame Architecture &amp; Field Formats</h1>
+
+            <div class="action-bar-top">
+                <div class="read-estimate">Estimated Read Time: <strong>12–15 mins</strong></div>
+                <div class="action-buttons-group">
+                    <button class="print-btn" onclick="window.print()" title="Print this complete note page or save as PDF">
+                        <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg></span>
+                        <span>Print / Save PDF</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <section class="topic-section" id="overview">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 01]</span> Quick Overview</h2>
+            </div>
+            <p class="overview-lead">The CAN Data Link Layer defines four distinct frame types for bus communication: Data Frame (transmits payload data), Remote Frame (solicits data transmission), Error Frame (signals detected protocol violations), and Overload Frame (requests transmission delays). Understanding the bit-level structure of the Standard CAN 2.0A (11-bit identifier) and Extended CAN 2.0B (29-bit identifier) Data Frames is fundamental to automotive systems engineering.</p>
+        </section>
+
+        <section class="topic-section" id="objectives">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 02]</span> Learning Objectives & Prerequisites</h2>
+            </div>
+            <div class="objectives-card">
+                <h5>What You Will Master:</h5>
+                <ul class="objectives-list">
+                    <li>Identify and analyze all eight distinct fields in a Standard CAN 2.0A frame.</li><li>Compare Standard CAN 2.0A (11-bit ID) vs Extended CAN 2.0B (29-bit ID) frame structures.</li><li>Explain the role of the Arbitration, Control (DLC), CRC, and Acknowledge (ACK) fields.</li><li>Understand the differences between Data Frames, Remote Frames, Error Frames, and Overload Frames.</li>
+                </ul>
+                <div class="prereq-note">
+                    <strong>Prerequisites:</strong> CAN Protocol Architecture &amp; Physical Layer.
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="core-concept">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 03]</span> Core Concept & Physical Intuition</h2>
+            </div>
+            <div class="concept-body">
+                <p>A CAN Data Frame is like a self-contained envelope. It begins with a single Start-of-Frame bit to synchronize all node clocks, contains a priority Identifier (the address of the data content), control bits specifying the payload length (0 to 8 bytes), a 15-bit CRC checksum for mathematical error detection, an ACK slot where receiving nodes acknowledge error-free delivery, and 7 End-of-Frame bits.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="lecture-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 04]</span> In-Class Lecture Transcript Breakdown</h2>
+            </div>
+            <div class="callout callout-lecture">
+                <div class="callout-header">// LECTURE TRANSCRIPT SYNTHESIS</div>
+                <div class="callout-body">
+                    <p>Lecture 5 and Lab 2 transcripts walked through the CAN frame bit-by-bit. The lecturer noted: &#x27;Notice that there is no destination address in the CAN frame. The 11-bit or 29-bit ID defines the meaning and priority of the message itself.&#x27; The professor also highlighted the ACK field: &#x27;The transmitter sends a recessive bit (1) in the ACK slot. Any node on the bus that received the message with a valid CRC pulls the bus dominant (0). If the transmitter sees a 0, it knows at least one node heard it. If it remains 1, it raises an ACK Error.&#x27;</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="extra-explanation">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 05]</span> Rigorous Engineering Theory & Derivations</h2>
+            </div>
+            <div class="callout callout-deep">
+                <div class="callout-header">// RIGOROUS ENGINEERING THEORY</div>
+                <div class="callout-body">
+                    <p>Let&#x27;s analyze the bit fields of a **Standard CAN 2.0A Data Frame**:
+1. **Start of Frame (SOF):** 1 dominant bit (0) marking the beginning of transmission; synchronizes all receivers on the hard falling edge.
+2. **Arbitration Field (12 bits):**
+   - **Identifier (11 bits):** Unique message ID (`0x000` to `0x7FF`). Determines message priority during bus contention.
+   - **RTR (Remote Transmission Request) (1 bit):** Dominant (0) for Data Frame; Recessive (1) for Remote Frame.
+3. **Control Field (6 bits):**
+   - **IDE (Identifier Extension) (1 bit):** Dominant (0) indicates standard 11-bit ID; Recessive (1) indicates extended 29-bit ID.
+   - **r0 (Reserved) (1 bit):** Sent as dominant (0).
+   - **DLC (Data Length Code) (4 bits):** Binary representation of payload bytes (0 to 8 bytes, `0000` to `1000`).
+4. **Data Field (0 to 64 bits / 0 to 8 bytes):** The actual application data payload (e.g., vehicle speed, engine RPM).
+5. **CRC Field (16 bits):**
+   - **CRC Sequence (15 bits):** Cyclic Redundancy Check polynomial $x^{15} + x^{14} + x^{10} + x^8 + x^7 + x^4 + x^3 + 1$.
+   - **CRC Delimiter (1 bit):** Always 1 recessive bit (1).
+6. **ACK Field (2 bits):**
+   - **ACK Slot (1 bit):** Sent as recessive (1) by transmitter; overwritten as dominant (0) by any receiving node that verifies CRC.
+   - **ACK Delimiter (1 bit):** Always 1 recessive bit (1).
+7. **End of Frame (EOF):** 7 consecutive recessive bits (1111111).
+8. **Intermission / Interframe Space (IFS):** 3 recessive bits before the next SOF.</p>
+                </div>
+            </div>
+        </section>
+
+        
+        
+
+        <section class="topic-section" id="working-principle">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 08]</span> Step-by-Step Operational Principle</h2>
+            </div>
+            <div class="principle-body">
+                <p>In-Flight Frame Verification &amp; Acknowledgment:
+1. As the transmitter shifts out bits onto the bus, all receiving ECUs calculate the running CRC on the incoming stream up to the end of the Data Field.
+2. When the CRC Delimiter is received, each receiver compares its locally calculated CRC with the 15-bit CRC sequence received in the frame.
+3. If the CRCs match perfectly, the receiver drives the bus **Dominant (0)** during the subsequent **ACK Slot**.
+4. The transmitter sends a Recessive bit (1) and reads back the physical bus level during the ACK Slot. Seeing a Dominant (0), the transmitter confirms successful reception and completes the transmission.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="application">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 09]</span> Real Automotive Application</h2>
+            </div>
+            <div class="callout callout-application">
+                <div class="callout-header">// AUTOMOTIVE OEM CASE STUDY</div>
+                <div class="callout-body">
+                    <p></p>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="topic-section table-section" id="comparison">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 10]</span> Technical Specifications & Benchmarks</h2>
+            </div>
+            <div class="table-responsive">
+                <table class="specs-table">
+                    <thead><tr><th>Field / Characteristic</th><th>Standard CAN 2.0A</th><th>Extended CAN 2.0B</th><th>CAN-FD (Flexible Data)</th></tr></thead>
+                    <tbody><tr><td>Identifier Length</td><td>11 bits (2,048 IDs)</td><td>29 bits (536 Million IDs)</td><td>11 or 29 bits</td></tr><tr><td>IDE Bit State</td><td>Dominant (0)</td><td>Recessive (1)</td><td>Dominant or Recessive</td></tr><tr><td>Maximum Payload</td><td>8 Bytes</td><td>8 Bytes</td><td>Up to 64 Bytes</td></tr><tr><td>Maximum Bit Rate</td><td>1 Mbps</td><td>1 Mbps</td><td>Up to 5 – 8 Mbps (Data phase)</td></tr><tr><td>CRC Length</td><td>15 bits</td><td>15 bits</td><td>17 or 21 bits (Dynamic stuff bit count)</td></tr><tr><td>Primary Automotive Domain</td><td>Powertrain, Body, Chassis</td><td>Commercial Vehicles (J1939), EV BMS</td><td>Advanced ADAS, Gateway, EV Diagnostics</td></tr></tbody>
+                </table>
+            </div>
+        </section>
+        
+        
+        <section class="topic-section formulas-section" id="formulas">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 11]</span> Mathematical Formulas & Numerical Breakdown</h2>
+            </div>
+            <div class="formulas-grid">
+                
+            <div class="formula-card">
+                <div class="formula-name">Standard CAN Frame Bit Count &amp; Transmission Time</div>
+                <div class="formula-math"><code>N_{bits} = 44 + 8 \cdot DLC + \lfloor \frac{34 + 8 \cdot DLC - 1}{4} \rfloor, \quad T_{tx} = \frac{N_{bits}}{R}</code></div>
+                <div class="formula-details">
+                    <h5>Parameter Definitions:</h5>
+                    <ul class="formula-vars"><li><code>4</code>: 4</li><li><code>D</code>: L</li><li><code>R</code>:  </li></ul>
+                    <div class="formula-example"><strong>Worked Numerical Example:</strong><br>For an 8-byte payload (DLC=8), nominal frame length without stuffing is 44 + (8×8) = 108 bits. With worst-case bit stuffing (+24 bits), max bits = 132 bits. At 500 kbps, transmission time is T_tx = 132 / 500,000 = 264 μs.</div>
+                </div>
+            </div>
+            
+            </div>
+        </section>
+        
+        
+        <section class="topic-section code-section" id="code">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 12]</span> Embedded C Driver & Register Interface</h2>
+                <button class="copy-btn" onclick="copyCodeBlock('codeBlock')">
+                    <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+                    <span>Copy Code</span>
+                </button>
+            </div>
+            <div class="code-container">
+                <pre><code id="codeBlock" class="language-c">// C Definition of a Low-Level CAN Message Structure
+typedef struct {
+    uint32_t id;         // 11-bit standard or 29-bit extended identifier
+    uint8_t  is_extended;// 0 = Standard (2.0A), 1 = Extended (2.0B)
+    uint8_t  is_remote;  // 0 = Data Frame (RTR=0), 1 = Remote Frame (RTR=1)
+    uint8_t  dlc;        // Payload length code (0 to 8 bytes)
+    uint8_t  data[8];    // Up to 8 payload bytes
+    uint32_t timestamp;  // Microsecond timestamp from hardware timer
+} CAN_Frame_t;</code></pre>
+            </div>
+        </section>
+        
+
+        <section class="topic-section" id="must-remember">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 13]</span> Must-Remember Key Points for Exams</h2>
+            </div>
+            <div class="must-remember-card">
+                <ul><li>[KEY] CAN Standard 2.0A has 11-bit ID; Extended 2.0B has 29-bit ID (IDE bit distinguishes them).</li><li>[KEY] Data Frame carries 0 to 8 bytes payload specified by 4-bit DLC.</li><li>[KEY] CRC sequence is 15 bits long, followed by a 1-bit Recessive Delimiter.</li><li>[KEY] ACK slot is sent as Recessive (1) and overwritten as Dominant (0) by any node with valid CRC.</li><li>[KEY] EOF consists of 7 consecutive Recessive bits (1111111).</li></ul>
+            </div>
+        </section>
+
+        
+        <div class="callout callout-warning">
+            <div class="callout-header">// COMMON EXAM TRAPS & MISCONCEPTIONS</div>
+            <div class="callout-body">
+                <ul><li><strong>Trap:</strong> Believing the CAN ID represents the receiver&#x27;s address. CAN has no receiver or destination addresses; the ID represents the content and priority of the message.</li><li><strong>Trap:</strong> Thinking CAN frames can carry 64 bytes of data. Classic CAN 2.0 is strictly limited to 8 bytes max payload. Only CAN-FD can carry up to 64 bytes.</li></ul>
+            </div>
+        </div>
+        
+
+        <section class="topic-section" id="exam-questions">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 15]</span> Exam Preparation & Model Questions</h2>
+            </div>
+            <div class="exam-qa-container">
+                
+        <div class="exam-qa-block">
+            <h3>Short Answer Questions (1–2 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> What is the function of the IDE bit in a CAN frame?</div>
+                <div class="qa-answer">The IDE (Identifier Extension) bit distinguishes between standard and extended frames. If IDE is Dominant (0), the frame is a Standard CAN 2.0A frame with an 11-bit ID. If IDE is Recessive (1), it indicates an Extended CAN 2.0B frame with a 29-bit ID.</div>
+            </div>
+            
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> How does the transmitter know if a CAN frame was successfully received?</div>
+                <div class="qa-answer">The transmitter sends a Recessive bit (1) in the ACK slot. Every receiving node that calculates a valid matching CRC pulls the bus Dominant (0). If the transmitter reads back a Dominant level during the ACK slot, it confirms at least one node received the frame error-free.</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Comprehensive Long Answer Questions (5–10 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item long-qa-item">
+                <div class="qa-question"><span class="q-badge">10 MARKS</span> Draw and label the complete bit-level frame structure of a Standard CAN 2.0A Data Frame. Explain the function of each field in detail and compute the worst-case transmission time for an 8-byte message at 500 kbps.</div>
+                <div class="qa-answer">A complete answer covers: (1) Accurate diagram showing all 8 fields with exact bit counts; (2) Detailed explanations of SOF, Arbitration ID, RTR, IDE, r0, DLC, Data Field, CRC, ACK, and EOF; (3) Detailed explanation of ACK slot mechanism; (4) Calculation of nominal bits (108 bits) and worst-case bit-stuffed bits (132 bits); (5) Calculation of transmission time at 500 kbps (264 μs).</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Viva Voce & Technical Interview Questions</h3>
+            <div class="qa-list">
+            <div class="qa-item viva-qa-item">
+                <div class="qa-question"><span class="q-badge">VIVA / INTERVIEW</span> What happens if a transmitter is the only node on a CAN bus and transmits a valid Data Frame?</div>
+                <div class="qa-answer">The transmitter outputs the frame correctly, but during the ACK slot, no other node exists to pull the bus dominant (0). The transmitter reads back a Recessive bit, detects an ACK Error, increases its Transmit Error Counter (TEC) by 8, transmits an Error Flag, and continuously re-attempts transmission.</div>
+            </div>
+            </div>
+        </div>
+        
+            </div>
+        </section>
+
+        <section class="topic-section" id="revision-card">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 18]</span> 60-Second Flash / Revision Card</h2>
+            </div>
+            <div class="flashcard">
+                <div class="flashcard-badge">// 60-SECOND REVISION SUMMARY</div>
+                <ul class="flashcard-points"><li>[REV] Fields: SOF(1) -&gt; ID(11) -&gt; RTR(1) -&gt; IDE(1) -&gt; r0(1) -&gt; DLC(4) -&gt; Data(0-8B) -&gt; CRC(15) -&gt; CDel(1) -&gt; ACK(1) -&gt; ADel(1) -&gt; EOF(7).</li><li>[REV] Standard = 11-bit ID (IDE=0); Extended = 29-bit ID (IDE=1).</li><li>[REV] ACK slot overwritten by receivers with Dominant 0.</li><li>[REV] Nominal 8-byte frame: 108 bits (~216 μs at 500 kbps).</li></ul>
+            </div>
+        </section>
+
+        <section class="topic-section" id="personal-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 19]</span> Personal Study Notes (Auto-Saved)</h2>
+            </div>
+            <div class="personal-notes-widget">
+                <p class="notes-hint">Type personal notes or lab observations below. Content auto-saves to your local browser storage.</p>
+                <textarea id="personalNotePad" class="personal-notes-textarea" placeholder="Type personal study notes here..." oninput="savePersonalNote('can-frame-format', this.value)"></textarea>
+                <div class="notes-save-indicator" id="notesSavedTag">✓ Saved locally</div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="sources">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 20]</span> Source Traceability & Curriculum References</h2>
+            </div>
+            <div class="sources-box">
+                <p><strong>Primary Source Reference:</strong> Automotive Communication Systems Lecture 5 Transcript; Lab 2 PPT; Course Syllabus Section 2 (CAN Frame Architecture).</p>
+            </div>
+        </section>
+
+        <nav class="topic-pagination">
+            <div class="pagination-prev"><a href="can-protocol-overview.html" class="nav-prev-btn"><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span><span>Previous: CAN Protocol Architecture &amp; Differential Physical Layer</span></a></div>
+            <div class="pagination-next"><a href="can-arbitration-mechanism.html" class="nav-next-btn"><span>Next: CAN Bus Non-Destructive Bitwise Arbitration</span><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span></a></div>
+        </nav>
+    </main>
+</div>
+
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-col brand-col">
+            <div class="footer-brand">
+                <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="footer-bits-logo">
+                <div class="footer-brand-text">
+                    <span class="footer-title">Birla Institute of Technology & Science, Pilani</span>
+                    <span class="footer-sub">Work Integrated Learning Programmes (WILP)</span>
+                </div>
+            </div>
+            <p class="footer-desc">Institutional knowledge base engineered from official lecture transcripts, handouts, and laboratory sessions for M.Tech Automotive Engineering.</p>
+            <div class="footer-tags">
+                <span class="badge badge-info">BITS WILP</span>
+                <span class="badge badge-success">4 Core Courses</span>
+                <span class="badge badge-warning">Exam & Viva Ready</span>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Semester 1 Courses</h4>
+            <ul>
+                <li><a href="../../subjects/automotive-communication.html">Automotive Communication (AELZG513)</a></li>
+                <li><a href="../../subjects/automotive-vehicle.html">Automotive Vehicle (AELZC441)</a></li>
+                <li><a href="../../subjects/autotronics.html">Autotronics (AEZG533)</a></li>
+                <li><a href="../../subjects/embedded-system-design.html">Embedded System Design (AEZG512)</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="../../index.html">Master Portal Home</a></li>
+                <li><a href="../../semesters/sem1.html">Semester 1 Overview & Credits</a></li>
+                <li><a href="javascript:void(0)" onclick="openSearchModal()">Global Topic Search</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-bottom-content">
+            <span>© 2026 M.Tech Automotive Engineering Knowledge Base. Built for High-Performance Academic Study.</span>
+            <span>Birla Institute of Technology & Science, Pilani.</span>
+        </div>
+    </div>
+</footer>
+
+
+<div class="search-modal-overlay" id="searchModal" onclick="closeSearchModal(event)">
+    <div class="search-modal-container" onclick="event.stopPropagation()">
+        <div class="search-modal-header">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <input type="text" id="searchInput" class="search-modal-input" placeholder="Type to search curriculum, formulas, registers, exam questions..." autocomplete="off" oninput="handleSearch(this.value)">
+            <button class="search-modal-close" onclick="closeSearchModal()">&times;</button>
+        </div>
+        <div class="search-modal-filters">
+            <button class="search-filter-btn active" data-subject="all" onclick="setSearchFilter('all')">All Courses</button>
+            <button class="search-filter-btn" data-subject="automotive-communication" onclick="setSearchFilter('automotive-communication')">Communication</button>
+            <button class="search-filter-btn" data-subject="automotive-vehicle" onclick="setSearchFilter('automotive-vehicle')">Vehicle</button>
+            <button class="search-filter-btn" data-subject="autotronics" onclick="setSearchFilter('autotronics')">Autotronics</button>
+            <button class="search-filter-btn" data-subject="embedded-system-design" onclick="setSearchFilter('embedded-system-design')">Embedded</button>
+        </div>
+        <div class="search-modal-results" id="searchResults">
+            <div class="search-empty-state">
+                <span>Start typing to search across 33+ comprehensive M.Tech topics...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../../js/app.js"></script>
+<script src="../../js/search-index.js"></script>
+</body>
+</html>

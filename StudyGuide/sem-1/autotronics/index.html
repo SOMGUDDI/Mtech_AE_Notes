@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autotronics (AEZG533 / AELZG533) | BITS Pilani M.Tech Study Guide</title>
+    <meta name="description" content="Fundamental and advanced mechatronic principles for automotive systems: electrical &amp; electronics foundations (RLC, magnetics, circuit theorems), semiconductor switches, op-amp signal conditioning, data conversion (ADC/DAC), digital logic, automotive sensor transduction, and actuator control.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body data-subject-id="autotronics">
+
+
+<header class="navbar">
+    <div class="navbar-container">
+        <a href="../../index.html" class="nav-brand">
+            <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="nav-brand-logo">
+            <div class="brand-details">
+                <span class="brand-inst">Birla Institute of Technology & Science, Pilani</span>
+                <span class="brand-dept">Work Integrated Learning Programmes • Automotive Engineering</span>
+            </div>
+        </a>
+        <div class="nav-search-box" onclick="openSearchModal()">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <span class="search-placeholder">Search curriculum, formulas, registers, questions...</span>
+            <span class="search-shortcut">Ctrl+K</span>
+        </div>
+        <div class="nav-actions">
+            <a href="../../semesters/sem1.html" class="nav-link">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></span>
+                <span>Semester 1 Hub</span>
+            </a>
+            <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Toggle Theme">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+                <span>Theme</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+
+<header class="subject-hero">
+    <div class="container">
+        <div class="hero-pill">
+            <span class="status-dot"></span>
+            <span>BITS Pilani WILP • Course Code: AEZG533 / AELZG533 • 3-0-2 (5 Units)</span>
+        </div>
+        <div class="breadcrumbs">
+            <a href="../../index.html">Home</a> / 
+            <a href="../../semesters/sem1.html">Semester 1</a> / 
+            <span class="curr-crumb">Autotronics</span>
+        </div>
+        <h1 class="hero-title">Autotronics</h1>
+        <p class="hero-subtitle">Fundamental and advanced mechatronic principles for automotive systems: electrical &amp; electronics foundations (RLC, magnetics, circuit theorems), semiconductor switches, op-amp signal conditioning, data conversion (ADC/DAC), digital logic, automotive sensor transduction, and actuator control.</p>
+        
+        <div class="hero-stats-grid">
+            <div class="stat-box">
+                <div class="stat-icon-wrapper"><span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></span></div>
+                <div class="stat-info">
+                    <span class="stat-value">8</span>
+                    <span class="stat-label">In-Depth Topics</span>
+                </div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-icon-wrapper"><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span></div>
+                <div class="stat-info">
+                    <span class="stat-value">5</span>
+                    <span class="stat-label">Learning Modules</span>
+                </div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-icon-wrapper"><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span></div>
+                <div class="stat-info">
+                    <span class="stat-value">100%</span>
+                    <span class="stat-label">Transcript Coverage</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="subject-main-container">
+    <div class="subject-content-wrapper">
+        <div class="subject-modules-container">
+            
+        <div class="dashboard-module-block">
+            <div class="module-block-header">
+                <h2>System Foundations</h2>
+                <span class="module-count">1 Topics</span>
+            </div>
+            <div class="dashboard-topics-grid">
+                
+            <div class="dashboard-topic-card" data-topic-id="automotive-systems-signal-flow">
+                <div class="topic-card-top">
+                    <span class="topic-level-badge level-beginner">Beginner</span>
+                    <span class="topic-stars">WEIGHT: 5/5</span>
+                </div>
+                <h3 class="topic-card-title"><a href="../../topics/autotronics/automotive-systems-signal-flow.html">Automotive Systems Architecture &amp; Signal Flow</a></h3>
+                <p class="topic-card-desc">Every automotive electronic system, regardless of its mechanical or software complexity, operates on one of three fundamental signal flows: ...</p>
+                <div class="topic-card-footer">
+                    <span class="topic-status-tag" id="tag_automotive-systems-signal-flow">☐ Not Started</span>
+                    <a href="../../topics/autotronics/automotive-systems-signal-flow.html" class="study-btn">Study Topic →</a>
+                </div>
+            </div>
+            
+            </div>
+        </div>
+        
+        <div class="dashboard-module-block">
+            <div class="module-block-header">
+                <h2>Electrical &amp; Electronics Fundamentals</h2>
+                <span class="module-count">4 Topics</span>
+            </div>
+            <div class="dashboard-topics-grid">
+                
+            <div class="dashboard-topic-card" data-topic-id="resistors-and-voltage-divider-circuits">
+                <div class="topic-card-top">
+                    <span class="topic-level-badge level-beginner">Beginner</span>
+                    <span class="topic-stars">WEIGHT: 5/5</span>
+                </div>
+                <h3 class="topic-card-title"><a href="../../topics/autotronics/resistors-and-voltage-divider-circuits.html">Resistors, Voltage Dividers &amp; Sensor Interfacing</a></h3>
+                <p class="topic-card-desc">Resistors are passive dissipative circuit components that convert electrical energy into heat, governed by Ohm&#x27;s Law. In automotive electron...</p>
+                <div class="topic-card-footer">
+                    <span class="topic-status-tag" id="tag_resistors-and-voltage-divider-circuits">☐ Not Started</span>
+                    <a href="../../topics/autotronics/resistors-and-voltage-divider-circuits.html" class="study-btn">Study Topic →</a>
+                </div>
+            </div>
+            
+            <div class="dashboard-topic-card" data-topic-id="capacitors-and-energy-storage">
+                <div class="topic-card-top">
+                    <span class="topic-level-badge level-beginner">Beginner</span>
+                    <span class="topic-stars">WEIGHT: 5/5</span>
+                </div>
+                <h3 class="topic-card-title"><a href="../../topics/autotronics/capacitors-and-energy-storage.html">Capacitors, Energy Storage &amp; RC Timing Circuits</a></h3>
+                <p class="topic-card-desc">Capacitors are passive electronic components that store electrical energy in an electrostatic field between conductive plates separated by a...</p>
+                <div class="topic-card-footer">
+                    <span class="topic-status-tag" id="tag_capacitors-and-energy-storage">☐ Not Started</span>
+                    <a href="../../topics/autotronics/capacitors-and-energy-storage.html" class="study-btn">Study Topic →</a>
+                </div>
+            </div>
+            
+            <div class="dashboard-topic-card" data-topic-id="inductors-magnetism-and-transformers">
+                <div class="topic-card-top">
+                    <span class="topic-level-badge level-intermediate">Intermediate</span>
+                    <span class="topic-stars">WEIGHT: 5/5</span>
+                </div>
+                <h3 class="topic-card-title"><a href="../../topics/autotronics/inductors-magnetism-and-transformers.html">Inductors, Magnetic Fields &amp; Ignition Coil Transformers</a></h3>
+                <p class="topic-card-desc">Inductors are passive electromagnetic components that store energy in a magnetic field generated by current flow through a conductor coil. G...</p>
+                <div class="topic-card-footer">
+                    <span class="topic-status-tag" id="tag_inductors-magnetism-and-transformers">☐ Not Started</span>
+                    <a href="../../topics/autotronics/inductors-magnetism-and-transformers.html" class="study-btn">Study Topic →</a>
+                </div>
+            </div>
+            
+            <div class="dashboard-topic-card" data-topic-id="circuit-laws-mesh-nodal-thevenin">
+                <div class="topic-card-top">
+                    <span class="topic-level-badge level-intermediate">Intermediate</span>
+                    <span class="topic-stars">WEIGHT: 5/5</span>
+                </div>
+                <h3 class="topic-card-title"><a href="../../topics/autotronics/circuit-laws-mesh-nodal-thevenin.html">Circuit Theorems: KCL, KVL, Mesh, Nodal &amp; Thévenin Equivalent</a></h3>
+                <p class="topic-card-desc">Complex automotive sensor interfaces, electronic control units, and power distribution networks are analyzed using fundamental circuit theor...</p>
+                <div class="topic-card-footer">
+                    <span class="topic-status-tag" id="tag_circuit-laws-mesh-nodal-thevenin">☐ Not Started</span>
+                    <a href="../../topics/autotronics/circuit-laws-mesh-nodal-thevenin.html" class="study-btn">Study Topic →</a>
+                </div>
+            </div>
+            
+            </div>
+        </div>
+        
+        <div class="dashboard-module-block">
+            <div class="module-block-header">
+                <h2>Semiconductors &amp; Power Electronics</h2>
+                <span class="module-count">1 Topics</span>
+            </div>
+            <div class="dashboard-topics-grid">
+                
+            <div class="dashboard-topic-card" data-topic-id="transistors-bjt-and-mosfet-switches">
+                <div class="topic-card-top">
+                    <span class="topic-level-badge level-intermediate">Intermediate</span>
+                    <span class="topic-stars">WEIGHT: 5/5</span>
+                </div>
+                <h3 class="topic-card-title"><a href="../../topics/autotronics/transistors-bjt-and-mosfet-switches.html">Transistors as Switches: BJT &amp; Power MOSFET Driving</a></h3>
+                <p class="topic-card-desc">Microcontrollers operate on sensitive 3.3V or 5V digital logic and can output only 10 to 25 mA of current. Automotive actuators (fuel inject...</p>
+                <div class="topic-card-footer">
+                    <span class="topic-status-tag" id="tag_transistors-bjt-and-mosfet-switches">☐ Not Started</span>
+                    <a href="../../topics/autotronics/transistors-bjt-and-mosfet-switches.html" class="study-btn">Study Topic →</a>
+                </div>
+            </div>
+            
+            </div>
+        </div>
+        
+        <div class="dashboard-module-block">
+            <div class="module-block-header">
+                <h2>Analog Signal Conditioning</h2>
+                <span class="module-count">1 Topics</span>
+            </div>
+            <div class="dashboard-topics-grid">
+                
+            <div class="dashboard-topic-card" data-topic-id="operational-amplifiers-in-signal-conditioning">
+                <div class="topic-card-top">
+                    <span class="topic-level-badge level-intermediate">Intermediate</span>
+                    <span class="topic-stars">WEIGHT: 5/5</span>
+                </div>
+                <h3 class="topic-card-title"><a href="../../topics/autotronics/operational-amplifiers-in-signal-conditioning.html">Operational Amplifiers &amp; Sensor Signal Conditioning</a></h3>
+                <p class="topic-card-desc">Automotive sensors (piezoelectric knock sensors, thermocouples, strain gauge load cells, and variable reluctance wheel speed sensors) output...</p>
+                <div class="topic-card-footer">
+                    <span class="topic-status-tag" id="tag_operational-amplifiers-in-signal-conditioning">☐ Not Started</span>
+                    <a href="../../topics/autotronics/operational-amplifiers-in-signal-conditioning.html" class="study-btn">Study Topic →</a>
+                </div>
+            </div>
+            
+            </div>
+        </div>
+        
+        <div class="dashboard-module-block">
+            <div class="module-block-header">
+                <h2>Analog-to-Digital Conversion</h2>
+                <span class="module-count">1 Topics</span>
+            </div>
+            <div class="dashboard-topics-grid">
+                
+            <div class="dashboard-topic-card" data-topic-id="analog-to-digital-and-digital-to-analog-converters">
+                <div class="topic-card-top">
+                    <span class="topic-level-badge level-intermediate">Intermediate</span>
+                    <span class="topic-stars">WEIGHT: 5/5</span>
+                </div>
+                <h3 class="topic-card-title"><a href="../../topics/autotronics/analog-to-digital-and-digital-to-analog-converters.html">Data Converters: ADC &amp; DAC Architectures in Automotive ECUs</a></h3>
+                <p class="topic-card-desc">Microcontrollers operate strictly in the discrete digital domain (1s and 0s), whereas automotive physical phenomena (temperatures, manifold ...</p>
+                <div class="topic-card-footer">
+                    <span class="topic-status-tag" id="tag_analog-to-digital-and-digital-to-analog-converters">☐ Not Started</span>
+                    <a href="../../topics/autotronics/analog-to-digital-and-digital-to-analog-converters.html" class="study-btn">Study Topic →</a>
+                </div>
+            </div>
+            
+            </div>
+        </div>
+        
+        </div>
+    </div>
+</main>
+
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-col brand-col">
+            <div class="footer-brand">
+                <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="footer-bits-logo">
+                <div class="footer-brand-text">
+                    <span class="footer-title">Birla Institute of Technology & Science, Pilani</span>
+                    <span class="footer-sub">Work Integrated Learning Programmes (WILP)</span>
+                </div>
+            </div>
+            <p class="footer-desc">Institutional knowledge base engineered from official lecture transcripts, handouts, and laboratory sessions for M.Tech Automotive Engineering.</p>
+            <div class="footer-tags">
+                <span class="badge badge-info">BITS WILP</span>
+                <span class="badge badge-success">4 Core Courses</span>
+                <span class="badge badge-warning">Exam & Viva Ready</span>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Semester 1 Courses</h4>
+            <ul>
+                <li><a href="../../subjects/automotive-communication.html">Automotive Communication (AELZG513)</a></li>
+                <li><a href="../../subjects/automotive-vehicle.html">Automotive Vehicle (AELZC441)</a></li>
+                <li><a href="../../subjects/autotronics.html">Autotronics (AEZG533)</a></li>
+                <li><a href="../../subjects/embedded-system-design.html">Embedded System Design (AEZG512)</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="../../index.html">Master Portal Home</a></li>
+                <li><a href="../../semesters/sem1.html">Semester 1 Overview & Credits</a></li>
+                <li><a href="javascript:void(0)" onclick="openSearchModal()">Global Topic Search</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-bottom-content">
+            <span>© 2026 M.Tech Automotive Engineering Knowledge Base. Built for High-Performance Academic Study.</span>
+            <span>Birla Institute of Technology & Science, Pilani.</span>
+        </div>
+    </div>
+</footer>
+
+
+<div class="search-modal-overlay" id="searchModal" onclick="closeSearchModal(event)">
+    <div class="search-modal-container" onclick="event.stopPropagation()">
+        <div class="search-modal-header">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <input type="text" id="searchInput" class="search-modal-input" placeholder="Type to search curriculum, formulas, registers, exam questions..." autocomplete="off" oninput="handleSearch(this.value)">
+            <button class="search-modal-close" onclick="closeSearchModal()">&times;</button>
+        </div>
+        <div class="search-modal-filters">
+            <button class="search-filter-btn active" data-subject="all" onclick="setSearchFilter('all')">All Courses</button>
+            <button class="search-filter-btn" data-subject="automotive-communication" onclick="setSearchFilter('automotive-communication')">Communication</button>
+            <button class="search-filter-btn" data-subject="automotive-vehicle" onclick="setSearchFilter('automotive-vehicle')">Vehicle</button>
+            <button class="search-filter-btn" data-subject="autotronics" onclick="setSearchFilter('autotronics')">Autotronics</button>
+            <button class="search-filter-btn" data-subject="embedded-system-design" onclick="setSearchFilter('embedded-system-design')">Embedded</button>
+        </div>
+        <div class="search-modal-results" id="searchResults">
+            <div class="search-empty-state">
+                <span>Start typing to search across 33+ comprehensive M.Tech topics...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../../js/app.js"></script>
+<script src="../../js/search-index.js"></script>
+</body>
+</html>

@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NXP S32K144 FlexCAN Controller &amp; CAN-FD Implementation | Embedded System Design</title>
+    <meta name="description" content="The FlexCAN module in the NXP S32K144 is a full-featured, silicon-hardened automotive network controller implementing ISO 11898-1 Classic CAN 2.0B and">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body data-topic-id="s32k144-flexcan-automotive-network-controller" data-subject-id="embedded-system-design">
+
+
+<header class="navbar">
+    <div class="navbar-container">
+        <a href="../../index.html" class="nav-brand">
+            <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="nav-brand-logo">
+            <div class="brand-details">
+                <span class="brand-inst">Birla Institute of Technology & Science, Pilani</span>
+                <span class="brand-dept">Work Integrated Learning Programmes • Automotive Engineering</span>
+            </div>
+        </a>
+        <div class="nav-search-box" onclick="openSearchModal()">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <span class="search-placeholder">Search curriculum, formulas, registers, questions...</span>
+            <span class="search-shortcut">Ctrl+K</span>
+        </div>
+        <div class="nav-actions">
+            <a href="../../semesters/sem1.html" class="nav-link">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></span>
+                <span>Semester 1 Hub</span>
+            </a>
+            <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Toggle Theme">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+                <span>Theme</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+
+<div class="topic-page-layout">
+    <aside class="topic-sidebar">
+        <div class="sidebar-header">
+            <a href="../../subjects/embedded-system-design.html" class="sidebar-back">
+                <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span>
+                <span>Embedded System Design</span>
+            </a>
+            <div class="sidebar-subject-badge">AEZG512 / AELZC512</div>
+        </div>
+        <div class="sidebar-toc">
+            <h4>Table of Contents</h4>
+            <ul>
+                <li><a href="#overview">Quick Overview</a></li>
+                <li><a href="#objectives">Learning Objectives</a></li>
+                <li><a href="#core-concept">Core Concept & Intuition</a></li>
+                <li><a href="#lecture-notes">In-Class Lecture Notes</a></li>
+                <li><a href="#extra-explanation">Comprehensive Theory</a></li>
+                
+                
+                <li><a href="#working-principle">Working Principle</a></li>
+                <li><a href="#application">Automotive Application</a></li>
+                <li><a href="#comparison">Specifications Table</a></li>
+                <li><a href="#formulas">Math Formulas & Numericals</a></li>
+                <li><a href="#code">Embedded Driver / Registers</a></li>
+                <li><a href="#exam-questions">Exam & Viva Q&A</a></li>
+                <li><a href="#revision-card">60-Second Flash Card</a></li>
+                <li><a href="#personal-notes">My Personal Notes</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-progress-widget">
+            <h4>Topic Status</h4>
+            <div class="status-btn-group">
+                <button class="status-btn" id="statusNotStarted" onclick="setTopicStatus('s32k144-flexcan-automotive-network-controller', 'not_started')">☐ Not Started</button>
+                <button class="status-btn" id="statusInProgress" onclick="setTopicStatus('s32k144-flexcan-automotive-network-controller', 'in_progress')">◐ In Progress</button>
+                <button class="status-btn" id="statusCompleted" onclick="setTopicStatus('s32k144-flexcan-automotive-network-controller', 'completed')">☑ Mastered</button>
+            </div>
+            <button class="bookmark-btn" id="bookmarkBtn" onclick="toggleBookmark('s32k144-flexcan-automotive-network-controller')">★ Bookmark for Revision</button>
+        </div>
+    </aside>
+
+    <main class="topic-main-content">
+        <header class="topic-header">
+            <div class="breadcrumbs">
+                <a href="../../index.html">Home</a> / 
+                <a href="../../semesters/sem1.html">Semester 1</a> / 
+                <a href="../../subjects/embedded-system-design.html">Embedded System Design</a> / 
+                <span class="curr-crumb">NXP S32K144 FlexCAN Controller &amp; CAN-FD Implementation</span>
+            </div>
+            
+            <div class="topic-meta-row">
+                <span class="meta-pill module-pill">MODULE: Microcontroller Peripherals</span>
+                <span class="meta-pill level-pill">LEVEL: Advanced</span>
+                <span class="meta-pill importance-pill">WEIGHT: 5/5</span>
+                <span class="meta-pill code-pill">AEZG512 / AELZC512</span>
+            </div>
+
+            <h1 class="topic-main-title">NXP S32K144 FlexCAN Controller &amp; CAN-FD Implementation</h1>
+
+            <div class="action-bar-top">
+                <div class="read-estimate">Estimated Read Time: <strong>12–15 mins</strong></div>
+                <div class="action-buttons-group">
+                    <button class="print-btn" onclick="window.print()" title="Print this complete note page or save as PDF">
+                        <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg></span>
+                        <span>Print / Save PDF</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <section class="topic-section" id="overview">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 01]</span> Quick Overview</h2>
+            </div>
+            <p class="overview-lead">The FlexCAN module in the NXP S32K144 is a full-featured, silicon-hardened automotive network controller implementing ISO 11898-1 Classic CAN 2.0B and CAN-FD (Flexible Data-Rate) protocols. Operating with up to 64 flexible Message Buffers (MBs), individual RX masking, transmit abort capability, and DMA transfers, FlexCAN enables deterministic inter-ECU communication across vehicle chassis and powertrain networks.</p>
+        </section>
+
+        <section class="topic-section" id="objectives">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 02]</span> Learning Objectives & Prerequisites</h2>
+            </div>
+            <div class="objectives-card">
+                <h5>What You Will Master:</h5>
+                <ul class="objectives-list">
+                    <li>Analyze the internal architecture of the S32K144 FlexCAN module and its 64 Message Buffer (MB) RAM array.</li><li>Configure FlexCAN bit-timing registers (PRESDIV, PROPSEG, PSEG1, PSEG2, RJW) for 500 kbps Classic CAN and 2 Mbps / 5 Mbps CAN-FD.</li><li>Set up Message Buffer Filter Matching (Individual Mask Registers `RXIMR` and Global Mask `RXMGMASK`).</li><li>Implement bare-metal CAN transmission and interrupt-driven reception routines.</li>
+                </ul>
+                <div class="prereq-note">
+                    <strong>Prerequisites:</strong> CAN Protocol Fundamentals, S32K144 Memory Map, Embedded C, NVIC Interrupts.
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="core-concept">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 03]</span> Core Concept & Physical Intuition</h2>
+            </div>
+            <div class="concept-body">
+                <p>The FlexCAN controller offloads 100% of the low-level bit-stuffing, CRC calculation, frame acknowledgement, and error frame recovery from the ARM Cortex-M4 CPU core. Software interacts with FlexCAN purely through high-level **Message Buffers (MBs)** in RAM: you write an ID and payload into a Transmit MB and set the code to `TX_ONCE`; the hardware transmits the frame onto the CAN bus and generates an interrupt when finished.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="lecture-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 04]</span> In-Class Lecture Transcript Breakdown</h2>
+            </div>
+            <div class="callout callout-lecture">
+                <div class="callout-header">// LECTURE TRANSCRIPT SYNTHESIS</div>
+                <div class="callout-body">
+                    <p>Lecture 5 and 6 of Embedded System Design and Lab Session 3 covered FlexCAN on the S32K144. Prof. Shree Prasad M. explained: &#x27;FlexCAN has up to 64 Message Buffers located in dedicated internal RAM starting at offset $0\text{x}0080$. Each MB contains a Control/Status word, 32-bit ID register, and data payload bytes.&#x27; The instructor demonstrated configuring FlexCAN in Freeze Mode, setting up the 500 kbps bit timing table, and implementing an interrupt handler to read incoming brake and speed frames.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="extra-explanation">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 05]</span> Rigorous Engineering Theory & Derivations</h2>
+            </div>
+            <div class="callout callout-deep">
+                <div class="callout-header">// RIGOROUS ENGINEERING THEORY</div>
+                <div class="callout-body">
+                    <p>Let&#x27;s analyze the **FlexCAN Message Buffer &amp; Register Architecture**:
+
+1. **Message Buffer (MB) Structure (16 Bytes per MB in Classic CAN):**
+   - **Word 0 (Offset $+0\text{x}0$): Control and Status (CS):**
+     - **CODE Field (Bits 27-24):** Indicates MB state:
+       - Transmit Codes: `0b1000` (`TX_INACTIVE`), `0b1100` (`TX_ONCE` - triggers transmission).
+       - Receive Codes: `0b0100` (`RX_EMPTY` - ready to receive), `0b0010` (`RX_FULL` - message received).
+     - **IDE (Bit 21):** ID Extended ($0 = \text{Standard 11-bit}$, $1 = \text{Extended 29-bit}$).
+     - **RTR (Bit 20):** Remote Transmission Request.
+     - **DLC (Bits 19-16):** Data Length Code ($0$ to $8$ bytes).
+   - **Word 1 (Offset $+0\text{x}4$): ID Field:** Standard ID in bits 28-18 (for 11-bit ID: `ID &lt;&lt; 18`).
+   - **Words 2 &amp; 3 (Offset $+0\text{x}8, +0\text{xC}$):** 8 Data payload bytes.
+
+2. **FlexCAN Initialization Sequence (Freeze Mode):**
+   - Step 1: Enable clock in PCC (`PCC-&gt;PCCn[PCC_FlexCAN0_INDEX] |= PCC_PCCn_CGC_MASK`).
+   - Step 2: Request Freeze Mode (`CAN0-&gt;MCR |= CAN_MCR_MDIS_MASK;` then clear MDIS and assert `FRZ` &amp; `HALT`). Wait for `FRZACK` bit to set.
+   - Step 3: Configure Bit Timing in `CAN0-&gt;CTRL1` (set nominal bit rate to 500 kbps).
+   - Step 4: Initialize Message Buffers (set MB0 to `RX_EMPTY`, MB1 to `TX_INACTIVE`).
+   - Step 5: Exit Freeze Mode by clearing `HALT` and `FRZ` bits in `MCR`.</p>
+                </div>
+            </div>
+        </section>
+
+        
+        
+
+        <section class="topic-section" id="working-principle">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 08]</span> Step-by-Step Operational Principle</h2>
+            </div>
+            <div class="principle-body">
+                <p>Bit Timing Calculation for 500 kbps:
+Given a $40\text{ MHz}$ CAN Protocol Clock ($f_{canclk}$):
+- Total Time Quanta per bit ($N_Q$) = $1 + \text{SyncSeg} + \text{PropSeg} + \text{PhaseSeg1} + \text{PhaseSeg2} = 1 + 1 + 6 + 4 + 4 = 16\text{ TQ}$.
+- Desired Bit Rate = $500\text{ kbps} \implies T_{bit} = 2.0\ \mu\text{s}$.
+- Time Quantum duration $T_Q = \frac{T_{bit}}{N_Q} = \frac{2.0\ \mu\text{s}}{16} = 125\text{ ns}$.
+- Prescaler $\text{PRESDIV} = \frac{f_{canclk}}{1 / T_Q} = \frac{40\text{ MHz}}{8\text{ MHz}} = 5 \implies \mathbf{\text{PRESDIV} = 4}$ (0-indexed in register).</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="application">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 09]</span> Real Automotive Application</h2>
+            </div>
+            <div class="callout callout-application">
+                <div class="callout-header">// AUTOMOTIVE OEM CASE STUDY</div>
+                <div class="callout-body">
+                    <p></p>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="topic-section table-section" id="comparison">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 10]</span> Technical Specifications & Benchmarks</h2>
+            </div>
+            <div class="table-responsive">
+                <table class="specs-table">
+                    <thead><tr><th>Feature / Metric</th><th>Classic CAN 2.0B (FlexCAN)</th><th>CAN-FD (FlexCAN-FD)</th><th>LIN 2.2</th></tr></thead>
+                    <tbody><tr><td>Max Data Payload</td><td>8 Bytes per frame</td><td>Up to 64 Bytes per frame</td><td>8 Bytes</td></tr><tr><td>Max Baud Rate</td><td>1 Mbps (Typically 500 kbps)</td><td>5 Mbps (Fast data phase) / 8 Mbps</td><td>20 kbps</td></tr><tr><td>Hardware Buffers</td><td>Up to 64 Message Buffers</td><td>Up to 32 (64-byte payload MBs)</td><td>Single byte UART buffer</td></tr><tr><td>Error Detection</td><td>15-bit CRC + Bit Monitoring + Form Check</td><td>17-bit / 21-bit CRC + Stuff Count</td><td>8-bit Classic Checksum</td></tr><tr><td>Automotive Domain</td><td>Powertrain, ABS/ESP, Body Control</td><td>ADAS Radar, EV Inverter Telemetry, Flashing</td><td>Door switches, mirrors, wipers, climate</td></tr></tbody>
+                </table>
+            </div>
+        </section>
+        
+        
+        <section class="topic-section formulas-section" id="formulas">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 11]</span> Mathematical Formulas & Numerical Breakdown</h2>
+            </div>
+            <div class="formulas-grid">
+                
+            <div class="formula-card">
+                <div class="formula-name">CAN Bit Rate and Prescaler Formula</div>
+                <div class="formula-math"><code>\text{Bit Rate} = \frac{f_{canclk}}{(\text{PRESDIV} + 1) \times (1 + \text{PROPSEG} + \text{PSEG1} + \text{PSEG2} + 3)}</code></div>
+                <div class="formula-details">
+                    <h5>Parameter Definitions:</h5>
+                    <ul class="formula-vars"><li><code>f</code>: _</li><li><code>P</code>: R</li><li><code>P</code>: R</li></ul>
+                    <div class="formula-example"><strong>Worked Numerical Example:</strong><br>With f_canclk = 40 MHz, PRES_DIV = 4 (div by 5), PROPSEG = 5, PSEG1 = 3, PSEG2 = 3 (Total 16 TQ): Bit Rate = 40,000,000 / (5 × 16) = 40,000,000 / 80 = 500,000 bps (500 kbps).</div>
+                </div>
+            </div>
+            
+            </div>
+        </section>
+        
+        
+        <section class="topic-section code-section" id="code">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 12]</span> Embedded C Driver & Register Interface</h2>
+                <button class="copy-btn" onclick="copyCodeBlock('codeBlock')">
+                    <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+                    <span>Copy Code</span>
+                </button>
+            </div>
+            <div class="code-container">
+                <pre><code id="codeBlock" class="language-c">// S32K144 Bare-Metal FlexCAN Transmit Message Routine
+#include &quot;S32K144.h&quot;
+
+void flexcan_transmit_frame(uint32_t standard_id, uint8_t* data, uint8_t dlc) {
+    // Use Message Buffer 1 (MB1) for Transmit
+    volatile uint32_t* mb1 = (volatile uint32_t*)&amp;(CAN0-&gt;RAMn[1 * 4]);
+    
+    // 1. Set MB1 Code to TX_INACTIVE (0b1000) to prepare buffer
+    mb1[0] = (0x8 &lt;&lt; 24);
+    
+    // 2. Set Standard ID (Bits 28-18)
+    mb1[1] = (standard_id &amp; 0x7FF) &lt;&lt; 18;
+    
+    // 3. Load Data Payload Bytes
+    mb1[2] = ((uint32_t)data[0] &lt;&lt; 24) | ((uint32_t)data[1] &lt;&lt; 16) | 
+             ((uint32_t)data[2] &lt;&lt; 8)  | ((uint32_t)data[3]);
+    mb1[3] = ((uint32_t)data[4] &lt;&lt; 24) | ((uint32_t)data[5] &lt;&lt; 16) | 
+             ((uint32_t)data[6] &lt;&lt; 8)  | ((uint32_t)data[7]);
+             
+    // 4. Start Transmission: Set CODE = 0b1100 (TX_ONCE), IDE=0, DLC
+    mb1[0] = (0xC &lt;&lt; 24) | ((dlc &amp; 0x0F) &lt;&lt; 16);
+}</code></pre>
+            </div>
+        </section>
+        
+
+        <section class="topic-section" id="must-remember">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 13]</span> Must-Remember Key Points for Exams</h2>
+            </div>
+            <div class="must-remember-card">
+                <ul><li>[KEY] FlexCAN supports up to 64 hardware Message Buffers in dedicated RAM (0x40024080).</li><li>[KEY] To configure bit rates, FlexCAN MUST be placed into Freeze Mode (FRZ &amp; HALT).</li><li>[KEY] Standard 11-bit CAN ID is placed in bits 28-18 of Word 1 (`ID &lt;&lt; 18`).</li><li>[KEY] TX_ONCE code (`0b1100`) triggers automatic autonomous hardware frame transmission.</li><li>[KEY] CAN-FD supports up to 64-byte payloads at data bitrates up to 5-8 Mbps.</li></ul>
+            </div>
+        </section>
+
+        
+        <div class="callout callout-warning">
+            <div class="callout-header">// COMMON EXAM TRAPS & MISCONCEPTIONS</div>
+            <div class="callout-body">
+                <ul><li><strong>Trap:</strong> Writing the 11-bit CAN Standard ID starting at bit 0 instead of bit 18. In FlexCAN, Standard IDs MUST be shifted left by 18 bits (`ID &lt;&lt; 18`).</li><li><strong>Trap:</strong> Attempting to write to `CAN0-&gt;CTRL1` while the controller is running outside Freeze Mode. Timing registers are write-protected outside Freeze Mode.</li></ul>
+            </div>
+        </div>
+        
+
+        <section class="topic-section" id="exam-questions">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 15]</span> Exam Preparation & Model Questions</h2>
+            </div>
+            <div class="exam-qa-container">
+                
+        <div class="exam-qa-block">
+            <h3>Short Answer Questions (1–2 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> What are the two steps required to put the S32K144 FlexCAN controller into Freeze Mode for configuration?</div>
+                <div class="qa-answer">Step 1: Set the `FRZ` (Freeze Enable) and `HALT` bits in the Module Configuration Register (`CAN0->MCR`). Step 2: Poll the `FRZACK` (Freeze Acknowledge) bit in `CAN0->MCR` until hardware asserts it high, confirming that the CAN state machine is frozen.</div>
+            </div>
+            
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> What is the difference between Message Buffer Code `0b0100` and `0b0010` during FlexCAN reception?</div>
+                <div class="qa-answer">Code `0b0100` (`RX_EMPTY`) configures the Message Buffer as active and waiting to receive an incoming CAN frame. Code `0b0010` (`RX_FULL`) is set automatically by hardware when a matching CAN frame has been received and written into the buffer, signaling the CPU to read the payload.</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Comprehensive Long Answer Questions (5–10 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item long-qa-item">
+                <div class="qa-question"><span class="q-badge">10 MARKS</span> Explain the architecture and memory layout of Message Buffers in the NXP S32K144 FlexCAN module. Detail the bitfields of Word 0 (Control/Status) and Word 1 (ID). Calculate the register timing parameters to achieve a 500 kbps bit rate from a 40 MHz CAN clock.</div>
+                <div class="qa-answer">A complete answer covers: (1) FlexCAN RAM memory map diagram from offset 0x0080; (2) Detailed bitfield diagram of Word 0 (CODE, IDE, RTR, DLC, TIMESTAMP) and Word 1 (Standard/Extended ID); (3) Explanation of RX_EMPTY, RX_FULL, TX_INACTIVE, and TX_ONCE codes; (4) Step-by-step bit timing derivation showing TQ=16, PRES_DIV=4, PROPSEG=5, PSEG1=3, PSEG2=3 to achieve exactly 500 kbps from 40 MHz clock.</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Viva Voce & Technical Interview Questions</h3>
+            <div class="qa-list">
+            <div class="qa-item viva-qa-item">
+                <div class="qa-question"><span class="q-badge">VIVA / INTERVIEW</span> Why does the CPU have to read the Timer Free-Running Register (`CAN0-&gt;TIMER`) after reading a received Message Buffer payload in an ISR?</div>
+                <div class="qa-answer">Reading the `CAN0->TIMER` register unlocks the Message Buffer RAM array in hardware. If the software reads the MB payload but forgets to read `CAN0->TIMER`, the FlexCAN controller keeps the internal buffer locked, preventing new incoming CAN frames from being received in that buffer.</div>
+            </div>
+            </div>
+        </div>
+        
+            </div>
+        </section>
+
+        <section class="topic-section" id="revision-card">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 18]</span> 60-Second Flash / Revision Card</h2>
+            </div>
+            <div class="flashcard">
+                <div class="flashcard-badge">// 60-SECOND REVISION SUMMARY</div>
+                <ul class="flashcard-points"><li>[REV] 64 MBs in RAM at 0x40024080.</li><li>[REV] Freeze Mode (FRZ + HALT) required to change bit timing.</li><li>[REV] Standard ID shifted by 18 bits: ID &lt;&lt; 18.</li><li>[REV] TX_ONCE = 0b1100 triggers transmission.</li><li>[REV] Read CAN0-&gt;TIMER to unlock MB after RX.</li></ul>
+            </div>
+        </section>
+
+        <section class="topic-section" id="personal-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 19]</span> Personal Study Notes (Auto-Saved)</h2>
+            </div>
+            <div class="personal-notes-widget">
+                <p class="notes-hint">Type personal notes or lab observations below. Content auto-saves to your local browser storage.</p>
+                <textarea id="personalNotePad" class="personal-notes-textarea" placeholder="Type personal study notes here..." oninput="savePersonalNote('s32k144-flexcan-automotive-network-controller', this.value)"></textarea>
+                <div class="notes-save-indicator" id="notesSavedTag">✓ Saved locally</div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="sources">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 20]</span> Source Traceability & Curriculum References</h2>
+            </div>
+            <div class="sources-box">
+                <p><strong>Primary Source Reference:</strong> Embedded System Design Lecture 5 &amp; 6 Transcripts; S32K144 Reference Manual Chapter 53 (FlexCAN); ESD Lab 3 Manual.</p>
+            </div>
+        </section>
+
+        <nav class="topic-pagination">
+            <div class="pagination-prev"><a href="s32k144-gpio-configuration-and-driver.html" class="nav-prev-btn"><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span><span>Previous: NXP S32K144 GPIO Architecture &amp; Low-Level Driver Development</span></a></div>
+            <div class="pagination-next"><span class="nav-disabled">End of Subject Topics</span></div>
+        </nav>
+    </main>
+</div>
+
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-col brand-col">
+            <div class="footer-brand">
+                <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="footer-bits-logo">
+                <div class="footer-brand-text">
+                    <span class="footer-title">Birla Institute of Technology & Science, Pilani</span>
+                    <span class="footer-sub">Work Integrated Learning Programmes (WILP)</span>
+                </div>
+            </div>
+            <p class="footer-desc">Institutional knowledge base engineered from official lecture transcripts, handouts, and laboratory sessions for M.Tech Automotive Engineering.</p>
+            <div class="footer-tags">
+                <span class="badge badge-info">BITS WILP</span>
+                <span class="badge badge-success">4 Core Courses</span>
+                <span class="badge badge-warning">Exam & Viva Ready</span>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Semester 1 Courses</h4>
+            <ul>
+                <li><a href="../../subjects/automotive-communication.html">Automotive Communication (AELZG513)</a></li>
+                <li><a href="../../subjects/automotive-vehicle.html">Automotive Vehicle (AELZC441)</a></li>
+                <li><a href="../../subjects/autotronics.html">Autotronics (AEZG533)</a></li>
+                <li><a href="../../subjects/embedded-system-design.html">Embedded System Design (AEZG512)</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="../../index.html">Master Portal Home</a></li>
+                <li><a href="../../semesters/sem1.html">Semester 1 Overview & Credits</a></li>
+                <li><a href="javascript:void(0)" onclick="openSearchModal()">Global Topic Search</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-bottom-content">
+            <span>© 2026 M.Tech Automotive Engineering Knowledge Base. Built for High-Performance Academic Study.</span>
+            <span>Birla Institute of Technology & Science, Pilani.</span>
+        </div>
+    </div>
+</footer>
+
+
+<div class="search-modal-overlay" id="searchModal" onclick="closeSearchModal(event)">
+    <div class="search-modal-container" onclick="event.stopPropagation()">
+        <div class="search-modal-header">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <input type="text" id="searchInput" class="search-modal-input" placeholder="Type to search curriculum, formulas, registers, exam questions..." autocomplete="off" oninput="handleSearch(this.value)">
+            <button class="search-modal-close" onclick="closeSearchModal()">&times;</button>
+        </div>
+        <div class="search-modal-filters">
+            <button class="search-filter-btn active" data-subject="all" onclick="setSearchFilter('all')">All Courses</button>
+            <button class="search-filter-btn" data-subject="automotive-communication" onclick="setSearchFilter('automotive-communication')">Communication</button>
+            <button class="search-filter-btn" data-subject="automotive-vehicle" onclick="setSearchFilter('automotive-vehicle')">Vehicle</button>
+            <button class="search-filter-btn" data-subject="autotronics" onclick="setSearchFilter('autotronics')">Autotronics</button>
+            <button class="search-filter-btn" data-subject="embedded-system-design" onclick="setSearchFilter('embedded-system-design')">Embedded</button>
+        </div>
+        <div class="search-modal-results" id="searchResults">
+            <div class="search-empty-state">
+                <span>Start typing to search across 33+ comprehensive M.Tech topics...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../../js/app.js"></script>
+<script src="../../js/search-index.js"></script>
+</body>
+</html>

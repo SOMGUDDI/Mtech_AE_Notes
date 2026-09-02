@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tractive Effort &amp; Longitudinal Road Resistances | Automotive Vehicle</title>
+    <meta name="description" content="For a vehicle to move forward, accelerate, or climb a hill, the powertrain must deliver sufficient torque to the driven wheels to generate a longitudi">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body data-topic-id="tractive-force-and-road-loads" data-subject-id="automotive-vehicle">
+
+
+<header class="navbar">
+    <div class="navbar-container">
+        <a href="../../index.html" class="nav-brand">
+            <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="nav-brand-logo">
+            <div class="brand-details">
+                <span class="brand-inst">Birla Institute of Technology & Science, Pilani</span>
+                <span class="brand-dept">Work Integrated Learning Programmes • Automotive Engineering</span>
+            </div>
+        </a>
+        <div class="nav-search-box" onclick="openSearchModal()">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <span class="search-placeholder">Search curriculum, formulas, registers, questions...</span>
+            <span class="search-shortcut">Ctrl+K</span>
+        </div>
+        <div class="nav-actions">
+            <a href="../../semesters/sem1.html" class="nav-link">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></span>
+                <span>Semester 1 Hub</span>
+            </a>
+            <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Toggle Theme">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+                <span>Theme</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+
+<div class="topic-page-layout">
+    <aside class="topic-sidebar">
+        <div class="sidebar-header">
+            <a href="../../subjects/automotive-vehicle.html" class="sidebar-back">
+                <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span>
+                <span>Automotive Vehicle</span>
+            </a>
+            <div class="sidebar-subject-badge">AELZC441</div>
+        </div>
+        <div class="sidebar-toc">
+            <h4>Table of Contents</h4>
+            <ul>
+                <li><a href="#overview">Quick Overview</a></li>
+                <li><a href="#objectives">Learning Objectives</a></li>
+                <li><a href="#core-concept">Core Concept & Intuition</a></li>
+                <li><a href="#lecture-notes">In-Class Lecture Notes</a></li>
+                <li><a href="#extra-explanation">Comprehensive Theory</a></li>
+                
+                
+                <li><a href="#working-principle">Working Principle</a></li>
+                <li><a href="#application">Automotive Application</a></li>
+                <li><a href="#comparison">Specifications Table</a></li>
+                <li><a href="#formulas">Math Formulas & Numericals</a></li>
+                <li><a href="#code">Embedded Driver / Registers</a></li>
+                <li><a href="#exam-questions">Exam & Viva Q&A</a></li>
+                <li><a href="#revision-card">60-Second Flash Card</a></li>
+                <li><a href="#personal-notes">My Personal Notes</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-progress-widget">
+            <h4>Topic Status</h4>
+            <div class="status-btn-group">
+                <button class="status-btn" id="statusNotStarted" onclick="setTopicStatus('tractive-force-and-road-loads', 'not_started')">☐ Not Started</button>
+                <button class="status-btn" id="statusInProgress" onclick="setTopicStatus('tractive-force-and-road-loads', 'in_progress')">◐ In Progress</button>
+                <button class="status-btn" id="statusCompleted" onclick="setTopicStatus('tractive-force-and-road-loads', 'completed')">☑ Mastered</button>
+            </div>
+            <button class="bookmark-btn" id="bookmarkBtn" onclick="toggleBookmark('tractive-force-and-road-loads')">★ Bookmark for Revision</button>
+        </div>
+    </aside>
+
+    <main class="topic-main-content">
+        <header class="topic-header">
+            <div class="breadcrumbs">
+                <a href="../../index.html">Home</a> / 
+                <a href="../../semesters/sem1.html">Semester 1</a> / 
+                <a href="../../subjects/automotive-vehicle.html">Automotive Vehicle</a> / 
+                <span class="curr-crumb">Tractive Effort &amp; Longitudinal Road Resistances</span>
+            </div>
+            
+            <div class="topic-meta-row">
+                <span class="meta-pill module-pill">MODULE: Vehicle Dynamics &amp; Propulsion</span>
+                <span class="meta-pill level-pill">LEVEL: Intermediate</span>
+                <span class="meta-pill importance-pill">WEIGHT: 5/5</span>
+                <span class="meta-pill code-pill">AELZC441</span>
+            </div>
+
+            <h1 class="topic-main-title">Tractive Effort &amp; Longitudinal Road Resistances</h1>
+
+            <div class="action-bar-top">
+                <div class="read-estimate">Estimated Read Time: <strong>12–15 mins</strong></div>
+                <div class="action-buttons-group">
+                    <button class="print-btn" onclick="window.print()" title="Print this complete note page or save as PDF">
+                        <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg></span>
+                        <span>Print / Save PDF</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <section class="topic-section" id="overview">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 01]</span> Quick Overview</h2>
+            </div>
+            <p class="overview-lead">For a vehicle to move forward, accelerate, or climb a hill, the powertrain must deliver sufficient torque to the driven wheels to generate a longitudinal tractive force ($F_t$) at the tyre-road contact patches. This tractive force must overcome four fundamental road resistance forces: Rolling Resistance ($F_{rr}$), Aerodynamic Drag ($F_{aero}$), Gradient Resistance ($F_{grade}$), and Inertial Acceleration Resistance ($F_{acc}$).</p>
+        </section>
+
+        <section class="topic-section" id="objectives">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 02]</span> Learning Objectives & Prerequisites</h2>
+            </div>
+            <div class="objectives-card">
+                <h5>What You Will Master:</h5>
+                <ul class="objectives-list">
+                    <li>Derive the fundamental longitudinal vehicle equation of motion.</li><li>Calculate Rolling Resistance ($F_{rr}$) and explain the role of tyre hysteretic deformation.</li><li>Calculate Aerodynamic Drag ($F_{aero}$) as a function of frontal area, drag coefficient ($C_d$), and velocity squared.</li><li>Calculate Gradient Resistance ($F_{grade}$) and Inertial Resistance including rotational mass equivalents.</li><li>Compute the total engine/motor power required to cruise at a given vehicle speed.</li>
+                </ul>
+                <div class="prereq-note">
+                    <strong>Prerequisites:</strong> Newton&#x27;s laws of motion, trigonometry, basic aerodynamics, and energy conservation.
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="core-concept">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 03]</span> Core Concept & Physical Intuition</h2>
+            </div>
+            <div class="concept-body">
+                <p>When a car cruises at 120 km/h on a level highway, acceleration is zero ($a=0$). The engine is not producing acceleration; all of its power is spent battling two invisible enemies: the deformation of rubber tyres on asphalt (rolling resistance) and the violent displacement of air molecules around the car body (aerodynamic drag, which quadruples every time speed doubles).</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="lecture-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 04]</span> In-Class Lecture Transcript Breakdown</h2>
+            </div>
+            <div class="callout callout-lecture">
+                <div class="callout-header">// LECTURE TRANSCRIPT SYNTHESIS</div>
+                <div class="callout-body">
+                    <p>Lecture 2 and Session 2 covered Tractive Force and Road Loads extensively. The professor emphasized: &#x27;Tractive force is the net force obtained at the wheel-road interface after accounting for transmission and driveline mechanical losses.&#x27; The lecturer walked through each term of the longitudinal equation $F_t = F_{rr} + F_{aero} + F_{grade} + m\cdot a$, showing that at low speeds (&lt; 40 km/h) rolling resistance dominates, whereas at highway speeds (&gt; 80 km/h) aerodynamic drag consumes over 75% of total engine power.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="extra-explanation">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 05]</span> Rigorous Engineering Theory & Derivations</h2>
+            </div>
+            <div class="callout callout-deep">
+                <div class="callout-header">// RIGOROUS ENGINEERING THEORY</div>
+                <div class="callout-body">
+                    <p>Let&#x27;s analyze each of the four resistance forces in detail:
+
+1. **Rolling Resistance ($F_{rr}$):**
+   - Caused by the continuous hysteretic viscoelastic deformation of tyre rubber at the contact patch.
+   - Formula: $F_{rr} = f_{rr} \cdot M \cdot g \cdot \cos(\theta)$
+   - Coefficient $f_{rr} \approx 0.010 - 0.015$ for radial passenger tyres on smooth asphalt.
+
+2. **Aerodynamic Drag ($F_{aero}$):**
+   - Caused by frontal pressure drag and skin friction as the vehicle shears through air.
+   - Formula: $F_{aero} = \frac{1}{2} \cdot \rho_{air} \cdot C_d \cdot A_f \cdot v^2$
+   - Air density $\rho_{air} \approx 1.225\text{ kg/m}^3$; $C_d$ (drag coefficient) $\approx 0.25 - 0.35$ for modern sedans; $A_f$ is frontal projected area ($1.8 - 2.4\text{ m}^2$).
+
+3. **Gradient Resistance ($F_{grade}$):**
+   - Gravitational component pulling the vehicle backward on an incline of angle $\theta$.
+   - Formula: $F_{grade} = M \cdot g \cdot \sin(\theta)$. For small slope angles, $\sin(\theta) \approx \tan(\theta) = \frac{\text{Grade }\%}{100}$.
+
+4. **Inertial Acceleration Resistance ($F_{acc}$):**
+   - Force required to accelerate linear vehicle mass plus rotational inertia of wheels, shafts, and engine/motor.
+   - Formula: $F_{acc} = M_{eff} \cdot a = (1 + \delta) \cdot M \cdot a$, where $\delta$ is the rotational mass factor (typically $1.05 - 1.25$ depending on gear ratio).</p>
+                </div>
+            </div>
+        </section>
+
+        
+        
+
+        <section class="topic-section" id="working-principle">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 08]</span> Step-by-Step Operational Principle</h2>
+            </div>
+            <div class="principle-body">
+                <p>Steady-State Cruising vs Acceleration Sizing:
+1. At constant speed ($a = 0$) on level ground ($\theta = 0$), $F_{grade} = 0$ and $F_{acc} = 0$. The steady-state tractive force is simply $F_t = F_{rr} + F_{aero}$.
+2. The power required at the wheels is $P_{wheels} = F_t \cdot v = (F_{rr} + F_{aero}) \cdot v = f_{rr} M g v + \frac{1}{2} \rho C_d A_f v^3$.
+3. Notice that **Aerodynamic Power scales with the cube of speed ($v^3$)**. Doubling speed from 60 km/h to 120 km/h increases aerodynamic power demand by a factor of $2^3 = 8\text{x}$.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="application">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 09]</span> Real Automotive Application</h2>
+            </div>
+            <div class="callout callout-application">
+                <div class="callout-header">// AUTOMOTIVE OEM CASE STUDY</div>
+                <div class="callout-body">
+                    <p></p>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="topic-section table-section" id="comparison">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 10]</span> Technical Specifications & Benchmarks</h2>
+            </div>
+            <div class="table-responsive">
+                <table class="specs-table">
+                    <thead><tr><th>Resistance Component</th><th>Governing Formula</th><th>Speed Dependency</th><th>Dominant Domain</th></tr></thead>
+                    <tbody><tr><td>Rolling Resistance (Frr)</td><td>frr * M * g * cos(θ)</td><td>Linear / Independent of speed (at &lt;100 km/h)</td><td>Low-speed urban driving (&lt; 50 km/h)</td></tr><tr><td>Aerodynamic Drag (Faero)</td><td>0.5 * rho * Cd * Af * v^2</td><td>Quadratic with speed (v^2); Power scales as v^3</td><td>High-speed highway driving (&gt; 80 km/h)</td></tr><tr><td>Gradient Resistance (Fgrade)</td><td>M * g * sin(θ)</td><td>Independent of speed (function of road slope)</td><td>Hilly / mountainous terrain</td></tr><tr><td>Inertial Resistance (Facc)</td><td>(1 + δ) * M * a</td><td>Proportional to acceleration rate a</td><td>Vehicle launch, overtaking, 0-100 km/h sprints</td></tr></tbody>
+                </table>
+            </div>
+        </section>
+        
+        
+        <section class="topic-section formulas-section" id="formulas">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 11]</span> Mathematical Formulas & Numerical Breakdown</h2>
+            </div>
+            <div class="formulas-grid">
+                
+            <div class="formula-card">
+                <div class="formula-name">Total Tractive Force Equation</div>
+                <div class="formula-math"><code>F_t = f_{rr} M g \cos(\theta) + \frac{1}{2} \rho_{air} C_d A_f v^2 + M g \sin(\theta) + (1 + \delta) M a</code></div>
+                <div class="formula-details">
+                    <h5>Parameter Definitions:</h5>
+                    <ul class="formula-vars"><li><code>f</code>: _</li><li><code>M</code>:  </li><li><code>g</code>:  </li><li><code>\</code>: t</li><li><code>\</code>: r</li><li><code>C</code>: _</li><li><code>A</code>: _</li><li><code>v</code>:  </li><li><code>\</code>: d</li><li><code>a</code>:  </li></ul>
+                    <div class="formula-example"><strong>Worked Numerical Example:</strong><br>A 1500 kg car with Cd=0.30, Af=2.0 m^2, frr=0.012 accelerates at 2 m/s^2 from 54 km/h (15 m/s) on a 5% grade (sin θ ≈ 0.05). Frr = 176.6 N, Faero = 0.5×1.225×0.30×2.0×(15)^2 = 82.7 N, Fgrade = 1500×9.81×0.05 = 735.8 N, Facc = 1.10×1500×2 = 3300 N. Total tractive force Ft = 176.6 + 82.7 + 735.8 + 3300 = 4295.1 N.</div>
+                </div>
+            </div>
+            
+            <div class="formula-card">
+                <div class="formula-name">Engine / Motor Power Demand</div>
+                <div class="formula-math"><code>P_{engine} = \frac{F_t \cdot v}{\eta_{driveline}}</code></div>
+                <div class="formula-details">
+                    <h5>Parameter Definitions:</h5>
+                    <ul class="formula-vars"><li><code>F</code>: _</li><li><code>v</code>:  </li><li><code>\</code>: e</li></ul>
+                    <div class="formula-example"><strong>Worked Numerical Example:</strong><br>If Ft = 4295.1 N at v = 15 m/s with η = 0.90, required engine power is P = (4295.1 × 15) / 0.90 = 71,585 W = 71.6 kW (96 HP).</div>
+                </div>
+            </div>
+            
+            </div>
+        </section>
+        
+        
+        <section class="topic-section code-section" id="code">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 12]</span> Embedded C Driver & Register Interface</h2>
+                <button class="copy-btn" onclick="copyCodeBlock('codeBlock')">
+                    <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+                    <span>Copy Code</span>
+                </button>
+            </div>
+            <div class="code-container">
+                <pre><code id="codeBlock" class="language-c"># Python Vehicle Tractive Force and Power Calculator
+import numpy as np
+
+def calculate_road_loads(mass_kg=1500, cd=0.30, af_m2=2.0, frr=0.012, 
+                         grade_pct=0.0, speed_kmh=100.0, accel_mps2=0.0):
+    rho = 1.225
+    g = 9.81
+    v = speed_kmh / 3.6
+    theta = np.arctan(grade_pct / 100.0)
+    
+    f_rr = frr * mass_kg * g * np.cos(theta)
+    f_aero = 0.5 * rho * cd * af_m2 * (v ** 2)
+    f_grade = mass_kg * g * np.sin(theta)
+    f_acc = 1.10 * mass_kg * accel_mps2
+    
+    f_total = f_rr + f_aero + f_grade + f_acc
+    p_wheel_kw = (f_total * v) / 1000.0
+    
+    return {
+        &quot;F_rr_N&quot;: round(f_rr, 1),
+        &quot;F_aero_N&quot;: round(f_aero, 1),
+        &quot;F_grade_N&quot;: round(f_grade, 1),
+        &quot;F_acc_N&quot;: round(f_acc, 1),
+        &quot;F_total_N&quot;: round(f_total, 1),
+        &quot;Power_kW&quot;: round(p_wheel_kw, 2)
+    }
+
+print(calculate_road_loads(speed_kmh=120, grade_pct=0.0))</code></pre>
+            </div>
+        </section>
+        
+
+        <section class="topic-section" id="must-remember">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 13]</span> Must-Remember Key Points for Exams</h2>
+            </div>
+            <div class="must-remember-card">
+                <ul><li>[KEY] Total tractive force equation: Ft = Frr + Faero + Fgrade + Facc.</li><li>[KEY] Aerodynamic drag force scales with v^2; Aerodynamic power scales with v^3.</li><li>[KEY] Rolling resistance Frr = frr * M * g * cos(θ); dominates at low speeds.</li><li>[KEY] Rotational inertia factor (1 + δ) accounts for spinning wheels, shafts, and flywheel during acceleration.</li></ul>
+            </div>
+        </section>
+
+        
+        <div class="callout callout-warning">
+            <div class="callout-header">// COMMON EXAM TRAPS & MISCONCEPTIONS</div>
+            <div class="callout-body">
+                <ul><li><strong>Trap:</strong> Forgetting to convert speed from km/h to m/s ($v_{\text{m/s}} = v_{\text{km/h}} / 3.6$) before calculating aerodynamic drag.</li><li><strong>Trap:</strong> Neglecting the rotational inertia factor $\delta$ during high-acceleration 0-100 km/h calculations.</li></ul>
+            </div>
+        </div>
+        
+
+        <section class="topic-section" id="exam-questions">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 15]</span> Exam Preparation & Model Questions</h2>
+            </div>
+            <div class="exam-qa-container">
+                
+        <div class="exam-qa-block">
+            <h3>Short Answer Questions (1–2 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> Why does aerodynamic power requirement scale with the cube of vehicle speed ($v^3$)?</div>
+                <div class="qa-answer">Aerodynamic drag force is proportional to speed squared ($F_{aero} \propto v^2$). Because mechanical power is force multiplied by velocity ($P = F \cdot v$), aerodynamic power demand becomes $P_{aero} = F_{aero} \cdot v \propto v^3$.</div>
+            </div>
+            
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> What physical mechanism produces rolling resistance in a pneumatic tyre?</div>
+                <div class="qa-answer">Hysteretic energy loss caused by the continuous cyclic deformation and viscoelastic relaxation of the rubber tyre carcass as it rolls through the flattened contact patch.</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Comprehensive Long Answer Questions (5–10 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item long-qa-item">
+                <div class="qa-question"><span class="q-badge">10 MARKS</span> Derive the complete longitudinal equation of motion for a moving automobile. Calculate the wheel power required for a 1600 kg vehicle ($C_d = 0.28$, $A_f = 2.1\text{ m}^2$, $f_{rr} = 0.012$) cruising at 120 km/h on a 3% uphill grade.</div>
+                <div class="qa-answer">A complete answer covers: (1) Free-body diagram of a vehicle showing all 4 resistance forces and wheel forces; (2) Detailed mathematical derivations of Frr, Faero, Fgrade, and Facc; (3) Unit conversions (120 km/h = 33.33 m/s); (4) Step-by-step numerical calculation: Frr = 188.5 N, Faero = 400.1 N, Fgrade = 470.9 N, Total Ft = 1059.5 N; (5) Wheel power calculation: P = 1059.5 × 33.33 = 35.31 kW.</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Viva Voce & Technical Interview Questions</h3>
+            <div class="qa-list">
+            <div class="qa-item viva-qa-item">
+                <div class="qa-question"><span class="q-badge">VIVA / INTERVIEW</span> If an EV driver increases cruising speed from 80 km/h to 120 km/h (a 1.5x speed increase), by what factor does the aerodynamic power consumption increase?</div>
+                <div class="qa-answer">Since aerodynamic power scales as $v^3$, increasing speed by a factor of 1.5 multiplies aerodynamic power consumption by $1.5^3 = \mathbf{3.375\text{x}}$ (a 237.5% increase), explaining why high-speed driving rapidly drains electric vehicle battery range.</div>
+            </div>
+            </div>
+        </div>
+        
+            </div>
+        </section>
+
+        <section class="topic-section" id="revision-card">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 18]</span> 60-Second Flash / Revision Card</h2>
+            </div>
+            <div class="flashcard">
+                <div class="flashcard-badge">// 60-SECOND REVISION SUMMARY</div>
+                <ul class="flashcard-points"><li>[REV] F_t = F_rr + F_aero + F_grade + F_acc.</li><li>[REV] F_aero = 0.5 * ρ * C_d * A_f * v^2.</li><li>[REV] Power = F_t * v (scales with v^3 for aero).</li><li>[REV] F_rr = f_rr * M * g.</li></ul>
+            </div>
+        </section>
+
+        <section class="topic-section" id="personal-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 19]</span> Personal Study Notes (Auto-Saved)</h2>
+            </div>
+            <div class="personal-notes-widget">
+                <p class="notes-hint">Type personal notes or lab observations below. Content auto-saves to your local browser storage.</p>
+                <textarea id="personalNotePad" class="personal-notes-textarea" placeholder="Type personal study notes here..." oninput="savePersonalNote('tractive-force-and-road-loads', this.value)"></textarea>
+                <div class="notes-save-indicator" id="notesSavedTag">✓ Saved locally</div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="sources">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 20]</span> Source Traceability & Curriculum References</h2>
+            </div>
+            <div class="sources-box">
+                <p><strong>Primary Source Reference:</strong> Automotive Vehicle Lecture 2 Transcript; Session 2 Powertrain Fundamentals PDF; Syllabus Section 3 (Tractive Force and Torque Requirements).</p>
+            </div>
+        </section>
+
+        <nav class="topic-pagination">
+            <div class="pagination-prev"><a href="vehicle-classification-and-homologation.html" class="nav-prev-btn"><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span><span>Previous: Automobile Classification, Homologation &amp; Architecture</span></a></div>
+            <div class="pagination-next"><a href="powertrain-architectures-and-layouts.html" class="nav-next-btn"><span>Next: Powertrain Architectures &amp; Layout Topologies</span><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span></a></div>
+        </nav>
+    </main>
+</div>
+
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-col brand-col">
+            <div class="footer-brand">
+                <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="footer-bits-logo">
+                <div class="footer-brand-text">
+                    <span class="footer-title">Birla Institute of Technology & Science, Pilani</span>
+                    <span class="footer-sub">Work Integrated Learning Programmes (WILP)</span>
+                </div>
+            </div>
+            <p class="footer-desc">Institutional knowledge base engineered from official lecture transcripts, handouts, and laboratory sessions for M.Tech Automotive Engineering.</p>
+            <div class="footer-tags">
+                <span class="badge badge-info">BITS WILP</span>
+                <span class="badge badge-success">4 Core Courses</span>
+                <span class="badge badge-warning">Exam & Viva Ready</span>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Semester 1 Courses</h4>
+            <ul>
+                <li><a href="../../subjects/automotive-communication.html">Automotive Communication (AELZG513)</a></li>
+                <li><a href="../../subjects/automotive-vehicle.html">Automotive Vehicle (AELZC441)</a></li>
+                <li><a href="../../subjects/autotronics.html">Autotronics (AEZG533)</a></li>
+                <li><a href="../../subjects/embedded-system-design.html">Embedded System Design (AEZG512)</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="../../index.html">Master Portal Home</a></li>
+                <li><a href="../../semesters/sem1.html">Semester 1 Overview & Credits</a></li>
+                <li><a href="javascript:void(0)" onclick="openSearchModal()">Global Topic Search</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-bottom-content">
+            <span>© 2026 M.Tech Automotive Engineering Knowledge Base. Built for High-Performance Academic Study.</span>
+            <span>Birla Institute of Technology & Science, Pilani.</span>
+        </div>
+    </div>
+</footer>
+
+
+<div class="search-modal-overlay" id="searchModal" onclick="closeSearchModal(event)">
+    <div class="search-modal-container" onclick="event.stopPropagation()">
+        <div class="search-modal-header">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <input type="text" id="searchInput" class="search-modal-input" placeholder="Type to search curriculum, formulas, registers, exam questions..." autocomplete="off" oninput="handleSearch(this.value)">
+            <button class="search-modal-close" onclick="closeSearchModal()">&times;</button>
+        </div>
+        <div class="search-modal-filters">
+            <button class="search-filter-btn active" data-subject="all" onclick="setSearchFilter('all')">All Courses</button>
+            <button class="search-filter-btn" data-subject="automotive-communication" onclick="setSearchFilter('automotive-communication')">Communication</button>
+            <button class="search-filter-btn" data-subject="automotive-vehicle" onclick="setSearchFilter('automotive-vehicle')">Vehicle</button>
+            <button class="search-filter-btn" data-subject="autotronics" onclick="setSearchFilter('autotronics')">Autotronics</button>
+            <button class="search-filter-btn" data-subject="embedded-system-design" onclick="setSearchFilter('embedded-system-design')">Embedded</button>
+        </div>
+        <div class="search-modal-results" id="searchResults">
+            <div class="search-empty-state">
+                <span>Start typing to search across 33+ comprehensive M.Tech topics...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../../js/app.js"></script>
+<script src="../../js/search-index.js"></script>
+</body>
+</html>

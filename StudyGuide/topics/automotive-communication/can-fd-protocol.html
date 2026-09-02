@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAN with Flexible Data-Rate (CAN-FD) Architecture | Automotive Communication Systems</title>
+    <meta name="description" content="As automotive electronic systems integrated ADAS sensors, multi-axis radar, and complex software-defined ECUs, Classic CAN 2.0 (limited to 1 Mbps and ">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body data-topic-id="can-fd-protocol" data-subject-id="automotive-communication">
+
+
+<header class="navbar">
+    <div class="navbar-container">
+        <a href="../../index.html" class="nav-brand">
+            <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="nav-brand-logo">
+            <div class="brand-details">
+                <span class="brand-inst">Birla Institute of Technology & Science, Pilani</span>
+                <span class="brand-dept">Work Integrated Learning Programmes • Automotive Engineering</span>
+            </div>
+        </a>
+        <div class="nav-search-box" onclick="openSearchModal()">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <span class="search-placeholder">Search curriculum, formulas, registers, questions...</span>
+            <span class="search-shortcut">Ctrl+K</span>
+        </div>
+        <div class="nav-actions">
+            <a href="../../semesters/sem1.html" class="nav-link">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></span>
+                <span>Semester 1 Hub</span>
+            </a>
+            <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Toggle Theme">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+                <span>Theme</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+
+<div class="topic-page-layout">
+    <aside class="topic-sidebar">
+        <div class="sidebar-header">
+            <a href="../../subjects/automotive-communication.html" class="sidebar-back">
+                <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span>
+                <span>Automotive Communication Systems</span>
+            </a>
+            <div class="sidebar-subject-badge">AELZG513</div>
+        </div>
+        <div class="sidebar-toc">
+            <h4>Table of Contents</h4>
+            <ul>
+                <li><a href="#overview">Quick Overview</a></li>
+                <li><a href="#objectives">Learning Objectives</a></li>
+                <li><a href="#core-concept">Core Concept & Intuition</a></li>
+                <li><a href="#lecture-notes">In-Class Lecture Notes</a></li>
+                <li><a href="#extra-explanation">Comprehensive Theory</a></li>
+                
+                
+                <li><a href="#working-principle">Working Principle</a></li>
+                <li><a href="#application">Automotive Application</a></li>
+                <li><a href="#comparison">Specifications Table</a></li>
+                <li><a href="#formulas">Math Formulas & Numericals</a></li>
+                <li><a href="#code">Embedded Driver / Registers</a></li>
+                <li><a href="#exam-questions">Exam & Viva Q&A</a></li>
+                <li><a href="#revision-card">60-Second Flash Card</a></li>
+                <li><a href="#personal-notes">My Personal Notes</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-progress-widget">
+            <h4>Topic Status</h4>
+            <div class="status-btn-group">
+                <button class="status-btn" id="statusNotStarted" onclick="setTopicStatus('can-fd-protocol', 'not_started')">☐ Not Started</button>
+                <button class="status-btn" id="statusInProgress" onclick="setTopicStatus('can-fd-protocol', 'in_progress')">◐ In Progress</button>
+                <button class="status-btn" id="statusCompleted" onclick="setTopicStatus('can-fd-protocol', 'completed')">☑ Mastered</button>
+            </div>
+            <button class="bookmark-btn" id="bookmarkBtn" onclick="toggleBookmark('can-fd-protocol')">★ Bookmark for Revision</button>
+        </div>
+    </aside>
+
+    <main class="topic-main-content">
+        <header class="topic-header">
+            <div class="breadcrumbs">
+                <a href="../../index.html">Home</a> / 
+                <a href="../../semesters/sem1.html">Semester 1</a> / 
+                <a href="../../subjects/automotive-communication.html">Automotive Communication Systems</a> / 
+                <span class="curr-crumb">CAN with Flexible Data-Rate (CAN-FD) Architecture</span>
+            </div>
+            
+            <div class="topic-meta-row">
+                <span class="meta-pill module-pill">MODULE: In-Vehicle Networks &amp; Protocols</span>
+                <span class="meta-pill level-pill">LEVEL: Intermediate</span>
+                <span class="meta-pill importance-pill">WEIGHT: 5/5</span>
+                <span class="meta-pill code-pill">AELZG513</span>
+            </div>
+
+            <h1 class="topic-main-title">CAN with Flexible Data-Rate (CAN-FD) Architecture</h1>
+
+            <div class="action-bar-top">
+                <div class="read-estimate">Estimated Read Time: <strong>12–15 mins</strong></div>
+                <div class="action-buttons-group">
+                    <button class="print-btn" onclick="window.print()" title="Print this complete note page or save as PDF">
+                        <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg></span>
+                        <span>Print / Save PDF</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <section class="topic-section" id="overview">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 01]</span> Quick Overview</h2>
+            </div>
+            <p class="overview-lead">As automotive electronic systems integrated ADAS sensors, multi-axis radar, and complex software-defined ECUs, Classic CAN 2.0 (limited to 1 Mbps and 8-byte payloads) became a bandwidth bottleneck. Developed by Bosch and standardized under ISO 11898-1:2015, CAN with Flexible Data-Rate (CAN-FD) solves this bottleneck by introducing dual bit-rate switching and expanding the data payload up to 64 bytes per frame.</p>
+        </section>
+
+        <section class="topic-section" id="objectives">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 02]</span> Learning Objectives & Prerequisites</h2>
+            </div>
+            <div class="objectives-card">
+                <h5>What You Will Master:</h5>
+                <ul class="objectives-list">
+                    <li>Understand the two key innovations of CAN-FD: Bit Rate Switching (BRS) and expanded 64-byte payload.</li><li>Explain why arbitration is kept at nominal speed (e.g., 500 kbps) while the data phase accelerates to 2–5 Mbps.</li><li>Analyze new control bits in the CAN-FD frame: FDF (EDL), BRS, and ESI.</li><li>Evaluate bandwidth and latency improvements of CAN-FD over Classic CAN 2.0.</li>
+                </ul>
+                <div class="prereq-note">
+                    <strong>Prerequisites:</strong> CAN Protocol Architecture, CAN Frame Format, Bit Timing.
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="core-concept">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 03]</span> Core Concept & Physical Intuition</h2>
+            </div>
+            <div class="concept-body">
+                <p>Why couldn&#x27;t Classic CAN just run at 5 Mbps everywhere? Because during the Arbitration and ACK phases, physical propagation delays require the bit time to be long enough for signals to travel to the furthest node and back (limiting speed to 1 Mbps). But during the Data Phase, only ONE ECU is transmitting—no arbitration occurs! CAN-FD exploits this by keeping the slow speed (500 kbps) during arbitration, then shifting into hyper-drive (2 to 5 Mbps) during the data payload, and switching back to slow speed for the ACK slot.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="lecture-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 04]</span> In-Class Lecture Transcript Breakdown</h2>
+            </div>
+            <div class="callout callout-lecture">
+                <div class="callout-header">// LECTURE TRANSCRIPT SYNTHESIS</div>
+                <div class="callout-body">
+                    <p>In Lecture 5, the professor introduced CAN-FD as the modern successor to CAN 2.0. The lecturer explained: &#x27;CAN-FD gives you up to 8x the payload (64 bytes instead of 8) and up to 5x the speed (2 to 5 Mbps during data phase) while using the exact same physical twisted-pair wiring.&#x27; The instructor highlighted the BRS (Bit Rate Switch) bit and the ESI (Error State Indicator) bit, noting that CAN-FD drastically reduces ECU firmware flashing time and supports cryptographic message authentication codes (AUTOSAR SecOC).</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="extra-explanation">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 05]</span> Rigorous Engineering Theory & Derivations</h2>
+            </div>
+            <div class="callout callout-deep">
+                <div class="callout-header">// RIGOROUS ENGINEERING THEORY</div>
+                <div class="callout-body">
+                    <p>Let&#x27;s analyze the **CAN-FD Frame Structure Innovations**:
+1. **FDF (FD Format / EDL) Bit:** Replaces the reserved bit $r0$ in Classic CAN. Transmitted as **Recessive (1)** to signal that this is a CAN-FD frame (Classic CAN nodes see this as dominant 0).
+2. **BRS (Bit Rate Switch) Bit:** If Dominant (0), the entire frame is sent at the nominal arbitration bit rate. If **Recessive (1)**, the CAN controller switches its internal clock divider to the high-speed data bit rate (e.g., 2 Mbps or 5 Mbps) starting from the sample point of the BRS bit up to the sample point of the CRC Delimiter.
+3. **ESI (Error State Indicator) Bit:** Transmitted as Dominant (0) if the transmitting node is Error Active; transmitted as Recessive (1) if the node is Error Passive.
+4. **Expanded Payload (0 to 64 Bytes):** The 4-bit DLC is re-mapped for values 9 to 15 to represent 12, 16, 20, 24, 32, 48, and 64 bytes.
+5. **Enhanced CRC (17-bit and 21-bit):** Uses CRC-17 for payloads up to 16 bytes and CRC-21 for payloads over 16 bytes, including fixed stuff bit count fields to prevent undetected bit corruption.</p>
+                </div>
+            </div>
+        </section>
+
+        
+        
+
+        <section class="topic-section" id="working-principle">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 08]</span> Step-by-Step Operational Principle</h2>
+            </div>
+            <div class="principle-body">
+                <p>Why CAN-FD Preserves Physical Topology:
+In Classic CAN, shortening the bit time to 200 ns (5 Mbps) over a 40-meter vehicle bus would cause arbitration to fail because a signal cannot propagate round-trip across the cable in 200 ns. By confining the 5 Mbps transmission strictly to the Data Phase (where only one node drives the bus), propagation delays between multiple nodes are completely irrelevant, enabling 5x speedups on standard automotive twisted-pair wiring.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="application">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 09]</span> Real Automotive Application</h2>
+            </div>
+            <div class="callout callout-application">
+                <div class="callout-header">// AUTOMOTIVE OEM CASE STUDY</div>
+                <div class="callout-body">
+                    <p></p>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="topic-section table-section" id="comparison">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 10]</span> Technical Specifications & Benchmarks</h2>
+            </div>
+            <div class="table-responsive">
+                <table class="specs-table">
+                    <thead><tr><th>Feature / Metric</th><th>Classic CAN 2.0B</th><th>CAN-FD (ISO 11898-1:2015)</th></tr></thead>
+                    <tbody><tr><td>Max Data Payload</td><td>8 Bytes</td><td>64 Bytes (8x Increase)</td></tr><tr><td>Arbitration Bit Rate</td><td>Up to 1 Mbps (Typically 500 kbps)</td><td>Up to 1 Mbps (Typically 500 kbps)</td></tr><tr><td>Data Phase Bit Rate</td><td>1 Mbps (Same as arbitration)</td><td>2 Mbps to 5 Mbps (Up to 8 Mbps in test labs)</td></tr><tr><td>Protocol Overhead Efficiency</td><td>~50% for 8-byte message</td><td>&gt; 85% for 64-byte message</td></tr><tr><td>CRC Checksum Size</td><td>15 bits</td><td>17 bits (&lt;=16B data) or 21 bits (&gt;16B data)</td></tr><tr><td>Security Compatibility</td><td>Poor (No room for crypto MACs)</td><td>Excellent (Full AUTOSAR SecOC support)</td></tr></tbody>
+                </table>
+            </div>
+        </section>
+        
+        
+        <section class="topic-section formulas-section" id="formulas">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 11]</span> Mathematical Formulas & Numerical Breakdown</h2>
+            </div>
+            <div class="formulas-grid">
+                
+            <div class="formula-card">
+                <div class="formula-name">Effective Data Throughput Gain in CAN-FD</div>
+                <div class="formula-math"><code>T_{CANFD} = \frac{N_{nom\_bits}}{R_{nom}} + \frac{N_{data\_bits}}{R_{data}}, \quad \text{Gain} = \frac{T_{CAN2.0\ (8\times 8B)}}{T_{CANFD\ (1\times 64B)}} \approx 6\text{x to } 8\text{x}</code></div>
+                <div class="formula-details">
+                    <h5>Parameter Definitions:</h5>
+                    <ul class="formula-vars"><li><code>N</code>: _</li><li><code>R</code>: _</li><li><code>N</code>: _</li><li><code>R</code>: _</li></ul>
+                    <div class="formula-example"><strong>Worked Numerical Example:</strong><br>Transmitting 64 bytes on Classic CAN requires eight separate 8-byte frames (8 × ~220 μs = 1760 μs). On CAN-FD at 500k/2M, 64 bytes takes (28/500k) + (540/2M) = 56 μs + 270 μs = 326 μs. Effective speedup is 1760 / 326 = 5.4x faster.</div>
+                </div>
+            </div>
+            
+            </div>
+        </section>
+        
+        
+        <section class="topic-section code-section" id="code">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 12]</span> Embedded C Driver & Register Interface</h2>
+                <button class="copy-btn" onclick="copyCodeBlock('codeBlock')">
+                    <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+                    <span>Copy Code</span>
+                </button>
+            </div>
+            <div class="code-container">
+                <pre><code id="codeBlock" class="language-c">// S32K144 FlexCAN CAN-FD Message Buffer Transmission Configuration
+void send_canfd_64byte_message(uint32_t id, const uint8_t* payload64) {
+    // Configure Message Buffer 0 for CAN-FD with BRS
+    CAN0-&gt;RAMn[0].CS = CAN_CS_CODE(0b1100) | // Transmit Data Frame
+                       CAN_CS_IDE(0)        | // Standard 11-bit ID
+                       CAN_CS_EDL(1)        | // Extended Data Length (CAN-FD)
+                       CAN_CS_BRS(1)        | // Enable Bit Rate Switch
+                       CAN_CS_DLC(15);        // DLC 15 = 64 Bytes payload
+                       
+    CAN0-&gt;RAMn[0].ID = CAN_ID_STD(id);
+    
+    // Copy 64 bytes into 16 32-bit registers (WORD0 to WORD15)
+    uint32_t* mb_data = (uint32_t*)&amp;CAN0-&gt;RAMn[0].DATA[0];
+    uint32_t* src_data = (uint32_t*)payload64;
+    for (int i = 0; i &lt; 16; i++) {
+        mb_data[i] = src_data[i];
+    }
+}</code></pre>
+            </div>
+        </section>
+        
+
+        <section class="topic-section" id="must-remember">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 13]</span> Must-Remember Key Points for Exams</h2>
+            </div>
+            <div class="must-remember-card">
+                <ul><li>[KEY] CAN-FD expands payload up to 64 bytes and accelerates data transmission up to 2-5 Mbps.</li><li>[KEY] FDF (EDL) bit = 1 indicates CAN-FD format.</li><li>[KEY] BRS bit = 1 switches transceiver from nominal clock to fast data clock during payload/CRC.</li><li>[KEY] Arbitration remains at nominal rate (500 kbps) to ensure bus propagation rules hold.</li><li>[KEY] Uses CRC-17 (for &lt;=16 bytes) and CRC-21 (for &gt;16 bytes) with stuff count protection.</li></ul>
+            </div>
+        </section>
+
+        
+        <div class="callout callout-warning">
+            <div class="callout-header">// COMMON EXAM TRAPS & MISCONCEPTIONS</div>
+            <div class="callout-body">
+                <ul><li><strong>Trap:</strong> Assuming CAN-FD requires new fiber optic or shielded cables. CAN-FD runs on standard unshielded twisted pair (UTP) copper wiring.</li><li><strong>Trap:</strong> Believing DLC in CAN-FD is directly the byte count. For payloads &gt; 8 bytes, DLC 9=12B, 10=16B, 11=20B, 12=24B, 13=32B, 14=48B, 15=64B.</li></ul>
+            </div>
+        </div>
+        
+
+        <section class="topic-section" id="exam-questions">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 15]</span> Exam Preparation & Model Questions</h2>
+            </div>
+            <div class="exam-qa-container">
+                
+        <div class="exam-qa-block">
+            <h3>Short Answer Questions (1–2 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> Why is the arbitration phase in CAN-FD kept at standard speed (e.g., 500 kbps) rather than 5 Mbps?</div>
+                <div class="qa-answer">Because during arbitration, multiple nodes transmit simultaneously and signals must propagate across the entire bus cable and back within one bit time to resolve contention. Once arbitration is won, only one node transmits, allowing the data phase to safely accelerate to 5 Mbps.</div>
+            </div>
+            
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> What is the maximum payload size supported by CAN-FD?</div>
+                <div class="qa-answer">64 bytes per frame (compared to 8 bytes in Classic CAN).</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Comprehensive Long Answer Questions (5–10 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item long-qa-item">
+                <div class="qa-question"><span class="q-badge">10 MARKS</span> Explain the architecture and frame innovations of CAN-FD (ISO 11898-1:2015). Detail the Bit Rate Switch (BRS) mechanism, the expanded DLC mapping, and compute the throughput improvement for a 64-byte data payload.</div>
+                <div class="qa-answer">A complete answer covers: (1) Motivations for CAN-FD; (2) Dual bit rate frame diagram showing nominal vs data phases; (3) Detailed explanation of FDF, BRS, ESI, and DLC mapping (DLC 9=12B ... DLC 15=64B); (4) Mathematical throughput comparison showing 5.4x latency improvement over 8 Classic CAN frames; (5) Application in AUTOSAR SecOC.</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Viva Voce & Technical Interview Questions</h3>
+            <div class="qa-list">
+            <div class="qa-item viva-qa-item">
+                <div class="qa-question"><span class="q-badge">VIVA / INTERVIEW</span> What happens if a Classic CAN 2.0 controller is connected to a CAN-FD network where CAN-FD frames are transmitted?</div>
+                <div class="qa-answer">The Classic CAN controller does not recognize the recessive FDF (EDL) bit. When the transmitter accelerates during the data phase, the Classic node sees bit timing violations and 6 consecutive dominant bits, generates a <strong>Stuff Error</strong>, broadcasts an Active Error Flag, and destroys the CAN-FD frame. Therefore, Classic CAN and CAN-FD nodes cannot co-exist without gateway isolation.</div>
+            </div>
+            </div>
+        </div>
+        
+            </div>
+        </section>
+
+        <section class="topic-section" id="revision-card">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 18]</span> 60-Second Flash / Revision Card</h2>
+            </div>
+            <div class="flashcard">
+                <div class="flashcard-badge">// 60-SECOND REVISION SUMMARY</div>
+                <ul class="flashcard-points"><li>[REV] CAN-FD = 64 Bytes Data + Dual Bit Rate (Up to 5 Mbps).</li><li>[REV] FDF=1 (FD Frame), BRS=1 (Bit Rate Switch enabled).</li><li>[REV] Arbitration = 500 kbps; Data Phase = 2-5 Mbps.</li><li>[REV] CRC-17 (&lt;=16B) and CRC-21 (&gt;16B).</li></ul>
+            </div>
+        </section>
+
+        <section class="topic-section" id="personal-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 19]</span> Personal Study Notes (Auto-Saved)</h2>
+            </div>
+            <div class="personal-notes-widget">
+                <p class="notes-hint">Type personal notes or lab observations below. Content auto-saves to your local browser storage.</p>
+                <textarea id="personalNotePad" class="personal-notes-textarea" placeholder="Type personal study notes here..." oninput="savePersonalNote('can-fd-protocol', this.value)"></textarea>
+                <div class="notes-save-indicator" id="notesSavedTag">✓ Saved locally</div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="sources">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 20]</span> Source Traceability & Curriculum References</h2>
+            </div>
+            <div class="sources-box">
+                <p><strong>Primary Source Reference:</strong> Automotive Communication Systems Lecture 5 Transcript; Lab 2 CAN-FD Section; ISO 11898-1:2015 Specification.</p>
+            </div>
+        </section>
+
+        <nav class="topic-pagination">
+            <div class="pagination-prev"><a href="can-error-handling-fault-confinement.html" class="nav-prev-btn"><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span><span>Previous: CAN Error Detection Types &amp; Fault Confinement Mechanism</span></a></div>
+            <div class="pagination-next"><span class="nav-disabled">End of Subject Topics</span></div>
+        </nav>
+    </main>
+</div>
+
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-col brand-col">
+            <div class="footer-brand">
+                <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="footer-bits-logo">
+                <div class="footer-brand-text">
+                    <span class="footer-title">Birla Institute of Technology & Science, Pilani</span>
+                    <span class="footer-sub">Work Integrated Learning Programmes (WILP)</span>
+                </div>
+            </div>
+            <p class="footer-desc">Institutional knowledge base engineered from official lecture transcripts, handouts, and laboratory sessions for M.Tech Automotive Engineering.</p>
+            <div class="footer-tags">
+                <span class="badge badge-info">BITS WILP</span>
+                <span class="badge badge-success">4 Core Courses</span>
+                <span class="badge badge-warning">Exam & Viva Ready</span>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Semester 1 Courses</h4>
+            <ul>
+                <li><a href="../../subjects/automotive-communication.html">Automotive Communication (AELZG513)</a></li>
+                <li><a href="../../subjects/automotive-vehicle.html">Automotive Vehicle (AELZC441)</a></li>
+                <li><a href="../../subjects/autotronics.html">Autotronics (AEZG533)</a></li>
+                <li><a href="../../subjects/embedded-system-design.html">Embedded System Design (AEZG512)</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="../../index.html">Master Portal Home</a></li>
+                <li><a href="../../semesters/sem1.html">Semester 1 Overview & Credits</a></li>
+                <li><a href="javascript:void(0)" onclick="openSearchModal()">Global Topic Search</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-bottom-content">
+            <span>© 2026 M.Tech Automotive Engineering Knowledge Base. Built for High-Performance Academic Study.</span>
+            <span>Birla Institute of Technology & Science, Pilani.</span>
+        </div>
+    </div>
+</footer>
+
+
+<div class="search-modal-overlay" id="searchModal" onclick="closeSearchModal(event)">
+    <div class="search-modal-container" onclick="event.stopPropagation()">
+        <div class="search-modal-header">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <input type="text" id="searchInput" class="search-modal-input" placeholder="Type to search curriculum, formulas, registers, exam questions..." autocomplete="off" oninput="handleSearch(this.value)">
+            <button class="search-modal-close" onclick="closeSearchModal()">&times;</button>
+        </div>
+        <div class="search-modal-filters">
+            <button class="search-filter-btn active" data-subject="all" onclick="setSearchFilter('all')">All Courses</button>
+            <button class="search-filter-btn" data-subject="automotive-communication" onclick="setSearchFilter('automotive-communication')">Communication</button>
+            <button class="search-filter-btn" data-subject="automotive-vehicle" onclick="setSearchFilter('automotive-vehicle')">Vehicle</button>
+            <button class="search-filter-btn" data-subject="autotronics" onclick="setSearchFilter('autotronics')">Autotronics</button>
+            <button class="search-filter-btn" data-subject="embedded-system-design" onclick="setSearchFilter('embedded-system-design')">Embedded</button>
+        </div>
+        <div class="search-modal-results" id="searchResults">
+            <div class="search-empty-state">
+                <span>Start typing to search across 33+ comprehensive M.Tech topics...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../../js/app.js"></script>
+<script src="../../js/search-index.js"></script>
+</body>
+</html>

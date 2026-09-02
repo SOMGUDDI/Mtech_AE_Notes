@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARM Cortex-M4 Programmer&#x27;s Model &amp; Register Set | Embedded System Design</title>
+    <meta name="description" content="The programmer&#x27;s model defines the register set, operating modes, privilege levels, and execution states visible to software running on the ARM Cortex">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body data-topic-id="arm-cortex-m4-programmers-model" data-subject-id="embedded-system-design">
+
+
+<header class="navbar">
+    <div class="navbar-container">
+        <a href="../../index.html" class="nav-brand">
+            <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="nav-brand-logo">
+            <div class="brand-details">
+                <span class="brand-inst">Birla Institute of Technology & Science, Pilani</span>
+                <span class="brand-dept">Work Integrated Learning Programmes • Automotive Engineering</span>
+            </div>
+        </a>
+        <div class="nav-search-box" onclick="openSearchModal()">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <span class="search-placeholder">Search curriculum, formulas, registers, questions...</span>
+            <span class="search-shortcut">Ctrl+K</span>
+        </div>
+        <div class="nav-actions">
+            <a href="../../semesters/sem1.html" class="nav-link">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></span>
+                <span>Semester 1 Hub</span>
+            </a>
+            <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Toggle Theme">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+                <span>Theme</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+
+<div class="topic-page-layout">
+    <aside class="topic-sidebar">
+        <div class="sidebar-header">
+            <a href="../../subjects/embedded-system-design.html" class="sidebar-back">
+                <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span>
+                <span>Embedded System Design</span>
+            </a>
+            <div class="sidebar-subject-badge">AEZG512 / AELZC512</div>
+        </div>
+        <div class="sidebar-toc">
+            <h4>Table of Contents</h4>
+            <ul>
+                <li><a href="#overview">Quick Overview</a></li>
+                <li><a href="#objectives">Learning Objectives</a></li>
+                <li><a href="#core-concept">Core Concept & Intuition</a></li>
+                <li><a href="#lecture-notes">In-Class Lecture Notes</a></li>
+                <li><a href="#extra-explanation">Comprehensive Theory</a></li>
+                
+                
+                <li><a href="#working-principle">Working Principle</a></li>
+                <li><a href="#application">Automotive Application</a></li>
+                <li><a href="#comparison">Specifications Table</a></li>
+                <li><a href="#formulas">Math Formulas & Numericals</a></li>
+                <li><a href="#code">Embedded Driver / Registers</a></li>
+                <li><a href="#exam-questions">Exam & Viva Q&A</a></li>
+                <li><a href="#revision-card">60-Second Flash Card</a></li>
+                <li><a href="#personal-notes">My Personal Notes</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-progress-widget">
+            <h4>Topic Status</h4>
+            <div class="status-btn-group">
+                <button class="status-btn" id="statusNotStarted" onclick="setTopicStatus('arm-cortex-m4-programmers-model', 'not_started')">☐ Not Started</button>
+                <button class="status-btn" id="statusInProgress" onclick="setTopicStatus('arm-cortex-m4-programmers-model', 'in_progress')">◐ In Progress</button>
+                <button class="status-btn" id="statusCompleted" onclick="setTopicStatus('arm-cortex-m4-programmers-model', 'completed')">☑ Mastered</button>
+            </div>
+            <button class="bookmark-btn" id="bookmarkBtn" onclick="toggleBookmark('arm-cortex-m4-programmers-model')">★ Bookmark for Revision</button>
+        </div>
+    </aside>
+
+    <main class="topic-main-content">
+        <header class="topic-header">
+            <div class="breadcrumbs">
+                <a href="../../index.html">Home</a> / 
+                <a href="../../semesters/sem1.html">Semester 1</a> / 
+                <a href="../../subjects/embedded-system-design.html">Embedded System Design</a> / 
+                <span class="curr-crumb">ARM Cortex-M4 Programmer&#x27;s Model &amp; Register Set</span>
+            </div>
+            
+            <div class="topic-meta-row">
+                <span class="meta-pill module-pill">MODULE: Processor Architecture</span>
+                <span class="meta-pill level-pill">LEVEL: Intermediate</span>
+                <span class="meta-pill importance-pill">WEIGHT: 5/5</span>
+                <span class="meta-pill code-pill">AEZG512 / AELZC512</span>
+            </div>
+
+            <h1 class="topic-main-title">ARM Cortex-M4 Programmer&#x27;s Model &amp; Register Set</h1>
+
+            <div class="action-bar-top">
+                <div class="read-estimate">Estimated Read Time: <strong>12–15 mins</strong></div>
+                <div class="action-buttons-group">
+                    <button class="print-btn" onclick="window.print()" title="Print this complete note page or save as PDF">
+                        <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg></span>
+                        <span>Print / Save PDF</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <section class="topic-section" id="overview">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 01]</span> Quick Overview</h2>
+            </div>
+            <p class="overview-lead">The programmer&#x27;s model defines the register set, operating modes, privilege levels, and execution states visible to software running on the ARM Cortex-M4 core. Mastering the 16 core 32-bit registers (R0 to R15), dual stack pointers (MSP and PSP), Special Function Registers (xPSR, CONTROL, PRIMASK), and the distinction between Thread Mode and Handler Mode is essential for embedded C and assembly programming.</p>
+        </section>
+
+        <section class="topic-section" id="objectives">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 02]</span> Learning Objectives & Prerequisites</h2>
+            </div>
+            <div class="objectives-card">
+                <h5>What You Will Master:</h5>
+                <ul class="objectives-list">
+                    <li>Identify and analyze all 16 core 32-bit registers: General Purpose (R0-R12), SP (R13), LR (R14), and PC (R15).</li><li>Differentiate between the dual banked Stack Pointers: Main Stack Pointer (MSP) vs Process Stack Pointer (PSP).</li><li>Analyze the Program Status Register (xPSR: APSR, IPSR, and EPSR fields).</li><li>Explain Processor Operating Modes (Thread vs Handler Mode) and Privilege Levels (Privileged vs Unprivileged).</li>
+                </ul>
+                <div class="prereq-note">
+                    <strong>Prerequisites:</strong> ARM Cortex-M4 Core Architecture, basic register concepts.
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="core-concept">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 03]</span> Core Concept & Physical Intuition</h2>
+            </div>
+            <div class="concept-body">
+                <p>To prevent a bug in user software from crashing the entire vehicle operating system, the Cortex-M4 separates software into two worlds: **Thread Mode** (where normal application tasks run, optionally restricted to unprivileged access) and **Handler Mode** (which enters automatically whenever an interrupt/exception occurs, always with full privileged access). It also provides two separate stacks (MSP for the OS/interrupts and PSP for application tasks) so that an application stack overflow cannot corrupt interrupt execution.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="lecture-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 04]</span> In-Class Lecture Transcript Breakdown</h2>
+            </div>
+            <div class="callout callout-lecture">
+                <div class="callout-header">// LECTURE TRANSCRIPT SYNTHESIS</div>
+                <div class="callout-body">
+                    <p>Lecture 3 and 4 covered the Programmer&#x27;s Model and Register Set in detail. Prof. S. S. Kendre explained: &#x27;The Cortex-M4 has 16 core registers R0 to R15. R0 to R12 are general purpose. R13 is the Stack Pointer. But look closely: R13 is banked into two physical registers—MSP and PSP. Only one is active at a time, selected by the CONTROL register.&#x27; The professor walked through the xPSR register, showing how the condition flags (N, Z, C, V) in APSR are updated by arithmetic instructions and checked by conditional branches.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="extra-explanation">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 05]</span> Rigorous Engineering Theory & Derivations</h2>
+            </div>
+            <div class="callout callout-deep">
+                <div class="callout-header">// RIGOROUS ENGINEERING THEORY</div>
+                <div class="callout-body">
+                    <p>Let&#x27;s analyze the **Register Organization &amp; Special Registers**:
+
+1. **Core Register Set (32-bit each):**
+   - **R0 to R12 (General Purpose):** R0-R7 are &#x27;Low Registers&#x27; (accessible by all 16-bit and 32-bit Thumb-2 instructions); R8-R12 are &#x27;High Registers&#x27; (accessible by all 32-bit instructions). Under the ARM Architecture Procedure Call Standard (AAPCS), **R0-R3** pass input parameters to C functions and return function results; **R4-R11** must be preserved across function calls.
+   - **R13 (Stack Pointer - SP):** Banked into two registers:
+     - **MSP (Main Stack Pointer):** Used by default after reset and always used by Exception Handlers (Handler Mode).
+     - **PSP (Process Stack Pointer):** Used by application tasks in Thread Mode under an RTOS (e.g., FreeRTOS).
+   - **R14 (Link Register - LR):** Holds the return address when calling a subroutine (`BL`) or an `EXC_RETURN` code during exception entry.
+   - **R15 (Program Counter - PC):** Points to the current instruction address $+4$ bytes (due to pipeline prefetch). Bit 0 is always 0 because instructions are halfword-aligned; executing code must have LSB=1 to indicate Thumb state.
+
+2. **Program Status Register (xPSR):**
+   - **APSR (Application PSR):** Bits 31-28 contain ALU condition flags: **N** (Negative), **Z** (Zero), **C** (Carry), **V** (Overflow), and **Q** (Saturation).
+   - **IPSR (Interrupt PSR):** Bits 8-0 hold the active Exception Number (0 = Thread mode, 15 = SysTick, 16+ = External IRQ).
+   - **EPSR (Execution PSR):** Contains the **T-bit** (Bit 24, Thumb state = 1; clearing causes a HardFault) and ICI/IT execution state bits.
+
+3. **Special Control Registers (Accessed via `MRS` / `MSR`):**
+   - **CONTROL Register:** Bit 0 selects Privileged (0) vs Unprivileged (1) access; Bit 1 selects active stack pointer (0 = MSP, 1 = PSP).
+   - **PRIMASK Register:** 1-bit register; writing 1 disables all maskable interrupts (`__disable_irq()`).</p>
+                </div>
+            </div>
+        </section>
+
+        
+        
+
+        <section class="topic-section" id="working-principle">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 08]</span> Step-by-Step Operational Principle</h2>
+            </div>
+            <div class="principle-body">
+                <p>Operating Modes vs Privilege Levels Matrix:
+- **Thread Mode + Privileged:** Operating state immediately after chip reset; used by RTOS kernel and bare-metal systems.
+- **Thread Mode + Unprivileged:** Used for sandboxed user application tasks; hardware restricts access to NVIC and system timers.
+- **Handler Mode + Always Privileged:** Operating state inside all Interrupt Service Routines (ISRs) and System Exception Handlers. Entered automatically via hardware when an interrupt fires.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="application">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 09]</span> Real Automotive Application</h2>
+            </div>
+            <div class="callout callout-application">
+                <div class="callout-header">// AUTOMOTIVE OEM CASE STUDY</div>
+                <div class="callout-body">
+                    <p></p>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="topic-section table-section" id="comparison">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 10]</span> Technical Specifications & Benchmarks</h2>
+            </div>
+            <div class="table-responsive">
+                <table class="specs-table">
+                    <thead><tr><th>Operating Mode</th><th>Privilege Level</th><th>Active Stack Pointer</th><th>Primary Purpose</th></tr></thead>
+                    <tbody><tr><td>Thread Mode (Reset)</td><td>Privileged (CONTROL[0]=0)</td><td>MSP (Main Stack Pointer)</td><td>Bare-metal applications, RTOS Kernel startup</td></tr><tr><td>Thread Mode (User Task)</td><td>Unprivileged (CONTROL[0]=1)</td><td>PSP (Process Stack Pointer)</td><td>Isolated user tasks under FreeRTOS / AUTOSAR</td></tr><tr><td>Handler Mode</td><td>Privileged (Always)</td><td>MSP (Always forced by hardware)</td><td>All Interrupt Handlers (ISR), Fault Handlers, SysTick</td></tr></tbody>
+                </table>
+            </div>
+        </section>
+        
+        
+        <section class="topic-section formulas-section" id="formulas">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 11]</span> Mathematical Formulas & Numerical Breakdown</h2>
+            </div>
+            <div class="formulas-grid">
+                
+            <div class="formula-card">
+                <div class="formula-name">AAPCS Register Calling Convention Mapping</div>
+                <div class="formula-math"><code>\text{Inputs: } R0, R1, R2, R3 \quad \implies \quad \text{Return Value: } R0 \text{ (or } R0:R1 \text{ for 64-bit)}</code></div>
+                <div class="formula-details">
+                    <h5>Parameter Definitions:</h5>
+                    <ul class="formula-vars"><li><code>R</code>: 0</li><li><code>R</code>: 4</li><li><code>R</code>: 1</li><li><code>R</code>: 1</li></ul>
+                    <div class="formula-example"><strong>Worked Numerical Example:</strong><br>Calling a C function `uint32_t calculate_torque(uint16_t rpm, uint16_t pedal)` places `rpm` into R0 and `pedal` into R1 before executing `BL calculate_torque`. The calculated torque is returned in R0.</div>
+                </div>
+            </div>
+            
+            </div>
+        </section>
+        
+        
+        <section class="topic-section code-section" id="code">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 12]</span> Embedded C Driver & Register Interface</h2>
+                <button class="copy-btn" onclick="copyCodeBlock('codeBlock')">
+                    <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+                    <span>Copy Code</span>
+                </button>
+            </div>
+            <div class="code-container">
+                <pre><code id="codeBlock" class="language-c">// Accessing Special Registers via Inline Assembly (ARM Cortex-M4)
+#include &lt;stdint.h&gt;
+
+void switch_to_user_mode(uint32_t psp_stack_address) {
+    // 1. Set Process Stack Pointer (PSP) address
+    __asm volatile (&quot;MSR PSP, %0&quot; : : &quot;r&quot; (psp_stack_address) : );
+    
+    // 2. Set CONTROL register: Bit 1 = 1 (Use PSP), Bit 0 = 1 (Unprivileged)
+    __asm volatile (&quot;MSR CONTROL, %0&quot; : : &quot;r&quot; (0x03) : );
+    
+    // 3. Instruction Synchronization Barrier
+    __asm volatile (&quot;ISB&quot;);
+}
+
+uint32_t get_active_exception_number(void) {
+    uint32_t ipsr_val;
+    __asm volatile (&quot;MRS %0, IPSR&quot; : &quot;=r&quot; (ipsr_val) : : );
+    return ipsr_val &amp; 0x1FF; // Bits 8:0 hold active exception #
+}</code></pre>
+            </div>
+        </section>
+        
+
+        <section class="topic-section" id="must-remember">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 13]</span> Must-Remember Key Points for Exams</h2>
+            </div>
+            <div class="must-remember-card">
+                <ul><li>[KEY] 16 core registers: R0-R12 (General), R13 (SP), R14 (LR), R15 (PC).</li><li>[KEY] R13 is banked into MSP (Main Stack) and PSP (Process Stack).</li><li>[KEY] Handler Mode is ALWAYS Privileged and ALWAYS uses MSP.</li><li>[KEY] Thread Mode is used for applications and can be Privileged or Unprivileged.</li><li>[KEY] xPSR contains APSR (ALU Flags N,Z,C,V), IPSR (Exception #), and EPSR (Thumb T-bit).</li></ul>
+            </div>
+        </section>
+
+        
+        <div class="callout callout-warning">
+            <div class="callout-header">// COMMON EXAM TRAPS & MISCONCEPTIONS</div>
+            <div class="callout-body">
+                <ul><li><strong>Trap:</strong> Attempting to switch to PSP stack pointer inside an Interrupt Service Routine. Hardware forces MSP in Handler Mode; software cannot use PSP inside an ISR.</li><li><strong>Trap:</strong> Modifying R15 (PC) directly without setting bit 0 to 1. In Cortex-M, all branch target addresses loaded into PC must have bit 0 set to 1 to maintain Thumb execution state.</li></ul>
+            </div>
+        </div>
+        
+
+        <section class="topic-section" id="exam-questions">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 15]</span> Exam Preparation & Model Questions</h2>
+            </div>
+            <div class="exam-qa-container">
+                
+        <div class="exam-qa-block">
+            <h3>Short Answer Questions (1–2 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> What is the difference between the Main Stack Pointer (MSP) and the Process Stack Pointer (PSP)?</div>
+                <div class="qa-answer">MSP is the default stack pointer used upon reset and is ALWAYS used by all interrupt service routines in Handler Mode. PSP is an alternate stack pointer used exclusively by application tasks in Thread Mode under an RTOS to prevent task stack overflows from corrupting OS kernel and interrupt execution.</div>
+            </div>
+            
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> What are the two processor operating modes in ARM Cortex-M4?</div>
+                <div class="qa-answer">Thread Mode (used for executing normal background application software) and Handler Mode (entered automatically when executing interrupt handlers and system exceptions).</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Comprehensive Long Answer Questions (5–10 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item long-qa-item">
+                <div class="qa-question"><span class="q-badge">10 MARKS</span> Describe the complete Programmer&#x27;s Model of the ARM Cortex-M4 processor. Detail the 16 core registers, the dual banked stack pointers, the xPSR register fields, and the transition between Thread Mode and Handler Mode.</div>
+                <div class="qa-answer">A complete answer covers: (1) Core register diagram (R0-R15); (2) AAPCS function calling convention for R0-R3; (3) Explanation of MSP vs PSP; (4) Detailed bit breakdown of xPSR (APSR condition flags, IPSR exception numbers, EPSR T-bit); (5) CONTROL register operation; (6) Mode transition diagram between Thread Mode and Handler Mode upon interrupt assertion.</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Viva Voce & Technical Interview Questions</h3>
+            <div class="qa-list">
+            <div class="qa-item viva-qa-item">
+                <div class="qa-question"><span class="q-badge">VIVA / INTERVIEW</span> What fatal hardware fault occurs if software clears Bit 24 (the T-bit) in the EPSR register on an ARM Cortex-M4?</div>
+                <div class="qa-answer">The T-bit indicates Thumb state. Because the Cortex-M4 core supports ONLY the Thumb-2 instruction set (it does not possess an ARM 32-bit legacy execution state), clearing the T-bit to 0 causes the processor to attempt executing non-existent ARM state instructions, immediately triggering an unrecoverable <strong>UsageFault / HardFault</strong>.</div>
+            </div>
+            </div>
+        </div>
+        
+            </div>
+        </section>
+
+        <section class="topic-section" id="revision-card">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 18]</span> 60-Second Flash / Revision Card</h2>
+            </div>
+            <div class="flashcard">
+                <div class="flashcard-badge">// 60-SECOND REVISION SUMMARY</div>
+                <ul class="flashcard-points"><li>[REV] R0-R12: General Purpose (R0-R3 = Function parameters).</li><li>[REV] R13: Dual SP (MSP for OS/ISRs, PSP for Tasks).</li><li>[REV] R14: Link Register (Return address / EXC_RETURN).</li><li>[REV] R15: Program Counter (Holds instruction address + 4).</li><li>[REV] Modes: Thread (App) vs Handler (ISR).</li></ul>
+            </div>
+        </section>
+
+        <section class="topic-section" id="personal-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 19]</span> Personal Study Notes (Auto-Saved)</h2>
+            </div>
+            <div class="personal-notes-widget">
+                <p class="notes-hint">Type personal notes or lab observations below. Content auto-saves to your local browser storage.</p>
+                <textarea id="personalNotePad" class="personal-notes-textarea" placeholder="Type personal study notes here..." oninput="savePersonalNote('arm-cortex-m4-programmers-model', this.value)"></textarea>
+                <div class="notes-save-indicator" id="notesSavedTag">✓ Saved locally</div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="sources">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 20]</span> Source Traceability & Curriculum References</h2>
+            </div>
+            <div class="sources-box">
+                <p><strong>Primary Source Reference:</strong> Embedded System Design Lecture 3 &amp; 4 Transcripts; The Definitive Guide to ARM Cortex-M3/M4 Processors (Joseph Yiu) Chapter 4; Course Syllabus Section 3.</p>
+            </div>
+        </section>
+
+        <nav class="topic-pagination">
+            <div class="pagination-prev"><a href="arm-cortex-m4-core-architecture.html" class="nav-prev-btn"><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span><span>Previous: ARM Cortex-M4 Core Architecture &amp; Bus Matrix</span></a></div>
+            <div class="pagination-next"><a href="arm-cortex-m4-nvic-and-exceptions.html" class="nav-next-btn"><span>Next: Nested Vectored Interrupt Controller (NVIC) &amp; Exception Handling</span><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span></a></div>
+        </nav>
+    </main>
+</div>
+
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-col brand-col">
+            <div class="footer-brand">
+                <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="footer-bits-logo">
+                <div class="footer-brand-text">
+                    <span class="footer-title">Birla Institute of Technology & Science, Pilani</span>
+                    <span class="footer-sub">Work Integrated Learning Programmes (WILP)</span>
+                </div>
+            </div>
+            <p class="footer-desc">Institutional knowledge base engineered from official lecture transcripts, handouts, and laboratory sessions for M.Tech Automotive Engineering.</p>
+            <div class="footer-tags">
+                <span class="badge badge-info">BITS WILP</span>
+                <span class="badge badge-success">4 Core Courses</span>
+                <span class="badge badge-warning">Exam & Viva Ready</span>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Semester 1 Courses</h4>
+            <ul>
+                <li><a href="../../subjects/automotive-communication.html">Automotive Communication (AELZG513)</a></li>
+                <li><a href="../../subjects/automotive-vehicle.html">Automotive Vehicle (AELZC441)</a></li>
+                <li><a href="../../subjects/autotronics.html">Autotronics (AEZG533)</a></li>
+                <li><a href="../../subjects/embedded-system-design.html">Embedded System Design (AEZG512)</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="../../index.html">Master Portal Home</a></li>
+                <li><a href="../../semesters/sem1.html">Semester 1 Overview & Credits</a></li>
+                <li><a href="javascript:void(0)" onclick="openSearchModal()">Global Topic Search</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-bottom-content">
+            <span>© 2026 M.Tech Automotive Engineering Knowledge Base. Built for High-Performance Academic Study.</span>
+            <span>Birla Institute of Technology & Science, Pilani.</span>
+        </div>
+    </div>
+</footer>
+
+
+<div class="search-modal-overlay" id="searchModal" onclick="closeSearchModal(event)">
+    <div class="search-modal-container" onclick="event.stopPropagation()">
+        <div class="search-modal-header">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <input type="text" id="searchInput" class="search-modal-input" placeholder="Type to search curriculum, formulas, registers, exam questions..." autocomplete="off" oninput="handleSearch(this.value)">
+            <button class="search-modal-close" onclick="closeSearchModal()">&times;</button>
+        </div>
+        <div class="search-modal-filters">
+            <button class="search-filter-btn active" data-subject="all" onclick="setSearchFilter('all')">All Courses</button>
+            <button class="search-filter-btn" data-subject="automotive-communication" onclick="setSearchFilter('automotive-communication')">Communication</button>
+            <button class="search-filter-btn" data-subject="automotive-vehicle" onclick="setSearchFilter('automotive-vehicle')">Vehicle</button>
+            <button class="search-filter-btn" data-subject="autotronics" onclick="setSearchFilter('autotronics')">Autotronics</button>
+            <button class="search-filter-btn" data-subject="embedded-system-design" onclick="setSearchFilter('embedded-system-design')">Embedded</button>
+        </div>
+        <div class="search-modal-results" id="searchResults">
+            <div class="search-empty-state">
+                <span>Start typing to search across 33+ comprehensive M.Tech topics...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../../js/app.js"></script>
+<script src="../../js/search-index.js"></script>
+</body>
+</html>

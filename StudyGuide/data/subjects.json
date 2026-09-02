@@ -1,0 +1,30 @@
+[
+  {
+    "slug": "automotive-communication",
+    "title": "Automotive Communication Systems",
+    "code": "AELZG513",
+    "credits": "3-1-1 (5 Units)",
+    "topic_count": 11
+  },
+  {
+    "slug": "automotive-vehicle",
+    "title": "Automotive Vehicle",
+    "code": "AELZC441",
+    "credits": "3-0-0 (3 Units)",
+    "topic_count": 7
+  },
+  {
+    "slug": "autotronics",
+    "title": "Autotronics",
+    "code": "AEZG533 / AELZG533",
+    "credits": "3-0-2 (5 Units)",
+    "topic_count": 8
+  },
+  {
+    "slug": "embedded-system-design",
+    "title": "Embedded System Design",
+    "code": "AEZG512 / AELZC512",
+    "credits": "1-1-2 (4 Units)",
+    "topic_count": 7
+  }
+]

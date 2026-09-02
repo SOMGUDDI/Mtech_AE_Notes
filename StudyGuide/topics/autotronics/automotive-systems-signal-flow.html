@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automotive Systems Architecture &amp; Signal Flow | Autotronics</title>
+    <meta name="description" content="Every automotive electronic system, regardless of its mechanical or software complexity, operates on one of three fundamental signal flows: Closed-Loo">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body data-topic-id="automotive-systems-signal-flow" data-subject-id="autotronics">
+
+
+<header class="navbar">
+    <div class="navbar-container">
+        <a href="../../index.html" class="nav-brand">
+            <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="nav-brand-logo">
+            <div class="brand-details">
+                <span class="brand-inst">Birla Institute of Technology & Science, Pilani</span>
+                <span class="brand-dept">Work Integrated Learning Programmes • Automotive Engineering</span>
+            </div>
+        </a>
+        <div class="nav-search-box" onclick="openSearchModal()">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <span class="search-placeholder">Search curriculum, formulas, registers, questions...</span>
+            <span class="search-shortcut">Ctrl+K</span>
+        </div>
+        <div class="nav-actions">
+            <a href="../../semesters/sem1.html" class="nav-link">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></span>
+                <span>Semester 1 Hub</span>
+            </a>
+            <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Toggle Theme">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+                <span>Theme</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+
+<div class="topic-page-layout">
+    <aside class="topic-sidebar">
+        <div class="sidebar-header">
+            <a href="../../subjects/autotronics.html" class="sidebar-back">
+                <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span>
+                <span>Autotronics</span>
+            </a>
+            <div class="sidebar-subject-badge">AEZG533 / AELZG533</div>
+        </div>
+        <div class="sidebar-toc">
+            <h4>Table of Contents</h4>
+            <ul>
+                <li><a href="#overview">Quick Overview</a></li>
+                <li><a href="#objectives">Learning Objectives</a></li>
+                <li><a href="#core-concept">Core Concept & Intuition</a></li>
+                <li><a href="#lecture-notes">In-Class Lecture Notes</a></li>
+                <li><a href="#extra-explanation">Comprehensive Theory</a></li>
+                
+                
+                <li><a href="#working-principle">Working Principle</a></li>
+                <li><a href="#application">Automotive Application</a></li>
+                <li><a href="#comparison">Specifications Table</a></li>
+                <li><a href="#formulas">Math Formulas & Numericals</a></li>
+                <li><a href="#code">Embedded Driver / Registers</a></li>
+                <li><a href="#exam-questions">Exam & Viva Q&A</a></li>
+                <li><a href="#revision-card">60-Second Flash Card</a></li>
+                <li><a href="#personal-notes">My Personal Notes</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-progress-widget">
+            <h4>Topic Status</h4>
+            <div class="status-btn-group">
+                <button class="status-btn" id="statusNotStarted" onclick="setTopicStatus('automotive-systems-signal-flow', 'not_started')">☐ Not Started</button>
+                <button class="status-btn" id="statusInProgress" onclick="setTopicStatus('automotive-systems-signal-flow', 'in_progress')">◐ In Progress</button>
+                <button class="status-btn" id="statusCompleted" onclick="setTopicStatus('automotive-systems-signal-flow', 'completed')">☑ Mastered</button>
+            </div>
+            <button class="bookmark-btn" id="bookmarkBtn" onclick="toggleBookmark('automotive-systems-signal-flow')">★ Bookmark for Revision</button>
+        </div>
+    </aside>
+
+    <main class="topic-main-content">
+        <header class="topic-header">
+            <div class="breadcrumbs">
+                <a href="../../index.html">Home</a> / 
+                <a href="../../semesters/sem1.html">Semester 1</a> / 
+                <a href="../../subjects/autotronics.html">Autotronics</a> / 
+                <span class="curr-crumb">Automotive Systems Architecture &amp; Signal Flow</span>
+            </div>
+            
+            <div class="topic-meta-row">
+                <span class="meta-pill module-pill">MODULE: System Foundations</span>
+                <span class="meta-pill level-pill">LEVEL: Beginner</span>
+                <span class="meta-pill importance-pill">WEIGHT: 5/5</span>
+                <span class="meta-pill code-pill">AEZG533 / AELZG533</span>
+            </div>
+
+            <h1 class="topic-main-title">Automotive Systems Architecture &amp; Signal Flow</h1>
+
+            <div class="action-bar-top">
+                <div class="read-estimate">Estimated Read Time: <strong>12–15 mins</strong></div>
+                <div class="action-buttons-group">
+                    <button class="print-btn" onclick="window.print()" title="Print this complete note page or save as PDF">
+                        <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg></span>
+                        <span>Print / Save PDF</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <section class="topic-section" id="overview">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 01]</span> Quick Overview</h2>
+            </div>
+            <p class="overview-lead">Every automotive electronic system, regardless of its mechanical or software complexity, operates on one of three fundamental signal flows: Closed-Loop Control Applications (feedback-driven), Open-Loop Measurement/Display Applications (monitoring without direct actuation), and Communication Applications (inter-ECU data transmission). Understanding these three archetypes is the bedrock of automotive mechatronics design.</p>
+        </section>
+
+        <section class="topic-section" id="objectives">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 02]</span> Learning Objectives & Prerequisites</h2>
+            </div>
+            <div class="objectives-card">
+                <h5>What You Will Master:</h5>
+                <ul class="objectives-list">
+                    <li>Analyze the three canonical signal flows: Closed-loop control, Open-loop measurement, and Communication.</li><li>Deconstruct the engine management subsystem into its primary sensing and control building blocks.</li><li>Understand why Voltage, Current, and Temperature are the only physically measurable quantities in an EV powertrain.</li><li>Explain the concept of derived/calculated state variables (e.g., State of Charge SOC, Power, Torque).</li>
+                </ul>
+                <div class="prereq-note">
+                    <strong>Prerequisites:</strong> Basic physics (force, voltage, current) and general automotive familiarity.
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="core-concept">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 03]</span> Core Concept & Physical Intuition</h2>
+            </div>
+            <div class="concept-body">
+                <p>In automotive engineering, controllers do not magically &#x27;know&#x27; physical parameters. They sense electrical quantities (voltage across a divider, frequency of a magnetic pulse), condition and convert those signals to digital numbers, calculate algorithms, and drive actuators. If the actuator output is measured and fed back to correct errors (like maintaining an air-fuel ratio of 14.7:1), it is a **Closed-Loop Control System**. If the sensor simply illuminates a low tire-pressure warning icon on the dashboard, it is an **Open-Loop Measurement System**.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="lecture-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 04]</span> In-Class Lecture Transcript Breakdown</h2>
+            </div>
+            <div class="callout callout-lecture">
+                <div class="callout-header">// LECTURE TRANSCRIPT SYNTHESIS</div>
+                <div class="callout-body">
+                    <p>Lectures 1, 2, and 3 delivered by Dr. Madhuri Bayya established the core philosophy of Autotronics. The professor repeatedly drilled: &#x27;You only measure or calibrate a sensor in terms of Voltage and Current. Power, speed, and State of Charge (SOC) are calculated/derived quantities, never measured directly! Please don&#x27;t say you will measure SOC with a sensor.&#x27; The lecture traced the engine control block diagram: Throttle Position (TPS), Mass Airflow (MAF), Coolant Temp (ECT), and Oxygen (EGO) feeding into the ECU to control spark plugs and fuel injectors.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="extra-explanation">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 05]</span> Rigorous Engineering Theory & Derivations</h2>
+            </div>
+            <div class="callout callout-deep">
+                <div class="callout-header">// RIGOROUS ENGINEERING THEORY</div>
+                <div class="callout-body">
+                    <p>Let&#x27;s analyze the three canonical signal flows in detail:
+
+1. **Closed-Loop Control Application (Feedback Loop):**
+   $$\text{Command Input} \to [\text{Sensor}] \to \text{Signal Processing (ECU)} \to [\text{Actuator}] \to \text{Plant} \to \text{Feedback Signal} \to \text{Summing Node}$$
+   - *Example:* Electronic Throttle Control (Drive-by-Wire). The driver presses the accelerator pedal (command). The pedal position sensor (TPS) measures angle. The ECU computes desired throttle plate angle and drives a DC motor (actuator). A second throttle plate sensor measures actual angle and feeds it back to the ECU. If a discrepancy exists, the ECU adjusts motor current immediately.
+
+2. **Measurement / Display Application (Open-Loop, No Control Action):**
+   $$\text{Physical Measurand} \to [\text{Sensor}] \to \text{Signal Conditioning} \to [\text{Display Unit}] \to \text{Driver Indication}$$
+   - *Example:* Engine Coolant Temperature Gauge. An NTC thermistor measures coolant temperature; the signal is converted to a digital temperature reading displayed on the instrument cluster. There is no automated feedback loop closing back to control the thermistor.
+
+3. **Communication Application (Data Transmission):**
+   $$\text{Input Data (Message)} \to [\text{Transmitter / Source}] \to [\text{Physical Channel (CAN/LIN)}] \to [\text{Receiver}] \to \text{Output Data}$$</p>
+                </div>
+            </div>
+        </section>
+
+        
+        
+
+        <section class="topic-section" id="working-principle">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 08]</span> Step-by-Step Operational Principle</h2>
+            </div>
+            <div class="principle-body">
+                <p>The Three Measurable Physical Quantities in Electric Vehicles:
+In an electric vehicle powertrain (inverter, motor, battery pack, BMS), the sensors installed physically measure ONLY THREE BASE QUANTITIES:
+1. **Voltage ($V$):** Measured in parallel across battery cells, DC bus terminals, and sensor bridge outputs.
+2. **Current ($I$):** Measured in series or magnetically using Hall-effect open/closed-loop current transducers (IVT modules) on high-voltage battery cables.
+3. **Temperature ($T$):** Measured using NTC thermistors, RTDs, or thermocouples on stator windings and battery cell tabs.
+Every other vital metric—**State of Charge (SOC), State of Health (SOH), Electric Power ($P=VI$), Motor Shaft Torque ($T$), and Vehicle Speed**—is mathematically computed by microcontroller algorithms.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="application">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 09]</span> Real Automotive Application</h2>
+            </div>
+            <div class="callout callout-application">
+                <div class="callout-header">// AUTOMOTIVE OEM CASE STUDY</div>
+                <div class="callout-body">
+                    <p></p>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="topic-section table-section" id="comparison">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 10]</span> Technical Specifications & Benchmarks</h2>
+            </div>
+            <div class="table-responsive">
+                <table class="specs-table">
+                    <thead><tr><th>System Flow Type</th><th>Feedback Exists?</th><th>Primary Purpose</th><th>Automotive Example</th></tr></thead>
+                    <tbody><tr><td>Closed-Loop Control</td><td>Yes (Continuously monitored)</td><td>Maintain setpoint despite external disturbances</td><td>Electronic Throttle Control (ETC), ABS, Battery Thermal Management</td></tr><tr><td>Open-Loop Measurement</td><td>No (One-way telemetry)</td><td>Driver information, diagnostics, status display</td><td>Engine oil level gauge, tire pressure display, ambient temp display</td></tr><tr><td>Communication Flow</td><td>N/A (Protocol ACKs)</td><td>Information sharing between distributed ECUs</td><td>CAN bus broadcasting wheel speed from ABS to Instrument Cluster</td></tr></tbody>
+                </table>
+            </div>
+        </section>
+        
+        
+        <section class="topic-section formulas-section" id="formulas">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 11]</span> Mathematical Formulas & Numerical Breakdown</h2>
+            </div>
+            <div class="formulas-grid">
+                
+            <div class="formula-card">
+                <div class="formula-name">Closed-Loop Negative Feedback Error Equation</div>
+                <div class="formula-math"><code>e(t) = r(t) - y_{meas}(t), \quad u(t) = K_p e(t) + K_i \int e(t) dt + K_d \frac{de(t)}{dt}</code></div>
+                <div class="formula-details">
+                    <h5>Parameter Definitions:</h5>
+                    <ul class="formula-vars"><li><code>r</code>: (</li><li><code>y</code>: _</li><li><code>e</code>: (</li><li><code>u</code>: (</li></ul>
+                    <div class="formula-example"><strong>Worked Numerical Example:</strong><br>If desired idle is r = 800 RPM and current speed is y = 720 RPM, error e = +80 RPM. The PID controller increases throttle opening duty cycle u(t) until speed returns to 800 RPM.</div>
+                </div>
+            </div>
+            
+            </div>
+        </section>
+        
+        
+        <section class="topic-section code-section" id="code">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 12]</span> Embedded C Driver & Register Interface</h2>
+                <button class="copy-btn" onclick="copyCodeBlock('codeBlock')">
+                    <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+                    <span>Copy Code</span>
+                </button>
+            </div>
+            <div class="code-container">
+                <pre><code id="codeBlock" class="language-c">// C Implementation of a Closed-Loop Automotive PID Control Loop
+typedef struct {
+    float Kp, Ki, Kd;
+    float integral;
+    float prev_error;
+    float output_min, output_max;
+} PID_Controller_t;
+
+float update_pid(PID_Controller_t* pid, float setpoint, float measured_val, float dt) {
+    float error = setpoint - measured_val;
+    pid-&gt;integral += error * dt;
+    float derivative = (error - pid-&gt;prev_error) / dt;
+    pid-&gt;prev_error = error;
+    
+    float output = (pid-&gt;Kp * error) + (pid-&gt;Ki * pid-&gt;integral) + (pid-&gt;Kd * derivative);
+    
+    // Clamp actuator output limits (e.g., 0% to 100% PWM duty cycle)
+    if (output &gt; pid-&gt;output_max) output = pid-&gt;output_max;
+    if (output &lt; pid-&gt;output_min) output = pid-&gt;output_min;
+    return output;
+}</code></pre>
+            </div>
+        </section>
+        
+
+        <section class="topic-section" id="must-remember">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 13]</span> Must-Remember Key Points for Exams</h2>
+            </div>
+            <div class="must-remember-card">
+                <ul><li>[KEY] Three canonical flows: Closed-loop control, Open-loop measurement, Communication.</li><li>[KEY] Only Voltage, Current, and Temperature can be directly measured by physical sensors in an EV.</li><li>[KEY] Power, SOC, Torque, and Speed are calculated/derived quantities.</li><li>[KEY] Generic chain: Sensor -&gt; Signal Conditioning -&gt; ADC -&gt; ECU -&gt; DAC -&gt; Actuator.</li></ul>
+            </div>
+        </section>
+
+        
+        <div class="callout callout-warning">
+            <div class="callout-header">// COMMON EXAM TRAPS & MISCONCEPTIONS</div>
+            <div class="callout-body">
+                <ul><li><strong>Trap:</strong> Claiming in an exam that sensors measure &#x27;power&#x27; or &#x27;SOC&#x27;. Always state that sensors measure voltage, current, or temperature, and the ECU calculates power or SOC.</li><li><strong>Trap:</strong> Confusing open-loop measurement with closed-loop control. If there is no automated feedback modifying the actuator, the loop is open.</li></ul>
+            </div>
+        </div>
+        
+
+        <section class="topic-section" id="exam-questions">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 15]</span> Exam Preparation & Model Questions</h2>
+            </div>
+            <div class="exam-qa-container">
+                
+        <div class="exam-qa-block">
+            <h3>Short Answer Questions (1–2 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> Why is an engine coolant temperature gauge considered an open-loop system while electronic cruise control is closed-loop?</div>
+                <div class="qa-answer">The coolant gauge measures temperature and displays it for driver observation with no automated feedback controlling the temperature. Cruise control continuously compares vehicle speed against target speed and actively adjusts the throttle actuator to eliminate error (closed-loop).</div>
+            </div>
+            
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> Can an engineer install a physical sensor to measure battery State of Charge (SOC) directly?</div>
+                <div class="qa-answer">No. State of Charge cannot be measured directly by any physical sensor. SOC is a derived mathematical quantity calculated by the BMS microcontroller using measured battery cell voltage, current integration (Coulomb counting), and cell temperature.</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Comprehensive Long Answer Questions (5–10 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item long-qa-item">
+                <div class="qa-question"><span class="q-badge">10 MARKS</span> Explain the three canonical signal flows in automotive electronic systems. Detail the generic instrumentation chain from physical measurand to actuator, using an engine electronic throttle control system as a worked example.</div>
+                <div class="qa-answer">A complete answer covers: (1) Diagrams and definitions of closed-loop control, open-loop measurement, and communication; (2) Block diagram of the generic instrumentation chain (Sensor -> Signal Conditioning -> ADC -> ECU -> DAC -> Actuator); (3) Worked walkthrough of Drive-by-Wire throttle control; (4) Explanation of why only V, I, and T are physical base measurands.</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Viva Voce & Technical Interview Questions</h3>
+            <div class="qa-list">
+            <div class="qa-item viva-qa-item">
+                <div class="qa-question"><span class="q-badge">VIVA / INTERVIEW</span> Why is high-voltage battery current in an EV measured using a Hall-effect clamp sensor rather than inserting a conventional shunt resistor in series with the main battery cable?</div>
+                <div class="qa-answer">Inserting an ammeter or high-resistance shunt in series with a 400V/500A traction battery would generate immense Joule heat ($I^2 R$), waste energy, and create dangerous high-voltage exposure. Hall-effect current sensors measure the magnetic field around the conductor non-invasively, providing galvanic isolation and zero insertion losses.</div>
+            </div>
+            </div>
+        </div>
+        
+            </div>
+        </section>
+
+        <section class="topic-section" id="revision-card">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 18]</span> 60-Second Flash / Revision Card</h2>
+            </div>
+            <div class="flashcard">
+                <div class="flashcard-badge">// 60-SECOND REVISION SUMMARY</div>
+                <ul class="flashcard-points"><li>[REV] Closed loop = Feedback + Actuation.</li><li>[REV] Open loop = Sensor + Display.</li><li>[REV] 3 EV Base Measurands: Voltage, Current, Temperature.</li><li>[REV] Chain: Sensor -&gt; Conditioning -&gt; ADC -&gt; ECU -&gt; Actuator.</li></ul>
+            </div>
+        </section>
+
+        <section class="topic-section" id="personal-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 19]</span> Personal Study Notes (Auto-Saved)</h2>
+            </div>
+            <div class="personal-notes-widget">
+                <p class="notes-hint">Type personal notes or lab observations below. Content auto-saves to your local browser storage.</p>
+                <textarea id="personalNotePad" class="personal-notes-textarea" placeholder="Type personal study notes here..." oninput="savePersonalNote('automotive-systems-signal-flow', this.value)"></textarea>
+                <div class="notes-save-indicator" id="notesSavedTag">✓ Saved locally</div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="sources">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 20]</span> Source Traceability & Curriculum References</h2>
+            </div>
+            <div class="sources-box">
+                <p><strong>Primary Source Reference:</strong> Autotronics Lectures 1, 2, and 3 Transcripts; Course Syllabus Section 1 (Automotive Systems and Signal Flow).</p>
+            </div>
+        </section>
+
+        <nav class="topic-pagination">
+            <div class="pagination-prev"><span class="nav-disabled">First Topic in Course</span></div>
+            <div class="pagination-next"><a href="resistors-and-voltage-divider-circuits.html" class="nav-next-btn"><span>Next: Resistors, Voltage Dividers &amp; Sensor Interfacing</span><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span></a></div>
+        </nav>
+    </main>
+</div>
+
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-col brand-col">
+            <div class="footer-brand">
+                <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="footer-bits-logo">
+                <div class="footer-brand-text">
+                    <span class="footer-title">Birla Institute of Technology & Science, Pilani</span>
+                    <span class="footer-sub">Work Integrated Learning Programmes (WILP)</span>
+                </div>
+            </div>
+            <p class="footer-desc">Institutional knowledge base engineered from official lecture transcripts, handouts, and laboratory sessions for M.Tech Automotive Engineering.</p>
+            <div class="footer-tags">
+                <span class="badge badge-info">BITS WILP</span>
+                <span class="badge badge-success">4 Core Courses</span>
+                <span class="badge badge-warning">Exam & Viva Ready</span>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Semester 1 Courses</h4>
+            <ul>
+                <li><a href="../../subjects/automotive-communication.html">Automotive Communication (AELZG513)</a></li>
+                <li><a href="../../subjects/automotive-vehicle.html">Automotive Vehicle (AELZC441)</a></li>
+                <li><a href="../../subjects/autotronics.html">Autotronics (AEZG533)</a></li>
+                <li><a href="../../subjects/embedded-system-design.html">Embedded System Design (AEZG512)</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="../../index.html">Master Portal Home</a></li>
+                <li><a href="../../semesters/sem1.html">Semester 1 Overview & Credits</a></li>
+                <li><a href="javascript:void(0)" onclick="openSearchModal()">Global Topic Search</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-bottom-content">
+            <span>© 2026 M.Tech Automotive Engineering Knowledge Base. Built for High-Performance Academic Study.</span>
+            <span>Birla Institute of Technology & Science, Pilani.</span>
+        </div>
+    </div>
+</footer>
+
+
+<div class="search-modal-overlay" id="searchModal" onclick="closeSearchModal(event)">
+    <div class="search-modal-container" onclick="event.stopPropagation()">
+        <div class="search-modal-header">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <input type="text" id="searchInput" class="search-modal-input" placeholder="Type to search curriculum, formulas, registers, exam questions..." autocomplete="off" oninput="handleSearch(this.value)">
+            <button class="search-modal-close" onclick="closeSearchModal()">&times;</button>
+        </div>
+        <div class="search-modal-filters">
+            <button class="search-filter-btn active" data-subject="all" onclick="setSearchFilter('all')">All Courses</button>
+            <button class="search-filter-btn" data-subject="automotive-communication" onclick="setSearchFilter('automotive-communication')">Communication</button>
+            <button class="search-filter-btn" data-subject="automotive-vehicle" onclick="setSearchFilter('automotive-vehicle')">Vehicle</button>
+            <button class="search-filter-btn" data-subject="autotronics" onclick="setSearchFilter('autotronics')">Autotronics</button>
+            <button class="search-filter-btn" data-subject="embedded-system-design" onclick="setSearchFilter('embedded-system-design')">Embedded</button>
+        </div>
+        <div class="search-modal-results" id="searchResults">
+            <div class="search-empty-state">
+                <span>Start typing to search across 33+ comprehensive M.Tech topics...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../../js/app.js"></script>
+<script src="../../js/search-index.js"></script>
+</body>
+</html>

@@ -1,0 +1,452 @@
+[
+  {
+    "subject": "Automotive Communication",
+    "course_code": "AELZG513",
+    "filename": "Lab 1 PPT.pdf",
+    "path": "Automotive Communication/Labs/Lab 1 PPT.pdf",
+    "size_kb": 1322.4,
+    "extension": ".pdf",
+    "word_count": 0
+  },
+  {
+    "subject": "Automotive Communication",
+    "course_code": "AELZG513",
+    "filename": "Lab 2 PPT.pdf",
+    "path": "Automotive Communication/Labs/Lab 2 PPT.pdf",
+    "size_kb": 2328.4,
+    "extension": ".pdf",
+    "word_count": 0
+  },
+  {
+    "subject": "Automotive Communication",
+    "course_code": "AELZG513",
+    "filename": "Lab 3 PPT.pdf",
+    "path": "Automotive Communication/Labs/Lab 3 PPT.pdf",
+    "size_kb": 4589.1,
+    "extension": ".pdf",
+    "word_count": 0
+  },
+  {
+    "subject": "Automotive Communication",
+    "course_code": "AELZG513",
+    "filename": "Lab1 Transcript.docx",
+    "path": "Automotive Communication/Labs/Lab1 Transcript.docx",
+    "size_kb": 44.8,
+    "extension": ".docx",
+    "word_count": 12204
+  },
+  {
+    "subject": "Automotive Communication",
+    "course_code": "AELZG513",
+    "filename": "Lab2 Transcript.docx",
+    "path": "Automotive Communication/Labs/Lab2 Transcript.docx",
+    "size_kb": 42.7,
+    "extension": ".docx",
+    "word_count": 10867
+  },
+  {
+    "subject": "Automotive Communication",
+    "course_code": "AELZG513",
+    "filename": "Lab3 Transcript.docx",
+    "path": "Automotive Communication/Labs/Lab3 Transcript.docx",
+    "size_kb": 66.8,
+    "extension": ".docx",
+    "word_count": 9201
+  },
+  {
+    "subject": "Automotive Communication",
+    "course_code": "AELZG513",
+    "filename": "Syllabus.docx",
+    "path": "Automotive Communication/Lectures/Syllabus.docx",
+    "size_kb": 324.3,
+    "extension": ".docx",
+    "word_count": 1054
+  },
+  {
+    "subject": "Automotive Communication",
+    "course_code": "AELZG513",
+    "filename": "Automotive Communication Systems Lecture1.docx",
+    "path": "Automotive Communication/Lectures/Transcripts/Automotive Communication Systems Lecture1.docx",
+    "size_kb": 316.1,
+    "extension": ".docx",
+    "word_count": 15907
+  },
+  {
+    "subject": "Automotive Communication",
+    "course_code": "AELZG513",
+    "filename": "Automotive Communication Systems Lecture2.docx",
+    "path": "Automotive Communication/Lectures/Transcripts/Automotive Communication Systems Lecture2.docx",
+    "size_kb": 136.4,
+    "extension": ".docx",
+    "word_count": 14892
+  },
+  {
+    "subject": "Automotive Communication",
+    "course_code": "AELZG513",
+    "filename": "Automotive Communication Systems Lecture3.docx",
+    "path": "Automotive Communication/Lectures/Transcripts/Automotive Communication Systems Lecture3.docx",
+    "size_kb": 187.7,
+    "extension": ".docx",
+    "word_count": 14039
+  },
+  {
+    "subject": "Automotive Communication",
+    "course_code": "AELZG513",
+    "filename": "Automotive Communication Systems Lecture4.docx",
+    "path": "Automotive Communication/Lectures/Transcripts/Automotive Communication Systems Lecture4.docx",
+    "size_kb": 56.6,
+    "extension": ".docx",
+    "word_count": 15463
+  },
+  {
+    "subject": "Automotive Communication",
+    "course_code": "AELZG513",
+    "filename": "Automotive Communication Systems Lecture5.docx",
+    "path": "Automotive Communication/Lectures/Transcripts/Automotive Communication Systems Lecture5.docx",
+    "size_kb": 118.9,
+    "extension": ".docx",
+    "word_count": 15539
+  },
+  {
+    "subject": "Automotive Vehicle",
+    "course_code": "AELZC441",
+    "filename": "Syllabus.docx",
+    "path": "Automotive Vehicle/Lectures/Syllabus.docx",
+    "size_kb": 4564.2,
+    "extension": ".docx",
+    "word_count": 989
+  },
+  {
+    "subject": "Automotive Vehicle",
+    "course_code": "AELZC441",
+    "filename": "Session1_Introduction.pdf",
+    "path": "Automotive Vehicle/Lectures/PPTs/Session1_Introduction.pdf",
+    "size_kb": 342.5,
+    "extension": ".pdf",
+    "word_count": 0
+  },
+  {
+    "subject": "Automotive Vehicle",
+    "course_code": "AELZC441",
+    "filename": "Session2_Powertrain_Fundamentals.pdf",
+    "path": "Automotive Vehicle/Lectures/PPTs/Session2_Powertrain_Fundamentals.pdf",
+    "size_kb": 2862.1,
+    "extension": ".pdf",
+    "word_count": 0
+  },
+  {
+    "subject": "Automotive Vehicle",
+    "course_code": "AELZC441",
+    "filename": "Session3_Powertrain_Fundamentals.pdf",
+    "path": "Automotive Vehicle/Lectures/PPTs/Session3_Powertrain_Fundamentals.pdf",
+    "size_kb": 4224.2,
+    "extension": ".pdf",
+    "word_count": 0
+  },
+  {
+    "subject": "Automotive Vehicle",
+    "course_code": "AELZC441",
+    "filename": "Session4_Introduction_Chassis-Body.pdf",
+    "path": "Automotive Vehicle/Lectures/PPTs/Session4_Introduction_Chassis-Body.pdf",
+    "size_kb": 4412.9,
+    "extension": ".pdf",
+    "word_count": 0
+  },
+  {
+    "subject": "Automotive Vehicle",
+    "course_code": "AELZC441",
+    "filename": "Session5_Chassis-Body.pdf",
+    "path": "Automotive Vehicle/Lectures/PPTs/Session5_Chassis-Body.pdf",
+    "size_kb": 3690.6,
+    "extension": ".pdf",
+    "word_count": 0
+  },
+  {
+    "subject": "Automotive Vehicle",
+    "course_code": "AELZC441",
+    "filename": "Session6_Fundamentals_of_IC_Engines_Session_01.pdf",
+    "path": "Automotive Vehicle/Lectures/PPTs/Session6_Fundamentals_of_IC_Engines_Session_01.pdf",
+    "size_kb": 4543.2,
+    "extension": ".pdf",
+    "word_count": 0
+  },
+  {
+    "subject": "Automotive Vehicle",
+    "course_code": "AELZC441",
+    "filename": "Automotive Vehicle (S1-26_AELZC441) (1).docx",
+    "path": "Automotive Vehicle/Lectures/Transcripts/Automotive Vehicle (S1-26_AELZC441) (1).docx",
+    "size_kb": 1216.9,
+    "extension": ".docx",
+    "word_count": 14618
+  },
+  {
+    "subject": "Automotive Vehicle",
+    "course_code": "AELZC441",
+    "filename": "Automotive Vehicle (S1-26_AELZC441) (2).docx",
+    "path": "Automotive Vehicle/Lectures/Transcripts/Automotive Vehicle (S1-26_AELZC441) (2).docx",
+    "size_kb": 47.5,
+    "extension": ".docx",
+    "word_count": 14677
+  },
+  {
+    "subject": "Automotive Vehicle",
+    "course_code": "AELZC441",
+    "filename": "Automotive Vehicle (S1-26_AELZC441) (3).docx",
+    "path": "Automotive Vehicle/Lectures/Transcripts/Automotive Vehicle (S1-26_AELZC441) (3).docx",
+    "size_kb": 48.4,
+    "extension": ".docx",
+    "word_count": 15735
+  },
+  {
+    "subject": "Automotive Vehicle",
+    "course_code": "AELZC441",
+    "filename": "Automotive Vehicle (S1-26_AELZC441) (4).docx",
+    "path": "Automotive Vehicle/Lectures/Transcripts/Automotive Vehicle (S1-26_AELZC441) (4).docx",
+    "size_kb": 49.6,
+    "extension": ".docx",
+    "word_count": 15855
+  },
+  {
+    "subject": "Automotive Vehicle",
+    "course_code": "AELZC441",
+    "filename": "Automotive Vehicle (S1-26_AELZC441) (5).docx",
+    "path": "Automotive Vehicle/Lectures/Transcripts/Automotive Vehicle (S1-26_AELZC441) (5).docx",
+    "size_kb": 47.3,
+    "extension": ".docx",
+    "word_count": 14588
+  },
+  {
+    "subject": "Automotive Vehicle",
+    "course_code": "AELZC441",
+    "filename": "Automotive Vehicle (S1-26_AELZC441) (6).docx",
+    "path": "Automotive Vehicle/Lectures/Transcripts/Automotive Vehicle (S1-26_AELZC441) (6).docx",
+    "size_kb": 48.8,
+    "extension": ".docx",
+    "word_count": 15222
+  },
+  {
+    "subject": "Autotronics",
+    "course_code": "AEZG533 / AELZG533",
+    "filename": "Autotronics (Merged - AEZG533_AELZG533)(S1-26) - Lab (1).docx",
+    "path": "Autotronics/Labs/Autotronics (Merged - AEZG533_AELZG533)(S1-26) - Lab (1).docx",
+    "size_kb": 49.0,
+    "extension": ".docx",
+    "word_count": 16508
+  },
+  {
+    "subject": "Autotronics",
+    "course_code": "AEZG533 / AELZG533",
+    "filename": "Autotronics (Merged - AEZG533_AELZG533)(S1-26) - Lab2.docx",
+    "path": "Autotronics/Labs/Autotronics (Merged - AEZG533_AELZG533)(S1-26) - Lab2.docx",
+    "size_kb": 73.6,
+    "extension": ".docx",
+    "word_count": 17909
+  },
+  {
+    "subject": "Autotronics",
+    "course_code": "AEZG533 / AELZG533",
+    "filename": "Syllabus.docx",
+    "path": "Autotronics/Lectures/Syllabus.docx",
+    "size_kb": 4032.2,
+    "extension": ".docx",
+    "word_count": 1006
+  },
+  {
+    "subject": "Autotronics",
+    "course_code": "AEZG533 / AELZG533",
+    "filename": "L-9Aug26- Sensor Characteristics.pdf",
+    "path": "Autotronics/Lectures/PPTs/L-9Aug26- Sensor Characteristics.pdf",
+    "size_kb": 2089.4,
+    "extension": ".pdf",
+    "word_count": 0
+  },
+  {
+    "subject": "Autotronics",
+    "course_code": "AEZG533 / AELZG533",
+    "filename": "L1-26Jul26-Introduction.pdf",
+    "path": "Autotronics/Lectures/PPTs/L1-26Jul26-Introduction.pdf",
+    "size_kb": 2149.4,
+    "extension": ".pdf",
+    "word_count": 0
+  },
+  {
+    "subject": "Autotronics",
+    "course_code": "AEZG533 / AELZG533",
+    "filename": "L2  1,2 & 9Aug26- Electrical and electronics fundamentals.pdf",
+    "path": "Autotronics/Lectures/PPTs/L2  1,2 & 9Aug26- Electrical and electronics fundamentals.pdf",
+    "size_kb": 13532.5,
+    "extension": ".pdf",
+    "word_count": 0
+  },
+  {
+    "subject": "Autotronics",
+    "course_code": "AEZG533 / AELZG533",
+    "filename": "Autotronics_L1.docx",
+    "path": "Autotronics/Lectures/Transcripts/Autotronics_L1.docx",
+    "size_kb": 2279.0,
+    "extension": ".docx",
+    "word_count": 16189
+  },
+  {
+    "subject": "Autotronics",
+    "course_code": "AEZG533 / AELZG533",
+    "filename": "Autotronics_L2.docx",
+    "path": "Autotronics/Lectures/Transcripts/Autotronics_L2.docx",
+    "size_kb": 686.5,
+    "extension": ".docx",
+    "word_count": 11208
+  },
+  {
+    "subject": "Autotronics",
+    "course_code": "AEZG533 / AELZG533",
+    "filename": "Autotronics_L3.docx",
+    "path": "Autotronics/Lectures/Transcripts/Autotronics_L3.docx",
+    "size_kb": 873.1,
+    "extension": ".docx",
+    "word_count": 12892
+  },
+  {
+    "subject": "Autotronics",
+    "course_code": "AEZG533 / AELZG533",
+    "filename": "Autotronics_L4.docx",
+    "path": "Autotronics/Lectures/Transcripts/Autotronics_L4.docx",
+    "size_kb": 952.1,
+    "extension": ".docx",
+    "word_count": 14534
+  },
+  {
+    "subject": "Autotronics",
+    "course_code": "AEZG533 / AELZG533",
+    "filename": "Autotronics_L5.docx",
+    "path": "Autotronics/Lectures/Transcripts/Autotronics_L5.docx",
+    "size_kb": 412.4,
+    "extension": ".docx",
+    "word_count": 12539
+  },
+  {
+    "subject": "Autotronics",
+    "course_code": "AEZG533 / AELZG533",
+    "filename": "Autotronics_L6.docx",
+    "path": "Autotronics/Lectures/Transcripts/Autotronics_L6.docx",
+    "size_kb": 258.5,
+    "extension": ".docx",
+    "word_count": 10923
+  },
+  {
+    "subject": "Embedded System Design",
+    "course_code": "AEZG512 / AELZC512",
+    "filename": "Embedded System Design (Merged - AEZG512_AELZG512_DMZG512) (S1-26) - LAB (3).docx",
+    "path": "Embedded System Design/Labs/Embedded System Design (Merged - AEZG512_AELZG512_DMZG512) (S1-26) - LAB (3).docx",
+    "size_kb": 218.4,
+    "extension": ".docx",
+    "word_count": 17002
+  },
+  {
+    "subject": "Embedded System Design",
+    "course_code": "AEZG512 / AELZC512",
+    "filename": "Embedded System Design (Merged - AEZG512_AELZG512_DMZG512) (S1-26) - LAB 2.docx",
+    "path": "Embedded System Design/Labs/Embedded System Design (Merged - AEZG512_AELZG512_DMZG512) (S1-26) - LAB 2.docx",
+    "size_kb": 346.8,
+    "extension": ".docx",
+    "word_count": 17911
+  },
+  {
+    "subject": "Embedded System Design",
+    "course_code": "AEZG512 / AELZC512",
+    "filename": "Embedded System Design (Merged - AEZG512_AELZG512_DMZG512) (S1-26) -LAB (1).docx",
+    "path": "Embedded System Design/Labs/Embedded System Design (Merged - AEZG512_AELZG512_DMZG512) (S1-26) -LAB (1).docx",
+    "size_kb": 802.4,
+    "extension": ".docx",
+    "word_count": 14851
+  },
+  {
+    "subject": "Embedded System Design",
+    "course_code": "AEZG512 / AELZC512",
+    "filename": "S1_26_AE_AEL_DM_ZG512_Lab_CS_01.pdf",
+    "path": "Embedded System Design/Labs/S1_26_AE_AEL_DM_ZG512_Lab_CS_01.pdf",
+    "size_kb": 5482.4,
+    "extension": ".pdf",
+    "word_count": 0
+  },
+  {
+    "subject": "Embedded System Design",
+    "course_code": "AEZG512 / AELZC512",
+    "filename": "S1_26_AE_AEL_DM_ZG512_Lab_CS_02.pdf",
+    "path": "Embedded System Design/Labs/S1_26_AE_AEL_DM_ZG512_Lab_CS_02.pdf",
+    "size_kb": 4556.2,
+    "extension": ".pdf",
+    "word_count": 0
+  },
+  {
+    "subject": "Embedded System Design",
+    "course_code": "AEZG512 / AELZC512",
+    "filename": "S1_26_AE_AEL_DM_ZG512_Lab_CS_03.pdf",
+    "path": "Embedded System Design/Labs/S1_26_AE_AEL_DM_ZG512_Lab_CS_03.pdf",
+    "size_kb": 11185.1,
+    "extension": ".pdf",
+    "word_count": 0
+  },
+  {
+    "subject": "Embedded System Design",
+    "course_code": "AEZG512 / AELZC512",
+    "filename": "Syllabus.docx",
+    "path": "Embedded System Design/Lectures/Syllabus.docx",
+    "size_kb": 341.1,
+    "extension": ".docx",
+    "word_count": 1103
+  },
+  {
+    "subject": "Embedded System Design",
+    "course_code": "AEZG512 / AELZC512",
+    "filename": "Embedded System Design (Merged - AEZG512_AELZG512)(S1-26) (2).docx",
+    "path": "Embedded System Design/Lectures/Transcripts/Embedded System Design (Merged - AEZG512_AELZG512)(S1-26) (2).docx",
+    "size_kb": 130.8,
+    "extension": ".docx",
+    "word_count": 15218
+  },
+  {
+    "subject": "Embedded System Design",
+    "course_code": "AEZG512 / AELZC512",
+    "filename": "Embedded System Design (Merged - AEZG512_AELZG512)(S1-26) (3).docx",
+    "path": "Embedded System Design/Lectures/Transcripts/Embedded System Design (Merged - AEZG512_AELZG512)(S1-26) (3).docx",
+    "size_kb": 277.2,
+    "extension": ".docx",
+    "word_count": 17348
+  },
+  {
+    "subject": "Embedded System Design",
+    "course_code": "AEZG512 / AELZC512",
+    "filename": "Embedded System Design (Merged - AEZG512_AELZG512)(S1-26) (4).docx",
+    "path": "Embedded System Design/Lectures/Transcripts/Embedded System Design (Merged - AEZG512_AELZG512)(S1-26) (4).docx",
+    "size_kb": 427.8,
+    "extension": ".docx",
+    "word_count": 17147
+  },
+  {
+    "subject": "Embedded System Design",
+    "course_code": "AEZG512 / AELZC512",
+    "filename": "Embedded System Design (Merged - AEZG512_AELZG512)(S1-26) (5).docx",
+    "path": "Embedded System Design/Lectures/Transcripts/Embedded System Design (Merged - AEZG512_AELZG512)(S1-26) (5).docx",
+    "size_kb": 97.2,
+    "extension": ".docx",
+    "word_count": 18314
+  },
+  {
+    "subject": "Embedded System Design",
+    "course_code": "AEZG512 / AELZC512",
+    "filename": "Embedded System Design (Merged - AEZG512_AELZG512)(S1-26) (6).docx",
+    "path": "Embedded System Design/Lectures/Transcripts/Embedded System Design (Merged - AEZG512_AELZG512)(S1-26) (6).docx",
+    "size_kb": 259.8,
+    "extension": ".docx",
+    "word_count": 18641
+  },
+  {
+    "subject": "Embedded System Design",
+    "course_code": "AEZG512 / AELZC512",
+    "filename": "Embedded System Design (Merged - AEZG512_AELZG512)(S1-26)(1).docx",
+    "path": "Embedded System Design/Lectures/Transcripts/Embedded System Design (Merged - AEZG512_AELZG512)(S1-26)(1).docx",
+    "size_kb": 273.3,
+    "extension": ".docx",
+    "word_count": 14820
+  }
+]

@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARM Cortex-M4 Core Architecture &amp; Bus Matrix | Embedded System Design</title>
+    <meta name="description" content="The ARM Cortex-M4 is an industry-standard 32-bit RISC processor core engineered specifically for deterministic, high-performance, cost-sensitive real-">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body data-topic-id="arm-cortex-m4-core-architecture" data-subject-id="embedded-system-design">
+
+
+<header class="navbar">
+    <div class="navbar-container">
+        <a href="../../index.html" class="nav-brand">
+            <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="nav-brand-logo">
+            <div class="brand-details">
+                <span class="brand-inst">Birla Institute of Technology & Science, Pilani</span>
+                <span class="brand-dept">Work Integrated Learning Programmes • Automotive Engineering</span>
+            </div>
+        </a>
+        <div class="nav-search-box" onclick="openSearchModal()">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <span class="search-placeholder">Search curriculum, formulas, registers, questions...</span>
+            <span class="search-shortcut">Ctrl+K</span>
+        </div>
+        <div class="nav-actions">
+            <a href="../../semesters/sem1.html" class="nav-link">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></span>
+                <span>Semester 1 Hub</span>
+            </a>
+            <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Toggle Theme">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+                <span>Theme</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+
+<div class="topic-page-layout">
+    <aside class="topic-sidebar">
+        <div class="sidebar-header">
+            <a href="../../subjects/embedded-system-design.html" class="sidebar-back">
+                <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span>
+                <span>Embedded System Design</span>
+            </a>
+            <div class="sidebar-subject-badge">AEZG512 / AELZC512</div>
+        </div>
+        <div class="sidebar-toc">
+            <h4>Table of Contents</h4>
+            <ul>
+                <li><a href="#overview">Quick Overview</a></li>
+                <li><a href="#objectives">Learning Objectives</a></li>
+                <li><a href="#core-concept">Core Concept & Intuition</a></li>
+                <li><a href="#lecture-notes">In-Class Lecture Notes</a></li>
+                <li><a href="#extra-explanation">Comprehensive Theory</a></li>
+                
+                
+                <li><a href="#working-principle">Working Principle</a></li>
+                <li><a href="#application">Automotive Application</a></li>
+                <li><a href="#comparison">Specifications Table</a></li>
+                <li><a href="#formulas">Math Formulas & Numericals</a></li>
+                <li><a href="#code">Embedded Driver / Registers</a></li>
+                <li><a href="#exam-questions">Exam & Viva Q&A</a></li>
+                <li><a href="#revision-card">60-Second Flash Card</a></li>
+                <li><a href="#personal-notes">My Personal Notes</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-progress-widget">
+            <h4>Topic Status</h4>
+            <div class="status-btn-group">
+                <button class="status-btn" id="statusNotStarted" onclick="setTopicStatus('arm-cortex-m4-core-architecture', 'not_started')">☐ Not Started</button>
+                <button class="status-btn" id="statusInProgress" onclick="setTopicStatus('arm-cortex-m4-core-architecture', 'in_progress')">◐ In Progress</button>
+                <button class="status-btn" id="statusCompleted" onclick="setTopicStatus('arm-cortex-m4-core-architecture', 'completed')">☑ Mastered</button>
+            </div>
+            <button class="bookmark-btn" id="bookmarkBtn" onclick="toggleBookmark('arm-cortex-m4-core-architecture')">★ Bookmark for Revision</button>
+        </div>
+    </aside>
+
+    <main class="topic-main-content">
+        <header class="topic-header">
+            <div class="breadcrumbs">
+                <a href="../../index.html">Home</a> / 
+                <a href="../../semesters/sem1.html">Semester 1</a> / 
+                <a href="../../subjects/embedded-system-design.html">Embedded System Design</a> / 
+                <span class="curr-crumb">ARM Cortex-M4 Core Architecture &amp; Bus Matrix</span>
+            </div>
+            
+            <div class="topic-meta-row">
+                <span class="meta-pill module-pill">MODULE: Processor Architecture</span>
+                <span class="meta-pill level-pill">LEVEL: Intermediate</span>
+                <span class="meta-pill importance-pill">WEIGHT: 5/5</span>
+                <span class="meta-pill code-pill">AEZG512 / AELZC512</span>
+            </div>
+
+            <h1 class="topic-main-title">ARM Cortex-M4 Core Architecture &amp; Bus Matrix</h1>
+
+            <div class="action-bar-top">
+                <div class="read-estimate">Estimated Read Time: <strong>12–15 mins</strong></div>
+                <div class="action-buttons-group">
+                    <button class="print-btn" onclick="window.print()" title="Print this complete note page or save as PDF">
+                        <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg></span>
+                        <span>Print / Save PDF</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <section class="topic-section" id="overview">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 01]</span> Quick Overview</h2>
+            </div>
+            <p class="overview-lead">The ARM Cortex-M4 is an industry-standard 32-bit RISC processor core engineered specifically for deterministic, high-performance, cost-sensitive real-time embedded control applications. Featuring a 3-stage instruction pipeline, Harvard bus architecture, Single Instruction Multiple Data (SIMD) capabilities, hardware divide, single-cycle Multiply-Accumulate (MAC), and an optional IEEE 754 Floating Point Unit (FPU), the Cortex-M4 forms the computational heart of automotive microcontrollers such as the NXP S32K144.</p>
+        </section>
+
+        <section class="topic-section" id="objectives">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 02]</span> Learning Objectives & Prerequisites</h2>
+            </div>
+            <div class="objectives-card">
+                <h5>What You Will Master:</h5>
+                <ul class="objectives-list">
+                    <li>Analyze the internal architecture of the ARM Cortex-M4 32-bit RISC core.</li><li>Explain the operation of the 3-stage instruction pipeline (Fetch, Decode, Execute).</li><li>Understand the multi-layer AHB-Lite Bus Matrix and its interconnected master/slave ports.</li><li>Differentiate between I-Code, D-Code, System (S-Bus), and Private Peripheral Bus (PPB).</li>
+                </ul>
+                <div class="prereq-note">
+                    <strong>Prerequisites:</strong> Microprocessor vs Microcontroller, Harvard Architecture fundamentals.
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="core-concept">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 03]</span> Core Concept & Physical Intuition</h2>
+            </div>
+            <div class="concept-body">
+                <p>To execute instructions at 80 to 120 MHz without memory bottlenecks, the Cortex-M4 core does not execute one instruction start-to-finish before starting the next. It uses an assembly-line approach called a **3-stage pipeline**: while Instruction 3 is being fetched from Flash, Instruction 2 is being decoded, and Instruction 1 is actively executing in the ALU. Under steady-state conditions, one instruction completes on every single clock cycle (1 CPI).</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="lecture-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 04]</span> In-Class Lecture Transcript Breakdown</h2>
+            </div>
+            <div class="callout callout-lecture">
+                <div class="callout-header">// LECTURE TRANSCRIPT SYNTHESIS</div>
+                <div class="callout-body">
+                    <p>Lecture 1, 3, and 5 of Embedded System Design detailed the ARM Cortex-M4 processor architecture. Prof. S. S. Kendre explained: &#x27;The Cortex-M4 core is a 32-bit architecture with a Harvard bus matrix. It features three external Advanced High-performance Bus (AHB-Lite) interfaces: I-Code for instruction fetches from Flash, D-Code for constant data reads from Flash, and System Bus for SRAM and peripherals.&#x27; The professor highlighted the hardware DSP instructions and single-cycle MAC unit, which allow digital filtering and motor vector control algorithms to run in real-time.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="extra-explanation">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 05]</span> Rigorous Engineering Theory & Derivations</h2>
+            </div>
+            <div class="callout callout-deep">
+                <div class="callout-header">// RIGOROUS ENGINEERING THEORY</div>
+                <div class="callout-body">
+                    <p>Let&#x27;s analyze the core architectural blocks:
+
+1. **3-Stage Pipeline (Fetch, Decode, Execute):**
+   - **Fetch:** The instruction is retrieved from memory at the address pointed to by the Program Counter (PC).
+   - **Decode:** The instruction is identified by the instruction decoder, generating control signals for the datapath and register bank.
+   - **Execute:** The ALU or hardware multiplier processes register operands and writes back results.
+   - *Pipeline Flush:* When a branch instruction (e.g., `B`, `BL`, `BX`) is taken, the pre-fetched instructions in the pipeline become invalid and must be flushed, causing a 2 to 3 cycle branch penalty.
+
+2. **Multi-Layer AHB-Lite Bus Matrix:**
+   - The Cortex-M4 communicates with memory and peripherals through distinct physical 32-bit buses:
+     - **I-Code Bus (Instruction Code):** Connects the core to the Flash memory controller strictly for instruction fetches ($0\text{x}00000000$ to $0\text{x}1FFFFFFF$).
+     - **D-Code Bus (Data Code):** Connects the core to Flash for literal and constant data table reads.
+     - **System Bus (S-Bus):** Connects the core to SRAM memory ($0\text{x}20000000$) and on-chip peripherals ($0\text{x}40000000$).
+     - **Private Peripheral Bus (PPB):** Connects directly to internal core peripherals: Nested Vectored Interrupt Controller (NVIC), SysTick Timer, Memory Protection Unit (MPU), and Core Debug modules ($0\text{xE}0000000$).</p>
+                </div>
+            </div>
+        </section>
+
+        
+        
+
+        <section class="topic-section" id="working-principle">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 08]</span> Step-by-Step Operational Principle</h2>
+            </div>
+            <div class="principle-body">
+                <p>Single-Cycle Multiply-Accumulate (MAC) &amp; DSP Engine:
+The Cortex-M4 includes dedicated hardware multiplier blocks capable of calculating a 32-bit by 32-bit multiplication with 64-bit accumulation ($R_d = R_a + (R_m \times R_n)$) in a **single clock cycle**. This hardware acceleration enables the microcontroller to execute complex Finite Impulse Response (FIR) digital filters and Clarke/Park vector transformations for electric vehicle motor control without needing a separate DSP chip.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="application">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 09]</span> Real Automotive Application</h2>
+            </div>
+            <div class="callout callout-application">
+                <div class="callout-header">// AUTOMOTIVE OEM CASE STUDY</div>
+                <div class="callout-body">
+                    <p></p>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="topic-section table-section" id="comparison">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 10]</span> Technical Specifications & Benchmarks</h2>
+            </div>
+            <div class="table-responsive">
+                <table class="specs-table">
+                    <thead><tr><th>ARM Cortex-M Core</th><th>Architecture</th><th>Pipeline</th><th>Hardware FPU</th><th>DSP / SIMD Instructions</th><th>Target Automotive Domain</th></tr></thead>
+                    <tbody><tr><td>Cortex-M0+</td><td>ARMv6-M (Von Neumann)</td><td>2-Stage</td><td>No</td><td>No</td><td>Simple door nodes, window lifters, lighting</td></tr><tr><td>Cortex-M3</td><td>ARMv3-M (Harvard)</td><td>3-Stage</td><td>No</td><td>No (Hardware divide only)</td><td>Body control, climate, basic instrument clusters</td></tr><tr><td>Cortex-M4</td><td>ARMv7E-M (Harvard)</td><td>3-Stage</td><td>Optional (Single Precision)</td><td>Yes (Single-cycle MAC &amp; SIMD)</td><td>Powertrain ECM, EV Motor Inverter, ABS/ESP, Gateway</td></tr><tr><td>Cortex-M7</td><td>ARMv7E-M (Dual-Issue)</td><td>6-Stage</td><td>Single &amp; Double Precision</td><td>Yes (High-performance DSP)</td><td>Advanced Gateway, Digital Cockpit, ADAS Radar</td></tr></tbody>
+                </table>
+            </div>
+        </section>
+        
+        
+        <section class="topic-section formulas-section" id="formulas">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 11]</span> Mathematical Formulas & Numerical Breakdown</h2>
+            </div>
+            <div class="formulas-grid">
+                
+            <div class="formula-card">
+                <div class="formula-name">Pipeline Throughput and Branch Penalty Calculation</div>
+                <div class="formula-math"><code>\text{Total Cycles} = N_{inst} + N_{branches} \times (P_{depth} - 1)</code></div>
+                <div class="formula-details">
+                    <h5>Parameter Definitions:</h5>
+                    <ul class="formula-vars"><li><code>N</code>: _</li><li><code>N</code>: _</li><li><code>P</code>: _</li></ul>
+                    <div class="formula-example"><strong>Worked Numerical Example:</strong><br>A loop contains 20 instructions and executes 100 iterations (total 2000 instructions) with 100 taken branch instructions. Total clock cycles = 2000 + 100 × (3 - 1) = 2000 + 200 = 2200 cycles (Average CPI = 1.10).</div>
+                </div>
+            </div>
+            
+            </div>
+        </section>
+        
+        
+        <section class="topic-section code-section" id="code">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 12]</span> Embedded C Driver & Register Interface</h2>
+                <button class="copy-btn" onclick="copyCodeBlock('codeBlock')">
+                    <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+                    <span>Copy Code</span>
+                </button>
+            </div>
+            <div class="code-container">
+                <pre><code id="codeBlock" class="language-c">// CMSIS Hardware DSP Multiply-Accumulate Example on Cortex-M4
+#include &quot;arm_math.h&quot;
+
+// Calculate dot product (FIR Filter Step): y = sum(x[i] * h[i])
+float32_t calculate_fir_tap(const float32_t* x, const float32_t* h, uint32_t num_taps) {
+    float32_t result = 0.0f;
+    // Uses single-cycle hardware floating-point MAC instructions (VMLA.F32)
+    arm_dot_prod_f32(x, h, num_taps, &amp;result);
+    return result;
+}</code></pre>
+            </div>
+        </section>
+        
+
+        <section class="topic-section" id="must-remember">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 13]</span> Must-Remember Key Points for Exams</h2>
+            </div>
+            <div class="must-remember-card">
+                <ul><li>[KEY] ARM Cortex-M4 is a 32-bit RISC core with a 3-stage pipeline (Fetch, Decode, Execute).</li><li>[KEY] Harvard Bus Matrix has separate I-Code, D-Code, System (S-Bus), and PPB buses.</li><li>[KEY] Includes hardware divide, single-cycle MAC, and optional single-precision FPU.</li><li>[KEY] Private Peripheral Bus (PPB) connects directly to NVIC, SysTick, and Core Debug modules.</li></ul>
+            </div>
+        </section>
+
+        
+        <div class="callout callout-warning">
+            <div class="callout-header">// COMMON EXAM TRAPS & MISCONCEPTIONS</div>
+            <div class="callout-body">
+                <ul><li><strong>Trap:</strong> Assuming Cortex-M4 has a 5-stage pipeline. The Cortex-M4 has a **3-stage pipeline** (Fetch, Decode, Execute). Cortex-M7 has a 6-stage pipeline.</li><li><strong>Trap:</strong> Confusing Cortex-M (Microcontroller real-time profile) with Cortex-A (Application profile running Android/Linux) or Cortex-R (Real-time safety with dual-core lockstep).</li></ul>
+            </div>
+        </div>
+        
+
+        <section class="topic-section" id="exam-questions">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 15]</span> Exam Preparation & Model Questions</h2>
+            </div>
+            <div class="exam-qa-container">
+                
+        <div class="exam-qa-block">
+            <h3>Short Answer Questions (1–2 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> What are the four primary external buses in the ARM Cortex-M4 bus matrix?</div>
+                <div class="qa-answer">I-Code Bus (Instruction fetches from Flash), D-Code Bus (Literal/data reads from Flash), System Bus (SRAM and peripheral access), and Private Peripheral Bus / PPB (Internal core registers: NVIC, SysTick, MPU).</div>
+            </div>
+            
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> What happens inside the Cortex-M4 3-stage pipeline when a branch instruction is taken?</div>
+                <div class="qa-answer">When a branch is taken, the instructions already present in the Fetch and Decode stages are invalid. The pipeline is flushed (cleared), causing a 2-cycle branch penalty while the new instruction address is fetched into the pipeline.</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Comprehensive Long Answer Questions (5–10 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item long-qa-item">
+                <div class="qa-question"><span class="q-badge">10 MARKS</span> Explain the internal core architecture of the ARM Cortex-M4 processor. Describe the 3-stage instruction pipeline, the multi-layer AHB-Lite bus matrix, and the hardware DSP/FPU capabilities with an architectural block diagram.</div>
+                <div class="qa-answer">A complete answer covers: (1) Architectural block diagram showing core, register bank, ALU, FPU, and memory interfaces; (2) Detailed explanation of Fetch, Decode, and Execute pipeline stages; (3) Detailed description of I-Code, D-Code, System, and PPB buses; (4) Hardware DSP features (single-cycle MAC, SIMD instructions, hardware divide); (5) Pipeline branch penalty calculation.</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Viva Voce & Technical Interview Questions</h3>
+            <div class="qa-list">
+            <div class="qa-item viva-qa-item">
+                <div class="qa-question"><span class="q-badge">VIVA / INTERVIEW</span> Why does the Cortex-M4 separate the I-Code bus and D-Code bus if both connect to the same Flash memory controller?</div>
+                <div class="qa-answer">Separating I-Code and D-Code allows the Flash controller's internal arbiter to serve simultaneous instruction fetches and literal constant reads through a pipelined prefetch buffer, eliminating CPU execution stalls when reading calibration look-up tables from Flash.</div>
+            </div>
+            </div>
+        </div>
+        
+            </div>
+        </section>
+
+        <section class="topic-section" id="revision-card">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 18]</span> 60-Second Flash / Revision Card</h2>
+            </div>
+            <div class="flashcard">
+                <div class="flashcard-badge">// 60-SECOND REVISION SUMMARY</div>
+                <ul class="flashcard-points"><li>[REV] Cortex-M4 = 32-bit RISC, 3-Stage Pipeline, Harvard Buses.</li><li>[REV] Buses: I-Code (Code), D-Code (Constants), System (SRAM/Peripherals), PPB (NVIC).</li><li>[REV] Single-cycle MAC + Hardware FPU.</li><li>[REV] Target: Automotive Powertrain, Inverters, Gateway, Chassis.</li></ul>
+            </div>
+        </section>
+
+        <section class="topic-section" id="personal-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 19]</span> Personal Study Notes (Auto-Saved)</h2>
+            </div>
+            <div class="personal-notes-widget">
+                <p class="notes-hint">Type personal notes or lab observations below. Content auto-saves to your local browser storage.</p>
+                <textarea id="personalNotePad" class="personal-notes-textarea" placeholder="Type personal study notes here..." oninput="savePersonalNote('arm-cortex-m4-core-architecture', this.value)"></textarea>
+                <div class="notes-save-indicator" id="notesSavedTag">✓ Saved locally</div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="sources">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 20]</span> Source Traceability & Curriculum References</h2>
+            </div>
+            <div class="sources-box">
+                <p><strong>Primary Source Reference:</strong> Embedded System Design Lecture 1 &amp; 5 Transcripts; ARM Cortex-M4 Processor Technical Reference Manual; Course Syllabus Section 3.</p>
+            </div>
+        </section>
+
+        <nav class="topic-pagination">
+            <div class="pagination-prev"><a href="microprocessor-vs-microcontroller-architectures.html" class="nav-prev-btn"><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span><span>Previous: Microprocessor vs Microcontroller &amp; Processor Architectures</span></a></div>
+            <div class="pagination-next"><a href="arm-cortex-m4-programmers-model.html" class="nav-next-btn"><span>Next: ARM Cortex-M4 Programmer&#x27;s Model &amp; Register Set</span><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span></a></div>
+        </nav>
+    </main>
+</div>
+
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-col brand-col">
+            <div class="footer-brand">
+                <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="footer-bits-logo">
+                <div class="footer-brand-text">
+                    <span class="footer-title">Birla Institute of Technology & Science, Pilani</span>
+                    <span class="footer-sub">Work Integrated Learning Programmes (WILP)</span>
+                </div>
+            </div>
+            <p class="footer-desc">Institutional knowledge base engineered from official lecture transcripts, handouts, and laboratory sessions for M.Tech Automotive Engineering.</p>
+            <div class="footer-tags">
+                <span class="badge badge-info">BITS WILP</span>
+                <span class="badge badge-success">4 Core Courses</span>
+                <span class="badge badge-warning">Exam & Viva Ready</span>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Semester 1 Courses</h4>
+            <ul>
+                <li><a href="../../subjects/automotive-communication.html">Automotive Communication (AELZG513)</a></li>
+                <li><a href="../../subjects/automotive-vehicle.html">Automotive Vehicle (AELZC441)</a></li>
+                <li><a href="../../subjects/autotronics.html">Autotronics (AEZG533)</a></li>
+                <li><a href="../../subjects/embedded-system-design.html">Embedded System Design (AEZG512)</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="../../index.html">Master Portal Home</a></li>
+                <li><a href="../../semesters/sem1.html">Semester 1 Overview & Credits</a></li>
+                <li><a href="javascript:void(0)" onclick="openSearchModal()">Global Topic Search</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-bottom-content">
+            <span>© 2026 M.Tech Automotive Engineering Knowledge Base. Built for High-Performance Academic Study.</span>
+            <span>Birla Institute of Technology & Science, Pilani.</span>
+        </div>
+    </div>
+</footer>
+
+
+<div class="search-modal-overlay" id="searchModal" onclick="closeSearchModal(event)">
+    <div class="search-modal-container" onclick="event.stopPropagation()">
+        <div class="search-modal-header">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <input type="text" id="searchInput" class="search-modal-input" placeholder="Type to search curriculum, formulas, registers, exam questions..." autocomplete="off" oninput="handleSearch(this.value)">
+            <button class="search-modal-close" onclick="closeSearchModal()">&times;</button>
+        </div>
+        <div class="search-modal-filters">
+            <button class="search-filter-btn active" data-subject="all" onclick="setSearchFilter('all')">All Courses</button>
+            <button class="search-filter-btn" data-subject="automotive-communication" onclick="setSearchFilter('automotive-communication')">Communication</button>
+            <button class="search-filter-btn" data-subject="automotive-vehicle" onclick="setSearchFilter('automotive-vehicle')">Vehicle</button>
+            <button class="search-filter-btn" data-subject="autotronics" onclick="setSearchFilter('autotronics')">Autotronics</button>
+            <button class="search-filter-btn" data-subject="embedded-system-design" onclick="setSearchFilter('embedded-system-design')">Embedded</button>
+        </div>
+        <div class="search-modal-results" id="searchResults">
+            <div class="search-empty-state">
+                <span>Start typing to search across 33+ comprehensive M.Tech topics...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../../js/app.js"></script>
+<script src="../../js/search-index.js"></script>
+</body>
+</html>

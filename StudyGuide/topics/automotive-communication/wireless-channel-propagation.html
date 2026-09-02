@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wireless Channel Propagation &amp; Large-Scale Fading | Automotive Communication Systems</title>
+    <meta name="description" content="In automotive wireless communications, radio frequency (RF) electromagnetic waves propagate through dynamic, cluttered environments consisting of movi">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body data-topic-id="wireless-channel-propagation" data-subject-id="automotive-communication">
+
+
+<header class="navbar">
+    <div class="navbar-container">
+        <a href="../../index.html" class="nav-brand">
+            <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="nav-brand-logo">
+            <div class="brand-details">
+                <span class="brand-inst">Birla Institute of Technology & Science, Pilani</span>
+                <span class="brand-dept">Work Integrated Learning Programmes • Automotive Engineering</span>
+            </div>
+        </a>
+        <div class="nav-search-box" onclick="openSearchModal()">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <span class="search-placeholder">Search curriculum, formulas, registers, questions...</span>
+            <span class="search-shortcut">Ctrl+K</span>
+        </div>
+        <div class="nav-actions">
+            <a href="../../semesters/sem1.html" class="nav-link">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></span>
+                <span>Semester 1 Hub</span>
+            </a>
+            <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Toggle Theme">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+                <span>Theme</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+
+<div class="topic-page-layout">
+    <aside class="topic-sidebar">
+        <div class="sidebar-header">
+            <a href="../../subjects/automotive-communication.html" class="sidebar-back">
+                <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span>
+                <span>Automotive Communication Systems</span>
+            </a>
+            <div class="sidebar-subject-badge">AELZG513</div>
+        </div>
+        <div class="sidebar-toc">
+            <h4>Table of Contents</h4>
+            <ul>
+                <li><a href="#overview">Quick Overview</a></li>
+                <li><a href="#objectives">Learning Objectives</a></li>
+                <li><a href="#core-concept">Core Concept & Intuition</a></li>
+                <li><a href="#lecture-notes">In-Class Lecture Notes</a></li>
+                <li><a href="#extra-explanation">Comprehensive Theory</a></li>
+                
+                
+                <li><a href="#working-principle">Working Principle</a></li>
+                <li><a href="#application">Automotive Application</a></li>
+                <li><a href="#comparison">Specifications Table</a></li>
+                <li><a href="#formulas">Math Formulas & Numericals</a></li>
+                <li><a href="#code">Embedded Driver / Registers</a></li>
+                <li><a href="#exam-questions">Exam & Viva Q&A</a></li>
+                <li><a href="#revision-card">60-Second Flash Card</a></li>
+                <li><a href="#personal-notes">My Personal Notes</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-progress-widget">
+            <h4>Topic Status</h4>
+            <div class="status-btn-group">
+                <button class="status-btn" id="statusNotStarted" onclick="setTopicStatus('wireless-channel-propagation', 'not_started')">☐ Not Started</button>
+                <button class="status-btn" id="statusInProgress" onclick="setTopicStatus('wireless-channel-propagation', 'in_progress')">◐ In Progress</button>
+                <button class="status-btn" id="statusCompleted" onclick="setTopicStatus('wireless-channel-propagation', 'completed')">☑ Mastered</button>
+            </div>
+            <button class="bookmark-btn" id="bookmarkBtn" onclick="toggleBookmark('wireless-channel-propagation')">★ Bookmark for Revision</button>
+        </div>
+    </aside>
+
+    <main class="topic-main-content">
+        <header class="topic-header">
+            <div class="breadcrumbs">
+                <a href="../../index.html">Home</a> / 
+                <a href="../../semesters/sem1.html">Semester 1</a> / 
+                <a href="../../subjects/automotive-communication.html">Automotive Communication Systems</a> / 
+                <span class="curr-crumb">Wireless Channel Propagation &amp; Large-Scale Fading</span>
+            </div>
+            
+            <div class="topic-meta-row">
+                <span class="meta-pill module-pill">MODULE: Wireless Fundamentals &amp; Channel Models</span>
+                <span class="meta-pill level-pill">LEVEL: Intermediate</span>
+                <span class="meta-pill importance-pill">WEIGHT: 4/5</span>
+                <span class="meta-pill code-pill">AELZG513</span>
+            </div>
+
+            <h1 class="topic-main-title">Wireless Channel Propagation &amp; Large-Scale Fading</h1>
+
+            <div class="action-bar-top">
+                <div class="read-estimate">Estimated Read Time: <strong>12–15 mins</strong></div>
+                <div class="action-buttons-group">
+                    <button class="print-btn" onclick="window.print()" title="Print this complete note page or save as PDF">
+                        <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg></span>
+                        <span>Print / Save PDF</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <section class="topic-section" id="overview">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 01]</span> Quick Overview</h2>
+            </div>
+            <p class="overview-lead">In automotive wireless communications, radio frequency (RF) electromagnetic waves propagate through dynamic, cluttered environments consisting of moving vehicles, roadside buildings, asphalt, and terrain. Wireless channel modeling characterizes the attenuation, reflection, diffraction, scattering, and shadowing that degrade the signal between the transmitter and receiver over distance.</p>
+        </section>
+
+        <section class="topic-section" id="objectives">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 02]</span> Learning Objectives & Prerequisites</h2>
+            </div>
+            <div class="objectives-card">
+                <h5>What You Will Master:</h5>
+                <ul class="objectives-list">
+                    <li>Derive and apply the Friis Free Space Path Loss model.</li><li>Understand the fundamental physical mechanisms: Reflection, Diffraction, and Scattering.</li><li>Analyze the Two-Ray Ground Reflection Model and its critical crossover distance.</li><li>Model log-normal shadowing and its impact on V2X safety communication coverage.</li>
+                </ul>
+                <div class="prereq-note">
+                    <strong>Prerequisites:</strong> Basic electromagnetics, decibel (dB) power calculations, and trigonometry.
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="core-concept">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 03]</span> Core Concept & Physical Intuition</h2>
+            </div>
+            <div class="concept-body">
+                <p>When a vehicle&#x27;s transmitter radiates RF power, the wavefront expands spherically into space. In free space, power density decays inversely with the square of distance ($d^2$). In practical vehicular environments, the direct line-of-sight ray interferes with ground-reflected waves, obstacles block the signal (shadowing), and small objects scatter energy in all directions, causing the signal power to decay much faster ($d^3$ to $d^4$).</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="lecture-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 04]</span> In-Class Lecture Transcript Breakdown</h2>
+            </div>
+            <div class="callout callout-lecture">
+                <div class="callout-header">// LECTURE TRANSCRIPT SYNTHESIS</div>
+                <div class="callout-body">
+                    <p>Lecture 2 and Lecture 4 discussed radio propagation in detail. The lecturer used speech audio waveforms to illustrate frequency bandwidth and modulation, before explaining how electromagnetic waves attenuate over distance. The instructor emphasized: &#x27;Never assume you get free-space propagation in an automotive scenario. The presence of the conductive vehicle body and the ground plane creates a destructive reflection that steepens the path loss exponent from 2 to 4 after a critical distance.&#x27; The lecture also covered log-normal shadowing caused by large trucks blocking the direct radio path.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="extra-explanation">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 05]</span> Rigorous Engineering Theory & Derivations</h2>
+            </div>
+            <div class="callout callout-deep">
+                <div class="callout-header">// RIGOROUS ENGINEERING THEORY</div>
+                <div class="callout-body">
+                    <p>Let&#x27;s analyze the three fundamental electromagnetic mechanisms:
+1. **Reflection:** Occurs when an EM wave impinges on an object whose dimensions are much larger than the wavelength $\lambda$ (e.g., vehicle body panels, asphalt roadway, concrete bridge piers). The ground reflection creates a two-ray multipath condition.
+2. **Diffraction (Knife-Edge):** Occurs when the radio path between transmitter and receiver is obstructed by a sharp-edged surface (e.g., a truck corner or building corner). Waves bend around the obstacle via Huygens&#x27; Principle, allowing reception in shadowed zones.
+3. **Scattering:** Occurs when the wave hits objects comparable to or smaller than $\lambda$ (e.g., foliage, lamp posts, road signs, rough surfaces), dispersing energy in all directions.
+
+**Log-Normal Shadowing:** Clutter along the path causes random fluctuations in received power around the mean path loss. This variation is modeled as a zero-mean Gaussian random variable $X_\sigma$ in dB with standard deviation $\sigma$ (typically 4 to 8 dB in suburban/urban vehicular settings).</p>
+                </div>
+            </div>
+        </section>
+
+        
+        
+
+        <section class="topic-section" id="working-principle">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 08]</span> Step-by-Step Operational Principle</h2>
+            </div>
+            <div class="principle-body">
+                <p>At short distances ($d &lt; d_c$), the direct ray dominates and path loss follows the Friis free space model with path loss exponent $n=2$. Beyond the critical crossover distance $d_c = \frac{4 h_t h_r}{\lambda}$, the phase difference between the direct and ground-reflected waves approaches $\pi$ (180 degrees), causing destructive interference. In this far region ($d &gt; d_c$), received power decays as $d^{-4}$ (40 dB/decade drop in signal strength).</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="application">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 09]</span> Real Automotive Application</h2>
+            </div>
+            <div class="callout callout-application">
+                <div class="callout-header">// AUTOMOTIVE OEM CASE STUDY</div>
+                <div class="callout-body">
+                    <p></p>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="topic-section table-section" id="comparison">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 10]</span> Technical Specifications & Benchmarks</h2>
+            </div>
+            <div class="table-responsive">
+                <table class="specs-table">
+                    <thead><tr><th>Propagation Model</th><th>Path Loss Exponent (n)</th><th>Applicable Region</th><th>Key Physical Effect</th></tr></thead>
+                    <tbody><tr><td>Friis Free Space</td><td>n = 2.0 (20 dB/dec)</td><td>Ideal vacuum / High-altitude Line of Sight</td><td>Spherical wavefront energy spread</td></tr><tr><td>Two-Ray Ground</td><td>n = 4.0 (40 dB/dec)</td><td>Flat roadway beyond critical distance d_c</td><td>Destructive ground plane phase interference</td></tr><tr><td>Urban Clutter (Log-Distance)</td><td>n = 2.7 – 3.5</td><td>City street canyons with tall buildings</td><td>Multiple reflections + knife-edge diffraction</td></tr><tr><td>Shadowed Highway</td><td>n = 3.0 – 4.0 + X_σ</td><td>High traffic density with large trucks</td><td>Heavy blockage + log-normal random shadowing</td></tr></tbody>
+                </table>
+            </div>
+        </section>
+        
+        
+        <section class="topic-section formulas-section" id="formulas">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 11]</span> Mathematical Formulas & Numerical Breakdown</h2>
+            </div>
+            <div class="formulas-grid">
+                
+            <div class="formula-card">
+                <div class="formula-name">Friis Free Space Path Loss Equation</div>
+                <div class="formula-math"><code>PL_{FS}(d) = \left( \frac{4\pi d}{\lambda} \right)^2 = \left( \frac{4\pi d f}{c} \right)^2</code></div>
+                <div class="formula-details">
+                    <h5>Parameter Definitions:</h5>
+                    <ul class="formula-vars"><li><code>d</code>:  </li><li><code>\</code>: l</li><li><code>f</code>:  </li><li><code>c</code>:  </li></ul>
+                    <div class="formula-example"><strong>Worked Numerical Example:</strong><br>At f = 5.9 GHz, wavelength λ = (3×10^8)/(5.9×10^9) = 0.0508 m (5.08 cm). At distance d = 100 m, Free Space Path Loss in dB is PL = 20 log10((4π × 100) / 0.0508) = 87.8 dB.</div>
+                </div>
+            </div>
+            
+            <div class="formula-card">
+                <div class="formula-name">Critical Crossover Distance (Two-Ray Model)</div>
+                <div class="formula-math"><code>d_c = \frac{4 h_t h_r}{\lambda}</code></div>
+                <div class="formula-details">
+                    <h5>Parameter Definitions:</h5>
+                    <ul class="formula-vars"><li><code>h</code>: _</li><li><code>h</code>: _</li><li><code>\</code>: l</li></ul>
+                    <div class="formula-example"><strong>Worked Numerical Example:</strong><br>For h_t = 1.5 m, h_r = 1.5 m at 5.9 GHz: d_c = (4 × 1.5 × 1.5) / 0.0508 = 177.1 meters. Beyond 177 meters, signal power drops at 1/d^4 instead of 1/d^2.</div>
+                </div>
+            </div>
+            
+            </div>
+        </section>
+        
+        
+        <section class="topic-section code-section" id="code">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 12]</span> Embedded C Driver & Register Interface</h2>
+                <button class="copy-btn" onclick="copyCodeBlock('codeBlock')">
+                    <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+                    <span>Copy Code</span>
+                </button>
+            </div>
+            <div class="code-container">
+                <pre><code id="codeBlock" class="language-c"># Python calculation of V2X Path Loss and Link Budget
+import numpy as np
+
+def calculate_v2x_path_loss(d_meters, f_hz=5.9e9, ht=1.5, hr=1.5):
+    c = 3e8
+    wavelength = c / f_hz
+    d_c = (4 * ht * hr) / wavelength  # Critical crossover distance
+    
+    path_loss_db = np.zeros_like(d_meters, dtype=float)
+    for i, d in enumerate(d_meters):
+        if d &lt;= d_c:
+            path_loss_db[i] = 20 * np.log10((4 * np.pi * d) / wavelength)
+        else:
+            path_loss_db[i] = 40 * np.log10(d) - 20 * np.log10(ht * hr)
+            
+    return path_loss_db, d_c
+
+distances = np.array([10, 50, 100, 177, 300, 500])
+pl, dc = calculate_v2x_path_loss(distances)</code></pre>
+            </div>
+        </section>
+        
+
+        <section class="topic-section" id="must-remember">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 13]</span> Must-Remember Key Points for Exams</h2>
+            </div>
+            <div class="must-remember-card">
+                <ul><li>[KEY] Wavelength at 5.9 GHz V2X is approximately 5.08 cm (0.0508 m).</li><li>[KEY] Free space path loss scales with 20 dB/decade (d^2); two-ray ground reflection scales with 40 dB/decade (d^4).</li><li>[KEY] Critical crossover distance formula: d_c = (4 * h_t * h_r) / λ.</li><li>[KEY] Log-normal shadowing represents random power variations due to obstacles (X_σ with σ = 4-8 dB).</li></ul>
+            </div>
+        </section>
+
+        
+        <div class="callout callout-warning">
+            <div class="callout-header">// COMMON EXAM TRAPS & MISCONCEPTIONS</div>
+            <div class="callout-body">
+                <ul><li><strong>Trap:</strong> Using the Friis free space equation for long-distance highway calculations. Friis severely underestimates path loss at distances &gt; 200 m.</li><li><strong>Trap:</strong> Forgetting that 5.9 GHz has a very small wavelength (5 cm), making vehicle roofs and hood panels effective reflectors.</li></ul>
+            </div>
+        </div>
+        
+
+        <section class="topic-section" id="exam-questions">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 15]</span> Exam Preparation & Model Questions</h2>
+            </div>
+            <div class="exam-qa-container">
+                
+        <div class="exam-qa-block">
+            <h3>Short Answer Questions (1–2 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> What is the critical crossover distance in vehicular two-ray ground propagation?</div>
+                <div class="qa-answer">It is the distance d_c = (4 <em> h_t </em> h_r) / λ beyond which the direct ray and ground-reflected ray cancel destructively, transitioning the path loss exponent from n = 2 (free space) to n = 4 (ground reflection).</div>
+            </div>
+            
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> What causes log-normal shadowing in vehicular communication?</div>
+                <div class="qa-answer">It is caused by large physical obstacles (trucks, buses, buildings, bridges) blocking the line-of-sight path, resulting in random variations in received signal power modeled by a normal distribution in dB.</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Comprehensive Long Answer Questions (5–10 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item long-qa-item">
+                <div class="qa-question"><span class="q-badge">10 MARKS</span> Derive the Two-Ray Ground Reflection model and explain its physical significance in V2X highway communication links.</div>
+                <div class="qa-answer">A complete answer covers: (1) Geometry diagram with direct and ground-reflected paths; (2) Phase difference derivation; (3) E-field superposition; (4) Approximation leading to 1/d^4 decay; (5) Calculation of critical distance d_c; (6) Practical significance for highway safety range.</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Viva Voce & Technical Interview Questions</h3>
+            <div class="qa-list">
+            <div class="qa-item viva-qa-item">
+                <div class="qa-question"><span class="q-badge">VIVA / INTERVIEW</span> If you double the antenna heights of both transmitter and receiver vehicles from 1.5 m to 3.0 m on a highway, how does the critical crossover distance change?</div>
+                <div class="qa-answer">Since d_c = (4 <em> h_t </em> h_r) / λ, doubling both heights multiplies the numerator by 4 (2 × 2), which quadruples the critical distance from 177 meters to 708 meters, keeping the signal in the slower 1/d^2 decay region for much longer.</div>
+            </div>
+            </div>
+        </div>
+        
+            </div>
+        </section>
+
+        <section class="topic-section" id="revision-card">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 18]</span> 60-Second Flash / Revision Card</h2>
+            </div>
+            <div class="flashcard">
+                <div class="flashcard-badge">// 60-SECOND REVISION SUMMARY</div>
+                <ul class="flashcard-points"><li>[REV] λ = 5.08 cm at 5.9 GHz.</li><li>[REV] Short range (&lt; 180 m): 20 dB/decade attenuation.</li><li>[REV] Long range (&gt; 180 m): 40 dB/decade attenuation.</li><li>[REV] Shadowing margin of 10-15 dB must be factored into receiver link budgets.</li></ul>
+            </div>
+        </section>
+
+        <section class="topic-section" id="personal-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 19]</span> Personal Study Notes (Auto-Saved)</h2>
+            </div>
+            <div class="personal-notes-widget">
+                <p class="notes-hint">Type personal notes or lab observations below. Content auto-saves to your local browser storage.</p>
+                <textarea id="personalNotePad" class="personal-notes-textarea" placeholder="Type personal study notes here..." oninput="savePersonalNote('wireless-channel-propagation', this.value)"></textarea>
+                <div class="notes-save-indicator" id="notesSavedTag">✓ Saved locally</div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="sources">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 20]</span> Source Traceability & Curriculum References</h2>
+            </div>
+            <div class="sources-box">
+                <p><strong>Primary Source Reference:</strong> Automotive Communication Systems Lecture 2 &amp; 4 Transcripts; Course Syllabus Section 5 (V2X Channel Models - Large Scale Fading &amp; Path Loss).</p>
+            </div>
+        </section>
+
+        <nav class="topic-pagination">
+            <div class="pagination-prev"><a href="dsrc-vs-cv2x.html" class="nav-prev-btn"><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span><span>Previous: DSRC (IEEE 802.11p) vs Cellular V2X (C-V2X / 5G NR)</span></a></div>
+            <div class="pagination-next"><a href="small-scale-fading-doppler.html" class="nav-next-btn"><span>Next: Small-Scale Fading, RMS Delay Spread &amp; Doppler Effect</span><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span></a></div>
+        </nav>
+    </main>
+</div>
+
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-col brand-col">
+            <div class="footer-brand">
+                <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="footer-bits-logo">
+                <div class="footer-brand-text">
+                    <span class="footer-title">Birla Institute of Technology & Science, Pilani</span>
+                    <span class="footer-sub">Work Integrated Learning Programmes (WILP)</span>
+                </div>
+            </div>
+            <p class="footer-desc">Institutional knowledge base engineered from official lecture transcripts, handouts, and laboratory sessions for M.Tech Automotive Engineering.</p>
+            <div class="footer-tags">
+                <span class="badge badge-info">BITS WILP</span>
+                <span class="badge badge-success">4 Core Courses</span>
+                <span class="badge badge-warning">Exam & Viva Ready</span>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Semester 1 Courses</h4>
+            <ul>
+                <li><a href="../../subjects/automotive-communication.html">Automotive Communication (AELZG513)</a></li>
+                <li><a href="../../subjects/automotive-vehicle.html">Automotive Vehicle (AELZC441)</a></li>
+                <li><a href="../../subjects/autotronics.html">Autotronics (AEZG533)</a></li>
+                <li><a href="../../subjects/embedded-system-design.html">Embedded System Design (AEZG512)</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="../../index.html">Master Portal Home</a></li>
+                <li><a href="../../semesters/sem1.html">Semester 1 Overview & Credits</a></li>
+                <li><a href="javascript:void(0)" onclick="openSearchModal()">Global Topic Search</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-bottom-content">
+            <span>© 2026 M.Tech Automotive Engineering Knowledge Base. Built for High-Performance Academic Study.</span>
+            <span>Birla Institute of Technology & Science, Pilani.</span>
+        </div>
+    </div>
+</footer>
+
+
+<div class="search-modal-overlay" id="searchModal" onclick="closeSearchModal(event)">
+    <div class="search-modal-container" onclick="event.stopPropagation()">
+        <div class="search-modal-header">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <input type="text" id="searchInput" class="search-modal-input" placeholder="Type to search curriculum, formulas, registers, exam questions..." autocomplete="off" oninput="handleSearch(this.value)">
+            <button class="search-modal-close" onclick="closeSearchModal()">&times;</button>
+        </div>
+        <div class="search-modal-filters">
+            <button class="search-filter-btn active" data-subject="all" onclick="setSearchFilter('all')">All Courses</button>
+            <button class="search-filter-btn" data-subject="automotive-communication" onclick="setSearchFilter('automotive-communication')">Communication</button>
+            <button class="search-filter-btn" data-subject="automotive-vehicle" onclick="setSearchFilter('automotive-vehicle')">Vehicle</button>
+            <button class="search-filter-btn" data-subject="autotronics" onclick="setSearchFilter('autotronics')">Autotronics</button>
+            <button class="search-filter-btn" data-subject="embedded-system-design" onclick="setSearchFilter('embedded-system-design')">Embedded</button>
+        </div>
+        <div class="search-modal-results" id="searchResults">
+            <div class="search-empty-state">
+                <span>Start typing to search across 33+ comprehensive M.Tech topics...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../../js/app.js"></script>
+<script src="../../js/search-index.js"></script>
+</body>
+</html>

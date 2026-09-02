@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resistors, Voltage Dividers &amp; Sensor Interfacing | Autotronics</title>
+    <meta name="description" content="Resistors are passive dissipative circuit components that convert electrical energy into heat, governed by Ohm&#x27;s Law. In automotive electronics, resis">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body data-topic-id="resistors-and-voltage-divider-circuits" data-subject-id="autotronics">
+
+
+<header class="navbar">
+    <div class="navbar-container">
+        <a href="../../index.html" class="nav-brand">
+            <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="nav-brand-logo">
+            <div class="brand-details">
+                <span class="brand-inst">Birla Institute of Technology & Science, Pilani</span>
+                <span class="brand-dept">Work Integrated Learning Programmes • Automotive Engineering</span>
+            </div>
+        </a>
+        <div class="nav-search-box" onclick="openSearchModal()">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <span class="search-placeholder">Search curriculum, formulas, registers, questions...</span>
+            <span class="search-shortcut">Ctrl+K</span>
+        </div>
+        <div class="nav-actions">
+            <a href="../../semesters/sem1.html" class="nav-link">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></span>
+                <span>Semester 1 Hub</span>
+            </a>
+            <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Toggle Theme">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+                <span>Theme</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+
+<div class="topic-page-layout">
+    <aside class="topic-sidebar">
+        <div class="sidebar-header">
+            <a href="../../subjects/autotronics.html" class="sidebar-back">
+                <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span>
+                <span>Autotronics</span>
+            </a>
+            <div class="sidebar-subject-badge">AEZG533 / AELZG533</div>
+        </div>
+        <div class="sidebar-toc">
+            <h4>Table of Contents</h4>
+            <ul>
+                <li><a href="#overview">Quick Overview</a></li>
+                <li><a href="#objectives">Learning Objectives</a></li>
+                <li><a href="#core-concept">Core Concept & Intuition</a></li>
+                <li><a href="#lecture-notes">In-Class Lecture Notes</a></li>
+                <li><a href="#extra-explanation">Comprehensive Theory</a></li>
+                
+                
+                <li><a href="#working-principle">Working Principle</a></li>
+                <li><a href="#application">Automotive Application</a></li>
+                <li><a href="#comparison">Specifications Table</a></li>
+                <li><a href="#formulas">Math Formulas & Numericals</a></li>
+                <li><a href="#code">Embedded Driver / Registers</a></li>
+                <li><a href="#exam-questions">Exam & Viva Q&A</a></li>
+                <li><a href="#revision-card">60-Second Flash Card</a></li>
+                <li><a href="#personal-notes">My Personal Notes</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-progress-widget">
+            <h4>Topic Status</h4>
+            <div class="status-btn-group">
+                <button class="status-btn" id="statusNotStarted" onclick="setTopicStatus('resistors-and-voltage-divider-circuits', 'not_started')">☐ Not Started</button>
+                <button class="status-btn" id="statusInProgress" onclick="setTopicStatus('resistors-and-voltage-divider-circuits', 'in_progress')">◐ In Progress</button>
+                <button class="status-btn" id="statusCompleted" onclick="setTopicStatus('resistors-and-voltage-divider-circuits', 'completed')">☑ Mastered</button>
+            </div>
+            <button class="bookmark-btn" id="bookmarkBtn" onclick="toggleBookmark('resistors-and-voltage-divider-circuits')">★ Bookmark for Revision</button>
+        </div>
+    </aside>
+
+    <main class="topic-main-content">
+        <header class="topic-header">
+            <div class="breadcrumbs">
+                <a href="../../index.html">Home</a> / 
+                <a href="../../semesters/sem1.html">Semester 1</a> / 
+                <a href="../../subjects/autotronics.html">Autotronics</a> / 
+                <span class="curr-crumb">Resistors, Voltage Dividers &amp; Sensor Interfacing</span>
+            </div>
+            
+            <div class="topic-meta-row">
+                <span class="meta-pill module-pill">MODULE: Electrical &amp; Electronics Fundamentals</span>
+                <span class="meta-pill level-pill">LEVEL: Beginner</span>
+                <span class="meta-pill importance-pill">WEIGHT: 5/5</span>
+                <span class="meta-pill code-pill">AEZG533 / AELZG533</span>
+            </div>
+
+            <h1 class="topic-main-title">Resistors, Voltage Dividers &amp; Sensor Interfacing</h1>
+
+            <div class="action-bar-top">
+                <div class="read-estimate">Estimated Read Time: <strong>12–15 mins</strong></div>
+                <div class="action-buttons-group">
+                    <button class="print-btn" onclick="window.print()" title="Print this complete note page or save as PDF">
+                        <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg></span>
+                        <span>Print / Save PDF</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <section class="topic-section" id="overview">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 01]</span> Quick Overview</h2>
+            </div>
+            <p class="overview-lead">Resistors are passive dissipative circuit components that convert electrical energy into heat, governed by Ohm&#x27;s Law. In automotive electronics, resistor networks form the fundamental building blocks for voltage dividers, current dividers, pull-up/pull-down terminations, and resistive sensor interfacing (e.g., potentiometers, LDRs, and thermistors).</p>
+        </section>
+
+        <section class="topic-section" id="objectives">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 02]</span> Learning Objectives & Prerequisites</h2>
+            </div>
+            <div class="objectives-card">
+                <h5>What You Will Master:</h5>
+                <ul class="objectives-list">
+                    <li>Apply Ohm&#x27;s Law ($V = IR$) and calculate resistance from material properties ($\rho L / A$).</li><li>Read 4-band and 5-band standard resistor color codes.</li><li>Derive and apply the Voltage Divider and Current Divider formulas.</li><li>Design an analog sensor interface circuit using a variable-resistance sensor (LDR/Thermistor) and a fixed pull-up resistor.</li>
+                </ul>
+                <div class="prereq-note">
+                    <strong>Prerequisites:</strong> Basic algebra and electrical concepts (voltage, current).
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="core-concept">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 03]</span> Core Concept & Physical Intuition</h2>
+            </div>
+            <div class="concept-body">
+                <p>A microcontroller&#x27;s ADC pin can only read voltage (0 to 5 V); it cannot read resistance directly. Therefore, whenever you have a sensor whose resistance changes with a physical variable (like a throttle potentiometer or a temperature thermistor), you MUST connect it in series with a fixed reference resistor to form a **Voltage Divider**. As the sensor&#x27;s resistance changes, the voltage across the divider shifts proportionally, which the ADC can easily measure.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="lecture-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 04]</span> In-Class Lecture Transcript Breakdown</h2>
+            </div>
+            <div class="callout callout-lecture">
+                <div class="callout-header">// LECTURE TRANSCRIPT SYNTHESIS</div>
+                <div class="callout-body">
+                    <p>Lecture 2 and 3 covered resistors and resistor networks in great detail. Dr. Madhuri Bayya emphasized: &#x27;A potentiometer or thermistor is a variable resistance, but its usable output is ALWAYS a voltage. The resistance itself is never read directly; it is converted to a voltage via a voltage divider network.&#x27; The professor solved live classroom examples for series voltage dividers, current dividers, resistor color coding (e.g., Green-Blue-Red = 5600 Ω), and worked through a Light Dependent Resistor (LDR) automotive light-sensing circuit.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="extra-explanation">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 05]</span> Rigorous Engineering Theory & Derivations</h2>
+            </div>
+            <div class="callout callout-deep">
+                <div class="callout-header">// RIGOROUS ENGINEERING THEORY</div>
+                <div class="callout-body">
+                    <p>Let&#x27;s analyze the governing circuit equations:
+
+1. **Resistor Physics &amp; Ohm&#x27;s Law:**
+   $$R = \frac{\rho \cdot L}{A}, \quad V = I \cdot R, \quad P = V \cdot I = I^2 R = \frac{V^2}{R}$$
+   - $\rho$ = specific resistivity ($\Omega\cdot\text{m}$), $L$ = length (m), $A$ = cross-sectional area (m$^2$).
+
+2. **Resistors in Series — The Voltage Divider:**
+   - Current through both resistors is identical: $I = \frac{V_{in}}{R_1 + R_2}$.
+   - Voltage across $R_2$ (Output Voltage):
+   $$V_{out} = V_{in} \cdot \frac{R_2}{R_1 + R_2}$$
+
+3. **Resistors in Parallel — The Current Divider:**
+   - Voltage across both branches is identical: $V = I \cdot R_{eq} = I \cdot \frac{R_1 R_2}{R_1 + R_2}$.
+   - Current flowing through branch $R_1$:
+   $$I_1 = I_{total} \cdot \frac{R_2}{R_1 + R_2}, \quad I_2 = I_{total} \cdot \frac{R_1}{R_1 + R_2}$$</p>
+                </div>
+            </div>
+        </section>
+
+        
+        
+
+        <section class="topic-section" id="working-principle">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 08]</span> Step-by-Step Operational Principle</h2>
+            </div>
+            <div class="principle-body">
+                <p>Worked Automotive Light Sensor Circuit:
+Consider an automatic headlight sensing circuit where $V_{in} = 5.0\text{ V}$, fixed $R_1 = 5.6\text{ k}\Omega$, and $R_2$ is an LDR whose resistance changes with ambient daylight:
+- **Bright Sunlight ($R_2 = 1.0\text{ k}\Omega$):** $V_{out} = 5.0 \times \frac{1.0}{5.6 + 1.0} = 5.0 \times 0.1515 = \mathbf{0.76\text{ V}}$ (Headlights remain OFF).
+- **Dusk / Dim Light ($R_2 = 7.0\text{ k}\Omega$):** $V_{out} = 5.0 \times \frac{7.0}{5.6 + 7.0} = 5.0 \times 0.555 = \mathbf{2.78\text{ V}}$ (ECU commands parking lamps ON).
+- **Night / Dark Tunnel ($R_2 = 10.0\text{ k}\Omega$):** $V_{out} = 5.0 \times \frac{10.0}{5.6 + 10.0} = 5.0 \times 0.641 = \mathbf{3.21\text{ V}}$ (ECU commands main headlamps ON).</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="application">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 09]</span> Real Automotive Application</h2>
+            </div>
+            <div class="callout callout-application">
+                <div class="callout-header">// AUTOMOTIVE OEM CASE STUDY</div>
+                <div class="callout-body">
+                    <p></p>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="topic-section table-section" id="comparison">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 10]</span> Technical Specifications & Benchmarks</h2>
+            </div>
+            <div class="table-responsive">
+                <table class="specs-table">
+                    <thead><tr><th>Circuit Network</th><th>Equivalent Resistance</th><th>Divided Quantity</th><th>Governing Formula</th></tr></thead>
+                    <tbody><tr><td>Series Network</td><td>Req = R1 + R2 + ... + Rn</td><td>Voltage divides (Current is constant)</td><td>V_R1 = V_total * [R1 / (R1 + R2)]</td></tr><tr><td>Parallel Network</td><td>1/Req = 1/R1 + 1/R2 -&gt; Req = (R1*R2)/(R1+R2)</td><td>Current divides (Voltage is constant)</td><td>I_R1 = I_total * [R2 / (R1 + R2)]</td></tr><tr><td>Potentiometer Divider</td><td>R_total = R_track (Constant)</td><td>Voltage ratio varies with wiper position</td><td>V_wiper = V_in * (x / L)</td></tr></tbody>
+                </table>
+            </div>
+        </section>
+        
+        
+        <section class="topic-section formulas-section" id="formulas">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 11]</span> Mathematical Formulas & Numerical Breakdown</h2>
+            </div>
+            <div class="formulas-grid">
+                
+            <div class="formula-card">
+                <div class="formula-name">Voltage Divider Formula</div>
+                <div class="formula-math"><code>V_{out} = V_{in} \cdot \left( \frac{R_2}{R_1 + R_2} \right)</code></div>
+                <div class="formula-details">
+                    <h5>Parameter Definitions:</h5>
+                    <ul class="formula-vars"><li><code>V</code>: _</li><li><code>R</code>: _</li><li><code>R</code>: _</li><li><code>V</code>: _</li></ul>
+                    <div class="formula-example"><strong>Worked Numerical Example:</strong><br>If Vin = 12V, R1 = 10 kΩ, and R2 = 20 kΩ: Vout = 12 × [20 / (10 + 20)] = 12 × (2/3) = 8.0 Volts.</div>
+                </div>
+            </div>
+            
+            <div class="formula-card">
+                <div class="formula-name">Current Divider Formula (Two Resistors)</div>
+                <div class="formula-math"><code>I_1 = I_{total} \cdot \left( \frac{R_2}{R_1 + R_2} \right), \quad I_2 = I_{total} \cdot \left( \frac{R_1}{R_1 + R_2} \right)</code></div>
+                <div class="formula-details">
+                    <h5>Parameter Definitions:</h5>
+                    <ul class="formula-vars"><li><code>I</code>: _</li><li><code>I</code>: _</li></ul>
+                    <div class="formula-example"><strong>Worked Numerical Example:</strong><br>If Itotal = 6 A enters a parallel pair of R1 = 2 Ω and R2 = 4 Ω: I1 = 6 × [4 / (2 + 4)] = 6 × (4/6) = 4.0 A (More current flows through the smaller resistor).</div>
+                </div>
+            </div>
+            
+            </div>
+        </section>
+        
+        
+        <section class="topic-section code-section" id="code">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 12]</span> Embedded C Driver & Register Interface</h2>
+                <button class="copy-btn" onclick="copyCodeBlock('codeBlock')">
+                    <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+                    <span>Copy Code</span>
+                </button>
+            </div>
+            <div class="code-container">
+                <pre><code id="codeBlock" class="language-c">// C Function to Convert Voltage Divider Reading to Sensor Resistance
+float calculate_sensor_resistance(float v_in, float v_out, float r_fixed) {
+    if (v_out &lt;= 0.01 || v_out &gt;= v_in) {
+        return -1.0; // Open circuit or short fault
+    }
+    // Derived from V_out = V_in * (R_sensor / (R_fixed + R_sensor))
+    // V_out * R_fixed + V_out * R_sensor = V_in * R_sensor
+    // R_sensor = (V_out * R_fixed) / (V_in - V_out)
+    float r_sensor = (v_out * r_fixed) / (v_in - v_out);
+    return r_sensor;
+}</code></pre>
+            </div>
+        </section>
+        
+
+        <section class="topic-section" id="must-remember">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 13]</span> Must-Remember Key Points for Exams</h2>
+            </div>
+            <div class="must-remember-card">
+                <ul><li>[KEY] Voltage divides in series: Vout = Vin * [R2 / (R1 + R2)].</li><li>[KEY] Current divides in parallel: I1 = Itotal * [R2 / (R1 + R2)] (opposite resistor in numerator).</li><li>[KEY] Microcontroller ADC pins measure VOLTAGE, not resistance directly.</li><li>[KEY] Resistor color code: BBROYGBVGW (Black=0, Brown=1, Red=2, Orange=3, Yellow=4, Green=5, Blue=6, Violet=7, Grey=8, White=9).</li></ul>
+            </div>
+        </section>
+
+        
+        <div class="callout callout-warning">
+            <div class="callout-header">// COMMON EXAM TRAPS & MISCONCEPTIONS</div>
+            <div class="callout-body">
+                <ul><li><strong>Trap:</strong> Putting the wrong resistor in the numerator of the current divider formula. In a current divider, $I_1$ uses $R_2$ in the numerator, NOT $R_1$.</li><li><strong>Trap:</strong> Assuming potentiometers change total circuit resistance. The total track resistance between terminal 1 and terminal 3 is fixed; only the wiper split ratio moves.</li></ul>
+            </div>
+        </div>
+        
+
+        <section class="topic-section" id="exam-questions">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 15]</span> Exam Preparation & Model Questions</h2>
+            </div>
+            <div class="exam-qa-container">
+                
+        <div class="exam-qa-block">
+            <h3>Short Answer Questions (1–2 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> Why is a fixed pull-up resistor required when interfacing an NTC thermistor to a microcontroller ADC?</div>
+                <div class="qa-answer">An ADC only measures voltage levels, not raw resistance. Placing the thermistor in series with a fixed reference resistor forms a voltage divider that converts temperature-induced resistance changes into proportional voltage changes between 0V and 5V.</div>
+            </div>
+            
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> What is the current divider formula for finding current through branch $R_1$ in a two-resistor parallel circuit?</div>
+                <div class="qa-answer">I1 = Itotal * [R2 / (R1 + R2)]. Notice that the OPPOSITE resistor (R2) appears in the numerator because smaller resistances draw larger currents.</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Comprehensive Long Answer Questions (5–10 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item long-qa-item">
+                <div class="qa-question"><span class="q-badge">10 MARKS</span> Derive the Voltage Divider and Current Divider formulas from fundamental Ohm&#x27;s and Kirchhoff&#x27;s circuit laws. Design an automotive Throttle Position Sensor (TPS) circuit operating from a 5V supply and calculate its output voltage across wiper angles of 0%, 50%, and 100%.</div>
+                <div class="qa-answer">A complete answer covers: (1) Series circuit schematic and Ohm's law derivation V_out = V_in <em> (R2 / (R1+R2)); (2) Parallel circuit schematic and KCL derivation I1 = I_total </em> (R2 / (R1+R2)); (3) TPS potentiometer wiring diagram (5V, Ground, Wiper); (4) Numerical outputs: 0% angle = 0.0V (0V to 0.5V idle), 50% angle = 2.5V, 100% angle = 5.0V (4.5V to 5.0V WOT).</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Viva Voce & Technical Interview Questions</h3>
+            <div class="qa-list">
+            <div class="qa-item viva-qa-item">
+                <div class="qa-question"><span class="q-badge">VIVA / INTERVIEW</span> Why are automotive analog sensor signals typically calibrated between 0.5 V and 4.5 V instead of the full 0.0 V to 5.0 V range?</div>
+                <div class="qa-answer">To provide built-in hardware fault diagnostics: If the ADC reads 0.0 V, the ECU detects an open-circuit ground or wire break fault. If the ADC reads 5.0 V, it detects a short-circuit to power supply. Valid sensor operation is strictly confined to 0.5 V – 4.5 V.</div>
+            </div>
+            </div>
+        </div>
+        
+            </div>
+        </section>
+
+        <section class="topic-section" id="revision-card">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 18]</span> 60-Second Flash / Revision Card</h2>
+            </div>
+            <div class="flashcard">
+                <div class="flashcard-badge">// 60-SECOND REVISION SUMMARY</div>
+                <ul class="flashcard-points"><li>[REV] V_out = V_in * [R2 / (R1 + R2)].</li><li>[REV] I_1 = I_total * [R2 / (R1 + R2)].</li><li>[REV] Sensors convert R -&gt; V via voltage dividers.</li><li>[REV] Valid automotive range: 0.5V to 4.5V.</li></ul>
+            </div>
+        </section>
+
+        <section class="topic-section" id="personal-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 19]</span> Personal Study Notes (Auto-Saved)</h2>
+            </div>
+            <div class="personal-notes-widget">
+                <p class="notes-hint">Type personal notes or lab observations below. Content auto-saves to your local browser storage.</p>
+                <textarea id="personalNotePad" class="personal-notes-textarea" placeholder="Type personal study notes here..." oninput="savePersonalNote('resistors-and-voltage-divider-circuits', this.value)"></textarea>
+                <div class="notes-save-indicator" id="notesSavedTag">✓ Saved locally</div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="sources">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 20]</span> Source Traceability & Curriculum References</h2>
+            </div>
+            <div class="sources-box">
+                <p><strong>Primary Source Reference:</strong> Autotronics Lecture 2 &amp; 3 Transcripts; Electrical &amp; Electronics Fundamentals PPT Slides 15–35; Course Syllabus Section 2.</p>
+            </div>
+        </section>
+
+        <nav class="topic-pagination">
+            <div class="pagination-prev"><a href="automotive-systems-signal-flow.html" class="nav-prev-btn"><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span><span>Previous: Automotive Systems Architecture &amp; Signal Flow</span></a></div>
+            <div class="pagination-next"><a href="capacitors-and-energy-storage.html" class="nav-next-btn"><span>Next: Capacitors, Energy Storage &amp; RC Timing Circuits</span><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span></a></div>
+        </nav>
+    </main>
+</div>
+
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-col brand-col">
+            <div class="footer-brand">
+                <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="footer-bits-logo">
+                <div class="footer-brand-text">
+                    <span class="footer-title">Birla Institute of Technology & Science, Pilani</span>
+                    <span class="footer-sub">Work Integrated Learning Programmes (WILP)</span>
+                </div>
+            </div>
+            <p class="footer-desc">Institutional knowledge base engineered from official lecture transcripts, handouts, and laboratory sessions for M.Tech Automotive Engineering.</p>
+            <div class="footer-tags">
+                <span class="badge badge-info">BITS WILP</span>
+                <span class="badge badge-success">4 Core Courses</span>
+                <span class="badge badge-warning">Exam & Viva Ready</span>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Semester 1 Courses</h4>
+            <ul>
+                <li><a href="../../subjects/automotive-communication.html">Automotive Communication (AELZG513)</a></li>
+                <li><a href="../../subjects/automotive-vehicle.html">Automotive Vehicle (AELZC441)</a></li>
+                <li><a href="../../subjects/autotronics.html">Autotronics (AEZG533)</a></li>
+                <li><a href="../../subjects/embedded-system-design.html">Embedded System Design (AEZG512)</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="../../index.html">Master Portal Home</a></li>
+                <li><a href="../../semesters/sem1.html">Semester 1 Overview & Credits</a></li>
+                <li><a href="javascript:void(0)" onclick="openSearchModal()">Global Topic Search</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-bottom-content">
+            <span>© 2026 M.Tech Automotive Engineering Knowledge Base. Built for High-Performance Academic Study.</span>
+            <span>Birla Institute of Technology & Science, Pilani.</span>
+        </div>
+    </div>
+</footer>
+
+
+<div class="search-modal-overlay" id="searchModal" onclick="closeSearchModal(event)">
+    <div class="search-modal-container" onclick="event.stopPropagation()">
+        <div class="search-modal-header">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <input type="text" id="searchInput" class="search-modal-input" placeholder="Type to search curriculum, formulas, registers, exam questions..." autocomplete="off" oninput="handleSearch(this.value)">
+            <button class="search-modal-close" onclick="closeSearchModal()">&times;</button>
+        </div>
+        <div class="search-modal-filters">
+            <button class="search-filter-btn active" data-subject="all" onclick="setSearchFilter('all')">All Courses</button>
+            <button class="search-filter-btn" data-subject="automotive-communication" onclick="setSearchFilter('automotive-communication')">Communication</button>
+            <button class="search-filter-btn" data-subject="automotive-vehicle" onclick="setSearchFilter('automotive-vehicle')">Vehicle</button>
+            <button class="search-filter-btn" data-subject="autotronics" onclick="setSearchFilter('autotronics')">Autotronics</button>
+            <button class="search-filter-btn" data-subject="embedded-system-design" onclick="setSearchFilter('embedded-system-design')">Embedded</button>
+        </div>
+        <div class="search-modal-results" id="searchResults">
+            <div class="search-empty-state">
+                <span>Start typing to search across 33+ comprehensive M.Tech topics...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../../js/app.js"></script>
+<script src="../../js/search-index.js"></script>
+</body>
+</html>

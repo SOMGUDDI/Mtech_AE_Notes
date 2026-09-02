@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transmission Systems: MT, AT, DCT, CVT &amp; Planetary Gearsets | Automotive Vehicle</title>
+    <meta name="description" content="Internal combustion engines produce useful torque only across a narrow speed range (1500 to 6000 RPM) and cannot start under zero-RPM load. The transm">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body data-topic-id="transmission-systems-and-gearboxes" data-subject-id="automotive-vehicle">
+
+
+<header class="navbar">
+    <div class="navbar-container">
+        <a href="../../index.html" class="nav-brand">
+            <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="nav-brand-logo">
+            <div class="brand-details">
+                <span class="brand-inst">Birla Institute of Technology & Science, Pilani</span>
+                <span class="brand-dept">Work Integrated Learning Programmes • Automotive Engineering</span>
+            </div>
+        </a>
+        <div class="nav-search-box" onclick="openSearchModal()">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <span class="search-placeholder">Search curriculum, formulas, registers, questions...</span>
+            <span class="search-shortcut">Ctrl+K</span>
+        </div>
+        <div class="nav-actions">
+            <a href="../../semesters/sem1.html" class="nav-link">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></span>
+                <span>Semester 1 Hub</span>
+            </a>
+            <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Toggle Theme">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+                <span>Theme</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+
+<div class="topic-page-layout">
+    <aside class="topic-sidebar">
+        <div class="sidebar-header">
+            <a href="../../subjects/automotive-vehicle.html" class="sidebar-back">
+                <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span>
+                <span>Automotive Vehicle</span>
+            </a>
+            <div class="sidebar-subject-badge">AELZC441</div>
+        </div>
+        <div class="sidebar-toc">
+            <h4>Table of Contents</h4>
+            <ul>
+                <li><a href="#overview">Quick Overview</a></li>
+                <li><a href="#objectives">Learning Objectives</a></li>
+                <li><a href="#core-concept">Core Concept & Intuition</a></li>
+                <li><a href="#lecture-notes">In-Class Lecture Notes</a></li>
+                <li><a href="#extra-explanation">Comprehensive Theory</a></li>
+                
+                
+                <li><a href="#working-principle">Working Principle</a></li>
+                <li><a href="#application">Automotive Application</a></li>
+                <li><a href="#comparison">Specifications Table</a></li>
+                <li><a href="#formulas">Math Formulas & Numericals</a></li>
+                <li><a href="#code">Embedded Driver / Registers</a></li>
+                <li><a href="#exam-questions">Exam & Viva Q&A</a></li>
+                <li><a href="#revision-card">60-Second Flash Card</a></li>
+                <li><a href="#personal-notes">My Personal Notes</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-progress-widget">
+            <h4>Topic Status</h4>
+            <div class="status-btn-group">
+                <button class="status-btn" id="statusNotStarted" onclick="setTopicStatus('transmission-systems-and-gearboxes', 'not_started')">☐ Not Started</button>
+                <button class="status-btn" id="statusInProgress" onclick="setTopicStatus('transmission-systems-and-gearboxes', 'in_progress')">◐ In Progress</button>
+                <button class="status-btn" id="statusCompleted" onclick="setTopicStatus('transmission-systems-and-gearboxes', 'completed')">☑ Mastered</button>
+            </div>
+            <button class="bookmark-btn" id="bookmarkBtn" onclick="toggleBookmark('transmission-systems-and-gearboxes')">★ Bookmark for Revision</button>
+        </div>
+    </aside>
+
+    <main class="topic-main-content">
+        <header class="topic-header">
+            <div class="breadcrumbs">
+                <a href="../../index.html">Home</a> / 
+                <a href="../../semesters/sem1.html">Semester 1</a> / 
+                <a href="../../subjects/automotive-vehicle.html">Automotive Vehicle</a> / 
+                <span class="curr-crumb">Transmission Systems: MT, AT, DCT, CVT &amp; Planetary Gearsets</span>
+            </div>
+            
+            <div class="topic-meta-row">
+                <span class="meta-pill module-pill">MODULE: Powertrain Fundamentals</span>
+                <span class="meta-pill level-pill">LEVEL: Intermediate</span>
+                <span class="meta-pill importance-pill">WEIGHT: 5/5</span>
+                <span class="meta-pill code-pill">AELZC441</span>
+            </div>
+
+            <h1 class="topic-main-title">Transmission Systems: MT, AT, DCT, CVT &amp; Planetary Gearsets</h1>
+
+            <div class="action-bar-top">
+                <div class="read-estimate">Estimated Read Time: <strong>12–15 mins</strong></div>
+                <div class="action-buttons-group">
+                    <button class="print-btn" onclick="window.print()" title="Print this complete note page or save as PDF">
+                        <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg></span>
+                        <span>Print / Save PDF</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <section class="topic-section" id="overview">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 01]</span> Quick Overview</h2>
+            </div>
+            <p class="overview-lead">Internal combustion engines produce useful torque only across a narrow speed range (1500 to 6000 RPM) and cannot start under zero-RPM load. The transmission system adapts high engine speed / low torque to high wheel torque / low speed for launching, hill climbing, and high-speed cruising. Modern automotive transmissions include Manual (MT), Automatic with Hydraulic Torque Converter (AT), Dual-Clutch (DCT), Continuously Variable (CVT), and Epicyclic Planetary Gearsets.</p>
+        </section>
+
+        <section class="topic-section" id="objectives">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 02]</span> Learning Objectives & Prerequisites</h2>
+            </div>
+            <div class="objectives-card">
+                <h5>What You Will Master:</h5>
+                <ul class="objectives-list">
+                    <li>Explain why multi-ratio transmissions are required for internal combustion engines.</li><li>Analyze the working of manual synchromesh gearboxes and dry friction clutches.</li><li>Understand Automatic Transmissions: Fluid Torque Converters, Impeller, Turbine, and Stator one-way clutch.</li><li>Analyze Dual-Clutch Transmissions (DCT) and how odd/even pre-selection enables zero-torque-interruption shifts.</li><li>Derive gear ratios for Epicyclic Planetary Gearsets using Willis&#x27;s formula.</li>
+                </ul>
+                <div class="prereq-note">
+                    <strong>Prerequisites:</strong> Powertrain Architectures &amp; Layouts, Tractive Force, Engine Torque-Speed Curves.
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="core-concept">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 03]</span> Core Concept & Physical Intuition</h2>
+            </div>
+            <div class="concept-body">
+                <p>An IC engine at 0 RPM produces 0 torque and stalls instantly if connected directly to stationary wheels. A transmission provides two vital functions: a disconnect device (clutch/torque converter) to allow the engine to idle while the car is stopped, and a set of torque-multiplying gear ratios (e.g., 4:1 in 1st gear for launch torque, 0.7:1 in 6th gear for quiet, fuel-efficient highway cruising).</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="lecture-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 04]</span> In-Class Lecture Transcript Breakdown</h2>
+            </div>
+            <div class="callout callout-lecture">
+                <div class="callout-header">// LECTURE TRANSCRIPT SYNTHESIS</div>
+                <div class="callout-body">
+                    <p>Lectures 2 and 3 covered transmission systems. The professor explained: &#x27;Why do we need a gearbox? Because of the tractive effort vs vehicle speed hyperbola. The ideal tractive curve is a constant-power hyperbola ($P = F \cdot v = \text{constant}$). The transmission approximates this ideal hyperbola through stepped gear ratios.&#x27; The lecturer walked through torque converters, explaining hydrodynamic torque multiplication via the stator redirecting fluid.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="extra-explanation">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 05]</span> Rigorous Engineering Theory & Derivations</h2>
+            </div>
+            <div class="callout callout-deep">
+                <div class="callout-header">// RIGOROUS ENGINEERING THEORY</div>
+                <div class="callout-body">
+                    <p>Let&#x27;s compare modern automotive transmission technologies:
+
+1. **Manual Transmission (MT) &amp; Dry Friction Clutch:**
+   - Uses a single/twin dry friction clutch disc clamped by a diaphragm spring between flywheel and pressure plate.
+   - Helical gears remain in constant mesh; brass **Synchromesh rings** use friction to match gear and shaft speeds before dog teeth engage, eliminating grinding.
+
+2. **Automatic Transmission (AT) &amp; Hydrodynamic Torque Converter:**
+   - Replaces friction clutch with a sealed fluid coupling containing three elements:
+     - **Impeller (Pump):** Driven by engine crankshaft, flings ATF fluid outward.
+     - **Turbine:** Driven by circulating ATF fluid, connected to gearbox input shaft.
+     - **Stator (with One-Way Sprag Clutch):** Stationary at stall; redirects returning fluid to aid impeller rotation, achieving **Torque Multiplication of $2.0\text{x} - 2.5\text{x}$** during vehicle launch.
+     - **Lockup Clutch:** Mechanically locks impeller and turbine together at highway speeds for 100% efficiency.
+
+3. **Dual-Clutch Transmission (DCT):**
+   - Uses two nested concentric clutches (Clutch 1 for Odd gears 1, 3, 5, 7; Clutch 2 for Even gears 2, 4, 6, R).
+   - While driving in 2nd gear on Clutch 2, the transmission computer pre-selects 3rd gear on the disengaged Clutch 1 shaft. Shifting occurs by cross-fading the two clutches in $15 - 40\text{ ms}$ with **zero power interruption**.
+
+4. **Continuously Variable Transmission (CVT):**
+   - Uses two variable-diameter split-cone pulleys connected by a steel push-belt. Moving the conical sheaves hydraulically changes the belt radius continuously, providing infinite gear ratios between minimum and maximum bounds ($i_{max} \approx 2.6, i_{min} \approx 0.45$).
+
+5. **Epicyclic Planetary Gearset (Willis Formula):**
+   - Consists of a central **Sun gear ($S$)**, multiple **Planet gears ($P$)** on a **Planet Carrier ($C$)**, and an outer **Ring / Annulus gear ($R$)**.
+   - Fundamental Kinematic Equation: $\frac{\omega_S - \omega_C}{\omega_R - \omega_C} = -\frac{N_R}{N_S}$</p>
+                </div>
+            </div>
+        </section>
+
+        
+        
+
+        <section class="topic-section" id="working-principle">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 08]</span> Step-by-Step Operational Principle</h2>
+            </div>
+            <div class="principle-body">
+                <p>Planetary Gearset Ratio Selection Rules:
+- **Underdrive / Reduction (1st Gear):** Hold Ring stationary (brake applied), Drive Sun gear $\to$ Carrier rotates slowly with high multiplied torque: $\frac{\omega_{in}}{\omega_{out}} = 1 + \frac{N_R}{N_S}$.
+- **Overdrive (High Gear):** Hold Sun stationary, Drive Carrier $\to$ Ring rotates faster than input: $\frac{\omega_{in}}{\omega_{out}} = \frac{1}{1 + N_S/N_R} &lt; 1.0$.
+- **Reverse Gear:** Hold Carrier stationary, Drive Sun $\to$ Ring rotates in opposite direction: $\frac{\omega_{in}}{\omega_{out}} = -\frac{N_R}{N_S}$.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="application">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 09]</span> Real Automotive Application</h2>
+            </div>
+            <div class="callout callout-application">
+                <div class="callout-header">// AUTOMOTIVE OEM CASE STUDY</div>
+                <div class="callout-body">
+                    <p></p>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="topic-section table-section" id="comparison">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 10]</span> Technical Specifications & Benchmarks</h2>
+            </div>
+            <div class="table-responsive">
+                <table class="specs-table">
+                    <thead><tr><th>Transmission Type</th><th>Clutch / Coupling</th><th>Shift Mechanism</th><th>Efficiency</th><th>Driving Character</th></tr></thead>
+                    <tbody><tr><td>Manual (MT)</td><td>Single dry friction disc</td><td>Mechanical fork &amp; synchromesh</td><td>95% - 97% (High)</td><td>Direct driver engagement, clutch pedal required</td></tr><tr><td>Automatic (AT)</td><td>Hydraulic Torque Converter</td><td>Planetary gearsets + Hydraulic clutches</td><td>86% - 92% (Lockup helps)</td><td>Smooth creep, seamless automatic shifts</td></tr><tr><td>Dual-Clutch (DCT)</td><td>Dual wet or dry clutches</td><td>Odd/even pre-selected parallel shafts</td><td>93% - 96% (High)</td><td>Ultra-fast lightning shifts (20ms), sporty feel</td></tr><tr><td>CVT (Continuously Variable)</td><td>Torque converter or wet clutch</td><td>Variable conical pulleys + steel push belt</td><td>85% - 90% (Moderate)</td><td>Rubber-band RPM effect, optimal steady fuel economy</td></tr><tr><td>EV Single-Speed</td><td>None (Direct splined shaft)</td><td>Fixed helical reduction gear (e.g., 9:1)</td><td>97% - 98% (Highest)</td><td>Instant torque from 0 RPM, zero shift delays</td></tr></tbody>
+                </table>
+            </div>
+        </section>
+        
+        
+        <section class="topic-section formulas-section" id="formulas">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 11]</span> Mathematical Formulas & Numerical Breakdown</h2>
+            </div>
+            <div class="formulas-grid">
+                
+            <div class="formula-card">
+                <div class="formula-name">Planetary Gear Ratio (Willis Kinematic Formula)</div>
+                <div class="formula-math"><code>\frac{\omega_S - \omega_C}{\omega_R - \omega_C} = -\frac{N_R}{N_S}</code></div>
+                <div class="formula-details">
+                    <h5>Parameter Definitions:</h5>
+                    <ul class="formula-vars"><li><code>\</code>: o</li><li><code>N</code>: _</li><li><code>N</code>: _</li></ul>
+                    <div class="formula-example"><strong>Worked Numerical Example:</strong><br>If Ring is held fixed (ω_R = 0) with N_S = 30 and N_R = 90: (ω_S - ω_C) / (0 - ω_C) = -90/30 = -3. ω_S - ω_C = 3 ω_C -&gt; ω_S = 4 ω_C. Gear ratio is ω_in / ω_out = ω_S / ω_C = 4.0:1 reduction.</div>
+                </div>
+            </div>
+            
+            </div>
+        </section>
+        
+        
+        <section class="topic-section code-section" id="code">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 12]</span> Embedded C Driver & Register Interface</h2>
+                <button class="copy-btn" onclick="copyCodeBlock('codeBlock')">
+                    <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+                    <span>Copy Code</span>
+                </button>
+            </div>
+            <div class="code-container">
+                <pre><code id="codeBlock" class="language-c">// Python Planetary Gearset Kinematic Ratio Solver
+def planetary_gear_ratios(teeth_sun=30, teeth_ring=90):
+    k = teeth_ring / teeth_sun  # Typically 2.0 to 4.0
+    
+    # Mode 1: Hold Ring (Forward 1st Gear)
+    ratio_forward_1 = 1.0 + k
+    # Mode 2: Hold Sun (Forward Overdrive)
+    ratio_overdrive = 1.0 / (1.0 + (1.0 / k))
+    # Mode 3: Hold Carrier (Reverse Gear)
+    ratio_reverse = -k
+    
+    print(f&quot;Planetary (Sun={teeth_sun}T, Ring={teeth_ring}T, Ratio k={k:.1f}):&quot;)
+    print(f&quot;  Hold Ring    -&gt; 1st Gear Reduction : {ratio_forward_1:.2f} : 1&quot;)
+    print(f&quot;  Hold Sun     -&gt; Overdrive Ratio    : {ratio_overdrive:.2f} : 1&quot;)
+    print(f&quot;  Hold Carrier -&gt; Reverse Gear Ratio : {ratio_reverse:.2f} : 1&quot;)
+
+planetary_gear_ratios(30, 90)</code></pre>
+            </div>
+        </section>
+        
+
+        <section class="topic-section" id="must-remember">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 13]</span> Must-Remember Key Points for Exams</h2>
+            </div>
+            <div class="must-remember-card">
+                <ul><li>[KEY] Transmissions match narrow engine torque curves to wide vehicle road speed requirements.</li><li>[KEY] Torque converters provide fluid coupling and multiply torque up to 2.5x via the stationary stator.</li><li>[KEY] DCT uses twin clutches (odd/even) for millisecond shifts without torque interruption.</li><li>[KEY] CVT uses variable conical pulleys for continuously variable ratio matching.</li><li>[KEY] Willis planetary formula: (ω_S - ω_C) / (ω_R - ω_C) = -N_R / N_S.</li></ul>
+            </div>
+        </section>
+
+        
+        <div class="callout callout-warning">
+            <div class="callout-header">// COMMON EXAM TRAPS & MISCONCEPTIONS</div>
+            <div class="callout-body">
+                <ul><li><strong>Trap:</strong> Thinking a torque converter multiplies torque at all speeds. Torque multiplication occurs ONLY when there is a significant speed differential between impeller and turbine (at vehicle launch). At cruising speeds, torque ratio is 1:1.</li><li><strong>Trap:</strong> Confusing the role of the synchromesh ring. The synchromesh matches shaft speeds using friction before dog teeth engage; it does not transmit driving power.</li></ul>
+            </div>
+        </div>
+        
+
+        <section class="topic-section" id="exam-questions">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 15]</span> Exam Preparation & Model Questions</h2>
+            </div>
+            <div class="exam-qa-container">
+                
+        <div class="exam-qa-block">
+            <h3>Short Answer Questions (1–2 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> What is the function of the stator in an automotive hydraulic torque converter?</div>
+                <div class="qa-answer">The stator redirects the fluid returning from the turbine back into the impeller at an assisting angle rather than an opposing angle. This hydrodynamic fluid redirection multiplies engine input torque by a factor of 2.0x to 2.5x during vehicle launch from a standstill.</div>
+            </div>
+            
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> How does a Dual-Clutch Transmission (DCT) achieve gear shifts without torque interruption?</div>
+                <div class="qa-answer">A DCT features two separate input shafts driven by two independent clutches—one for odd gears (1, 3, 5, 7) and one for even gears (2, 4, 6, R). While accelerating in one gear, the transmission controller pre-engages the next gear on the idle shaft; the shift is executed by simultaneously disengaging one clutch while engaging the other in milliseconds.</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Comprehensive Long Answer Questions (5–10 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item long-qa-item">
+                <div class="qa-question"><span class="q-badge">10 MARKS</span> Explain the construction and working principle of a modern automatic transmission torque converter. Include the impeller, turbine, stator, and lockup clutch with a fluid circulation diagram. Derive the planetary gear reduction ratio when the ring gear is held stationary.</div>
+                <div class="qa-answer">A complete answer covers: (1) Cross-sectional diagram of torque converter; (2) Hydrodynamic working of impeller, turbine, and stator; (3) Explanation of torque multiplication at stall vs 1:1 coupling at speed; (4) Lockup clutch operation; (5) Application of Willis formula to derive 1st gear reduction ratio i = 1 + (N_R / N_S).</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Viva Voce & Technical Interview Questions</h3>
+            <div class="qa-list">
+            <div class="qa-item viva-qa-item">
+                <div class="qa-question"><span class="q-badge">VIVA / INTERVIEW</span> Why do pure Electric Vehicles (EVs) like the Tesla Model 3 only require a single-speed reduction gearbox instead of a 6-speed or 8-speed transmission?</div>
+                <div class="qa-answer">Electric traction motors produce 100% maximum torque right from 0 RPM and can spin smoothly up to 18,000–20,000 RPM. This broad, linear torque-speed capability spans the entire vehicle speed range (0 to 250 km/h) with a simple fixed ~9:1 reduction gear, eliminating the weight, cost, friction, and complexity of a multi-speed transmission.</div>
+            </div>
+            </div>
+        </div>
+        
+            </div>
+        </section>
+
+        <section class="topic-section" id="revision-card">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 18]</span> 60-Second Flash / Revision Card</h2>
+            </div>
+            <div class="flashcard">
+                <div class="flashcard-badge">// 60-SECOND REVISION SUMMARY</div>
+                <ul class="flashcard-points"><li>[REV] MT = Synchromesh + Dry Clutch.</li><li>[REV] AT = Torque Converter (Impeller/Turbine/Stator) + Planetary.</li><li>[REV] DCT = Dual clutches, zero torque interruption.</li><li>[REV] CVT = Variable cone pulleys + steel belt.</li><li>[REV] Willis: (ω_S - ω_C)/(ω_R - ω_C) = -N_R/N_S.</li></ul>
+            </div>
+        </section>
+
+        <section class="topic-section" id="personal-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 19]</span> Personal Study Notes (Auto-Saved)</h2>
+            </div>
+            <div class="personal-notes-widget">
+                <p class="notes-hint">Type personal notes or lab observations below. Content auto-saves to your local browser storage.</p>
+                <textarea id="personalNotePad" class="personal-notes-textarea" placeholder="Type personal study notes here..." oninput="savePersonalNote('transmission-systems-and-gearboxes', this.value)"></textarea>
+                <div class="notes-save-indicator" id="notesSavedTag">✓ Saved locally</div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="sources">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 20]</span> Source Traceability & Curriculum References</h2>
+            </div>
+            <div class="sources-box">
+                <p><strong>Primary Source Reference:</strong> Automotive Vehicle Lecture 2 &amp; 3 Transcripts; Session 3 Powertrain Components PDF; Syllabus Section 3.</p>
+            </div>
+        </section>
+
+        <nav class="topic-pagination">
+            <div class="pagination-prev"><a href="engine-performance-parameters.html" class="nav-prev-btn"><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span><span>Previous: Engine Performance Parameters: Power, Torque &amp; BSFC</span></a></div>
+            <div class="pagination-next"><a href="ev-motors-inverters-battery-packs.html" class="nav-next-btn"><span>Next: EV Powertrains: Traction Motors, Inverters &amp; Battery Packs</span><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span></a></div>
+        </nav>
+    </main>
+</div>
+
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-col brand-col">
+            <div class="footer-brand">
+                <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="footer-bits-logo">
+                <div class="footer-brand-text">
+                    <span class="footer-title">Birla Institute of Technology & Science, Pilani</span>
+                    <span class="footer-sub">Work Integrated Learning Programmes (WILP)</span>
+                </div>
+            </div>
+            <p class="footer-desc">Institutional knowledge base engineered from official lecture transcripts, handouts, and laboratory sessions for M.Tech Automotive Engineering.</p>
+            <div class="footer-tags">
+                <span class="badge badge-info">BITS WILP</span>
+                <span class="badge badge-success">4 Core Courses</span>
+                <span class="badge badge-warning">Exam & Viva Ready</span>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Semester 1 Courses</h4>
+            <ul>
+                <li><a href="../../subjects/automotive-communication.html">Automotive Communication (AELZG513)</a></li>
+                <li><a href="../../subjects/automotive-vehicle.html">Automotive Vehicle (AELZC441)</a></li>
+                <li><a href="../../subjects/autotronics.html">Autotronics (AEZG533)</a></li>
+                <li><a href="../../subjects/embedded-system-design.html">Embedded System Design (AEZG512)</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="../../index.html">Master Portal Home</a></li>
+                <li><a href="../../semesters/sem1.html">Semester 1 Overview & Credits</a></li>
+                <li><a href="javascript:void(0)" onclick="openSearchModal()">Global Topic Search</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-bottom-content">
+            <span>© 2026 M.Tech Automotive Engineering Knowledge Base. Built for High-Performance Academic Study.</span>
+            <span>Birla Institute of Technology & Science, Pilani.</span>
+        </div>
+    </div>
+</footer>
+
+
+<div class="search-modal-overlay" id="searchModal" onclick="closeSearchModal(event)">
+    <div class="search-modal-container" onclick="event.stopPropagation()">
+        <div class="search-modal-header">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <input type="text" id="searchInput" class="search-modal-input" placeholder="Type to search curriculum, formulas, registers, exam questions..." autocomplete="off" oninput="handleSearch(this.value)">
+            <button class="search-modal-close" onclick="closeSearchModal()">&times;</button>
+        </div>
+        <div class="search-modal-filters">
+            <button class="search-filter-btn active" data-subject="all" onclick="setSearchFilter('all')">All Courses</button>
+            <button class="search-filter-btn" data-subject="automotive-communication" onclick="setSearchFilter('automotive-communication')">Communication</button>
+            <button class="search-filter-btn" data-subject="automotive-vehicle" onclick="setSearchFilter('automotive-vehicle')">Vehicle</button>
+            <button class="search-filter-btn" data-subject="autotronics" onclick="setSearchFilter('autotronics')">Autotronics</button>
+            <button class="search-filter-btn" data-subject="embedded-system-design" onclick="setSearchFilter('embedded-system-design')">Embedded</button>
+        </div>
+        <div class="search-modal-results" id="searchResults">
+            <div class="search-empty-state">
+                <span>Start typing to search across 33+ comprehensive M.Tech topics...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../../js/app.js"></script>
+<script src="../../js/search-index.js"></script>
+</body>
+</html>

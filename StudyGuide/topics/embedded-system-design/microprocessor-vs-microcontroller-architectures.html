@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microprocessor vs Microcontroller &amp; Processor Architectures | Embedded System Design</title>
+    <meta name="description" content="The selection between a Microprocessor (MPU) and a Microcontroller (MCU) represents the fundamental architectural division in computer engineering. Mi">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body data-topic-id="microprocessor-vs-microcontroller-architectures" data-subject-id="embedded-system-design">
+
+
+<header class="navbar">
+    <div class="navbar-container">
+        <a href="../../index.html" class="nav-brand">
+            <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="nav-brand-logo">
+            <div class="brand-details">
+                <span class="brand-inst">Birla Institute of Technology & Science, Pilani</span>
+                <span class="brand-dept">Work Integrated Learning Programmes • Automotive Engineering</span>
+            </div>
+        </a>
+        <div class="nav-search-box" onclick="openSearchModal()">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <span class="search-placeholder">Search curriculum, formulas, registers, questions...</span>
+            <span class="search-shortcut">Ctrl+K</span>
+        </div>
+        <div class="nav-actions">
+            <a href="../../semesters/sem1.html" class="nav-link">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></span>
+                <span>Semester 1 Hub</span>
+            </a>
+            <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Toggle Theme">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+                <span>Theme</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+
+<div class="topic-page-layout">
+    <aside class="topic-sidebar">
+        <div class="sidebar-header">
+            <a href="../../subjects/embedded-system-design.html" class="sidebar-back">
+                <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span>
+                <span>Embedded System Design</span>
+            </a>
+            <div class="sidebar-subject-badge">AEZG512 / AELZC512</div>
+        </div>
+        <div class="sidebar-toc">
+            <h4>Table of Contents</h4>
+            <ul>
+                <li><a href="#overview">Quick Overview</a></li>
+                <li><a href="#objectives">Learning Objectives</a></li>
+                <li><a href="#core-concept">Core Concept & Intuition</a></li>
+                <li><a href="#lecture-notes">In-Class Lecture Notes</a></li>
+                <li><a href="#extra-explanation">Comprehensive Theory</a></li>
+                
+                
+                <li><a href="#working-principle">Working Principle</a></li>
+                <li><a href="#application">Automotive Application</a></li>
+                <li><a href="#comparison">Specifications Table</a></li>
+                <li><a href="#formulas">Math Formulas & Numericals</a></li>
+                <li><a href="#code">Embedded Driver / Registers</a></li>
+                <li><a href="#exam-questions">Exam & Viva Q&A</a></li>
+                <li><a href="#revision-card">60-Second Flash Card</a></li>
+                <li><a href="#personal-notes">My Personal Notes</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-progress-widget">
+            <h4>Topic Status</h4>
+            <div class="status-btn-group">
+                <button class="status-btn" id="statusNotStarted" onclick="setTopicStatus('microprocessor-vs-microcontroller-architectures', 'not_started')">☐ Not Started</button>
+                <button class="status-btn" id="statusInProgress" onclick="setTopicStatus('microprocessor-vs-microcontroller-architectures', 'in_progress')">◐ In Progress</button>
+                <button class="status-btn" id="statusCompleted" onclick="setTopicStatus('microprocessor-vs-microcontroller-architectures', 'completed')">☑ Mastered</button>
+            </div>
+            <button class="bookmark-btn" id="bookmarkBtn" onclick="toggleBookmark('microprocessor-vs-microcontroller-architectures')">★ Bookmark for Revision</button>
+        </div>
+    </aside>
+
+    <main class="topic-main-content">
+        <header class="topic-header">
+            <div class="breadcrumbs">
+                <a href="../../index.html">Home</a> / 
+                <a href="../../semesters/sem1.html">Semester 1</a> / 
+                <a href="../../subjects/embedded-system-design.html">Embedded System Design</a> / 
+                <span class="curr-crumb">Microprocessor vs Microcontroller &amp; Processor Architectures</span>
+            </div>
+            
+            <div class="topic-meta-row">
+                <span class="meta-pill module-pill">MODULE: Embedded Fundamentals</span>
+                <span class="meta-pill level-pill">LEVEL: Beginner</span>
+                <span class="meta-pill importance-pill">WEIGHT: 5/5</span>
+                <span class="meta-pill code-pill">AEZG512 / AELZC512</span>
+            </div>
+
+            <h1 class="topic-main-title">Microprocessor vs Microcontroller &amp; Processor Architectures</h1>
+
+            <div class="action-bar-top">
+                <div class="read-estimate">Estimated Read Time: <strong>12–15 mins</strong></div>
+                <div class="action-buttons-group">
+                    <button class="print-btn" onclick="window.print()" title="Print this complete note page or save as PDF">
+                        <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg></span>
+                        <span>Print / Save PDF</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <section class="topic-section" id="overview">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 01]</span> Quick Overview</h2>
+            </div>
+            <p class="overview-lead">The selection between a Microprocessor (MPU) and a Microcontroller (MCU) represents the fundamental architectural division in computer engineering. Microprocessors feature high-speed processing cores that rely on external memory and peripherals, whereas Microcontrollers integrate CPU, memory, and rich I/O peripherals onto a single silicon chip for dedicated embedded control.</p>
+        </section>
+
+        <section class="topic-section" id="objectives">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 02]</span> Learning Objectives & Prerequisites</h2>
+            </div>
+            <div class="objectives-card">
+                <h5>What You Will Master:</h5>
+                <ul class="objectives-list">
+                    <li>Compare the architectural differences between Microprocessors (MPU) and Microcontrollers (MCU).</li><li>Contrast Von Neumann vs Harvard Memory Architectures.</li><li>Analyze CISC (Complex Instruction Set Computer) vs RISC (Reduced Instruction Set Computer) design philosophies.</li><li>Understand why automotive control systems exclusively use RISC Harvard microcontrollers (e.g., ARM Cortex-M4).</li>
+                </ul>
+                <div class="prereq-note">
+                    <strong>Prerequisites:</strong> Embedded Systems Foundations, basic computer organization.
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="core-concept">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 03]</span> Core Concept & Physical Intuition</h2>
+            </div>
+            <div class="concept-body">
+                <p>Think of a Microprocessor as a high-powered race car engine sitting on a workbench: it has immense horsepower, but it cannot move until you separately wire up a fuel tank (RAM), transmission (chipset), dashboard (peripherals), and cooling system on a complex printed circuit board. A Microcontroller is a compact, self-contained go-kart: everything—engine, fuel tank, wheels, and steering—is built onto a single integrated chassis ready to drive immediately.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="lecture-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 04]</span> In-Class Lecture Transcript Breakdown</h2>
+            </div>
+            <div class="callout callout-lecture">
+                <div class="callout-header">// LECTURE TRANSCRIPT SYNTHESIS</div>
+                <div class="callout-body">
+                    <p>Lecture 2 and 3 covered Microprocessors vs Microcontrollers, CISC vs RISC, and Harvard vs Von Neumann architectures. Prof. S. S. Kendre highlighted: &#x27;In an MPU like Intel x86, the silicon die contains only the CPU; RAM, ROM, timers, and I/O are external on the motherboard. In an MCU like S32K144, CPU, Flash, SRAM, ADC, Timers, and CAN controllers are all fabricated on the same silicon die.&#x27; The professor demonstrated why Harvard architecture allows simultaneous instruction fetching and data reading in a single clock cycle.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="extra-explanation">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 05]</span> Rigorous Engineering Theory & Derivations</h2>
+            </div>
+            <div class="callout callout-deep">
+                <div class="callout-header">// RIGOROUS ENGINEERING THEORY</div>
+                <div class="callout-body">
+                    <p>Let&#x27;s analyze the two major architectural divisions:
+
+1. **Memory Architecture: Von Neumann vs Harvard:**
+   - **Von Neumann Architecture (Unified Memory):** Uses a single shared bus for both program instructions and data. **Von Neumann Bottleneck:** The CPU cannot read an instruction and read/write data memory at the same time because they share the same physical address/data bus.
+   - **Harvard Architecture (Separated Memory):** Uses physically separate memory blocks and distinct bus systems for instructions (Code Bus) and data (Data Bus). The CPU can fetch the next instruction while simultaneously reading or writing a data operand in SRAM in the exact same clock cycle.
+
+2. **Instruction Set Philosophy: CISC vs RISC:**
+   - **CISC (Complex Instruction Set Computer, e.g., x86):** Large instruction set (hundreds of instructions), variable instruction length (1 to 15 bytes), complex multi-cycle instructions, operations execute directly on memory operands.
+   - **RISC (Reduced Instruction Set Computer, e.g., ARM Cortex-M):** Small optimized instruction set, fixed instruction length (16/32-bit Thumb-2), single-cycle execution for most instructions, **Load-Store Architecture** (ALU operations execute strictly between registers; memory is accessed ONLY via `LDR` and `STR` instructions).</p>
+                </div>
+            </div>
+        </section>
+
+        
+        
+
+        <section class="topic-section" id="working-principle">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 08]</span> Step-by-Step Operational Principle</h2>
+            </div>
+            <div class="principle-body">
+                <p>Why Automotive Control Systems Require RISC Harvard MCUs:
+1. **Deterministic Timing:** In RISC architectures, nearly all instructions take a predictable fixed number of clock cycles (typically 1 cycle), making worst-case execution time (WCET) mathematically provable.
+2. **Zero Bus Contention:** Harvard separate instruction and data buses prevent memory access stalls during high-frequency sensor sampling.
+3. **Low Power &amp; High Reliability:** Single-chip integration eliminates high-capacitance external board traces, cutting electromagnetic emissions (EMC) and power consumption to milliwatts.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="application">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 09]</span> Real Automotive Application</h2>
+            </div>
+            <div class="callout callout-application">
+                <div class="callout-header">// AUTOMOTIVE OEM CASE STUDY</div>
+                <div class="callout-body">
+                    <p></p>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="topic-section table-section" id="comparison">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 10]</span> Technical Specifications & Benchmarks</h2>
+            </div>
+            <div class="table-responsive">
+                <table class="specs-table">
+                    <thead><tr><th>Architectural Parameter</th><th>Microprocessor (MPU)</th><th>Microcontroller (MCU)</th></tr></thead>
+                    <tbody><tr><td>Silicon Integration</td><td>CPU Core only (External RAM/ROM/Peripherals)</td><td>CPU + Flash + SRAM + Timers + ADC + CAN on 1 die</td></tr><tr><td>System Cost &amp; PCB Size</td><td>Higher cost, large multi-layer PCB required</td><td>Low cost, compact minimal component PCB</td></tr><tr><td>Memory Architecture</td><td>Predominantly Von Neumann unified caching</td><td>Modified Harvard with separate Code &amp; Data buses</td></tr><tr><td>Instruction Set Philosophy</td><td>CISC (x86) or High-end RISC (ARM Cortex-A)</td><td>Strict Load-Store RISC (ARM Cortex-M)</td></tr><tr><td>Power Consumption</td><td>High (15W – 150W, requires active heat sinks)</td><td>Ultra-low (0.05W – 2W, passive cooling)</td></tr><tr><td>Primary Application</td><td>Desktop, servers, infotainment screens</td><td>Engine control, braking, body electronics, BMS</td></tr></tbody>
+                </table>
+            </div>
+        </section>
+        
+        
+        <section class="topic-section formulas-section" id="formulas">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 11]</span> Mathematical Formulas & Numerical Breakdown</h2>
+            </div>
+            <div class="formulas-grid">
+                
+            <div class="formula-card">
+                <div class="formula-name">Processor Instruction Execution Time</div>
+                <div class="formula-math"><code>T_{exec} = \frac{\text{Instruction Count} \times \text{Average CPI}}{f_{clock}}</code></div>
+                <div class="formula-details">
+                    <h5>Parameter Definitions:</h5>
+                    <ul class="formula-vars"><li><code>I</code>: n</li><li><code>C</code>: P</li><li><code>f</code>: _</li></ul>
+                    <div class="formula-example"><strong>Worked Numerical Example:</strong><br>An ABS control loop contains 400 RISC instructions with average CPI = 1.25 running on an 80 MHz clock. Execution time is T_exec = (400 × 1.25) / (80 × 10^6) = 500 / 80,000,000 = 6.25 μs.</div>
+                </div>
+            </div>
+            
+            </div>
+        </section>
+        
+        
+        <section class="topic-section code-section" id="code">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 12]</span> Embedded C Driver & Register Interface</h2>
+                <button class="copy-btn" onclick="copyCodeBlock('codeBlock')">
+                    <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+                    <span>Copy Code</span>
+                </button>
+            </div>
+            <div class="code-container">
+                <pre><code id="codeBlock" class="language-c">// RISC Load-Store Architecture vs CISC Assembly Comparison
+// In ARM Cortex-M (RISC): Memory CANNOT be added directly!
+// You must explicitly LOAD into registers, ADD, and STORE back:
+LDR  R0, =sensor_val1    // Load address of sensor 1
+LDR  R1, [R0]            // Load value of sensor 1 into Register R1
+LDR  R2, =sensor_val2    // Load address of sensor 2
+LDR  R3, [R2]            // Load value of sensor 2 into Register R3
+ADD  R4, R1, R3          // ALU executes addition between registers (1 cycle!)
+LDR  R5, =result         // Load address of result
+STR  R4, [R5]            // Store register value back into SRAM memory</code></pre>
+            </div>
+        </section>
+        
+
+        <section class="topic-section" id="must-remember">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 13]</span> Must-Remember Key Points for Exams</h2>
+            </div>
+            <div class="must-remember-card">
+                <ul><li>[KEY] MCU integrates CPU, Flash, SRAM, and I/O peripherals onto a single silicon chip.</li><li>[KEY] MPU contains only CPU; requires external RAM, ROM, and chipset on motherboard.</li><li>[KEY] Harvard Architecture has separate instruction and data buses, eliminating Von Neumann bottleneck.</li><li>[KEY] RISC uses fixed-length instructions and strict Load-Store architecture (operations only on registers).</li></ul>
+            </div>
+        </section>
+
+        
+        <div class="callout callout-warning">
+            <div class="callout-header">// COMMON EXAM TRAPS & MISCONCEPTIONS</div>
+            <div class="callout-body">
+                <ul><li><strong>Trap:</strong> Assuming RISC is &#x27;slower&#x27; because it has fewer instructions. RISC executes simpler instructions in single clock cycles at much higher clock frequencies, outperforming CISC in real-time control.</li><li><strong>Trap:</strong> Confusing 32-bit architecture with clock speed. A 32-bit architecture means the internal registers, ALU data path, and memory bus widths are 32 bits wide.</li></ul>
+            </div>
+        </div>
+        
+
+        <section class="topic-section" id="exam-questions">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 15]</span> Exam Preparation & Model Questions</h2>
+            </div>
+            <div class="exam-qa-container">
+                
+        <div class="exam-qa-block">
+            <h3>Short Answer Questions (1–2 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> What is the Von Neumann Bottleneck?</div>
+                <div class="qa-answer">In Von Neumann architecture, a single shared bus connects the CPU to unified memory. The CPU cannot fetch an instruction and read/write a data variable at the same time, causing the memory bus throughput to become the primary speed bottleneck.</div>
+            </div>
+            
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> What is meant by a &#x27;Load-Store&#x27; architecture in RISC processors?</div>
+                <div class="qa-answer">In a Load-Store architecture (such as ARM Cortex-M), arithmetic and logic instructions (like ADD, SUB, AND) can operate ONLY on internal CPU registers, never directly on memory. Memory is accessed strictly through dedicated Load (`LDR`) and Store (`STR`) instructions.</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Comprehensive Long Answer Questions (5–10 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item long-qa-item">
+                <div class="qa-question"><span class="q-badge">10 MARKS</span> Compare Microprocessors and Microcontrollers across hardware integration, memory architecture (Von Neumann vs Harvard), instruction sets (CISC vs RISC), and power consumption. Explain why automotive real-time ECUs are built using RISC Harvard microcontrollers.</div>
+                <div class="qa-answer">A complete answer covers: (1) Hardware integration comparison table; (2) Block diagrams of Von Neumann vs Harvard memory systems; (3) Explanation of the Von Neumann bottleneck; (4) Detailed comparison of CISC vs RISC with assembly examples; (5) Explanation of why automotive ECUs demand RISC Harvard microcontrollers (deterministic timing, single-cycle execution, low EMC, and single-chip reliability).</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Viva Voce & Technical Interview Questions</h3>
+            <div class="qa-list">
+            <div class="qa-item viva-qa-item">
+                <div class="qa-question"><span class="q-badge">VIVA / INTERVIEW</span> Why is the ARM Cortex-M4 processor described as a &#x27;Modified Harvard&#x27; architecture rather than a pure Harvard architecture?</div>
+                <div class="qa-answer">A pure Harvard architecture has completely isolated physical address spaces for program and data. ARM Cortex-M4 uses a unified 4 GB memory address map where Code, SRAM, and Peripherals share address space, but accesses them over <strong>separate, parallel physical buses</strong> (I-Code, D-Code, System Bus), allowing parallel access while maintaining unified C pointer compatibility.</div>
+            </div>
+            </div>
+        </div>
+        
+            </div>
+        </section>
+
+        <section class="topic-section" id="revision-card">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 18]</span> 60-Second Flash / Revision Card</h2>
+            </div>
+            <div class="flashcard">
+                <div class="flashcard-badge">// 60-SECOND REVISION SUMMARY</div>
+                <ul class="flashcard-points"><li>[REV] MCU = All-in-one chip (CPU + Flash + RAM + I/O).</li><li>[REV] MPU = CPU only (External RAM/ROM).</li><li>[REV] Harvard = Separate Code &amp; Data buses (Parallel access).</li><li>[REV] RISC = Fixed length, single-cycle, Load-Store only.</li></ul>
+            </div>
+        </section>
+
+        <section class="topic-section" id="personal-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 19]</span> Personal Study Notes (Auto-Saved)</h2>
+            </div>
+            <div class="personal-notes-widget">
+                <p class="notes-hint">Type personal notes or lab observations below. Content auto-saves to your local browser storage.</p>
+                <textarea id="personalNotePad" class="personal-notes-textarea" placeholder="Type personal study notes here..." oninput="savePersonalNote('microprocessor-vs-microcontroller-architectures', this.value)"></textarea>
+                <div class="notes-save-indicator" id="notesSavedTag">✓ Saved locally</div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="sources">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 20]</span> Source Traceability & Curriculum References</h2>
+            </div>
+            <div class="sources-box">
+                <p><strong>Primary Source Reference:</strong> Embedded System Design Lecture 2 &amp; 3 Transcripts; Course Syllabus Section 2 (Microprocessor Vs Microcontroller, CISC vs RISC).</p>
+            </div>
+        </section>
+
+        <nav class="topic-pagination">
+            <div class="pagination-prev"><a href="embedded-systems-overview-and-classification.html" class="nav-prev-btn"><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span><span>Previous: Embedded Systems Foundations &amp; Real-Time Constraints</span></a></div>
+            <div class="pagination-next"><a href="arm-cortex-m4-core-architecture.html" class="nav-next-btn"><span>Next: ARM Cortex-M4 Core Architecture &amp; Bus Matrix</span><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span></a></div>
+        </nav>
+    </main>
+</div>
+
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-col brand-col">
+            <div class="footer-brand">
+                <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="footer-bits-logo">
+                <div class="footer-brand-text">
+                    <span class="footer-title">Birla Institute of Technology & Science, Pilani</span>
+                    <span class="footer-sub">Work Integrated Learning Programmes (WILP)</span>
+                </div>
+            </div>
+            <p class="footer-desc">Institutional knowledge base engineered from official lecture transcripts, handouts, and laboratory sessions for M.Tech Automotive Engineering.</p>
+            <div class="footer-tags">
+                <span class="badge badge-info">BITS WILP</span>
+                <span class="badge badge-success">4 Core Courses</span>
+                <span class="badge badge-warning">Exam & Viva Ready</span>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Semester 1 Courses</h4>
+            <ul>
+                <li><a href="../../subjects/automotive-communication.html">Automotive Communication (AELZG513)</a></li>
+                <li><a href="../../subjects/automotive-vehicle.html">Automotive Vehicle (AELZC441)</a></li>
+                <li><a href="../../subjects/autotronics.html">Autotronics (AEZG533)</a></li>
+                <li><a href="../../subjects/embedded-system-design.html">Embedded System Design (AEZG512)</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="../../index.html">Master Portal Home</a></li>
+                <li><a href="../../semesters/sem1.html">Semester 1 Overview & Credits</a></li>
+                <li><a href="javascript:void(0)" onclick="openSearchModal()">Global Topic Search</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-bottom-content">
+            <span>© 2026 M.Tech Automotive Engineering Knowledge Base. Built for High-Performance Academic Study.</span>
+            <span>Birla Institute of Technology & Science, Pilani.</span>
+        </div>
+    </div>
+</footer>
+
+
+<div class="search-modal-overlay" id="searchModal" onclick="closeSearchModal(event)">
+    <div class="search-modal-container" onclick="event.stopPropagation()">
+        <div class="search-modal-header">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <input type="text" id="searchInput" class="search-modal-input" placeholder="Type to search curriculum, formulas, registers, exam questions..." autocomplete="off" oninput="handleSearch(this.value)">
+            <button class="search-modal-close" onclick="closeSearchModal()">&times;</button>
+        </div>
+        <div class="search-modal-filters">
+            <button class="search-filter-btn active" data-subject="all" onclick="setSearchFilter('all')">All Courses</button>
+            <button class="search-filter-btn" data-subject="automotive-communication" onclick="setSearchFilter('automotive-communication')">Communication</button>
+            <button class="search-filter-btn" data-subject="automotive-vehicle" onclick="setSearchFilter('automotive-vehicle')">Vehicle</button>
+            <button class="search-filter-btn" data-subject="autotronics" onclick="setSearchFilter('autotronics')">Autotronics</button>
+            <button class="search-filter-btn" data-subject="embedded-system-design" onclick="setSearchFilter('embedded-system-design')">Embedded</button>
+        </div>
+        <div class="search-modal-results" id="searchResults">
+            <div class="search-empty-state">
+                <span>Start typing to search across 33+ comprehensive M.Tech topics...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../../js/app.js"></script>
+<script src="../../js/search-index.js"></script>
+</body>
+</html>

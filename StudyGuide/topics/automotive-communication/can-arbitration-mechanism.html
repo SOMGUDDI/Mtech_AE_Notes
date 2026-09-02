@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAN Bus Non-Destructive Bitwise Arbitration | Automotive Communication Systems</title>
+    <meta name="description" content="In a distributed multi-master vehicle network, multiple Electronic Control Units (ECUs) may attempt to transmit messages simultaneously when the bus b">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body data-topic-id="can-arbitration-mechanism" data-subject-id="automotive-communication">
+
+
+<header class="navbar">
+    <div class="navbar-container">
+        <a href="../../index.html" class="nav-brand">
+            <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="nav-brand-logo">
+            <div class="brand-details">
+                <span class="brand-inst">Birla Institute of Technology & Science, Pilani</span>
+                <span class="brand-dept">Work Integrated Learning Programmes • Automotive Engineering</span>
+            </div>
+        </a>
+        <div class="nav-search-box" onclick="openSearchModal()">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <span class="search-placeholder">Search curriculum, formulas, registers, questions...</span>
+            <span class="search-shortcut">Ctrl+K</span>
+        </div>
+        <div class="nav-actions">
+            <a href="../../semesters/sem1.html" class="nav-link">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></span>
+                <span>Semester 1 Hub</span>
+            </a>
+            <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Toggle Theme">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+                <span>Theme</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+
+<div class="topic-page-layout">
+    <aside class="topic-sidebar">
+        <div class="sidebar-header">
+            <a href="../../subjects/automotive-communication.html" class="sidebar-back">
+                <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span>
+                <span>Automotive Communication Systems</span>
+            </a>
+            <div class="sidebar-subject-badge">AELZG513</div>
+        </div>
+        <div class="sidebar-toc">
+            <h4>Table of Contents</h4>
+            <ul>
+                <li><a href="#overview">Quick Overview</a></li>
+                <li><a href="#objectives">Learning Objectives</a></li>
+                <li><a href="#core-concept">Core Concept & Intuition</a></li>
+                <li><a href="#lecture-notes">In-Class Lecture Notes</a></li>
+                <li><a href="#extra-explanation">Comprehensive Theory</a></li>
+                
+                
+                <li><a href="#working-principle">Working Principle</a></li>
+                <li><a href="#application">Automotive Application</a></li>
+                <li><a href="#comparison">Specifications Table</a></li>
+                <li><a href="#formulas">Math Formulas & Numericals</a></li>
+                <li><a href="#code">Embedded Driver / Registers</a></li>
+                <li><a href="#exam-questions">Exam & Viva Q&A</a></li>
+                <li><a href="#revision-card">60-Second Flash Card</a></li>
+                <li><a href="#personal-notes">My Personal Notes</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-progress-widget">
+            <h4>Topic Status</h4>
+            <div class="status-btn-group">
+                <button class="status-btn" id="statusNotStarted" onclick="setTopicStatus('can-arbitration-mechanism', 'not_started')">☐ Not Started</button>
+                <button class="status-btn" id="statusInProgress" onclick="setTopicStatus('can-arbitration-mechanism', 'in_progress')">◐ In Progress</button>
+                <button class="status-btn" id="statusCompleted" onclick="setTopicStatus('can-arbitration-mechanism', 'completed')">☑ Mastered</button>
+            </div>
+            <button class="bookmark-btn" id="bookmarkBtn" onclick="toggleBookmark('can-arbitration-mechanism')">★ Bookmark for Revision</button>
+        </div>
+    </aside>
+
+    <main class="topic-main-content">
+        <header class="topic-header">
+            <div class="breadcrumbs">
+                <a href="../../index.html">Home</a> / 
+                <a href="../../semesters/sem1.html">Semester 1</a> / 
+                <a href="../../subjects/automotive-communication.html">Automotive Communication Systems</a> / 
+                <span class="curr-crumb">CAN Bus Non-Destructive Bitwise Arbitration</span>
+            </div>
+            
+            <div class="topic-meta-row">
+                <span class="meta-pill module-pill">MODULE: In-Vehicle Networks &amp; Protocols</span>
+                <span class="meta-pill level-pill">LEVEL: Intermediate</span>
+                <span class="meta-pill importance-pill">WEIGHT: 5/5</span>
+                <span class="meta-pill code-pill">AELZG513</span>
+            </div>
+
+            <h1 class="topic-main-title">CAN Bus Non-Destructive Bitwise Arbitration</h1>
+
+            <div class="action-bar-top">
+                <div class="read-estimate">Estimated Read Time: <strong>12–15 mins</strong></div>
+                <div class="action-buttons-group">
+                    <button class="print-btn" onclick="window.print()" title="Print this complete note page or save as PDF">
+                        <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg></span>
+                        <span>Print / Save PDF</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <section class="topic-section" id="overview">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 01]</span> Quick Overview</h2>
+            </div>
+            <p class="overview-lead">In a distributed multi-master vehicle network, multiple Electronic Control Units (ECUs) may attempt to transmit messages simultaneously when the bus becomes idle. Controller Area Network resolves bus access conflicts using a Carrier Sense Multiple Access with Collision Resolution (CSMA/CR) mechanism known as Non-Destructive Bitwise Arbitration. This mechanism ensures that the highest priority message wins bus access immediately without data corruption or transmission delay.</p>
+        </section>
+
+        <section class="topic-section" id="objectives">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 02]</span> Learning Objectives & Prerequisites</h2>
+            </div>
+            <div class="objectives-card">
+                <h5>What You Will Master:</h5>
+                <ul class="objectives-list">
+                    <li>Explain the physical principle of Bitwise Arbitration on a wired-AND bus.</li><li>Analyze why a lower numerical CAN Identifier represents a higher transmission priority.</li><li>Step through a cycle-by-cycle bit arbitration trace between competing ECUs.</li><li>Understand why CAN arbitration is &#x27;non-destructive&#x27; compared to Ethernet CSMA/CD.</li>
+                </ul>
+                <div class="prereq-note">
+                    <strong>Prerequisites:</strong> CAN Protocol Architecture &amp; Differential Physical Layer, CAN Frame Format.
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="core-concept">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 03]</span> Core Concept & Physical Intuition</h2>
+            </div>
+            <div class="concept-body">
+                <p>Imagine three people talking in a room. In Ethernet (CSMA/CD), if two people speak at once, they both stop, wait a random amount of time, and retry (data is destroyed). In CAN (CSMA/CR), every transmitter listens to the bus while speaking bit-by-bit. If Node A transmits a Recessive 1 but hears a Dominant 0 on the wire, it realizes a higher-priority message is being sent, immediately stops transmitting, and gracefully becomes a silent receiver. The higher-priority message continues through to completion without a single microsecond of corruption or delay.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="lecture-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 04]</span> In-Class Lecture Transcript Breakdown</h2>
+            </div>
+            <div class="callout callout-lecture">
+                <div class="callout-header">// LECTURE TRANSCRIPT SYNTHESIS</div>
+                <div class="callout-body">
+                    <p>In Lecture 5, the instructor presented a live arbitration example with three competing ECUs (ECU A = ID 0x100, ECU B = ID 0x200, ECU C = ID 0x104). The professor emphasized: &#x27;Notice the golden rule of CAN: Lower numerical ID equals higher priority. Why? Because 0 is dominant! The first node that outputs a 1 while another node outputs a 0 loses arbitration and backs off instantly.&#x27; The transcript highlights that losing nodes do not discard their messages; they re-attempt transmission automatically the moment the bus enters the next Interframe Space (IFS).</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="extra-explanation">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 05]</span> Rigorous Engineering Theory & Derivations</h2>
+            </div>
+            <div class="callout callout-deep">
+                <div class="callout-header">// RIGOROUS ENGINEERING THEORY</div>
+                <div class="callout-body">
+                    <p>Let&#x27;s examine the detailed step-by-step arbitration process:
+1. When the bus is idle (recessive level for $\ge 3$ bit times), any node with pending data can initiate transmission by asserting a Dominant (0) **Start of Frame (SOF)** bit.
+2. All competing transmitters synchronize their internal bit clocks on this falling edge.
+3. Nodes begin transmitting their Identifier bits sequentially from Most Significant Bit (MSB, Bit 10) down to Least Significant Bit (LSB, Bit 0).
+4. **Listen-While-Talk Rule:** During every bit time, each transmitting CAN controller samples the physical bus level at its configured sample point. 
+5. As long as the bit sent equals the bit read on the bus, the node continues to arbitrate.
+6. The moment an ECU transmits a **Recessive (1)** but detects a **Dominant (0)** on the bus, it has **lost arbitration**. It immediately disables its output transmitter drivers, transitions into a passive receiver mode, and receives the winning frame without asserting any error flag.</p>
+                </div>
+            </div>
+        </section>
+
+        
+        
+
+        <section class="topic-section" id="working-principle">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 08]</span> Step-by-Step Operational Principle</h2>
+            </div>
+            <div class="principle-body">
+                <p>Why CAN Arbitration is Non-Destructive:
+In standard Ethernet (IEEE 802.3 CSMA/CD), when two nodes transmit simultaneously, their electrical waveforms collide and garble the data into noise. Both nodes must abort, send a jam signal, and back off randomly. In CAN, because the wired-AND physical layer preserves dominant bits without distortion, the winner&#x27;s bit stream is never corrupted. The winning ECU is completely unaware that arbitration even took place, and bandwidth is 100% preserved.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="application">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 09]</span> Real Automotive Application</h2>
+            </div>
+            <div class="callout callout-application">
+                <div class="callout-header">// AUTOMOTIVE OEM CASE STUDY</div>
+                <div class="callout-body">
+                    <p></p>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="topic-section table-section" id="comparison">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 10]</span> Technical Specifications & Benchmarks</h2>
+            </div>
+            <div class="table-responsive">
+                <table class="specs-table">
+                    <thead><tr><th>Arbitration Property</th><th>CAN (CSMA/CR)</th><th>Ethernet (CSMA/CD)</th><th>LIN (Master-Slave)</th></tr></thead>
+                    <tbody><tr><td>Collision Handling</td><td>Collision Resolution (Non-destructive)</td><td>Collision Detection (Destructive collision)</td><td>Collision Free (Pre-scheduled by Master)</td></tr><tr><td>Priority Basis</td><td>Message Identifier (Lower ID = Higher Priority)</td><td>None (All frames equal / Random backoff)</td><td>Schedule table slot allocation</td></tr><tr><td>Winner Outcome</td><td>Transmits uninterrupted with 0 ms delay</td><td>Aborts and retries after exponential backoff</td><td>Transmits during assigned time slot</td></tr><tr><td>Bus Efficiency Under Load</td><td>100% utilization of highest priority messages</td><td>Collapses under heavy load (&gt;40% collisions)</td><td>100% deterministic time-triggered</td></tr></tbody>
+                </table>
+            </div>
+        </section>
+        
+        
+        <section class="topic-section formulas-section" id="formulas">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 11]</span> Mathematical Formulas & Numerical Breakdown</h2>
+            </div>
+            <div class="formulas-grid">
+                
+            <div class="formula-card">
+                <div class="formula-name">Maximum Propagation Delay Constraint for Arbitration</div>
+                <div class="formula-math"><code>T_{prop\_seg} \ge 2 \cdot (t_{prop\_cable} + t_{tx\_transceiver} + t_{rx\_transceiver})</code></div>
+                <div class="formula-details">
+                    <h5>Parameter Definitions:</h5>
+                    <ul class="formula-vars"><li><code>t</code>: _</li><li><code>t</code>: _</li><li><code>t</code>: _</li><li><code>T</code>: _</li></ul>
+                    <div class="formula-example"><strong>Worked Numerical Example:</strong><br>For a 40-meter CAN bus, round-trip cable delay is 2 × (40 × 5 ns) = 400 ns. Adding dual transceiver delays (2 × 100 ns = 200 ns) gives 600 ns. The bit&#x27;s propagation segment must be configured to at least 600 ns to allow arbitration to settle before the sample point.</div>
+                </div>
+            </div>
+            
+            </div>
+        </section>
+        
+        
+        <section class="topic-section code-section" id="code">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 12]</span> Embedded C Driver & Register Interface</h2>
+                <button class="copy-btn" onclick="copyCodeBlock('codeBlock')">
+                    <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+                    <span>Copy Code</span>
+                </button>
+            </div>
+            <div class="code-container">
+                <pre><code id="codeBlock" class="language-c">// Verification of CAN ID Priority
+#include &lt;stdio.h&gt;
+#include &lt;stdint.h&gt;
+
+void resolve_arbitration(uint16_t id_a, uint16_t id_b) {
+    for (int bit = 10; bit &gt;= 0; bit--) {
+        uint8_t bit_a = (id_a &gt;&gt; bit) &amp; 0x01;
+        uint8_t bit_b = (id_b &gt;&gt; bit) &amp; 0x01;
+        uint8_t bus_level = bit_a &amp; bit_b; // Wired-AND: 0 is dominant
+        
+        if (bit_a != bus_level) {
+            printf(&quot;ECU A lost at bit %d -&gt; WINNER: ECU B (0x%03X)\n&quot;, bit, id_b);
+            return;
+        }
+        if (bit_b != bus_level) {
+            printf(&quot;ECU B lost at bit %d -&gt; WINNER: ECU A (0x%03X)\n&quot;, bit, id_a);
+            return;
+        }
+    }
+}</code></pre>
+            </div>
+        </section>
+        
+
+        <section class="topic-section" id="must-remember">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 13]</span> Must-Remember Key Points for Exams</h2>
+            </div>
+            <div class="must-remember-card">
+                <ul><li>[KEY] CAN arbitration is non-destructive: the winning message is NEVER corrupted or delayed.</li><li>[KEY] Lower numerical ID equals higher priority because 0 is Dominant on the physical wire.</li><li>[KEY] Arbitration occurs bit-by-bit from MSB (ID.10) to LSB (ID.0).</li><li>[KEY] An ECU losing arbitration immediately ceases transmission and becomes a receiver without error flags.</li><li>[KEY] Two ECUs must NEVER be assigned the same CAN ID on the same network.</li></ul>
+            </div>
+        </section>
+
+        
+        <div class="callout callout-warning">
+            <div class="callout-header">// COMMON EXAM TRAPS & MISCONCEPTIONS</div>
+            <div class="callout-body">
+                <ul><li><strong>Trap:</strong> Believing the highest numerical ID wins. In CAN, lower number = higher priority (ID 0x001 beats ID 0x700).</li><li><strong>Trap:</strong> Confusing CAN arbitration with Ethernet collision detection. In CAN, collisions are resolved non-destructively; the winner does not re-transmit.</li></ul>
+            </div>
+        </div>
+        
+
+        <section class="topic-section" id="exam-questions">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 15]</span> Exam Preparation & Model Questions</h2>
+            </div>
+            <div class="exam-qa-container">
+                
+        <div class="exam-qa-block">
+            <h3>Short Answer Questions (1–2 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> Why does a lower numerical CAN ID have higher priority during arbitration?</div>
+                <div class="qa-answer">Because CAN uses wired-AND logic where Logic 0 is Dominant and Logic 1 is Recessive. A smaller numerical ID has a 0 in higher-order bit positions where a larger ID has a 1; the dominant 0 overwrites the recessive 1, causing the larger ID to lose arbitration.</div>
+            </div>
+            
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> What does a CAN controller do the exact moment it loses arbitration?</div>
+                <div class="qa-answer">It immediately turns off its transmitter output transistors, switches into receiver mode, and receives the winning frame without asserting any error flag. It re-attempts to transmit its own message as soon as the bus becomes idle again.</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Comprehensive Long Answer Questions (5–10 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item long-qa-item">
+                <div class="qa-question"><span class="q-badge">10 MARKS</span> Explain the complete mechanism of CAN Non-Destructive Bitwise Arbitration with a step-by-step numerical trace comparing three competing nodes (ID 0x100, 0x104, 0x200). Contrast this mechanism with Ethernet CSMA/CD.</div>
+                <div class="qa-answer">A complete answer covers: (1) Principle of CSMA/CR and listen-while-talk; (2) Wired-AND physical logic; (3) Binary bit breakdown of 0x100, 0x104, and 0x200; (4) Step-by-step bit trace showing where each node drops out; (5) Explanation of why no data is destroyed; (6) Comparison table contrasting CAN with Ethernet CSMA/CD.</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Viva Voce & Technical Interview Questions</h3>
+            <div class="qa-list">
+            <div class="qa-item viva-qa-item">
+                <div class="qa-question"><span class="q-badge">VIVA / INTERVIEW</span> What catastrophic protocol failure occurs if two distinct ECUs are mistakenly configured with the exact same CAN Identifier and transmit simultaneously with different data payloads?</div>
+                <div class="qa-answer">Both ECUs arbitrate identically through the 11-bit ID and control fields. However, during the Data Field, when one ECU outputs a 0 and the other outputs a 1, the node sending 1 will detect a Bit Error, assert an Active Error Flag (6 dominant bits), and destroy the entire frame. If repeated, both ECUs will increment their TEC and eventually go Bus-Off.</div>
+            </div>
+            </div>
+        </div>
+        
+            </div>
+        </section>
+
+        <section class="topic-section" id="revision-card">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 18]</span> 60-Second Flash / Revision Card</h2>
+            </div>
+            <div class="flashcard">
+                <div class="flashcard-badge">// 60-SECOND REVISION SUMMARY</div>
+                <ul class="flashcard-points"><li>[REV] Lower CAN ID = Higher Priority (0 is Dominant).</li><li>[REV] Bitwise arbitration happens over the 11-bit / 29-bit Arbitration Field.</li><li>[REV] Losing nodes back off seamlessly and retry when the bus is idle.</li><li>[REV] Zero bandwidth loss during contention.</li></ul>
+            </div>
+        </section>
+
+        <section class="topic-section" id="personal-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 19]</span> Personal Study Notes (Auto-Saved)</h2>
+            </div>
+            <div class="personal-notes-widget">
+                <p class="notes-hint">Type personal notes or lab observations below. Content auto-saves to your local browser storage.</p>
+                <textarea id="personalNotePad" class="personal-notes-textarea" placeholder="Type personal study notes here..." oninput="savePersonalNote('can-arbitration-mechanism', this.value)"></textarea>
+                <div class="notes-save-indicator" id="notesSavedTag">✓ Saved locally</div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="sources">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 20]</span> Source Traceability & Curriculum References</h2>
+            </div>
+            <div class="sources-box">
+                <p><strong>Primary Source Reference:</strong> Automotive Communication Systems Lecture 5 Transcript; Lab 2 Discussion; Course Syllabus Section 2 (Priority and Arbitration Mechanisms).</p>
+            </div>
+        </section>
+
+        <nav class="topic-pagination">
+            <div class="pagination-prev"><a href="can-frame-format.html" class="nav-prev-btn"><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span><span>Previous: CAN Frame Architecture &amp; Field Formats</span></a></div>
+            <div class="pagination-next"><a href="can-bit-stuffing-and-timing.html" class="nav-next-btn"><span>Next: CAN Bit Stuffing Mechanism, Bit Timing &amp; Synchronization</span><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span></a></div>
+        </nav>
+    </main>
+</div>
+
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-col brand-col">
+            <div class="footer-brand">
+                <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="footer-bits-logo">
+                <div class="footer-brand-text">
+                    <span class="footer-title">Birla Institute of Technology & Science, Pilani</span>
+                    <span class="footer-sub">Work Integrated Learning Programmes (WILP)</span>
+                </div>
+            </div>
+            <p class="footer-desc">Institutional knowledge base engineered from official lecture transcripts, handouts, and laboratory sessions for M.Tech Automotive Engineering.</p>
+            <div class="footer-tags">
+                <span class="badge badge-info">BITS WILP</span>
+                <span class="badge badge-success">4 Core Courses</span>
+                <span class="badge badge-warning">Exam & Viva Ready</span>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Semester 1 Courses</h4>
+            <ul>
+                <li><a href="../../subjects/automotive-communication.html">Automotive Communication (AELZG513)</a></li>
+                <li><a href="../../subjects/automotive-vehicle.html">Automotive Vehicle (AELZC441)</a></li>
+                <li><a href="../../subjects/autotronics.html">Autotronics (AEZG533)</a></li>
+                <li><a href="../../subjects/embedded-system-design.html">Embedded System Design (AEZG512)</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="../../index.html">Master Portal Home</a></li>
+                <li><a href="../../semesters/sem1.html">Semester 1 Overview & Credits</a></li>
+                <li><a href="javascript:void(0)" onclick="openSearchModal()">Global Topic Search</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-bottom-content">
+            <span>© 2026 M.Tech Automotive Engineering Knowledge Base. Built for High-Performance Academic Study.</span>
+            <span>Birla Institute of Technology & Science, Pilani.</span>
+        </div>
+    </div>
+</footer>
+
+
+<div class="search-modal-overlay" id="searchModal" onclick="closeSearchModal(event)">
+    <div class="search-modal-container" onclick="event.stopPropagation()">
+        <div class="search-modal-header">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <input type="text" id="searchInput" class="search-modal-input" placeholder="Type to search curriculum, formulas, registers, exam questions..." autocomplete="off" oninput="handleSearch(this.value)">
+            <button class="search-modal-close" onclick="closeSearchModal()">&times;</button>
+        </div>
+        <div class="search-modal-filters">
+            <button class="search-filter-btn active" data-subject="all" onclick="setSearchFilter('all')">All Courses</button>
+            <button class="search-filter-btn" data-subject="automotive-communication" onclick="setSearchFilter('automotive-communication')">Communication</button>
+            <button class="search-filter-btn" data-subject="automotive-vehicle" onclick="setSearchFilter('automotive-vehicle')">Vehicle</button>
+            <button class="search-filter-btn" data-subject="autotronics" onclick="setSearchFilter('autotronics')">Autotronics</button>
+            <button class="search-filter-btn" data-subject="embedded-system-design" onclick="setSearchFilter('embedded-system-design')">Embedded</button>
+        </div>
+        <div class="search-modal-results" id="searchResults">
+            <div class="search-empty-state">
+                <span>Start typing to search across 33+ comprehensive M.Tech topics...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../../js/app.js"></script>
+<script src="../../js/search-index.js"></script>
+</body>
+</html>

@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Converters: ADC &amp; DAC Architectures in Automotive ECUs | Autotronics</title>
+    <meta name="description" content="Microcontrollers operate strictly in the discrete digital domain (1s and 0s), whereas automotive physical phenomena (temperatures, manifold pressures,">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body data-topic-id="analog-to-digital-and-digital-to-analog-converters" data-subject-id="autotronics">
+
+
+<header class="navbar">
+    <div class="navbar-container">
+        <a href="../../index.html" class="nav-brand">
+            <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="nav-brand-logo">
+            <div class="brand-details">
+                <span class="brand-inst">Birla Institute of Technology & Science, Pilani</span>
+                <span class="brand-dept">Work Integrated Learning Programmes • Automotive Engineering</span>
+            </div>
+        </a>
+        <div class="nav-search-box" onclick="openSearchModal()">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <span class="search-placeholder">Search curriculum, formulas, registers, questions...</span>
+            <span class="search-shortcut">Ctrl+K</span>
+        </div>
+        <div class="nav-actions">
+            <a href="../../semesters/sem1.html" class="nav-link">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></span>
+                <span>Semester 1 Hub</span>
+            </a>
+            <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Toggle Theme">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+                <span>Theme</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+
+<div class="topic-page-layout">
+    <aside class="topic-sidebar">
+        <div class="sidebar-header">
+            <a href="../../subjects/autotronics.html" class="sidebar-back">
+                <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span>
+                <span>Autotronics</span>
+            </a>
+            <div class="sidebar-subject-badge">AEZG533 / AELZG533</div>
+        </div>
+        <div class="sidebar-toc">
+            <h4>Table of Contents</h4>
+            <ul>
+                <li><a href="#overview">Quick Overview</a></li>
+                <li><a href="#objectives">Learning Objectives</a></li>
+                <li><a href="#core-concept">Core Concept & Intuition</a></li>
+                <li><a href="#lecture-notes">In-Class Lecture Notes</a></li>
+                <li><a href="#extra-explanation">Comprehensive Theory</a></li>
+                
+                
+                <li><a href="#working-principle">Working Principle</a></li>
+                <li><a href="#application">Automotive Application</a></li>
+                <li><a href="#comparison">Specifications Table</a></li>
+                <li><a href="#formulas">Math Formulas & Numericals</a></li>
+                <li><a href="#code">Embedded Driver / Registers</a></li>
+                <li><a href="#exam-questions">Exam & Viva Q&A</a></li>
+                <li><a href="#revision-card">60-Second Flash Card</a></li>
+                <li><a href="#personal-notes">My Personal Notes</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-progress-widget">
+            <h4>Topic Status</h4>
+            <div class="status-btn-group">
+                <button class="status-btn" id="statusNotStarted" onclick="setTopicStatus('analog-to-digital-and-digital-to-analog-converters', 'not_started')">☐ Not Started</button>
+                <button class="status-btn" id="statusInProgress" onclick="setTopicStatus('analog-to-digital-and-digital-to-analog-converters', 'in_progress')">◐ In Progress</button>
+                <button class="status-btn" id="statusCompleted" onclick="setTopicStatus('analog-to-digital-and-digital-to-analog-converters', 'completed')">☑ Mastered</button>
+            </div>
+            <button class="bookmark-btn" id="bookmarkBtn" onclick="toggleBookmark('analog-to-digital-and-digital-to-analog-converters')">★ Bookmark for Revision</button>
+        </div>
+    </aside>
+
+    <main class="topic-main-content">
+        <header class="topic-header">
+            <div class="breadcrumbs">
+                <a href="../../index.html">Home</a> / 
+                <a href="../../semesters/sem1.html">Semester 1</a> / 
+                <a href="../../subjects/autotronics.html">Autotronics</a> / 
+                <span class="curr-crumb">Data Converters: ADC &amp; DAC Architectures in Automotive ECUs</span>
+            </div>
+            
+            <div class="topic-meta-row">
+                <span class="meta-pill module-pill">MODULE: Analog-to-Digital Conversion</span>
+                <span class="meta-pill level-pill">LEVEL: Intermediate</span>
+                <span class="meta-pill importance-pill">WEIGHT: 5/5</span>
+                <span class="meta-pill code-pill">AEZG533 / AELZG533</span>
+            </div>
+
+            <h1 class="topic-main-title">Data Converters: ADC &amp; DAC Architectures in Automotive ECUs</h1>
+
+            <div class="action-bar-top">
+                <div class="read-estimate">Estimated Read Time: <strong>12–15 mins</strong></div>
+                <div class="action-buttons-group">
+                    <button class="print-btn" onclick="window.print()" title="Print this complete note page or save as PDF">
+                        <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg></span>
+                        <span>Print / Save PDF</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <section class="topic-section" id="overview">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 01]</span> Quick Overview</h2>
+            </div>
+            <p class="overview-lead">Microcontrollers operate strictly in the discrete digital domain (1s and 0s), whereas automotive physical phenomena (temperatures, manifold pressures, throttle angles, and oxygen levels) exist as continuous analog voltages. Analog-to-Digital Converters (ADCs) digitize these continuous voltages, while Digital-to-Analog Converters (DACs) synthesize continuous analog voltages for actuator commands.</p>
+        </section>
+
+        <section class="topic-section" id="objectives">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 02]</span> Learning Objectives & Prerequisites</h2>
+            </div>
+            <div class="objectives-card">
+                <h5>What You Will Master:</h5>
+                <ul class="objectives-list">
+                    <li>Define ADC performance metrics: Resolution ($n$-bits), Reference Voltage ($V_{ref}$), Quantization Step Size (LSB), and Quantization Error ($\pm 0.5\text{ LSB}$).</li><li>Analyze Successive Approximation Register (SAR) ADC binary search architecture.</li><li>Understand Flash ADC, Sigma-Delta ($\Sigma-\Delta$) ADC, and R-2R Ladder DAC architectures.</li><li>Apply the Nyquist-Shannon Sampling Theorem ($f_s \ge 2 f_{max}$) and design anti-aliasing filters.</li>
+                </ul>
+                <div class="prereq-note">
+                    <strong>Prerequisites:</strong> Op-Amps in Signal Conditioning, Voltage Dividers, Digital Logic Gates.
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="core-concept">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 03]</span> Core Concept & Physical Intuition</h2>
+            </div>
+            <div class="concept-body">
+                <p>An ADC chops continuous real-world voltage into discrete numerical stairs. A 10-bit ADC dividing a 5.0V supply into $2^{10} = 1024$ voltage levels has a step size (LSB) of $4.88\text{ mV}$. If the input voltage is $2.500\text{ V}$, the ADC outputs binary code `1000000000` ($512$).</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="lecture-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 04]</span> In-Class Lecture Transcript Breakdown</h2>
+            </div>
+            <div class="callout callout-lecture">
+                <div class="callout-header">// LECTURE TRANSCRIPT SYNTHESIS</div>
+                <div class="callout-body">
+                    <p>Lecture 5 and 6 of Autotronics covered ADC and DAC converters. Dr. Madhuri Bayya emphasized: &#x27;The ADC resolution determines the smallest physical change you can detect. For a 12-bit ADC with 5V reference, 1 LSB is $5 / 4096 = 1.22\text{ mV}$. If your knock sensor signal is smaller than 1.22 mV, the ADC is completely blind to it!&#x27; The instructor walked through the SAR binary search flowchart and the Nyquist sampling criterion.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="extra-explanation">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 05]</span> Rigorous Engineering Theory & Derivations</h2>
+            </div>
+            <div class="callout callout-deep">
+                <div class="callout-header">// RIGOROUS ENGINEERING THEORY</div>
+                <div class="callout-body">
+                    <p>Let&#x27;s analyze the governing mathematical principles:
+
+1. **ADC Resolution and Least Significant Bit (LSB):**
+   $$\text{LSB Step Size } (q) = \frac{V_{ref+} - V_{ref-}}{2^n} = \frac{V_{ref}}{2^n}$$
+   - Digital Output Code: $\text{Code} = \text{floor}\left( \frac{V_{in}}{V_{ref}} \times 2^n \right)$
+   - Quantization Error: Unavoidable rounding error bounded by $\pm \frac{1}{2} \text{ LSB} = \pm \frac{q}{2}$.
+
+2. **Successive Approximation Register (SAR) ADC Operation:**
+   - Uses a binary search algorithm to resolve $n$ bits in exactly $n$ clock cycles.
+   - **Step 1:** Sample-and-Hold circuit freezes input voltage $V_{in}$.
+   - **Step 2:** SAR sets Most Significant Bit (MSB, Bit $n-1$) to 1. Internal DAC outputs $V_{DAC} = 0.5 V_{ref}$.
+   - **Step 3:** Analog comparator compares $V_{in}$ with $V_{DAC}$. If $V_{in} &gt; V_{DAC}$, MSB remains 1; if $V_{in} &lt; V_{DAC}$, MSB is cleared to 0.
+   - **Step 4:** SAR moves to next bit ($n-2$) and repeats until all $n$ bits are evaluated.
+
+3. **Nyquist-Shannon Sampling Theorem:**
+   $$f_s \ge 2 \cdot f_{max}$$
+   - The sampling frequency ($f_s$) must be at least twice the highest frequency component ($f_{max}$) present in the analog signal. If $f_s &lt; 2 f_{max}$, high frequencies fold back into the lower spectrum (**Aliasing distortion**). An analog low-pass **Anti-Aliasing Filter** must precede every ADC.</p>
+                </div>
+            </div>
+        </section>
+
+        
+        
+
+        <section class="topic-section" id="working-principle">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 08]</span> Step-by-Step Operational Principle</h2>
+            </div>
+            <div class="principle-body">
+                <p>Worked ADC Quantization Calculation:
+Consider a 12-bit ADC in the NXP S32K144 MCU with $V_{ref} = 5.00\text{ V}$:
+- Number of discrete quantization levels = $2^{12} = 4096$.
+- LSB Step Size $q = \frac{5.00\text{ V}}{4096} = \mathbf{1.2207\text{ mV}}$.
+- If a Manifold Absolute Pressure (MAP) sensor inputs $V_{in} = 3.456\text{ V}$:
+  $$\text{Digital Code} = \text{round}\left( \frac{3.456}{5.00} \times 4096 \right) = \text{round}(2831.15) = \mathbf{2831} \quad (0\text{xB0F})$$
+- Voltage reconstructed by ECU: $V_{calc} = 2831 \times 1.2207\text{ mV} = 3.4558\text{ V}$ (Quantization error = $-0.2\text{ mV}$).</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="application">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 09]</span> Real Automotive Application</h2>
+            </div>
+            <div class="callout callout-application">
+                <div class="callout-header">// AUTOMOTIVE OEM CASE STUDY</div>
+                <div class="callout-body">
+                    <p></p>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="topic-section table-section" id="comparison">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 10]</span> Technical Specifications & Benchmarks</h2>
+            </div>
+            <div class="table-responsive">
+                <table class="specs-table">
+                    <thead><tr><th>ADC Architecture</th><th>Conversion Speed</th><th>Resolution</th><th>Silicon Complexity &amp; Cost</th><th>Primary Automotive Application</th></tr></thead>
+                    <tbody><tr><td>Successive Approximation (SAR)</td><td>Medium (1 to 5 MSPS; 1 cycle/bit)</td><td>10 to 16 bits</td><td>Low to Moderate</td><td>General MCU on-chip ADCs (S32K144, sensors, pedals)</td></tr><tr><td>Flash (Parallel Comparator)</td><td>Ultra-Fast (100 to 1000 MSPS; 1 cycle)</td><td>6 to 8 bits</td><td>Very High (Requires 2^n - 1 comparators)</td><td>Radar/LIDAR front-end, high-speed oscilloscope</td></tr><tr><td>Sigma-Delta (Σ-Δ)</td><td>Slow to Medium (Oversampled)</td><td>16 to 24 bits (Ultra-high)</td><td>Moderate (Digital filter heavy)</td><td>Precision EV battery cell monitoring, strain gauges</td></tr><tr><td>Dual-Slope Integrating</td><td>Very Slow (Hundreds of ms)</td><td>14 to 18 bits</td><td>Low (Immune to 50Hz noise)</td><td>Handheld automotive digital multimeters (DMM)</td></tr></tbody>
+                </table>
+            </div>
+        </section>
+        
+        
+        <section class="topic-section formulas-section" id="formulas">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 11]</span> Mathematical Formulas & Numerical Breakdown</h2>
+            </div>
+            <div class="formulas-grid">
+                
+            <div class="formula-card">
+                <div class="formula-name">ADC Output Code and Voltage Relationship</div>
+                <div class="formula-math"><code>\text{Code} = \frac{V_{in}}{V_{ref}} \times (2^n - 1), \quad V_{in} = \frac{\text{Code}}{2^n - 1} \times V_{ref}</code></div>
+                <div class="formula-details">
+                    <h5>Parameter Definitions:</h5>
+                    <ul class="formula-vars"><li><code>V</code>: _</li><li><code>V</code>: _</li><li><code>n</code>:  </li><li><code>C</code>: o</li></ul>
+                    <div class="formula-example"><strong>Worked Numerical Example:</strong><br>A 10-bit ADC (2^10 - 1 = 1023) with Vref = 5.0V reads Code = 768. The measured voltage is Vin = (768 / 1023) × 5.0V = 3.7537 Volts.</div>
+                </div>
+            </div>
+            
+            <div class="formula-card">
+                <div class="formula-name">Signal-to-Quantization-Noise Ratio (SQNR)</div>
+                <div class="formula-math"><code>\text{SQNR} = 6.02 \cdot n + 1.76 \quad [\text{dB}]</code></div>
+                <div class="formula-details">
+                    <h5>Parameter Definitions:</h5>
+                    <ul class="formula-vars"><li><code>n</code>:  </li><li><code>S</code>: Q</li></ul>
+                    <div class="formula-example"><strong>Worked Numerical Example:</strong><br>For a 12-bit ADC: SQNR = (6.02 × 12) + 1.76 = 72.24 + 1.76 = 74.0 dB.</div>
+                </div>
+            </div>
+            
+            </div>
+        </section>
+        
+        
+        <section class="topic-section code-section" id="code">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 12]</span> Embedded C Driver & Register Interface</h2>
+                <button class="copy-btn" onclick="copyCodeBlock('codeBlock')">
+                    <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+                    <span>Copy Code</span>
+                </button>
+            </div>
+            <div class="code-container">
+                <pre><code id="codeBlock" class="language-c">// C Code to Convert S32K144 12-bit ADC Code to Scaled Sensor Physical Units
+#include &lt;stdint.h&gt;
+
+float adc_to_temperature_celsius(uint16_t adc_code, float v_ref) {
+    // 1. Convert 12-bit ADC raw code (0-4095) to analog voltage
+    float voltage = ((float)adc_code / 4095.0f) * v_ref;
+    
+    // 2. Linear temperature calibration (e.g., 10 mV / °C with 500 mV offset at 0°C)
+    // Sensor equation: V_out = 0.500V + (0.010V/°C * Temp)
+    float temperature_c = (voltage - 0.500f) / 0.010f;
+    return temperature_c;
+}</code></pre>
+            </div>
+        </section>
+        
+
+        <section class="topic-section" id="must-remember">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 13]</span> Must-Remember Key Points for Exams</h2>
+            </div>
+            <div class="must-remember-card">
+                <ul><li>[KEY] ADC LSB step size: q = V_ref / 2^n (1.22 mV for 12-bit 5V ADC).</li><li>[KEY] SAR ADC resolves n bits in n clock cycles using binary search.</li><li>[KEY] Nyquist theorem: Sampling frequency fs &gt;= 2 * f_max to avoid aliasing.</li><li>[KEY] Anti-aliasing low-pass filter MUST precede the ADC input.</li><li>[KEY] Flash ADC is fastest (1 cycle) but requires 2^n - 1 comparators.</li></ul>
+            </div>
+        </section>
+
+        
+        <div class="callout callout-warning">
+            <div class="callout-header">// COMMON EXAM TRAPS & MISCONCEPTIONS</div>
+            <div class="callout-body">
+                <ul><li><strong>Trap:</strong> Dividing by $2^n - 1$ instead of $2^n$ when calculating LSB step size.</li><li><strong>Trap:</strong> Omission of an anti-aliasing low-pass filter ahead of the ADC. Software filtering CANNOT remove aliasing once the signal is digitized.</li></ul>
+            </div>
+        </div>
+        
+
+        <section class="topic-section" id="exam-questions">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 15]</span> Exam Preparation & Model Questions</h2>
+            </div>
+            <div class="exam-qa-container">
+                
+        <div class="exam-qa-block">
+            <h3>Short Answer Questions (1–2 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> What is the LSB step size and quantization error of a 10-bit ADC operating from a 5.0V reference?</div>
+                <div class="qa-answer">The LSB step size is $q = \frac{5.0\text{ V}}{2^{10}} = \frac{5.0}{1024} = \mathbf{4.88\text{ mV}}$. The maximum quantization error is $\pm 0.5\text{ LSB} = \mathbf{\pm 2.44\text{ mV}}$.</div>
+            </div>
+            
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> State the Nyquist-Shannon Sampling Theorem and explain the consequence of violating it.</div>
+                <div class="qa-answer">The Nyquist-Shannon theorem states that an analog signal must be sampled at a rate $f_s \ge 2 f_{max}$, where $f_{max}$ is the highest frequency present in the signal. Violating this theorem causes high-frequency components to fold back into the lower frequency spectrum as false, distorted frequencies (<strong>Aliasing</strong>).</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Comprehensive Long Answer Questions (5–10 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item long-qa-item">
+                <div class="qa-question"><span class="q-badge">10 MARKS</span> Explain the architecture and complete step-by-step conversion cycle of a Successive Approximation Register (SAR) ADC. For a 4-bit SAR ADC with $V_{ref} = 5.0\text{ V}$ and analog input $V_{in} = 3.2\text{ V}$, trace the comparator decisions and register contents across all 4 clock cycles.</div>
+                <div class="qa-answer">A complete answer covers: (1) Block diagram of SAR ADC (S/H, Comparator, SAR logic, DAC); (2) Step size q = 5.0 / 16 = 0.3125V; (3) Cycle-by-cycle trace: Cycle 1 (Test 1000 = 2.5V: Vin > 2.5V -> Bit3=1), Cycle 2 (Test 1100 = 3.75V: Vin < 3.75V -> Bit2=0), Cycle 3 (Test 1010 = 3.125V: Vin > 3.125V -> Bit1=1), Cycle 4 (Test 1011 = 3.4375V: Vin < 3.4375V -> Bit0=0); (4) Final output binary code = 1010 (Decimal 10, reconstructed voltage 3.125V).</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Viva Voce & Technical Interview Questions</h3>
+            <div class="qa-list">
+            <div class="qa-item viva-qa-item">
+                <div class="qa-question"><span class="q-badge">VIVA / INTERVIEW</span> Why does a Flash ADC become impractical for high resolutions like 16 bits?</div>
+                <div class="qa-answer">A Flash ADC requires $2^n - 1$ physical analog comparators operating in parallel. For an 8-bit Flash ADC, it needs $255$ comparators (feasible). For a 16-bit Flash ADC, it would require $2^{16} - 1 = \mathbf{65,535\text{ analog comparators}}$ on a single die, drawing tens of amperes of current and consuming massive silicon area.</div>
+            </div>
+            </div>
+        </div>
+        
+            </div>
+        </section>
+
+        <section class="topic-section" id="revision-card">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 18]</span> 60-Second Flash / Revision Card</h2>
+            </div>
+            <div class="flashcard">
+                <div class="flashcard-badge">// 60-SECOND REVISION SUMMARY</div>
+                <ul class="flashcard-points"><li>[REV] LSB = V_ref / 2^n.</li><li>[REV] SAR = Binary search, n clock cycles.</li><li>[REV] Nyquist: f_s &gt;= 2 * f_max.</li><li>[REV] Flash ADC = 2^n - 1 comparators (Fastest).</li><li>[REV] SQNR = 6.02 * n + 1.76 dB.</li></ul>
+            </div>
+        </section>
+
+        <section class="topic-section" id="personal-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 19]</span> Personal Study Notes (Auto-Saved)</h2>
+            </div>
+            <div class="personal-notes-widget">
+                <p class="notes-hint">Type personal notes or lab observations below. Content auto-saves to your local browser storage.</p>
+                <textarea id="personalNotePad" class="personal-notes-textarea" placeholder="Type personal study notes here..." oninput="savePersonalNote('analog-to-digital-and-digital-to-analog-converters', this.value)"></textarea>
+                <div class="notes-save-indicator" id="notesSavedTag">✓ Saved locally</div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="sources">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 20]</span> Source Traceability & Curriculum References</h2>
+            </div>
+            <div class="sources-box">
+                <p><strong>Primary Source Reference:</strong> Autotronics Lecture 5 &amp; 6 Transcripts; Course Syllabus Section 6 (Data Acquisition and Conversion).</p>
+            </div>
+        </section>
+
+        <nav class="topic-pagination">
+            <div class="pagination-prev"><a href="operational-amplifiers-in-signal-conditioning.html" class="nav-prev-btn"><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span><span>Previous: Operational Amplifiers &amp; Sensor Signal Conditioning</span></a></div>
+            <div class="pagination-next"><span class="nav-disabled">End of Subject Topics</span></div>
+        </nav>
+    </main>
+</div>
+
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-col brand-col">
+            <div class="footer-brand">
+                <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="footer-bits-logo">
+                <div class="footer-brand-text">
+                    <span class="footer-title">Birla Institute of Technology & Science, Pilani</span>
+                    <span class="footer-sub">Work Integrated Learning Programmes (WILP)</span>
+                </div>
+            </div>
+            <p class="footer-desc">Institutional knowledge base engineered from official lecture transcripts, handouts, and laboratory sessions for M.Tech Automotive Engineering.</p>
+            <div class="footer-tags">
+                <span class="badge badge-info">BITS WILP</span>
+                <span class="badge badge-success">4 Core Courses</span>
+                <span class="badge badge-warning">Exam & Viva Ready</span>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Semester 1 Courses</h4>
+            <ul>
+                <li><a href="../../subjects/automotive-communication.html">Automotive Communication (AELZG513)</a></li>
+                <li><a href="../../subjects/automotive-vehicle.html">Automotive Vehicle (AELZC441)</a></li>
+                <li><a href="../../subjects/autotronics.html">Autotronics (AEZG533)</a></li>
+                <li><a href="../../subjects/embedded-system-design.html">Embedded System Design (AEZG512)</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="../../index.html">Master Portal Home</a></li>
+                <li><a href="../../semesters/sem1.html">Semester 1 Overview & Credits</a></li>
+                <li><a href="javascript:void(0)" onclick="openSearchModal()">Global Topic Search</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-bottom-content">
+            <span>© 2026 M.Tech Automotive Engineering Knowledge Base. Built for High-Performance Academic Study.</span>
+            <span>Birla Institute of Technology & Science, Pilani.</span>
+        </div>
+    </div>
+</footer>
+
+
+<div class="search-modal-overlay" id="searchModal" onclick="closeSearchModal(event)">
+    <div class="search-modal-container" onclick="event.stopPropagation()">
+        <div class="search-modal-header">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <input type="text" id="searchInput" class="search-modal-input" placeholder="Type to search curriculum, formulas, registers, exam questions..." autocomplete="off" oninput="handleSearch(this.value)">
+            <button class="search-modal-close" onclick="closeSearchModal()">&times;</button>
+        </div>
+        <div class="search-modal-filters">
+            <button class="search-filter-btn active" data-subject="all" onclick="setSearchFilter('all')">All Courses</button>
+            <button class="search-filter-btn" data-subject="automotive-communication" onclick="setSearchFilter('automotive-communication')">Communication</button>
+            <button class="search-filter-btn" data-subject="automotive-vehicle" onclick="setSearchFilter('automotive-vehicle')">Vehicle</button>
+            <button class="search-filter-btn" data-subject="autotronics" onclick="setSearchFilter('autotronics')">Autotronics</button>
+            <button class="search-filter-btn" data-subject="embedded-system-design" onclick="setSearchFilter('embedded-system-design')">Embedded</button>
+        </div>
+        <div class="search-modal-results" id="searchResults">
+            <div class="search-empty-state">
+                <span>Start typing to search across 33+ comprehensive M.Tech topics...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../../js/app.js"></script>
+<script src="../../js/search-index.js"></script>
+</body>
+</html>

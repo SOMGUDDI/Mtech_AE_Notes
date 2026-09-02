@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSRC (IEEE 802.11p) vs Cellular V2X (C-V2X / 5G NR) | Automotive Communication Systems</title>
+    <meta name="description" content="The automotive industry and international standards bodies have developed two competing physical/link layer technologies for direct vehicular safety c">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body data-topic-id="dsrc-vs-cv2x" data-subject-id="automotive-communication">
+
+
+<header class="navbar">
+    <div class="navbar-container">
+        <a href="../../index.html" class="nav-brand">
+            <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="nav-brand-logo">
+            <div class="brand-details">
+                <span class="brand-inst">Birla Institute of Technology & Science, Pilani</span>
+                <span class="brand-dept">Work Integrated Learning Programmes • Automotive Engineering</span>
+            </div>
+        </a>
+        <div class="nav-search-box" onclick="openSearchModal()">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <span class="search-placeholder">Search curriculum, formulas, registers, questions...</span>
+            <span class="search-shortcut">Ctrl+K</span>
+        </div>
+        <div class="nav-actions">
+            <a href="../../semesters/sem1.html" class="nav-link">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></span>
+                <span>Semester 1 Hub</span>
+            </a>
+            <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Toggle Theme">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+                <span>Theme</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+
+<div class="topic-page-layout">
+    <aside class="topic-sidebar">
+        <div class="sidebar-header">
+            <a href="../../subjects/automotive-communication.html" class="sidebar-back">
+                <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span>
+                <span>Automotive Communication Systems</span>
+            </a>
+            <div class="sidebar-subject-badge">AELZG513</div>
+        </div>
+        <div class="sidebar-toc">
+            <h4>Table of Contents</h4>
+            <ul>
+                <li><a href="#overview">Quick Overview</a></li>
+                <li><a href="#objectives">Learning Objectives</a></li>
+                <li><a href="#core-concept">Core Concept & Intuition</a></li>
+                <li><a href="#lecture-notes">In-Class Lecture Notes</a></li>
+                <li><a href="#extra-explanation">Comprehensive Theory</a></li>
+                
+                
+                <li><a href="#working-principle">Working Principle</a></li>
+                <li><a href="#application">Automotive Application</a></li>
+                <li><a href="#comparison">Specifications Table</a></li>
+                <li><a href="#formulas">Math Formulas & Numericals</a></li>
+                <li><a href="#code">Embedded Driver / Registers</a></li>
+                <li><a href="#exam-questions">Exam & Viva Q&A</a></li>
+                <li><a href="#revision-card">60-Second Flash Card</a></li>
+                <li><a href="#personal-notes">My Personal Notes</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-progress-widget">
+            <h4>Topic Status</h4>
+            <div class="status-btn-group">
+                <button class="status-btn" id="statusNotStarted" onclick="setTopicStatus('dsrc-vs-cv2x', 'not_started')">☐ Not Started</button>
+                <button class="status-btn" id="statusInProgress" onclick="setTopicStatus('dsrc-vs-cv2x', 'in_progress')">◐ In Progress</button>
+                <button class="status-btn" id="statusCompleted" onclick="setTopicStatus('dsrc-vs-cv2x', 'completed')">☑ Mastered</button>
+            </div>
+            <button class="bookmark-btn" id="bookmarkBtn" onclick="toggleBookmark('dsrc-vs-cv2x')">★ Bookmark for Revision</button>
+        </div>
+    </aside>
+
+    <main class="topic-main-content">
+        <header class="topic-header">
+            <div class="breadcrumbs">
+                <a href="../../index.html">Home</a> / 
+                <a href="../../semesters/sem1.html">Semester 1</a> / 
+                <a href="../../subjects/automotive-communication.html">Automotive Communication Systems</a> / 
+                <span class="curr-crumb">DSRC (IEEE 802.11p) vs Cellular V2X (C-V2X / 5G NR)</span>
+            </div>
+            
+            <div class="topic-meta-row">
+                <span class="meta-pill module-pill">MODULE: Vehicular Communications &amp; V2X</span>
+                <span class="meta-pill level-pill">LEVEL: Intermediate</span>
+                <span class="meta-pill importance-pill">WEIGHT: 5/5</span>
+                <span class="meta-pill code-pill">AELZG513</span>
+            </div>
+
+            <h1 class="topic-main-title">DSRC (IEEE 802.11p) vs Cellular V2X (C-V2X / 5G NR)</h1>
+
+            <div class="action-bar-top">
+                <div class="read-estimate">Estimated Read Time: <strong>12–15 mins</strong></div>
+                <div class="action-buttons-group">
+                    <button class="print-btn" onclick="window.print()" title="Print this complete note page or save as PDF">
+                        <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg></span>
+                        <span>Print / Save PDF</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <section class="topic-section" id="overview">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 01]</span> Quick Overview</h2>
+            </div>
+            <p class="overview-lead">The automotive industry and international standards bodies have developed two competing physical/link layer technologies for direct vehicular safety communications: Dedicated Short-Range Communications (DSRC), based on the mature IEEE 802.11p Wi-Fi standard, and Cellular V2X (C-V2X), standardized by 3GPP starting in Release 14 (LTE-V2X) and evolving into Release 16/17 (5G NR-V2X).</p>
+        </section>
+
+        <section class="topic-section" id="objectives">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 02]</span> Learning Objectives & Prerequisites</h2>
+            </div>
+            <div class="objectives-card">
+                <h5>What You Will Master:</h5>
+                <ul class="objectives-list">
+                    <li>Compare the protocol stacks of IEEE 802.11p (DSRC) and 3GPP C-V2X (PC5 interface).</li><li>Analyze MAC layer mechanisms: CSMA/CA in DSRC vs SC-FDMA / Mode 4 autonomous scheduling in C-V2X.</li><li>Understand why C-V2X provides superior link budget, longer transmission range, and higher reliability in dense traffic.</li><li>Examine the evolutionary path from LTE-V2X to 5G NR-V2X for advanced autonomous driving use cases.</li>
+                </ul>
+                <div class="prereq-note">
+                    <strong>Prerequisites:</strong> V2X Communication Overview, fundamentals of wireless MAC layers and CSMA/CA.
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="core-concept">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 03]</span> Core Concept & Physical Intuition</h2>
+            </div>
+            <div class="concept-body">
+                <p>DSRC operates like an ad-hoc Wi-Fi network (no router, no handshake); nodes listen before talking (CSMA/CA). In low traffic, DSRC has virtually zero delay. However, when hundreds of vehicles jam an intersection, packet collisions multiply and latency spikes. C-V2X uses cellular physical layer techniques (SC-FDMA modulation and semi-persistent scheduling in Mode 4) where vehicles autonomously reserve periodic time-frequency resource blocks, maintaining high throughput and deterministic latency even in dense traffic.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="lecture-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 04]</span> In-Class Lecture Transcript Breakdown</h2>
+            </div>
+            <div class="callout callout-lecture">
+                <div class="callout-header">// LECTURE TRANSCRIPT SYNTHESIS</div>
+                <div class="callout-body">
+                    <p>In Lecture 3, the instructor explicitly compared DSRC and C-V2X across range, latency, and standard maturity. The professor noted: &#x27;DSRC has been tested for 15+ years based on the robust 802.11p standard with 10 MHz channels, achieving ranges around 200–300 m. However, 3GPP C-V2X leverages modern turbo/LDPC coding, better receiver sensitivity, and can operate directly between vehicles via the PC5 interface without requiring a SIM card or base station.&#x27; The lecture stressed that C-V2X Release 14/15 provides backwards-compatible evolution towards 5G NR-V2X.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="extra-explanation">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 05]</span> Rigorous Engineering Theory & Derivations</h2>
+            </div>
+            <div class="callout callout-deep">
+                <div class="callout-header">// RIGOROUS ENGINEERING THEORY</div>
+                <div class="callout-body">
+                    <p>Let&#x27;s examine the detailed technical differences:
+1. **IEEE 802.11p / DSRC:**
+   - Physical layer derived from IEEE 802.11a, clocked down to 10 MHz channel bandwidth (instead of 20 MHz) to double the guard interval (1.6 μs) and handle larger multipath delay spreads in outdoor vehicular environments.
+   - MAC uses Enhanced Distributed Channel Access (EDCA) with CSMA/CA. It suffers from the &#x27;hidden node problem&#x27; and packet collisions under heavy traffic density.
+2. **3GPP C-V2X (PC5 Sidelink):**
+   - Operates in two primary modes:
+     - **Mode 3 (Network-Assisted):** The cellular base station (eNB/gNB) centrally schedules time-frequency resource blocks for vehicle transmissions.
+     - **Mode 4 (Autonomous / Direct):** Vehicles autonomously select and reserve periodic radio resource blocks using a **Sensing-Based Semi-Persistent Scheduling (SPS)** algorithm without any cellular coverage required.
+   - Provides ~4 dB higher link budget than 802.11p, extending operational range up to 800–1000 meters.</p>
+                </div>
+            </div>
+        </section>
+
+        
+        
+
+        <section class="topic-section" id="working-principle">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 08]</span> Step-by-Step Operational Principle</h2>
+            </div>
+            <div class="principle-body">
+                <p>In C-V2X Mode 4 (Direct Autonomous Sidelink):
+1. The channel is divided into sub-frames (1 ms duration) and sub-channels (frequency resource block groups).
+2. The transmitting vehicle maintains a sensing window of the past 1000 ms, measuring the energy level (RSSI) on each sub-channel.
+3. When a transmission is required, the vehicle excludes all resources occupied by other vehicles with high RSRP.
+4. From the remaining lowest-energy candidate resources (top 20%), the vehicle randomly selects one resource and sets a &#x27;reselection counter&#x27; (typically 5 to 15).
+5. It reuses this exact time-frequency slot for successive packets, signaling its future reservation in the Sidelink Control Information (SCI) header.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="application">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 09]</span> Real Automotive Application</h2>
+            </div>
+            <div class="callout callout-application">
+                <div class="callout-header">// AUTOMOTIVE OEM CASE STUDY</div>
+                <div class="callout-body">
+                    <p></p>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="topic-section table-section" id="comparison">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 10]</span> Technical Specifications & Benchmarks</h2>
+            </div>
+            <div class="table-responsive">
+                <table class="specs-table">
+                    <thead><tr><th>Key Feature / Metric</th><th>DSRC (IEEE 802.11p)</th><th>C-V2X (LTE Rel 14)</th><th>5G NR-V2X (Rel 16/17)</th></tr></thead>
+                    <tbody><tr><td>Standardization Body</td><td>IEEE / SAE</td><td>3GPP</td><td>3GPP</td></tr><tr><td>Physical Layer</td><td>OFDM (64 subcarriers)</td><td>SC-FDMA</td><td>CP-OFDM / DFT-s-OFDM</td></tr><tr><td>Channel Bandwidth</td><td>10 MHz</td><td>10 or 20 MHz</td><td>Up to 100 MHz</td></tr><tr><td>MAC Layer Mechanism</td><td>CSMA/CA (Contention-based)</td><td>SPS Mode 4 (Reservation)</td><td>Enhanced SPS + Dynamic Grant</td></tr><tr><td>Typical LOS Range</td><td>200 m – 300 m</td><td>500 m – 800 m</td><td>800 m – 1200 m</td></tr><tr><td>Receiver Sensitivity</td><td>~ -85 dBm</td><td>~ -93 dBm (Better link budget)</td><td>~ -96 dBm</td></tr><tr><td>Performance in Heavy Congestion</td><td>Degrades due to packet collisions</td><td>Stable (Deterministic resource slots)</td><td>Ultra-deterministic (URLLC grade)</td></tr><tr><td>Cellular Network Dependency</td><td>None (Always autonomous)</td><td>None for Mode 4 (Direct PC5)</td><td>None for direct sidelink</td></tr></tbody>
+                </table>
+            </div>
+        </section>
+        
+        
+        <section class="topic-section formulas-section" id="formulas">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 11]</span> Mathematical Formulas & Numerical Breakdown</h2>
+            </div>
+            <div class="formulas-grid">
+                
+            <div class="formula-card">
+                <div class="formula-name">Link Budget &amp; Path Loss Advantage</div>
+                <div class="formula-math"><code>P_{rx} = P_{tx} + G_{tx} + G_{rx} - PL(d) \ge S_{rx}</code></div>
+                <div class="formula-details">
+                    <h5>Parameter Definitions:</h5>
+                    <ul class="formula-vars"><li><code>P</code>: _</li><li><code>P</code>: _</li><li><code>G</code>: _</li><li><code>P</code>: L</li><li><code>S</code>: _</li></ul>
+                    <div class="formula-example"><strong>Worked Numerical Example:</strong><br>With C-V2X receiver sensitivity S_rx = -93 dBm vs DSRC S_rx = -85 dBm, C-V2X has an 8 dB link margin advantage. In free space (where path loss increases by 6 dB every time distance doubles), an 8 dB gain more than doubles the effective operational range.</div>
+                </div>
+            </div>
+            
+            </div>
+        </section>
+        
+        
+        <section class="topic-section code-section" id="code">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 12]</span> Embedded C Driver & Register Interface</h2>
+                <button class="copy-btn" onclick="copyCodeBlock('codeBlock')">
+                    <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+                    <span>Copy Code</span>
+                </button>
+            </div>
+            <div class="code-container">
+                <pre><code id="codeBlock" class="language-c">// Simplified Logic of Sensing-Based Semi-Persistent Scheduling (Mode 4 SPS)
+#define SENSING_WINDOW_MS 1000
+#define CANDIDATE_RATIO   0.20
+
+int select_optimal_sidelink_resource(RadioChannelState_t* channels, int num_slots) {
+    float energy_levels[num_slots];
+    int available_count = 0;
+    
+    for(int i = 0; i &lt; num_slots; i++) {
+        energy_levels[i] = compute_average_rsrp(channels[i], SENSING_WINDOW_MS);
+    }
+    
+    int best_candidates[num_slots];
+    sort_lowest_energy_slots(energy_levels, best_candidates, &amp;available_count);
+    int top_pool_size = (int)(available_count * CANDIDATE_RATIO);
+    
+    int chosen_slot = best_candidates[rand() % top_pool_size];
+    return chosen_slot;
+}</code></pre>
+            </div>
+        </section>
+        
+
+        <section class="topic-section" id="must-remember">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 13]</span> Must-Remember Key Points for Exams</h2>
+            </div>
+            <div class="must-remember-card">
+                <ul><li>[KEY] DSRC is based on IEEE 802.11p with CSMA/CA; C-V2X is based on 3GPP with SC-FDMA and Mode 4 SPS.</li><li>[KEY] C-V2X direct mode (PC5) operates completely autonomously without needing a base station or SIM card.</li><li>[KEY] C-V2X provides approximately 4 to 8 dB better receiver sensitivity, resulting in 2x greater range than 802.11p.</li><li>[KEY] 5G NR-V2X (Release 16) supports advanced use cases: platooning, sensor sharing, and remote driving.</li></ul>
+            </div>
+        </section>
+
+        
+        <div class="callout callout-warning">
+            <div class="callout-header">// COMMON EXAM TRAPS & MISCONCEPTIONS</div>
+            <div class="callout-body">
+                <ul><li><strong>Trap:</strong> Assuming C-V2X is just 4G/5G mobile internet. C-V2X has two distinct modes: Cellular Network Uu (V2N) and Direct Sidelink PC5 (V2V/V2I). Direct PC5 does not use towers or carrier networks.</li><li><strong>Trap:</strong> Believing DSRC has higher range. In practice, DSRC has lower receiver sensitivity (-85 dBm) compared to C-V2X (-93 dBm), giving C-V2X greater range.</li></ul>
+            </div>
+        </div>
+        
+
+        <section class="topic-section" id="exam-questions">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 15]</span> Exam Preparation & Model Questions</h2>
+            </div>
+            <div class="exam-qa-container">
+                
+        <div class="exam-qa-block">
+            <h3>Short Answer Questions (1–2 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> Why does C-V2X Mode 4 perform better than DSRC in dense vehicular traffic?</div>
+                <div class="qa-answer">DSRC relies on CSMA/CA contention where multiple nodes transmit simultaneously, causing collision storms and packet drops. C-V2X Mode 4 uses Sensing-Based Semi-Persistent Scheduling to reserve dedicated periodic time-frequency slots, eliminating destructive packet collisions.</div>
+            </div>
+            
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> Does C-V2X direct communication require a cellular SIM card or tower coverage?</div>
+                <div class="qa-answer">No. Direct C-V2X communication occurs over the PC5 sidelink interface in the 5.9 GHz ITS band and operates autonomously without any cellular network infrastructure or active SIM card subscription.</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Comprehensive Long Answer Questions (5–10 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item long-qa-item">
+                <div class="qa-question"><span class="q-badge">10 MARKS</span> Provide an exhaustive comparison between DSRC (IEEE 802.11p) and C-V2X (3GPP Release 14/16), analyzing PHY/MAC layers, link budgets, and congestion handling mechanisms.</div>
+                <div class="qa-answer">A complete answer covers: (1) Origin and standardization history; (2) Detailed protocol stacks; (3) PHY layer comparison (OFDM 10 MHz vs SC-FDMA / CP-OFDM); (4) MAC layer comparison (CSMA/CA vs Mode 4 SPS); (5) Link budget calculation and range differences; (6) Detailed comparison table; (7) Real automotive application (truck platooning).</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Viva Voce & Technical Interview Questions</h3>
+            <div class="qa-list">
+            <div class="qa-item viva-qa-item">
+                <div class="qa-question"><span class="q-badge">VIVA / INTERVIEW</span> What modification was made to standard Wi-Fi (802.11a) to create IEEE 802.11p for vehicular environments?</div>
+                <div class="qa-answer">The channel bandwidth was halved from 20 MHz to 10 MHz. This doubles all OFDM timing parameters (symbol duration from 4 μs to 8 μs, guard interval from 0.8 μs to 1.6 μs), enabling the receiver to tolerate the large multipath delay spreads (up to 1.6 μs) encountered on highways without inter-symbol interference (ISI).</div>
+            </div>
+            </div>
+        </div>
+        
+            </div>
+        </section>
+
+        <section class="topic-section" id="revision-card">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 18]</span> 60-Second Flash / Revision Card</h2>
+            </div>
+            <div class="flashcard">
+                <div class="flashcard-badge">// 60-SECOND REVISION SUMMARY</div>
+                <ul class="flashcard-points"><li>[REV] DSRC = IEEE 802.11p + 1609 WAVE stack + CSMA/CA.</li><li>[REV] C-V2X = 3GPP Rel 14 (LTE-V2X) &amp; Rel 16 (5G NR-V2X) + PC5 Sidelink + Mode 4 SPS.</li><li>[REV] C-V2X offers higher link budget (~4-8 dB gain) and better dense-traffic scalability.</li><li>[REV] Direct V2V safety communication operates at 5.9 GHz for both standards.</li></ul>
+            </div>
+        </section>
+
+        <section class="topic-section" id="personal-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 19]</span> Personal Study Notes (Auto-Saved)</h2>
+            </div>
+            <div class="personal-notes-widget">
+                <p class="notes-hint">Type personal notes or lab observations below. Content auto-saves to your local browser storage.</p>
+                <textarea id="personalNotePad" class="personal-notes-textarea" placeholder="Type personal study notes here..." oninput="savePersonalNote('dsrc-vs-cv2x', this.value)"></textarea>
+                <div class="notes-save-indicator" id="notesSavedTag">✓ Saved locally</div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="sources">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 20]</span> Source Traceability & Curriculum References</h2>
+            </div>
+            <div class="sources-box">
+                <p><strong>Primary Source Reference:</strong> Automotive Communication Systems Lecture 3 Transcript; Syllabus Section 1 (DSRC, C-V2X, and IEEE 802.11p standards).</p>
+            </div>
+        </section>
+
+        <nav class="topic-pagination">
+            <div class="pagination-prev"><a href="v2x-overview.html" class="nav-prev-btn"><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span><span>Previous: V2X Communication Overview &amp; Cooperative ITS</span></a></div>
+            <div class="pagination-next"><a href="wireless-channel-propagation.html" class="nav-next-btn"><span>Next: Wireless Channel Propagation &amp; Large-Scale Fading</span><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span></a></div>
+        </nav>
+    </main>
+</div>
+
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-col brand-col">
+            <div class="footer-brand">
+                <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="footer-bits-logo">
+                <div class="footer-brand-text">
+                    <span class="footer-title">Birla Institute of Technology & Science, Pilani</span>
+                    <span class="footer-sub">Work Integrated Learning Programmes (WILP)</span>
+                </div>
+            </div>
+            <p class="footer-desc">Institutional knowledge base engineered from official lecture transcripts, handouts, and laboratory sessions for M.Tech Automotive Engineering.</p>
+            <div class="footer-tags">
+                <span class="badge badge-info">BITS WILP</span>
+                <span class="badge badge-success">4 Core Courses</span>
+                <span class="badge badge-warning">Exam & Viva Ready</span>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Semester 1 Courses</h4>
+            <ul>
+                <li><a href="../../subjects/automotive-communication.html">Automotive Communication (AELZG513)</a></li>
+                <li><a href="../../subjects/automotive-vehicle.html">Automotive Vehicle (AELZC441)</a></li>
+                <li><a href="../../subjects/autotronics.html">Autotronics (AEZG533)</a></li>
+                <li><a href="../../subjects/embedded-system-design.html">Embedded System Design (AEZG512)</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="../../index.html">Master Portal Home</a></li>
+                <li><a href="../../semesters/sem1.html">Semester 1 Overview & Credits</a></li>
+                <li><a href="javascript:void(0)" onclick="openSearchModal()">Global Topic Search</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-bottom-content">
+            <span>© 2026 M.Tech Automotive Engineering Knowledge Base. Built for High-Performance Academic Study.</span>
+            <span>Birla Institute of Technology & Science, Pilani.</span>
+        </div>
+    </div>
+</footer>
+
+
+<div class="search-modal-overlay" id="searchModal" onclick="closeSearchModal(event)">
+    <div class="search-modal-container" onclick="event.stopPropagation()">
+        <div class="search-modal-header">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <input type="text" id="searchInput" class="search-modal-input" placeholder="Type to search curriculum, formulas, registers, exam questions..." autocomplete="off" oninput="handleSearch(this.value)">
+            <button class="search-modal-close" onclick="closeSearchModal()">&times;</button>
+        </div>
+        <div class="search-modal-filters">
+            <button class="search-filter-btn active" data-subject="all" onclick="setSearchFilter('all')">All Courses</button>
+            <button class="search-filter-btn" data-subject="automotive-communication" onclick="setSearchFilter('automotive-communication')">Communication</button>
+            <button class="search-filter-btn" data-subject="automotive-vehicle" onclick="setSearchFilter('automotive-vehicle')">Vehicle</button>
+            <button class="search-filter-btn" data-subject="autotronics" onclick="setSearchFilter('autotronics')">Autotronics</button>
+            <button class="search-filter-btn" data-subject="embedded-system-design" onclick="setSearchFilter('embedded-system-design')">Embedded</button>
+        </div>
+        <div class="search-modal-results" id="searchResults">
+            <div class="search-empty-state">
+                <span>Start typing to search across 33+ comprehensive M.Tech topics...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../../js/app.js"></script>
+<script src="../../js/search-index.js"></script>
+</body>
+</html>

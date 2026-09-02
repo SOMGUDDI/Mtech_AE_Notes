@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EV Powertrains: Traction Motors, Inverters &amp; Battery Packs | Automotive Vehicle</title>
+    <meta name="description" content="Electric vehicle powertrains replace internal combustion engines and multi-speed gearboxes with three core high-voltage mechatronic subsystems: the Hi">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body data-topic-id="ev-motors-inverters-battery-packs" data-subject-id="automotive-vehicle">
+
+
+<header class="navbar">
+    <div class="navbar-container">
+        <a href="../../index.html" class="nav-brand">
+            <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="nav-brand-logo">
+            <div class="brand-details">
+                <span class="brand-inst">Birla Institute of Technology & Science, Pilani</span>
+                <span class="brand-dept">Work Integrated Learning Programmes • Automotive Engineering</span>
+            </div>
+        </a>
+        <div class="nav-search-box" onclick="openSearchModal()">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <span class="search-placeholder">Search curriculum, formulas, registers, questions...</span>
+            <span class="search-shortcut">Ctrl+K</span>
+        </div>
+        <div class="nav-actions">
+            <a href="../../semesters/sem1.html" class="nav-link">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></span>
+                <span>Semester 1 Hub</span>
+            </a>
+            <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Toggle Theme">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+                <span>Theme</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+
+<div class="topic-page-layout">
+    <aside class="topic-sidebar">
+        <div class="sidebar-header">
+            <a href="../../subjects/automotive-vehicle.html" class="sidebar-back">
+                <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span>
+                <span>Automotive Vehicle</span>
+            </a>
+            <div class="sidebar-subject-badge">AELZC441</div>
+        </div>
+        <div class="sidebar-toc">
+            <h4>Table of Contents</h4>
+            <ul>
+                <li><a href="#overview">Quick Overview</a></li>
+                <li><a href="#objectives">Learning Objectives</a></li>
+                <li><a href="#core-concept">Core Concept & Intuition</a></li>
+                <li><a href="#lecture-notes">In-Class Lecture Notes</a></li>
+                <li><a href="#extra-explanation">Comprehensive Theory</a></li>
+                
+                
+                <li><a href="#working-principle">Working Principle</a></li>
+                <li><a href="#application">Automotive Application</a></li>
+                <li><a href="#comparison">Specifications Table</a></li>
+                <li><a href="#formulas">Math Formulas & Numericals</a></li>
+                <li><a href="#code">Embedded Driver / Registers</a></li>
+                <li><a href="#exam-questions">Exam & Viva Q&A</a></li>
+                <li><a href="#revision-card">60-Second Flash Card</a></li>
+                <li><a href="#personal-notes">My Personal Notes</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-progress-widget">
+            <h4>Topic Status</h4>
+            <div class="status-btn-group">
+                <button class="status-btn" id="statusNotStarted" onclick="setTopicStatus('ev-motors-inverters-battery-packs', 'not_started')">☐ Not Started</button>
+                <button class="status-btn" id="statusInProgress" onclick="setTopicStatus('ev-motors-inverters-battery-packs', 'in_progress')">◐ In Progress</button>
+                <button class="status-btn" id="statusCompleted" onclick="setTopicStatus('ev-motors-inverters-battery-packs', 'completed')">☑ Mastered</button>
+            </div>
+            <button class="bookmark-btn" id="bookmarkBtn" onclick="toggleBookmark('ev-motors-inverters-battery-packs')">★ Bookmark for Revision</button>
+        </div>
+    </aside>
+
+    <main class="topic-main-content">
+        <header class="topic-header">
+            <div class="breadcrumbs">
+                <a href="../../index.html">Home</a> / 
+                <a href="../../semesters/sem1.html">Semester 1</a> / 
+                <a href="../../subjects/automotive-vehicle.html">Automotive Vehicle</a> / 
+                <span class="curr-crumb">EV Powertrains: Traction Motors, Inverters &amp; Battery Packs</span>
+            </div>
+            
+            <div class="topic-meta-row">
+                <span class="meta-pill module-pill">MODULE: Electric &amp; Hybrid Vehicles</span>
+                <span class="meta-pill level-pill">LEVEL: Advanced</span>
+                <span class="meta-pill importance-pill">WEIGHT: 5/5</span>
+                <span class="meta-pill code-pill">AELZC441</span>
+            </div>
+
+            <h1 class="topic-main-title">EV Powertrains: Traction Motors, Inverters &amp; Battery Packs</h1>
+
+            <div class="action-bar-top">
+                <div class="read-estimate">Estimated Read Time: <strong>12–15 mins</strong></div>
+                <div class="action-buttons-group">
+                    <button class="print-btn" onclick="window.print()" title="Print this complete note page or save as PDF">
+                        <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg></span>
+                        <span>Print / Save PDF</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <section class="topic-section" id="overview">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 01]</span> Quick Overview</h2>
+            </div>
+            <p class="overview-lead">Electric vehicle powertrains replace internal combustion engines and multi-speed gearboxes with three core high-voltage mechatronic subsystems: the High-Voltage Traction Battery Pack (Li-Ion NMC/LFP), the 3-Phase Traction Inverter (IGBT / Silicon Carbide SiC MOSFETs), and the Traction Electric Motor (Permanent Magnet Synchronous Motor PMSM or AC Induction Motor ACIM).</p>
+        </section>
+
+        <section class="topic-section" id="objectives">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 02]</span> Learning Objectives & Prerequisites</h2>
+            </div>
+            <div class="objectives-card">
+                <h5>What You Will Master:</h5>
+                <ul class="objectives-list">
+                    <li>Compare EV motor topologies: Permanent Magnet Synchronous Motors (PMSM) vs AC Induction Motors (ACIM).</li><li>Explain 3-Phase Inverter architecture and Space Vector Pulse Width Modulation (SVPWM).</li><li>Analyze Lithium-Ion battery cell chemistry (NMC vs LFP), C-Rate, State of Charge (SOC), and State of Health (SOH).</li><li>Understand High-Voltage Battery Management Systems (BMS): Cell balancing, thermal runaway prevention, and pre-charge contactor sequencing.</li>
+                </ul>
+                <div class="prereq-note">
+                    <strong>Prerequisites:</strong> Automotive Systems Signal Flow, Transistors &amp; Power Electronics, Tractive Force.
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="core-concept">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 03]</span> Core Concept & Physical Intuition</h2>
+            </div>
+            <div class="concept-body">
+                <p>In an EV, DC chemical energy stored in thousands of battery cells (~400V or 800V) flows through heavy copper busbars to the Inverter. The inverter acts as an ultra-high-speed electronic commutator, switching 6 silicon carbide MOSFETs thousands of times per second to synthesize smooth 3-phase sinusoidal AC currents that generate a rotating magnetic field in the motor stator, pulling the rotor with immense electromagnetic torque.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="lecture-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 04]</span> In-Class Lecture Transcript Breakdown</h2>
+            </div>
+            <div class="callout callout-lecture">
+                <div class="callout-header">// LECTURE TRANSCRIPT SYNTHESIS</div>
+                <div class="callout-body">
+                    <p>Lecture 2 and 3 covered EV powertrains. The professor emphasized: &#x27;EVs decouple mechanical speed from torque using variable-frequency inverter control. Unlike an engine that must reach 4000 RPM to develop peak torque, a PMSM electric motor produces maximum torque from 0 RPM.&#x27; The lecturer analyzed 400V vs 800V architectures, explaining how doubling bus voltage halves current ($I = P/V$), which reduces cable $I^2 R$ heat losses by 75% and enables 350 kW ultra-fast DC charging.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="extra-explanation">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 05]</span> Rigorous Engineering Theory & Derivations</h2>
+            </div>
+            <div class="callout callout-deep">
+                <div class="callout-header">// RIGOROUS ENGINEERING THEORY</div>
+                <div class="callout-body">
+                    <p>Let&#x27;s analyze the three core EV subsystems:
+
+1. **Traction Electric Motors:**
+   - **PMSM (Permanent Magnet Synchronous Motor):** Rotor contains NdFeB permanent magnets. Offers highest power density ($&gt; 4\text{ kW/kg}$) and peak efficiency ($&gt; 97\%$). Dominant in modern passenger EVs.
+   - **ACIM (AC Induction Motor):** Rotor uses copper/aluminum squirrel cage bars; rotor field is induced magnetically. Zero rare-earth magnets, low cost, excellent high-speed freewheeling efficiency.
+
+2. **3-Phase Inverter &amp; Power Electronics:**
+   - Consists of 6 power switches in a 3-leg bridge configuration.
+   - Modern 800V EVs use **Silicon Carbide (SiC) Wide-Bandgap MOSFETs**, which switch at 20–50 kHz with 70% lower switching losses than traditional silicon IGBTs.
+
+3. **Traction Battery Pack &amp; Battery Management System (BMS):**
+   - **NMC (Nickel Manganese Cobalt):** High energy density ($250\text{ Wh/kg}$), excellent range, higher thermal runaway risk ($&gt; 210^\circ\text{C}$).
+   - **LFP (Lithium Iron Phosphate):** Lower energy density ($160\text{ Wh/kg}$), ultra-safe ($270^\circ\text{C}$ thermal stability), 3000+ deep charge cycles, lower cost.
+   - **C-Rate:** Measure of charge/discharge speed. $1\text{C}$ discharges a $75\text{ kWh}$ battery in 1 hour ($75\text{ kW}$); $4\text{C}$ DC fast charging charges it in 15 minutes ($300\text{ kW}$).</p>
+                </div>
+            </div>
+        </section>
+
+        
+        
+
+        <section class="topic-section" id="working-principle">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 08]</span> Step-by-Step Operational Principle</h2>
+            </div>
+            <div class="principle-body">
+                <p>High-Voltage Pre-Charge Contactor Sequence:
+The inverter contains massive DC bus smoothing capacitors ($C_{bus} \approx 1000\ \mu\text{F}$). If the main $400\text{V}$ battery contactor closed directly, the uncharged capacitor would act as a dead short circuit, pulling an inrush current of $I = \frac{400\text{V}}{0.05\ \Omega} = \mathbf{8000\text{ Amperes}}$, welding the contactor shut and blowing fuses. The BMS sequences a **Pre-charge Relay** with a $50\ \Omega$ resistor in series for $200\text{ ms}$ to gently charge the DC bus to 95% voltage before closing the main high-current contactor.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="application">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 09]</span> Real Automotive Application</h2>
+            </div>
+            <div class="callout callout-application">
+                <div class="callout-header">// AUTOMOTIVE OEM CASE STUDY</div>
+                <div class="callout-body">
+                    <p></p>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="topic-section table-section" id="comparison">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 10]</span> Technical Specifications & Benchmarks</h2>
+            </div>
+            <div class="table-responsive">
+                <table class="specs-table">
+                    <thead><tr><th>Subsystem / Parameter</th><th>PMSM Traction Motor</th><th>AC Induction Motor (ACIM)</th><th>IC Engine Powertrain</th></tr></thead>
+                    <tbody><tr><td>Peak Efficiency</td><td>96% to 97.5% (Extremely high)</td><td>93% to 95%</td><td>32% to 40% (Thermodynamically limited)</td></tr><tr><td>Power Density</td><td>4.0 to 6.0 kW/kg (Compact)</td><td>2.5 to 3.5 kW/kg</td><td>0.8 to 1.5 kW/kg</td></tr><tr><td>Rotor Construction</td><td>Neodymium Permanent Magnets (NdFeB)</td><td>Copper/Aluminum Squirrel Cage</td><td>Pistons, Crankshaft, Connecting rods</td></tr><tr><td>Max Operating Speed</td><td>16,000 to 20,000 RPM</td><td>14,000 to 18,000 RPM</td><td>6,000 to 7,000 RPM</td></tr><tr><td>Zero-RPM Torque</td><td>100% Maximum Instant Torque</td><td>100% Maximum Instant Torque</td><td>0 Nm (Stalls without clutch slip)</td></tr></tbody>
+                </table>
+            </div>
+        </section>
+        
+        
+        <section class="topic-section formulas-section" id="formulas">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 11]</span> Mathematical Formulas & Numerical Breakdown</h2>
+            </div>
+            <div class="formulas-grid">
+                
+            <div class="formula-card">
+                <div class="formula-name">Battery Pack Capacity and Range Energy Calculation</div>
+                <div class="formula-math"><code>E_{pack} = N_s \times N_p \times V_{cell,nom} \times C_{cell} \quad [\text{Wh}]</code></div>
+                <div class="formula-details">
+                    <h5>Parameter Definitions:</h5>
+                    <ul class="formula-vars"><li><code>N</code>: _</li><li><code>N</code>: _</li><li><code>V</code>: _</li><li><code>C</code>: _</li></ul>
+                    <div class="formula-example"><strong>Worked Numerical Example:</strong><br>A pack has 96S 4P configuration with 3.7V 50Ah NMC cells. Pack Voltage = 96 × 3.7V = 355.2 V. Pack Ah = 4 × 50Ah = 200 Ah. Total Energy = 355.2V × 200Ah = 71,040 Wh = 71.04 kWh.</div>
+                </div>
+            </div>
+            
+            </div>
+        </section>
+        
+        
+        <section class="topic-section code-section" id="code">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 12]</span> Embedded C Driver & Register Interface</h2>
+                <button class="copy-btn" onclick="copyCodeBlock('codeBlock')">
+                    <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+                    <span>Copy Code</span>
+                </button>
+            </div>
+            <div class="code-container">
+                <pre><code id="codeBlock" class="language-c">// Python EV Battery Pack Sizing and Inrush Current Calculator
+def size_ev_battery(target_kwh=75.0, cell_voltage=3.7, cell_ah=50.0, nominal_pack_v=400.0):
+    n_series = int(nominal_pack_v / cell_voltage)
+    actual_pack_v = n_series * cell_voltage
+    
+    total_ah_needed = (target_kwh * 1000.0) / actual_pack_v
+    n_parallel = int(round(total_ah_needed / cell_ah))
+    
+    actual_kwh = (n_series * actual_pack_v * cell_ah * n_parallel) / (n_series * 1000.0)
+    
+    print(f&quot;EV Battery Architecture: {n_series}S {n_parallel}P&quot;)
+    print(f&quot;  Nominal Voltage : {actual_pack_v:.1f} V&quot;)
+    print(f&quot;  Total Capacity  : {n_parallel * cell_ah:.1f} Ah&quot;)
+    print(f&quot;  Energy Stored   : {actual_kwh:.2f} kWh&quot;)
+    print(f&quot;  Total Cells     : {n_series * n_parallel} individual cells&quot;)
+
+size_ev_battery(target_kwh=75.0)</code></pre>
+            </div>
+        </section>
+        
+
+        <section class="topic-section" id="must-remember">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 13]</span> Must-Remember Key Points for Exams</h2>
+            </div>
+            <div class="must-remember-card">
+                <ul><li>[KEY] EV powertrain = Battery Pack (DC) + 3-Phase Inverter + AC Electric Traction Motor.</li><li>[KEY] PMSM offers highest efficiency (&gt;97%) and power density using NdFeB rotor magnets.</li><li>[KEY] 800V architectures halve current (I = P/V), reducing I^2 R heat losses by 75% for 350kW charging.</li><li>[KEY] BMS pre-charge sequencing prevents 8000A inrush current from destroying inverter capacitors.</li></ul>
+            </div>
+        </section>
+
+        
+        <div class="callout callout-warning">
+            <div class="callout-header">// COMMON EXAM TRAPS & MISCONCEPTIONS</div>
+            <div class="callout-body">
+                <ul><li><strong>Trap:</strong> Assuming an EV motor uses DC electricity directly from the battery. Traction motors are almost universally **3-Phase AC motors** driven by an electronic inverter.</li><li><strong>Trap:</strong> Confusing Battery Power (kW) with Battery Energy Capacity (kWh). kW is instantaneous power (acceleration rate); kWh is energy volume (total driving range).</li></ul>
+            </div>
+        </div>
+        
+
+        <section class="topic-section" id="exam-questions">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 15]</span> Exam Preparation & Model Questions</h2>
+            </div>
+            <div class="exam-qa-container">
+                
+        <div class="exam-qa-block">
+            <h3>Short Answer Questions (1–2 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> Why are 800V battery architectures rapidly replacing 400V systems in modern premium EVs?</div>
+                <div class="qa-answer">Operating at 800V delivers the same electric power ($P = V \cdot I$) with half the current ($I$). Halving current reduces Joule heating losses ($I^2 R$) in wiring harnesses and battery cells by <strong>75%</strong>, allows thinner and lighter copper cables, and enables 350 kW DC ultra-fast charging (10% to 80% in 18 minutes).</div>
+            </div>
+            
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> What is the difference between active and passive cell balancing in a Battery Management System (BMS)?</div>
+                <div class="qa-answer">Passive balancing bleeds off excess energy from higher-voltage cells as waste heat through parallel bypass resistors. Active balancing uses bidirectional DC-DC inductive/capacitive converters to shuttle energy from higher-voltage cells into weaker cells without wasting energy as heat.</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Comprehensive Long Answer Questions (5–10 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item long-qa-item">
+                <div class="qa-question"><span class="q-badge">10 MARKS</span> Explain the architecture, power flow, and component interactions of an Electric Vehicle powertrain from high-voltage battery to driven wheels. Include the 3-phase inverter bridge, PMSM motor operation, and the BMS pre-charge sequencing procedure.</div>
+                <div class="qa-answer">A complete answer covers: (1) System topology diagram connecting battery, BMS, DC bus, 3-phase inverter, motor, and reduction gear; (2) Detailed operation of PMSM and Space Vector PWM; (3) NMC vs LFP cell chemistries; (4) Pre-charge contactor timing sequence and inrush current calculation; (5) Regenerative braking energy recovery mechanism.</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Viva Voce & Technical Interview Questions</h3>
+            <div class="qa-list">
+            <div class="qa-item viva-qa-item">
+                <div class="qa-question"><span class="q-badge">VIVA / INTERVIEW</span> What is &#x27;Thermal Runaway&#x27; in a Lithium-Ion battery and how does a modern automotive BMS mitigate it?</div>
+                <div class="qa-answer">Thermal runaway is an uncontrollable exothermic self-heating chain reaction that occurs when internal cell temperature exceeds ~150°C (due to internal short, overcharging, or physical puncture). The separator melts, releasing oxygen from the cathode, causing rapid fire and venting. The BMS mitigates this via continuous millivolt cell monitoring, liquid glycol cooling plates, pyrotechnic battery disconnect fuses, and aerogel thermal barrier blankets between cells.</div>
+            </div>
+            </div>
+        </div>
+        
+            </div>
+        </section>
+
+        <section class="topic-section" id="revision-card">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 18]</span> 60-Second Flash / Revision Card</h2>
+            </div>
+            <div class="flashcard">
+                <div class="flashcard-badge">// 60-SECOND REVISION SUMMARY</div>
+                <ul class="flashcard-points"><li>[REV] Battery (DC) -&gt; Inverter (SVPWM) -&gt; Motor (3-Phase AC).</li><li>[REV] PMSM = Permanent Magnets, 97% peak efficiency.</li><li>[REV] 800V = 50% current, 75% less I^2 R heat.</li><li>[REV] Pre-charge resistor prevents capacitor inrush damage.</li></ul>
+            </div>
+        </section>
+
+        <section class="topic-section" id="personal-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 19]</span> Personal Study Notes (Auto-Saved)</h2>
+            </div>
+            <div class="personal-notes-widget">
+                <p class="notes-hint">Type personal notes or lab observations below. Content auto-saves to your local browser storage.</p>
+                <textarea id="personalNotePad" class="personal-notes-textarea" placeholder="Type personal study notes here..." oninput="savePersonalNote('ev-motors-inverters-battery-packs', this.value)"></textarea>
+                <div class="notes-save-indicator" id="notesSavedTag">✓ Saved locally</div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="sources">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 20]</span> Source Traceability & Curriculum References</h2>
+            </div>
+            <div class="sources-box">
+                <p><strong>Primary Source Reference:</strong> Automotive Vehicle Lecture 2 &amp; 3 Transcripts; Session 2 EV Fundamentals PDF; Syllabus Section 3 &amp; 4.</p>
+            </div>
+        </section>
+
+        <nav class="topic-pagination">
+            <div class="pagination-prev"><a href="transmission-systems-and-gearboxes.html" class="nav-prev-btn"><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span><span>Previous: Transmission Systems: MT, AT, DCT, CVT &amp; Planetary Gearsets</span></a></div>
+            <div class="pagination-next"><span class="nav-disabled">End of Subject Topics</span></div>
+        </nav>
+    </main>
+</div>
+
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-col brand-col">
+            <div class="footer-brand">
+                <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="footer-bits-logo">
+                <div class="footer-brand-text">
+                    <span class="footer-title">Birla Institute of Technology & Science, Pilani</span>
+                    <span class="footer-sub">Work Integrated Learning Programmes (WILP)</span>
+                </div>
+            </div>
+            <p class="footer-desc">Institutional knowledge base engineered from official lecture transcripts, handouts, and laboratory sessions for M.Tech Automotive Engineering.</p>
+            <div class="footer-tags">
+                <span class="badge badge-info">BITS WILP</span>
+                <span class="badge badge-success">4 Core Courses</span>
+                <span class="badge badge-warning">Exam & Viva Ready</span>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Semester 1 Courses</h4>
+            <ul>
+                <li><a href="../../subjects/automotive-communication.html">Automotive Communication (AELZG513)</a></li>
+                <li><a href="../../subjects/automotive-vehicle.html">Automotive Vehicle (AELZC441)</a></li>
+                <li><a href="../../subjects/autotronics.html">Autotronics (AEZG533)</a></li>
+                <li><a href="../../subjects/embedded-system-design.html">Embedded System Design (AEZG512)</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="../../index.html">Master Portal Home</a></li>
+                <li><a href="../../semesters/sem1.html">Semester 1 Overview & Credits</a></li>
+                <li><a href="javascript:void(0)" onclick="openSearchModal()">Global Topic Search</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-bottom-content">
+            <span>© 2026 M.Tech Automotive Engineering Knowledge Base. Built for High-Performance Academic Study.</span>
+            <span>Birla Institute of Technology & Science, Pilani.</span>
+        </div>
+    </div>
+</footer>
+
+
+<div class="search-modal-overlay" id="searchModal" onclick="closeSearchModal(event)">
+    <div class="search-modal-container" onclick="event.stopPropagation()">
+        <div class="search-modal-header">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <input type="text" id="searchInput" class="search-modal-input" placeholder="Type to search curriculum, formulas, registers, exam questions..." autocomplete="off" oninput="handleSearch(this.value)">
+            <button class="search-modal-close" onclick="closeSearchModal()">&times;</button>
+        </div>
+        <div class="search-modal-filters">
+            <button class="search-filter-btn active" data-subject="all" onclick="setSearchFilter('all')">All Courses</button>
+            <button class="search-filter-btn" data-subject="automotive-communication" onclick="setSearchFilter('automotive-communication')">Communication</button>
+            <button class="search-filter-btn" data-subject="automotive-vehicle" onclick="setSearchFilter('automotive-vehicle')">Vehicle</button>
+            <button class="search-filter-btn" data-subject="autotronics" onclick="setSearchFilter('autotronics')">Autotronics</button>
+            <button class="search-filter-btn" data-subject="embedded-system-design" onclick="setSearchFilter('embedded-system-design')">Embedded</button>
+        </div>
+        <div class="search-modal-results" id="searchResults">
+            <div class="search-empty-state">
+                <span>Start typing to search across 33+ comprehensive M.Tech topics...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../../js/app.js"></script>
+<script src="../../js/search-index.js"></script>
+</body>
+</html>

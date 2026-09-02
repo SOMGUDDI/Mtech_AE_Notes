@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nested Vectored Interrupt Controller (NVIC) &amp; Exception Handling | Embedded System Design</title>
+    <meta name="description" content="Real-time automotive microcontrollers must respond instantaneously to asynchronous external events (such as CAN message reception, timer overflows, an">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body data-topic-id="arm-cortex-m4-nvic-and-exceptions" data-subject-id="embedded-system-design">
+
+
+<header class="navbar">
+    <div class="navbar-container">
+        <a href="../../index.html" class="nav-brand">
+            <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="nav-brand-logo">
+            <div class="brand-details">
+                <span class="brand-inst">Birla Institute of Technology & Science, Pilani</span>
+                <span class="brand-dept">Work Integrated Learning Programmes • Automotive Engineering</span>
+            </div>
+        </a>
+        <div class="nav-search-box" onclick="openSearchModal()">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <span class="search-placeholder">Search curriculum, formulas, registers, questions...</span>
+            <span class="search-shortcut">Ctrl+K</span>
+        </div>
+        <div class="nav-actions">
+            <a href="../../semesters/sem1.html" class="nav-link">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></span>
+                <span>Semester 1 Hub</span>
+            </a>
+            <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Toggle Theme">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+                <span>Theme</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+
+<div class="topic-page-layout">
+    <aside class="topic-sidebar">
+        <div class="sidebar-header">
+            <a href="../../subjects/embedded-system-design.html" class="sidebar-back">
+                <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span>
+                <span>Embedded System Design</span>
+            </a>
+            <div class="sidebar-subject-badge">AEZG512 / AELZC512</div>
+        </div>
+        <div class="sidebar-toc">
+            <h4>Table of Contents</h4>
+            <ul>
+                <li><a href="#overview">Quick Overview</a></li>
+                <li><a href="#objectives">Learning Objectives</a></li>
+                <li><a href="#core-concept">Core Concept & Intuition</a></li>
+                <li><a href="#lecture-notes">In-Class Lecture Notes</a></li>
+                <li><a href="#extra-explanation">Comprehensive Theory</a></li>
+                
+                
+                <li><a href="#working-principle">Working Principle</a></li>
+                <li><a href="#application">Automotive Application</a></li>
+                <li><a href="#comparison">Specifications Table</a></li>
+                <li><a href="#formulas">Math Formulas & Numericals</a></li>
+                <li><a href="#code">Embedded Driver / Registers</a></li>
+                <li><a href="#exam-questions">Exam & Viva Q&A</a></li>
+                <li><a href="#revision-card">60-Second Flash Card</a></li>
+                <li><a href="#personal-notes">My Personal Notes</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-progress-widget">
+            <h4>Topic Status</h4>
+            <div class="status-btn-group">
+                <button class="status-btn" id="statusNotStarted" onclick="setTopicStatus('arm-cortex-m4-nvic-and-exceptions', 'not_started')">☐ Not Started</button>
+                <button class="status-btn" id="statusInProgress" onclick="setTopicStatus('arm-cortex-m4-nvic-and-exceptions', 'in_progress')">◐ In Progress</button>
+                <button class="status-btn" id="statusCompleted" onclick="setTopicStatus('arm-cortex-m4-nvic-and-exceptions', 'completed')">☑ Mastered</button>
+            </div>
+            <button class="bookmark-btn" id="bookmarkBtn" onclick="toggleBookmark('arm-cortex-m4-nvic-and-exceptions')">★ Bookmark for Revision</button>
+        </div>
+    </aside>
+
+    <main class="topic-main-content">
+        <header class="topic-header">
+            <div class="breadcrumbs">
+                <a href="../../index.html">Home</a> / 
+                <a href="../../semesters/sem1.html">Semester 1</a> / 
+                <a href="../../subjects/embedded-system-design.html">Embedded System Design</a> / 
+                <span class="curr-crumb">Nested Vectored Interrupt Controller (NVIC) &amp; Exception Handling</span>
+            </div>
+            
+            <div class="topic-meta-row">
+                <span class="meta-pill module-pill">MODULE: Interrupts &amp; Peripherals</span>
+                <span class="meta-pill level-pill">LEVEL: Intermediate</span>
+                <span class="meta-pill importance-pill">WEIGHT: 5/5</span>
+                <span class="meta-pill code-pill">AEZG512 / AELZC512</span>
+            </div>
+
+            <h1 class="topic-main-title">Nested Vectored Interrupt Controller (NVIC) &amp; Exception Handling</h1>
+
+            <div class="action-bar-top">
+                <div class="read-estimate">Estimated Read Time: <strong>12–15 mins</strong></div>
+                <div class="action-buttons-group">
+                    <button class="print-btn" onclick="window.print()" title="Print this complete note page or save as PDF">
+                        <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg></span>
+                        <span>Print / Save PDF</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <section class="topic-section" id="overview">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 01]</span> Quick Overview</h2>
+            </div>
+            <p class="overview-lead">Real-time automotive microcontrollers must respond instantaneously to asynchronous external events (such as CAN message reception, timer overflows, and ADC conversion completions). The ARM Cortex-M4 integrates the Nested Vectored Interrupt Controller (NVIC) tightly into the core pipeline, providing hardware-managed priority nesting, deterministic 12-cycle interrupt latency, automatic hardware context saving (stacking), Tail-Chaining, and Late-Arrival optimizations.</p>
+        </section>
+
+        <section class="topic-section" id="objectives">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 02]</span> Learning Objectives & Prerequisites</h2>
+            </div>
+            <div class="objectives-card">
+                <h5>What You Will Master:</h5>
+                <ul class="objectives-list">
+                    <li>Analyze the ARM Cortex-M4 Exception Model: System Exceptions (Reset, NMI, HardFault, SysTick) vs External Interrupts (IRQs).</li><li>Understand the Vector Table structure located at memory address $0\text{x}00000000$.</li><li>Explain NVIC hardware features: Priority grouping (Preemption vs Sub-priority), Tail-Chaining (6-cycle switchover), and Late-Arrival handling.</li><li>Trace the automatic hardware stacking and unstacking sequence (R0-R3, R12, LR, PC, xPSR) during interrupt entry and exit.</li>
+                </ul>
+                <div class="prereq-note">
+                    <strong>Prerequisites:</strong> ARM Cortex-M4 Core Architecture, Programmer&#x27;s Model &amp; Registers, Stack Pointer (MSP/PSP).
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="core-concept">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 03]</span> Core Concept & Physical Intuition</h2>
+            </div>
+            <div class="concept-body">
+                <p>In older microcontrollers (like 8051 or ARM7), when an interrupt fired, software had to execute dozens of assembly instructions to manually push registers to the stack, identify the interrupt source, and jump to the handler, taking over 50 clock cycles. In the Cortex-M4, the NVIC is built directly inside the CPU silicon: the hardware automatically pushes registers to RAM and branches to the exact ISR address in just **12 clock cycles**.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="lecture-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 04]</span> In-Class Lecture Transcript Breakdown</h2>
+            </div>
+            <div class="callout callout-lecture">
+                <div class="callout-header">// LECTURE TRANSCRIPT SYNTHESIS</div>
+                <div class="callout-body">
+                    <p>Lecture 4 and 5 of Embedded System Design covered the NVIC in detail. Prof. S. S. Kendre highlighted: &#x27;The NVIC is a vectored interrupt controller. Vectored means the hardware fetches the exact function pointer from the Vector Table in memory; there is zero software polling required!&#x27; The professor walked through the 8-register hardware stacking frame (R0-R3, R12, LR, PC, xPSR) and explained how Tail-Chaining saves 18 clock cycles when two interrupts occur back-to-back.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="extra-explanation">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 05]</span> Rigorous Engineering Theory & Derivations</h2>
+            </div>
+            <div class="callout callout-deep">
+                <div class="callout-header">// RIGOROUS ENGINEERING THEORY</div>
+                <div class="callout-body">
+                    <p>Let&#x27;s analyze the **Cortex-M4 Exception &amp; NVIC Mechanics**:
+
+1. **The Vector Table ($0\text{x}00000000$ to $0\text{x}000001FF$):**
+   - Vector 0 ($0\text{x}00000000$): Initial Main Stack Pointer value (Initial MSP).
+   - Vector 1 ($0\text{x}00000004$): Initial Program Counter (Reset Handler address with LSB=1).
+   - Vector 2 ($0\text{x}00000008$): Non-Maskable Interrupt (NMI).
+   - Vector 3 ($0\text{x}0000000C$): HardFault Handler.
+   - Vector 11 ($0\text{x}0000002C$): SVCall (Supervisor Call for RTOS).
+   - Vector 14 ($0\text{x}00000038$): PendSV (Context Switch Handler for RTOS).
+   - Vector 15 ($0\text{x}0000003C$): SysTick Timer Handler.
+   - Vector 16+ ($0\text{x}00000040$+): Microcontroller-specific peripheral IRQs (GPIO, Timers, CAN, ADC).
+
+2. **Automatic Hardware Stacking Frame (Interrupt Entry):**
+   - Upon IRQ assertion, the processor hardware automatically pushes **8 registers** onto the current stack in descending order: `xPSR`, `PC` (return address), `LR`, `R12`, `R3`, `R2`, `R1`, `R0`.
+   - The CPU loads the Link Register (LR) with a special **`EXC_RETURN`** value (e.g., $0\text{xFFFFFFF9}$ to return to Thread mode using MSP, or $0\text{xFFFFFFFD}$ for Thread mode using PSP).
+   - The CPU loads PC with the ISR address fetched from the Vector Table and begins executing the ISR in Handler Mode in strictly **12 clock cycles**.
+
+3. **NVIC Performance Optimizations:**
+   - **Tail-Chaining:** When an ISR finishes and a second pending interrupt exists, instead of unstacking 8 registers and immediately re-stacking them (24 cycles wasted), the NVIC simply skips unstacking/restacking and branches directly to the next ISR in **only 6 clock cycles**!
+   - **Late-Arrival:** If a higher-priority interrupt arrives while the CPU is in the middle of stacking registers for a lower-priority interrupt, the NVIC dynamically switches to the higher-priority ISR without restarting the stacking process.</p>
+                </div>
+            </div>
+        </section>
+
+        
+        
+
+        <section class="topic-section" id="working-principle">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 08]</span> Step-by-Step Operational Principle</h2>
+            </div>
+            <div class="principle-body">
+                <p>Priority Grouping (Preemption vs Sub-Priority):
+The NVIC supports up to 256 priority levels (implemented as 16 levels in S32K144 using upper 4 bits of priority registers: $0\text{x}00$ = highest priority, $0\text{xF}0$ = lowest priority). Priority can be split into **Preemption Priority** (determines if an interrupt can preempt an actively running ISR) and **Sub-Priority** (determines which interrupt executes first if two arrive simultaneously).</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="application">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 09]</span> Real Automotive Application</h2>
+            </div>
+            <div class="callout callout-application">
+                <div class="callout-header">// AUTOMOTIVE OEM CASE STUDY</div>
+                <div class="callout-body">
+                    <p></p>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="topic-section table-section" id="comparison">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 10]</span> Technical Specifications & Benchmarks</h2>
+            </div>
+            <div class="table-responsive">
+                <table class="specs-table">
+                    <thead><tr><th>Exception Type</th><th>Exception Number</th><th>Priority Level</th><th>Vector Table Offset</th><th>Core Purpose</th></tr></thead>
+                    <tbody><tr><td>Initial MSP</td><td>0</td><td>N/A (Hardware reset value)</td><td>0x00000000</td><td>Top of stack memory address</td></tr><tr><td>Reset</td><td>1</td><td>-3 (Fixed Highest)</td><td>0x00000004</td><td>First instruction executed on boot</td></tr><tr><td>NMI (Non-Maskable)</td><td>2</td><td>-2 (Fixed)</td><td>0x00000008</td><td>Critical hardware failure / Watchdog bite</td></tr><tr><td>HardFault</td><td>3</td><td>-1 (Fixed)</td><td>0x0000000C</td><td>Bus error, unaligned access, illegal opcode</td></tr><tr><td>SysTick</td><td>15</td><td>Programmable (0 - 15)</td><td>0x0000003C</td><td>1 ms periodic system heartbeat tick for RTOS</td></tr><tr><td>Peripheral IRQ (0..n)</td><td>16 to 255</td><td>Programmable (0 - 15)</td><td>0x00000040+</td><td>Hardware peripherals (GPIO, CAN, Timers, ADC)</td></tr></tbody>
+                </table>
+            </div>
+        </section>
+        
+        
+        <section class="topic-section formulas-section" id="formulas">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 11]</span> Mathematical Formulas & Numerical Breakdown</h2>
+            </div>
+            <div class="formulas-grid">
+                
+            <div class="formula-card">
+                <div class="formula-name">Interrupt Latency Calculation</div>
+                <div class="formula-math"><code>T_{latency} = \frac{12 \text{ clock cycles}}{f_{clock}}</code></div>
+                <div class="formula-details">
+                    <h5>Parameter Definitions:</h5>
+                    <ul class="formula-vars"><li><code>1</code>: 2</li><li><code>f</code>: _</li></ul>
+                    <div class="formula-example"><strong>Worked Numerical Example:</strong><br>On the NXP S32K144 running at f_clock = 80 MHz: T_latency = 12 / (80 × 10^6) = 150 nanoseconds (0.15 μs).</div>
+                </div>
+            </div>
+            
+            </div>
+        </section>
+        
+        
+        <section class="topic-section code-section" id="code">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 12]</span> Embedded C Driver & Register Interface</h2>
+                <button class="copy-btn" onclick="copyCodeBlock('codeBlock')">
+                    <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+                    <span>Copy Code</span>
+                </button>
+            </div>
+            <div class="code-container">
+                <pre><code id="codeBlock" class="language-c">// CMSIS NVIC Configuration for S32K144 Peripheral Interrupt
+#include &quot;S32K144.h&quot;
+
+void configure_can_interrupt(void) {
+    // 1. Set Priority for CAN0 Receive Interrupt (Priority 2, where 0 is highest)
+    NVIC_SetPriority(CAN0_ORed_0_15_MB_IRQn, 2);
+    
+    // 2. Clear any pending CAN0 interrupt flag in NVIC
+    NVIC_ClearPendingIRQ(CAN0_ORed_0_15_MB_IRQn);
+    
+    // 3. Enable the Interrupt in NVIC
+    NVIC_EnableIRQ(CAN0_ORed_0_15_MB_IRQn);
+}
+
+// Interrupt Service Routine (Vector Table links directly to this function name)
+void CAN0_ORed_0_15_MB_IRQHandler(void) {
+    // Read received CAN message buffer
+    process_rx_can_frame();
+    // Clear peripheral interrupt flag in FlexCAN controller
+    CAN0-&gt;IFLAG1 = (1 &lt;&lt; 0);
+}</code></pre>
+            </div>
+        </section>
+        
+
+        <section class="topic-section" id="must-remember">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 13]</span> Must-Remember Key Points for Exams</h2>
+            </div>
+            <div class="must-remember-card">
+                <ul><li>[KEY] NVIC provides deterministic 12-cycle interrupt entry latency.</li><li>[KEY] Hardware automatically stacks 8 registers: xPSR, PC, LR, R12, R3, R2, R1, R0.</li><li>[KEY] Tail-Chaining reduces switchover between consecutive interrupts to only 6 clock cycles.</li><li>[KEY] Lower priority number = HIGHER priority (Priority 0 is higher than Priority 5).</li><li>[KEY] Vector Table at 0x00000000 holds Initial MSP (offset 0) and Reset Handler address (offset 4).</li></ul>
+            </div>
+        </section>
+
+        
+        <div class="callout callout-warning">
+            <div class="callout-header">// COMMON EXAM TRAPS & MISCONCEPTIONS</div>
+            <div class="callout-body">
+                <ul><li><strong>Trap:</strong> Assuming higher priority numbers mean higher priority. In ARM Cortex-M, **lower numerical values represent higher priority** ($0 = \text{Highest}, 15 = \text{Lowest}$).</li><li><strong>Trap:</strong> Forgetting to clear the peripheral&#x27;s interrupt flag inside the ISR. If the peripheral flag is not cleared, the NVIC will re-trigger the exact same ISR indefinitely in an infinite lockup loop.</li></ul>
+            </div>
+        </div>
+        
+
+        <section class="topic-section" id="exam-questions">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 15]</span> Exam Preparation & Model Questions</h2>
+            </div>
+            <div class="exam-qa-container">
+                
+        <div class="exam-qa-block">
+            <h3>Short Answer Questions (1–2 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> What eight registers are automatically pushed onto the stack by hardware during ARM Cortex-M4 interrupt entry?</div>
+                <div class="qa-answer">The 8 registers pushed to the stack (the basic stack frame) are: `xPSR`, `PC` (Program Counter return address), `LR` (Link Register), `R12`, `R3`, `R2`, `R1`, and `R0`.</div>
+            </div>
+            
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> What is Tail-Chaining in the ARM Cortex-M4 NVIC?</div>
+                <div class="qa-answer">Tail-Chaining is an NVIC hardware optimization where, if another interrupt is pending when the current ISR completes, the processor skips unstacking and re-stacking the 8 registers, branching directly to the pending ISR in only 6 clock cycles (saving 18 cycles).</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Comprehensive Long Answer Questions (5–10 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item long-qa-item">
+                <div class="qa-question"><span class="q-badge">10 MARKS</span> Explain the complete ARM Cortex-M4 Exception Model and NVIC operation. Detail the vector table layout, the 12-cycle hardware stacking sequence, priority grouping (preemption vs sub-priority), and the Tail-Chaining and Late-Arrival optimizations.</div>
+                <div class="qa-answer">A complete answer covers: (1) Vector table diagram from 0x00000000 (Initial MSP, Reset, NMI, HardFault, SysTick, IRQs); (2) Step-by-step 12-cycle hardware stacking diagram showing all 8 registers; (3) EXC_RETURN magic codes; (4) Preemption vs Sub-priority grouping bits; (5) Tail-Chaining (6-cycle transition) and Late-Arrival diagrams.</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Viva Voce & Technical Interview Questions</h3>
+            <div class="qa-list">
+            <div class="qa-item viva-qa-item">
+                <div class="qa-question"><span class="q-badge">VIVA / INTERVIEW</span> What is the purpose of the special `EXC_RETURN` value loaded into the Link Register (LR) when an ISR begins execution?</div>
+                <div class="qa-answer">In Cortex-M, LR is not loaded with the return address during an interrupt. Instead, it is loaded with a special `EXC_RETURN` bit-pattern (e.g., $0\text{xFFFFFFF9}$ or $0\text{xFFFFFFFD}$). When the ISR executes `BX LR` at completion, the hardware detects the `0xFFFFFFF` prefix, triggers the automatic hardware unstacking of registers from memory, and restores processor mode (Thread/Handler) and active stack pointer (MSP/PSP).</div>
+            </div>
+            </div>
+        </div>
+        
+            </div>
+        </section>
+
+        <section class="topic-section" id="revision-card">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 18]</span> 60-Second Flash / Revision Card</h2>
+            </div>
+            <div class="flashcard">
+                <div class="flashcard-badge">// 60-SECOND REVISION SUMMARY</div>
+                <ul class="flashcard-points"><li>[REV] NVIC = 12-cycle deterministic latency.</li><li>[REV] Hardware pushes: xPSR, PC, LR, R12, R3, R2, R1, R0.</li><li>[REV] Tail-Chaining = 6-cycle transition without restacking.</li><li>[REV] Lower priority number = HIGHER priority (0 &gt; 15).</li><li>[REV] EXC_RETURN triggers automatic hardware unstacking.</li></ul>
+            </div>
+        </section>
+
+        <section class="topic-section" id="personal-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 19]</span> Personal Study Notes (Auto-Saved)</h2>
+            </div>
+            <div class="personal-notes-widget">
+                <p class="notes-hint">Type personal notes or lab observations below. Content auto-saves to your local browser storage.</p>
+                <textarea id="personalNotePad" class="personal-notes-textarea" placeholder="Type personal study notes here..." oninput="savePersonalNote('arm-cortex-m4-nvic-and-exceptions', this.value)"></textarea>
+                <div class="notes-save-indicator" id="notesSavedTag">✓ Saved locally</div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="sources">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 20]</span> Source Traceability & Curriculum References</h2>
+            </div>
+            <div class="sources-box">
+                <p><strong>Primary Source Reference:</strong> Embedded System Design Lecture 4 &amp; 5 Transcripts; The Definitive Guide to ARM Cortex-M3/M4 Processors Chapter 7; Course Syllabus Section 4.</p>
+            </div>
+        </section>
+
+        <nav class="topic-pagination">
+            <div class="pagination-prev"><a href="arm-cortex-m4-programmers-model.html" class="nav-prev-btn"><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span><span>Previous: ARM Cortex-M4 Programmer&#x27;s Model &amp; Register Set</span></a></div>
+            <div class="pagination-next"><a href="s32k144-gpio-configuration-and-driver.html" class="nav-next-btn"><span>Next: NXP S32K144 GPIO Architecture &amp; Low-Level Driver Development</span><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span></a></div>
+        </nav>
+    </main>
+</div>
+
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-col brand-col">
+            <div class="footer-brand">
+                <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="footer-bits-logo">
+                <div class="footer-brand-text">
+                    <span class="footer-title">Birla Institute of Technology & Science, Pilani</span>
+                    <span class="footer-sub">Work Integrated Learning Programmes (WILP)</span>
+                </div>
+            </div>
+            <p class="footer-desc">Institutional knowledge base engineered from official lecture transcripts, handouts, and laboratory sessions for M.Tech Automotive Engineering.</p>
+            <div class="footer-tags">
+                <span class="badge badge-info">BITS WILP</span>
+                <span class="badge badge-success">4 Core Courses</span>
+                <span class="badge badge-warning">Exam & Viva Ready</span>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Semester 1 Courses</h4>
+            <ul>
+                <li><a href="../../subjects/automotive-communication.html">Automotive Communication (AELZG513)</a></li>
+                <li><a href="../../subjects/automotive-vehicle.html">Automotive Vehicle (AELZC441)</a></li>
+                <li><a href="../../subjects/autotronics.html">Autotronics (AEZG533)</a></li>
+                <li><a href="../../subjects/embedded-system-design.html">Embedded System Design (AEZG512)</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="../../index.html">Master Portal Home</a></li>
+                <li><a href="../../semesters/sem1.html">Semester 1 Overview & Credits</a></li>
+                <li><a href="javascript:void(0)" onclick="openSearchModal()">Global Topic Search</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-bottom-content">
+            <span>© 2026 M.Tech Automotive Engineering Knowledge Base. Built for High-Performance Academic Study.</span>
+            <span>Birla Institute of Technology & Science, Pilani.</span>
+        </div>
+    </div>
+</footer>
+
+
+<div class="search-modal-overlay" id="searchModal" onclick="closeSearchModal(event)">
+    <div class="search-modal-container" onclick="event.stopPropagation()">
+        <div class="search-modal-header">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <input type="text" id="searchInput" class="search-modal-input" placeholder="Type to search curriculum, formulas, registers, exam questions..." autocomplete="off" oninput="handleSearch(this.value)">
+            <button class="search-modal-close" onclick="closeSearchModal()">&times;</button>
+        </div>
+        <div class="search-modal-filters">
+            <button class="search-filter-btn active" data-subject="all" onclick="setSearchFilter('all')">All Courses</button>
+            <button class="search-filter-btn" data-subject="automotive-communication" onclick="setSearchFilter('automotive-communication')">Communication</button>
+            <button class="search-filter-btn" data-subject="automotive-vehicle" onclick="setSearchFilter('automotive-vehicle')">Vehicle</button>
+            <button class="search-filter-btn" data-subject="autotronics" onclick="setSearchFilter('autotronics')">Autotronics</button>
+            <button class="search-filter-btn" data-subject="embedded-system-design" onclick="setSearchFilter('embedded-system-design')">Embedded</button>
+        </div>
+        <div class="search-modal-results" id="searchResults">
+            <div class="search-empty-state">
+                <span>Start typing to search across 33+ comprehensive M.Tech topics...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../../js/app.js"></script>
+<script src="../../js/search-index.js"></script>
+</body>
+</html>

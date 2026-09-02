@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capacitors, Energy Storage &amp; RC Timing Circuits | Autotronics</title>
+    <meta name="description" content="Capacitors are passive electronic components that store electrical energy in an electrostatic field between conductive plates separated by a dielectri">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body data-topic-id="capacitors-and-energy-storage" data-subject-id="autotronics">
+
+
+<header class="navbar">
+    <div class="navbar-container">
+        <a href="../../index.html" class="nav-brand">
+            <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="nav-brand-logo">
+            <div class="brand-details">
+                <span class="brand-inst">Birla Institute of Technology & Science, Pilani</span>
+                <span class="brand-dept">Work Integrated Learning Programmes • Automotive Engineering</span>
+            </div>
+        </a>
+        <div class="nav-search-box" onclick="openSearchModal()">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <span class="search-placeholder">Search curriculum, formulas, registers, questions...</span>
+            <span class="search-shortcut">Ctrl+K</span>
+        </div>
+        <div class="nav-actions">
+            <a href="../../semesters/sem1.html" class="nav-link">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></span>
+                <span>Semester 1 Hub</span>
+            </a>
+            <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Toggle Theme">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+                <span>Theme</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+
+<div class="topic-page-layout">
+    <aside class="topic-sidebar">
+        <div class="sidebar-header">
+            <a href="../../subjects/autotronics.html" class="sidebar-back">
+                <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span>
+                <span>Autotronics</span>
+            </a>
+            <div class="sidebar-subject-badge">AEZG533 / AELZG533</div>
+        </div>
+        <div class="sidebar-toc">
+            <h4>Table of Contents</h4>
+            <ul>
+                <li><a href="#overview">Quick Overview</a></li>
+                <li><a href="#objectives">Learning Objectives</a></li>
+                <li><a href="#core-concept">Core Concept & Intuition</a></li>
+                <li><a href="#lecture-notes">In-Class Lecture Notes</a></li>
+                <li><a href="#extra-explanation">Comprehensive Theory</a></li>
+                
+                
+                <li><a href="#working-principle">Working Principle</a></li>
+                <li><a href="#application">Automotive Application</a></li>
+                <li><a href="#comparison">Specifications Table</a></li>
+                <li><a href="#formulas">Math Formulas & Numericals</a></li>
+                <li><a href="#code">Embedded Driver / Registers</a></li>
+                <li><a href="#exam-questions">Exam & Viva Q&A</a></li>
+                <li><a href="#revision-card">60-Second Flash Card</a></li>
+                <li><a href="#personal-notes">My Personal Notes</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-progress-widget">
+            <h4>Topic Status</h4>
+            <div class="status-btn-group">
+                <button class="status-btn" id="statusNotStarted" onclick="setTopicStatus('capacitors-and-energy-storage', 'not_started')">☐ Not Started</button>
+                <button class="status-btn" id="statusInProgress" onclick="setTopicStatus('capacitors-and-energy-storage', 'in_progress')">◐ In Progress</button>
+                <button class="status-btn" id="statusCompleted" onclick="setTopicStatus('capacitors-and-energy-storage', 'completed')">☑ Mastered</button>
+            </div>
+            <button class="bookmark-btn" id="bookmarkBtn" onclick="toggleBookmark('capacitors-and-energy-storage')">★ Bookmark for Revision</button>
+        </div>
+    </aside>
+
+    <main class="topic-main-content">
+        <header class="topic-header">
+            <div class="breadcrumbs">
+                <a href="../../index.html">Home</a> / 
+                <a href="../../semesters/sem1.html">Semester 1</a> / 
+                <a href="../../subjects/autotronics.html">Autotronics</a> / 
+                <span class="curr-crumb">Capacitors, Energy Storage &amp; RC Timing Circuits</span>
+            </div>
+            
+            <div class="topic-meta-row">
+                <span class="meta-pill module-pill">MODULE: Electrical &amp; Electronics Fundamentals</span>
+                <span class="meta-pill level-pill">LEVEL: Beginner</span>
+                <span class="meta-pill importance-pill">WEIGHT: 5/5</span>
+                <span class="meta-pill code-pill">AEZG533 / AELZG533</span>
+            </div>
+
+            <h1 class="topic-main-title">Capacitors, Energy Storage &amp; RC Timing Circuits</h1>
+
+            <div class="action-bar-top">
+                <div class="read-estimate">Estimated Read Time: <strong>12–15 mins</strong></div>
+                <div class="action-buttons-group">
+                    <button class="print-btn" onclick="window.print()" title="Print this complete note page or save as PDF">
+                        <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg></span>
+                        <span>Print / Save PDF</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <section class="topic-section" id="overview">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 01]</span> Quick Overview</h2>
+            </div>
+            <p class="overview-lead">Capacitors are passive electronic components that store electrical energy in an electrostatic field between conductive plates separated by a dielectric medium. In automotive electronics, capacitors are indispensable for power supply decoupling, ECU noise filtering, snubber transient suppression, sensor signal conditioning, and timing delay circuits.</p>
+        </section>
+
+        <section class="topic-section" id="objectives">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 02]</span> Learning Objectives & Prerequisites</h2>
+            </div>
+            <div class="objectives-card">
+                <h5>What You Will Master:</h5>
+                <ul class="objectives-list">
+                    <li>Understand electrostatic energy storage and the governing equation $Q = CV$.</li><li>Calculate equivalent capacitance for series and parallel capacitor combinations.</li><li>Analyze RC charging and discharging transient curves and the time constant $\tau = RC$.</li><li>Explain the role of decoupling capacitors in suppressing automotive microcontroller supply noise.</li>
+                </ul>
+                <div class="prereq-note">
+                    <strong>Prerequisites:</strong> Voltage, Current, Resistors and Voltage Dividers.
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="core-concept">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 03]</span> Core Concept & Physical Intuition</h2>
+            </div>
+            <div class="concept-body">
+                <p>While a resistor opposes current flow by dissipating power as heat, a capacitor opposes sudden changes in voltage by storing and releasing electrostatic charge. In an automotive ECU, when high-current injectors switch on, battery voltage dips momentarily. Decoupling capacitors placed near the microcontroller chip act as tiny local energy reservoirs, instantly supplying charge to prevent the CPU from resetting.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="lecture-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 04]</span> In-Class Lecture Transcript Breakdown</h2>
+            </div>
+            <div class="callout callout-lecture">
+                <div class="callout-header">// LECTURE TRANSCRIPT SYNTHESIS</div>
+                <div class="callout-body">
+                    <p>Lecture 3 covered capacitors and capacitance theory. Dr. Madhuri Bayya highlighted: &#x27;A capacitor stores charge in an electric field ($Q = CV$). It blocks steady DC current after charging, but conducts alternating AC signals.&#x27; The professor walked through the transient charging differential equation, proving that after $t = 5\tau$ ($5RC$), a capacitor is considered fully charged (99.3%). The instructor also solved series and parallel combinations, stressing that capacitors combine in the exact OPPOSITE mathematical pattern of resistors.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="extra-explanation">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 05]</span> Rigorous Engineering Theory & Derivations</h2>
+            </div>
+            <div class="callout callout-deep">
+                <div class="callout-header">// RIGOROUS ENGINEERING THEORY</div>
+                <div class="callout-body">
+                    <p>Let&#x27;s analyze the physical and mathematical governing equations:
+
+1. **Capacitance Definition &amp; Energy Storage:**
+   $$C = \frac{\varepsilon_0 \varepsilon_r A}{d}, \quad Q = C \cdot V, \quad E = \frac{1}{2} C V^2$$
+   - $A$ = plate area (m$^2$), $d$ = dielectric thickness (m), $\varepsilon_r$ = relative permittivity.
+   - Current-Voltage Differential Law: $I(t) = C \cdot \frac{dV(t)}{dt}$. (If voltage is constant DC, $\frac{dV}{dt} = 0 \implies I = 0$, proving capacitors block DC).
+
+2. **Series &amp; Parallel Capacitor Combinations:**
+   - **Parallel (Capacitances ADD directly):** $C_{eq} = C_1 + C_2 + \dots + C_n$
+   - **Series (Reciprocal addition):** $\frac{1}{C_{eq}} = \frac{1}{C_1} + \frac{1}{C_2} \implies C_{eq} = \frac{C_1 C_2}{C_1 + C_2}$
+
+3. **RC Transient Charging &amp; Discharging:**
+   - **Charging Voltage:** $V(t) = V_{supply} \left( 1 - e^{-t / RC} \right)$
+   - **Discharging Voltage:** $V(t) = V_0 \cdot e^{-t / RC}$
+   - **Time Constant:** $\tau = R \cdot C$ (seconds).
+   - At $t = 1\tau$: Voltage reaches $63.2\%$ of supply voltage.
+   - At $t = 5\tau$: Voltage reaches $99.3\%$ (considered fully charged).</p>
+                </div>
+            </div>
+        </section>
+
+        
+        
+
+        <section class="topic-section" id="working-principle">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 08]</span> Step-by-Step Operational Principle</h2>
+            </div>
+            <div class="principle-body">
+                <p>Automotive ECU Power Decoupling:
+Automotive microcontrollers switch millions of internal transistors on every clock edge, generating high-frequency current spikes. If these spikes travel all the way to the 12V vehicle battery, wire inductance creates voltage dips that reset the CPU. A small **0.1 μF ceramic capacitor** placed within 2 mm of the MCU power pin provides low impedance at high frequencies, shunting noise to ground, while a larger **100 μF electrolytic capacitor** stabilizes low-frequency bulk supply fluctuations.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="application">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 09]</span> Real Automotive Application</h2>
+            </div>
+            <div class="callout callout-application">
+                <div class="callout-header">// AUTOMOTIVE OEM CASE STUDY</div>
+                <div class="callout-body">
+                    <p></p>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="topic-section table-section" id="comparison">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 10]</span> Technical Specifications & Benchmarks</h2>
+            </div>
+            <div class="table-responsive">
+                <table class="specs-table">
+                    <thead><tr><th>Property / Parameter</th><th>Resistor (R)</th><th>Capacitor (C)</th><th>Inductor (L)</th></tr></thead>
+                    <tbody><tr><td>Energy Behavior</td><td>Dissipates energy as heat (I^2 R)</td><td>Stores energy in Electrostatic Field (0.5 CV^2)</td><td>Stores energy in Magnetic Field (0.5 LI^2)</td></tr><tr><td>DC Steady State</td><td>Ohm&#x27;s Law: V = IR</td><td>Open Circuit (Blocks DC after charging)</td><td>Short Circuit (Zero voltage drop)</td></tr><tr><td>Instantaneous Opposition</td><td>Opposes current magnitude</td><td>Opposes instantaneous change in Voltage (dV/dt)</td><td>Opposes instantaneous change in Current (dI/dt)</td></tr><tr><td>Series Combination</td><td>Req = R1 + R2</td><td>1/Ceq = 1/C1 + 1/C2 (Reciprocal)</td><td>Leq = L1 + L2</td></tr><tr><td>Parallel Combination</td><td>1/Req = 1/R1 + 1/R2</td><td>Ceq = C1 + C2 (Direct addition)</td><td>1/Leq = 1/L1 + 1/L2</td></tr></tbody>
+                </table>
+            </div>
+        </section>
+        
+        
+        <section class="topic-section formulas-section" id="formulas">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 11]</span> Mathematical Formulas & Numerical Breakdown</h2>
+            </div>
+            <div class="formulas-grid">
+                
+            <div class="formula-card">
+                <div class="formula-name">Capacitor Energy Storage Formula</div>
+                <div class="formula-math"><code>E = \frac{1}{2} C V^2</code></div>
+                <div class="formula-details">
+                    <h5>Parameter Definitions:</h5>
+                    <ul class="formula-vars"><li><code>E</code>:  </li><li><code>C</code>:  </li><li><code>V</code>:  </li></ul>
+                    <div class="formula-example"><strong>Worked Numerical Example:</strong><br>An airbag reserve capacitor has C = 4700 μF (0.0047 F) charged to V = 35 V. Stored energy is E = 0.5 × 0.0047 × (35)^2 = 0.5 × 0.0047 × 1225 = 2.879 Joules.</div>
+                </div>
+            </div>
+            
+            <div class="formula-card">
+                <div class="formula-name">RC Time Constant and Transient Voltage</div>
+                <div class="formula-math"><code>\tau = R \cdot C, \quad V_c(t) = V_{supply} \left( 1 - e^{-t / \tau} \right)</code></div>
+                <div class="formula-details">
+                    <h5>Parameter Definitions:</h5>
+                    <ul class="formula-vars"><li><code>\</code>: t</li><li><code>R</code>:  </li><li><code>C</code>:  </li><li><code>t</code>:  </li></ul>
+                    <div class="formula-example"><strong>Worked Numerical Example:</strong><br>For R = 10 kΩ (10,000 Ω) and C = 100 μF (0.0001 F): Time constant τ = 10,000 × 0.0001 = 1.0 second. Time to reach full charge (5τ) = 5.0 seconds.</div>
+                </div>
+            </div>
+            
+            </div>
+        </section>
+        
+        
+        <section class="topic-section code-section" id="code">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 12]</span> Embedded C Driver & Register Interface</h2>
+                <button class="copy-btn" onclick="copyCodeBlock('codeBlock')">
+                    <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+                    <span>Copy Code</span>
+                </button>
+            </div>
+            <div class="code-container">
+                <pre><code id="codeBlock" class="language-c">// Python Calculation of Capacitor Charging Profile
+import numpy as np
+
+def rc_charging_profile(v_supply=5.0, r_ohms=10000, c_farads=100e-6):
+    tau = r_ohms * c_farads
+    time_points = np.linspace(0, 5 * tau, 6)
+    print(f&quot;Time Constant (Tau) = {tau:.3f} seconds\n&quot;)
+    print(&quot;Time (s) | Voltage (V) | % of V_supply&quot;)
+    print(&quot;--------------------------------------&quot;)
+    for t in time_points:
+        v = v_supply * (1.0 - np.exp(-t / tau))
+        pct = (v / v_supply) * 100.0
+        print(f&quot;{t:8.3f} | {v:11.3f} | {pct:10.1f}%&quot;)
+
+rc_charging_profile()</code></pre>
+            </div>
+        </section>
+        
+
+        <section class="topic-section" id="must-remember">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 13]</span> Must-Remember Key Points for Exams</h2>
+            </div>
+            <div class="must-remember-card">
+                <ul><li>[KEY] Energy stored in a capacitor: E = 0.5 * C * V^2.</li><li>[KEY] Time constant τ = R * C (reaches 63.2% at 1τ, 99.3% at 5τ).</li><li>[KEY] Capacitors in parallel ADD directly (Ceq = C1 + C2); in series ADD reciprocally.</li><li>[KEY] Capacitor blocks DC steady-state current and acts as an open circuit (I = C * dV/dt).</li><li>[KEY] Decoupling capacitors suppress high-frequency ECU supply noise.</li></ul>
+            </div>
+        </section>
+
+        
+        <div class="callout callout-warning">
+            <div class="callout-header">// COMMON EXAM TRAPS & MISCONCEPTIONS</div>
+            <div class="callout-body">
+                <ul><li><strong>Trap:</strong> Calculating series and parallel capacitors like resistors. Capacitors are **opposite**: parallel adds directly ($C_1 + C_2$), series adds reciprocally.</li><li><strong>Trap:</strong> Assuming a capacitor reaches 100% charge in $1\tau$. In $1\tau$, it only reaches $63.2\%$; it takes $5\tau$ to reach $99.3\%$.</li></ul>
+            </div>
+        </div>
+        
+
+        <section class="topic-section" id="exam-questions">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 15]</span> Exam Preparation & Model Questions</h2>
+            </div>
+            <div class="exam-qa-container">
+                
+        <div class="exam-qa-block">
+            <h3>Short Answer Questions (1–2 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> Why does a capacitor act as an open circuit in DC steady state?</div>
+                <div class="qa-answer">The current through a capacitor is proportional to the rate of change of voltage ($I = C \cdot \frac{dV}{dt}$). In a DC steady-state circuit, voltage is constant ($\frac{dV}{dt} = 0$), so the current becomes zero, making the capacitor behave as an open circuit.</div>
+            </div>
+            
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> How do capacitors combine in parallel versus series?</div>
+                <div class="qa-answer">In parallel, capacitors add directly ($C_{eq} = C_1 + C_2$) because plate surface area increases. In series, they add reciprocally ($1/C_{eq} = 1/C_1 + 1/C_2$) because the effective dielectric thickness increases.</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Comprehensive Long Answer Questions (5–10 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item long-qa-item">
+                <div class="qa-question"><span class="q-badge">10 MARKS</span> Derive the differential equation for an RC series charging circuit. Plot and explain the voltage and current transient curves as a function of the time constant $\tau = RC$.</div>
+                <div class="qa-answer">A complete answer covers: (1) Series RC circuit diagram with DC source; (2) KVL equation V_in = i(t)<em>R + v_c(t); (3) Substitution i(t) = C</em>(dv_c/dt); (4) First-order differential equation and integration with boundary condition v_c(0)=0; (5) Final expressions v_c(t) = V<em>(1 - e^(-t/RC)) and i(t) = (V/R)</em>e^(-t/RC); (6) Definition of time constant τ; (7) Annotated plot showing values at 1τ (63.2%) and 5τ (99.3%).</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Viva Voce & Technical Interview Questions</h3>
+            <div class="qa-list">
+            <div class="qa-item viva-qa-item">
+                <div class="qa-question"><span class="q-badge">VIVA / INTERVIEW</span> Why are two different types of capacitors (e.g., 0.1 μF ceramic and 100 μF electrolytic) placed in parallel across an ECU&#x27;s power supply pins?</div>
+                <div class="qa-answer">No real capacitor is ideal; all have Equivalent Series Resistance (ESR) and Equivalent Series Inductance (ESL). The large 100 μF electrolytic capacitor has high capacitance to buffer large low-frequency load steps, but poor high-frequency response. The 0.1 μF ceramic capacitor has ultra-low parasitic inductance, shunting high-frequency clock harmonics (> 50 MHz) to ground.</div>
+            </div>
+            </div>
+        </div>
+        
+            </div>
+        </section>
+
+        <section class="topic-section" id="revision-card">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 18]</span> 60-Second Flash / Revision Card</h2>
+            </div>
+            <div class="flashcard">
+                <div class="flashcard-badge">// 60-SECOND REVISION SUMMARY</div>
+                <ul class="flashcard-points"><li>[REV] E = 0.5 * C * V^2.</li><li>[REV] τ = R * C (Full charge at 5τ).</li><li>[REV] Parallel: C_eq = C1 + C2.</li><li>[REV] Series: C_eq = (C1*C2)/(C1+C2).</li><li>[REV] Blocks DC; passes AC.</li></ul>
+            </div>
+        </section>
+
+        <section class="topic-section" id="personal-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 19]</span> Personal Study Notes (Auto-Saved)</h2>
+            </div>
+            <div class="personal-notes-widget">
+                <p class="notes-hint">Type personal notes or lab observations below. Content auto-saves to your local browser storage.</p>
+                <textarea id="personalNotePad" class="personal-notes-textarea" placeholder="Type personal study notes here..." oninput="savePersonalNote('capacitors-and-energy-storage', this.value)"></textarea>
+                <div class="notes-save-indicator" id="notesSavedTag">✓ Saved locally</div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="sources">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 20]</span> Source Traceability & Curriculum References</h2>
+            </div>
+            <div class="sources-box">
+                <p><strong>Primary Source Reference:</strong> Autotronics Lecture 3 Transcript; Electrical &amp; Electronics Fundamentals PPT Slides 36–55; Course Syllabus Section 2.</p>
+            </div>
+        </section>
+
+        <nav class="topic-pagination">
+            <div class="pagination-prev"><a href="resistors-and-voltage-divider-circuits.html" class="nav-prev-btn"><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span><span>Previous: Resistors, Voltage Dividers &amp; Sensor Interfacing</span></a></div>
+            <div class="pagination-next"><a href="inductors-magnetism-and-transformers.html" class="nav-next-btn"><span>Next: Inductors, Magnetic Fields &amp; Ignition Coil Transformers</span><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span></a></div>
+        </nav>
+    </main>
+</div>
+
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-col brand-col">
+            <div class="footer-brand">
+                <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="footer-bits-logo">
+                <div class="footer-brand-text">
+                    <span class="footer-title">Birla Institute of Technology & Science, Pilani</span>
+                    <span class="footer-sub">Work Integrated Learning Programmes (WILP)</span>
+                </div>
+            </div>
+            <p class="footer-desc">Institutional knowledge base engineered from official lecture transcripts, handouts, and laboratory sessions for M.Tech Automotive Engineering.</p>
+            <div class="footer-tags">
+                <span class="badge badge-info">BITS WILP</span>
+                <span class="badge badge-success">4 Core Courses</span>
+                <span class="badge badge-warning">Exam & Viva Ready</span>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Semester 1 Courses</h4>
+            <ul>
+                <li><a href="../../subjects/automotive-communication.html">Automotive Communication (AELZG513)</a></li>
+                <li><a href="../../subjects/automotive-vehicle.html">Automotive Vehicle (AELZC441)</a></li>
+                <li><a href="../../subjects/autotronics.html">Autotronics (AEZG533)</a></li>
+                <li><a href="../../subjects/embedded-system-design.html">Embedded System Design (AEZG512)</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="../../index.html">Master Portal Home</a></li>
+                <li><a href="../../semesters/sem1.html">Semester 1 Overview & Credits</a></li>
+                <li><a href="javascript:void(0)" onclick="openSearchModal()">Global Topic Search</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-bottom-content">
+            <span>© 2026 M.Tech Automotive Engineering Knowledge Base. Built for High-Performance Academic Study.</span>
+            <span>Birla Institute of Technology & Science, Pilani.</span>
+        </div>
+    </div>
+</footer>
+
+
+<div class="search-modal-overlay" id="searchModal" onclick="closeSearchModal(event)">
+    <div class="search-modal-container" onclick="event.stopPropagation()">
+        <div class="search-modal-header">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <input type="text" id="searchInput" class="search-modal-input" placeholder="Type to search curriculum, formulas, registers, exam questions..." autocomplete="off" oninput="handleSearch(this.value)">
+            <button class="search-modal-close" onclick="closeSearchModal()">&times;</button>
+        </div>
+        <div class="search-modal-filters">
+            <button class="search-filter-btn active" data-subject="all" onclick="setSearchFilter('all')">All Courses</button>
+            <button class="search-filter-btn" data-subject="automotive-communication" onclick="setSearchFilter('automotive-communication')">Communication</button>
+            <button class="search-filter-btn" data-subject="automotive-vehicle" onclick="setSearchFilter('automotive-vehicle')">Vehicle</button>
+            <button class="search-filter-btn" data-subject="autotronics" onclick="setSearchFilter('autotronics')">Autotronics</button>
+            <button class="search-filter-btn" data-subject="embedded-system-design" onclick="setSearchFilter('embedded-system-design')">Embedded</button>
+        </div>
+        <div class="search-modal-results" id="searchResults">
+            <div class="search-empty-state">
+                <span>Start typing to search across 33+ comprehensive M.Tech topics...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../../js/app.js"></script>
+<script src="../../js/search-index.js"></script>
+</body>
+</html>

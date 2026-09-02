@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operational Amplifiers &amp; Sensor Signal Conditioning | Autotronics</title>
+    <meta name="description" content="Automotive sensors (piezoelectric knock sensors, thermocouples, strain gauge load cells, and variable reluctance wheel speed sensors) output raw elect">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body data-topic-id="operational-amplifiers-in-signal-conditioning" data-subject-id="autotronics">
+
+
+<header class="navbar">
+    <div class="navbar-container">
+        <a href="../../index.html" class="nav-brand">
+            <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="nav-brand-logo">
+            <div class="brand-details">
+                <span class="brand-inst">Birla Institute of Technology & Science, Pilani</span>
+                <span class="brand-dept">Work Integrated Learning Programmes • Automotive Engineering</span>
+            </div>
+        </a>
+        <div class="nav-search-box" onclick="openSearchModal()">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <span class="search-placeholder">Search curriculum, formulas, registers, questions...</span>
+            <span class="search-shortcut">Ctrl+K</span>
+        </div>
+        <div class="nav-actions">
+            <a href="../../semesters/sem1.html" class="nav-link">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></span>
+                <span>Semester 1 Hub</span>
+            </a>
+            <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Toggle Theme">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+                <span>Theme</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+
+<div class="topic-page-layout">
+    <aside class="topic-sidebar">
+        <div class="sidebar-header">
+            <a href="../../subjects/autotronics.html" class="sidebar-back">
+                <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span>
+                <span>Autotronics</span>
+            </a>
+            <div class="sidebar-subject-badge">AEZG533 / AELZG533</div>
+        </div>
+        <div class="sidebar-toc">
+            <h4>Table of Contents</h4>
+            <ul>
+                <li><a href="#overview">Quick Overview</a></li>
+                <li><a href="#objectives">Learning Objectives</a></li>
+                <li><a href="#core-concept">Core Concept & Intuition</a></li>
+                <li><a href="#lecture-notes">In-Class Lecture Notes</a></li>
+                <li><a href="#extra-explanation">Comprehensive Theory</a></li>
+                
+                
+                <li><a href="#working-principle">Working Principle</a></li>
+                <li><a href="#application">Automotive Application</a></li>
+                <li><a href="#comparison">Specifications Table</a></li>
+                <li><a href="#formulas">Math Formulas & Numericals</a></li>
+                <li><a href="#code">Embedded Driver / Registers</a></li>
+                <li><a href="#exam-questions">Exam & Viva Q&A</a></li>
+                <li><a href="#revision-card">60-Second Flash Card</a></li>
+                <li><a href="#personal-notes">My Personal Notes</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-progress-widget">
+            <h4>Topic Status</h4>
+            <div class="status-btn-group">
+                <button class="status-btn" id="statusNotStarted" onclick="setTopicStatus('operational-amplifiers-in-signal-conditioning', 'not_started')">☐ Not Started</button>
+                <button class="status-btn" id="statusInProgress" onclick="setTopicStatus('operational-amplifiers-in-signal-conditioning', 'in_progress')">◐ In Progress</button>
+                <button class="status-btn" id="statusCompleted" onclick="setTopicStatus('operational-amplifiers-in-signal-conditioning', 'completed')">☑ Mastered</button>
+            </div>
+            <button class="bookmark-btn" id="bookmarkBtn" onclick="toggleBookmark('operational-amplifiers-in-signal-conditioning')">★ Bookmark for Revision</button>
+        </div>
+    </aside>
+
+    <main class="topic-main-content">
+        <header class="topic-header">
+            <div class="breadcrumbs">
+                <a href="../../index.html">Home</a> / 
+                <a href="../../semesters/sem1.html">Semester 1</a> / 
+                <a href="../../subjects/autotronics.html">Autotronics</a> / 
+                <span class="curr-crumb">Operational Amplifiers &amp; Sensor Signal Conditioning</span>
+            </div>
+            
+            <div class="topic-meta-row">
+                <span class="meta-pill module-pill">MODULE: Analog Signal Conditioning</span>
+                <span class="meta-pill level-pill">LEVEL: Intermediate</span>
+                <span class="meta-pill importance-pill">WEIGHT: 5/5</span>
+                <span class="meta-pill code-pill">AEZG533 / AELZG533</span>
+            </div>
+
+            <h1 class="topic-main-title">Operational Amplifiers &amp; Sensor Signal Conditioning</h1>
+
+            <div class="action-bar-top">
+                <div class="read-estimate">Estimated Read Time: <strong>12–15 mins</strong></div>
+                <div class="action-buttons-group">
+                    <button class="print-btn" onclick="window.print()" title="Print this complete note page or save as PDF">
+                        <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg></span>
+                        <span>Print / Save PDF</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <section class="topic-section" id="overview">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 01]</span> Quick Overview</h2>
+            </div>
+            <p class="overview-lead">Automotive sensors (piezoelectric knock sensors, thermocouples, strain gauge load cells, and variable reluctance wheel speed sensors) output raw electrical signals in the microvolt or millivolt range, often contaminated by high-voltage electrical noise from the alternator and spark plugs. Operational Amplifiers (Op-Amps) provide amplification, impedance isolation, differential common-mode noise rejection, and active filtering to condition weak sensor signals for microcontroller ADC inputs.</p>
+        </section>
+
+        <section class="topic-section" id="objectives">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 02]</span> Learning Objectives & Prerequisites</h2>
+            </div>
+            <div class="objectives-card">
+                <h5>What You Will Master:</h5>
+                <ul class="objectives-list">
+                    <li>Apply the Ideal Op-Amp Golden Rules: Infinite input impedance ($I_+ = I_- = 0$) and Virtual Short ($V_+ = V_-$).</li><li>Analyze and design Inverting, Non-Inverting, and Voltage Follower (Buffer) amplifier circuits.</li><li>Derive the differential gain equation for Difference Amplifiers and 3-Op-Amp Instrumentation Amplifiers.</li><li>Design active Sallen-Key low-pass filters to eliminate high-frequency EMI noise before ADC digitization.</li>
+                </ul>
+                <div class="prereq-note">
+                    <strong>Prerequisites:</strong> Circuit Laws (KCL, KVL, Thévenin), Voltage Dividers, Transistors.
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="core-concept">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 03]</span> Core Concept & Physical Intuition</h2>
+            </div>
+            <div class="concept-body">
+                <p>An ideal Op-Amp is an analog amplifier with infinite gain, infinite input impedance, and zero output impedance. When connected with negative feedback, two magical &#x27;Golden Rules&#x27; emerge: (1) No current flows into either input terminal ($I_{in} = 0$), and (2) The output will do whatever it takes through the feedback loop to force the negative input voltage to equal the positive input voltage ($V_- = V_+$).</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="lecture-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 04]</span> In-Class Lecture Transcript Breakdown</h2>
+            </div>
+            <div class="callout callout-lecture">
+                <div class="callout-header">// LECTURE TRANSCRIPT SYNTHESIS</div>
+                <div class="callout-body">
+                    <p>Lecture 5 of Autotronics covered Op-Amps in signal conditioning. Dr. Madhuri Bayya emphasized: &#x27;Sensors produce millivolt signals that are easily corrupted. If you connect a weak sensor directly to an ADC, the ADC&#x27;s input impedance loads the sensor and distorts the reading. You must use an Op-Amp buffer or differential amplifier to amplify the signal and reject common-mode ground noise.&#x27; The professor derived inverting and non-inverting gain formulas using KCL at the virtual ground summing node.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="extra-explanation">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 05]</span> Rigorous Engineering Theory & Derivations</h2>
+            </div>
+            <div class="callout callout-deep">
+                <div class="callout-header">// RIGOROUS ENGINEERING THEORY</div>
+                <div class="callout-body">
+                    <p>Let&#x27;s analyze the fundamental Op-Amp configurations:
+
+1. **Inverting Amplifier:**
+   - Positive terminal grounded ($V_+ = 0\text{ V} \implies V_- = 0\text{ V}$, Virtual Ground).
+   - KCL at $V_-$: $\frac{V_{in} - 0}{R_{in}} + \frac{V_{out} - 0}{R_f} = 0 \implies \mathbf{V_{out} = -\left(\frac{R_f}{R_{in}}\right) V_{in}}$
+
+2. **Non-Inverting Amplifier:**
+   - Input applied to $V_+$ ($V_+ = V_{in} \implies V_- = V_{in}$).
+   - Voltage divider at feedback path: $V_- = V_{out} \cdot \frac{R_1}{R_1 + R_f} = V_{in} \implies \mathbf{V_{out} = \left(1 + \frac{R_f}{R_1}\right) V_{in}}$
+   - **Voltage Follower / Buffer ($R_f = 0, R_1 = \infty$):** $V_{out} = V_{in}$. Provides infinite input impedance (zero sensor loading) and zero output impedance.
+
+3. **Differential Amplifier &amp; Instrumentation Amplifier:**
+   - Eliminates ground offsets and common-mode noise picked up along long vehicle wiring harnesses.
+   - **Difference Amplifier:** $V_{out} = \frac{R_f}{R_{in}} (V_2 - V_1)$ (when bridge resistors match).
+   - **Three Op-Amp Instrumentation Amplifier (e.g., INA128):**
+     $$V_{out} = \left(1 + \frac{2R_1}{R_{gain}}\right) \left(\frac{R_3}{R_2}\right) (V_2 - V_1)$$
+   - Offers extremely high Common-Mode Rejection Ratio ($CMRR &gt; 110\text{ dB}$) and gigohm input impedance for thermocouple and bridge sensors.</p>
+                </div>
+            </div>
+        </section>
+
+        
+        
+
+        <section class="topic-section" id="working-principle">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 08]</span> Step-by-Step Operational Principle</h2>
+            </div>
+            <div class="principle-body">
+                <p>Common-Mode Rejection Ratio (CMRR):
+In an automotive engine bay, ignition sparks and alternator coils radiate high-frequency electromagnetic interference (EMI) that induces identical noise voltages on both sensor signal wires ($V_{noise, 1} = V_{noise, 2} = V_{cm}$). A single-ended amplifier amplifies this noise, corrupting the reading. A **Differential / Instrumentation Amplifier** amplifies ONLY the difference between wires ($V_{diff} = V_1 - V_2$) while rejecting the identical common-mode noise ($V_{cm}$): $\text{CMRR} = 20 \log_{10} \left( \frac{A_d}{A_{cm}} \right) \text{ dB}$.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="application">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 09]</span> Real Automotive Application</h2>
+            </div>
+            <div class="callout callout-application">
+                <div class="callout-header">// AUTOMOTIVE OEM CASE STUDY</div>
+                <div class="callout-body">
+                    <p></p>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="topic-section table-section" id="comparison">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 10]</span> Technical Specifications & Benchmarks</h2>
+            </div>
+            <div class="table-responsive">
+                <table class="specs-table">
+                    <thead><tr><th>Op-Amp Configuration</th><th>Voltage Gain (Av)</th><th>Input Impedance</th><th>Key Automotive Use Case</th></tr></thead>
+                    <tbody><tr><td>Voltage Follower (Buffer)</td><td>Av = 1.0</td><td>Infinite (~10^12 Ω)</td><td>High-impedance sensor isolation (pH, oxygen sensors)</td></tr><tr><td>Non-Inverting Amplifier</td><td>Av = 1 + (Rf / R1)</td><td>Infinite</td><td>Amplifying unipolar positive sensor voltages (TPS, MAP)</td></tr><tr><td>Inverting Amplifier</td><td>Av = - (Rf / Rin)</td><td>Finite (Equal to Rin)</td><td>Signal inversion, summing multiple analog sensor channels</td></tr><tr><td>Instrumentation Amplifier</td><td>Av = [1 + 2R1/Rg] * (R3/R2)</td><td>Ultra-high, balanced</td><td>Wheatstone bridge load cells, strain gauges, battery current shunts</td></tr><tr><td>Active Low-Pass Filter</td><td>Av(f) = A0 / sqrt(1 + (f/fc)^2)</td><td>High</td><td>Anti-aliasing filter before ADC; removes spark plug EMI</td></tr></tbody>
+                </table>
+            </div>
+        </section>
+        
+        
+        <section class="topic-section formulas-section" id="formulas">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 11]</span> Mathematical Formulas & Numerical Breakdown</h2>
+            </div>
+            <div class="formulas-grid">
+                
+            <div class="formula-card">
+                <div class="formula-name">Non-Inverting Amplifier Gain Formula</div>
+                <div class="formula-math"><code>V_{out} = V_{in} \cdot \left( 1 + \frac{R_f}{R_1} \right)</code></div>
+                <div class="formula-details">
+                    <h5>Parameter Definitions:</h5>
+                    <ul class="formula-vars"><li><code>V</code>: _</li><li><code>R</code>: _</li><li><code>R</code>: _</li><li><code>V</code>: _</li></ul>
+                    <div class="formula-example"><strong>Worked Numerical Example:</strong><br>A sensor outputs 0.2V. We want 2.0V output (Gain = 10). If R1 = 10 kΩ, then Rf = (10 - 1) × 10 kΩ = 90 kΩ (Vout = 0.2 × (1 + 90/10) = 2.0 V).</div>
+                </div>
+            </div>
+            
+            <div class="formula-card">
+                <div class="formula-name">Active Low-Pass Filter Cutoff Frequency</div>
+                <div class="formula-math"><code>f_c = \frac{1}{2\pi \cdot R \cdot C}</code></div>
+                <div class="formula-details">
+                    <h5>Parameter Definitions:</h5>
+                    <ul class="formula-vars"><li><code>f</code>: _</li><li><code>R</code>:  </li><li><code>C</code>:  </li></ul>
+                    <div class="formula-example"><strong>Worked Numerical Example:</strong><br>To filter out 50 Hz alternator ripple from a slow coolant temperature sensor using R = 10 kΩ: C = 1 / (2π × 10000 × 50) = 3.18 × 10^-7 F = 0.318 μF.</div>
+                </div>
+            </div>
+            
+            </div>
+        </section>
+        
+        
+        <section class="topic-section code-section" id="code">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 12]</span> Embedded C Driver & Register Interface</h2>
+                <button class="copy-btn" onclick="copyCodeBlock('codeBlock')">
+                    <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+                    <span>Copy Code</span>
+                </button>
+            </div>
+            <div class="code-container">
+                <pre><code id="codeBlock" class="language-c">// Python Calculation of Op-Amp Circuit Resistor Values
+import numpy as np
+
+def design_non_inverting_amp(target_gain=10.0, r1_ohms=10000.0):
+    # Gain = 1 + (Rf / R1) -&gt; Rf = (Gain - 1) * R1
+    rf_ohms = (target_gain - 1.0) * r1_ohms
+    print(f&quot;Non-Inverting Amp (Gain: {target_gain}x):&quot;)
+    print(f&quot;  R1 = {r1_ohms/1000:.1f} kΩ,  Rf = {rf_ohms/1000:.1f} kΩ&quot;)
+
+def design_lowpass_filter(cutoff_hz=100.0, c_farads=100e-9):
+    # fc = 1 / (2 * pi * R * C) -&gt; R = 1 / (2 * pi * fc * C)
+    r_ohms = 1.0 / (2.0 * np.pi * cutoff_hz * c_farads)
+    print(f&quot;Low-Pass Filter (fc: {cutoff_hz} Hz, C: {c_farads*1e9:.0f} nF):&quot;)
+    print(f&quot;  Required R = {r_ohms/1000:.2f} kΩ&quot;)
+
+design_non_inverting_amp(target_gain=12.5)
+design_lowpass_filter(cutoff_hz=50.0)</code></pre>
+            </div>
+        </section>
+        
+
+        <section class="topic-section" id="must-remember">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 13]</span> Must-Remember Key Points for Exams</h2>
+            </div>
+            <div class="must-remember-card">
+                <ul><li>[KEY] Ideal Op-Amp Golden Rules: I+ = I- = 0 (No input current), V+ = V- (Virtual short).</li><li>[KEY] Inverting Gain: Vout = - (Rf / Rin) * Vin.</li><li>[KEY] Non-Inverting Gain: Vout = (1 + Rf / R1) * Vin.</li><li>[KEY] Voltage Follower has Gain = 1, infinite input impedance (zero sensor loading).</li><li>[KEY] Instrumentation amplifiers reject common-mode EMI noise in automotive wire harnesses.</li></ul>
+            </div>
+        </section>
+
+        
+        <div class="callout callout-warning">
+            <div class="callout-header">// COMMON EXAM TRAPS & MISCONCEPTIONS</div>
+            <div class="callout-body">
+                <ul><li><strong>Trap:</strong> Applying the virtual short rule ($V_+ = V_-$) to an open-loop Op-Amp comparator without negative feedback. Virtual short applies ONLY when negative feedback is present.</li><li><strong>Trap:</strong> Forgetting that single-supply automotive Op-Amps (0V to 5V) cannot output negative voltages. Inverting amplifiers require a dual supply or a DC reference bias (e.g., 2.5V virtual ground).</li></ul>
+            </div>
+        </div>
+        
+
+        <section class="topic-section" id="exam-questions">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 15]</span> Exam Preparation & Model Questions</h2>
+            </div>
+            <div class="exam-qa-container">
+                
+        <div class="exam-qa-block">
+            <h3>Short Answer Questions (1–2 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> State the two &#x27;Golden Rules&#x27; of ideal operational amplifiers with negative feedback.</div>
+                <div class="qa-answer">Rule 1: The voltage difference between input terminals is zero ($V_+ = V_-$) due to infinite open-loop gain (Virtual Short). Rule 2: No electrical current flows into either input terminal ($I_+ = I_- = 0$) due to infinite input impedance.</div>
+            </div>
+            
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> Why is a voltage follower (buffer) inserted between a high-impedance sensor and an ADC pin?</div>
+                <div class="qa-answer">High-impedance sensors (such as pH or oxygen sensors) cannot supply significant current without their output voltage sagging (loading error). A voltage follower has near-infinite input impedance (drawing zero current from the sensor) and near-zero output impedance, driving the ADC pin accurately.</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Comprehensive Long Answer Questions (5–10 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item long-qa-item">
+                <div class="qa-question"><span class="q-badge">10 MARKS</span> Derive the closed-loop voltage gain expressions for an Inverting and a Non-Inverting Op-Amp circuit from fundamental Golden Rules. Design a signal conditioning circuit to amplify a 0–100 mV thermocouple signal to 0–5.0 V with a 20 Hz low-pass filter.</div>
+                <div class="qa-answer">A complete answer covers: (1) Schematics of inverting and non-inverting circuits; (2) Detailed derivations using KCL at summing nodes; (3) Calculation of required gain Av = 5.0V / 0.1V = 50x; (4) Selection of R1 = 10 kΩ, Rf = 490 kΩ; (5) Calculation of RC low-pass filter component values for fc = 20 Hz (R = 10 kΩ, C = 0.8 μF).</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Viva Voce & Technical Interview Questions</h3>
+            <div class="qa-list">
+            <div class="qa-item viva-qa-item">
+                <div class="qa-question"><span class="q-badge">VIVA / INTERVIEW</span> What is Common-Mode Rejection Ratio (CMRR) and why is it critical when measuring wheel speed sensor signals in an EV?</div>
+                <div class="qa-answer">CMRR is the ratio of differential gain to common-mode gain ($CMRR = 20\log_{10}(A_d / A_{cm})$). In an EV, high-voltage PWM switching from the traction inverter induces large common-mode noise on the wheel speed wiring harness. An amplifier with high CMRR (>90 dB) completely rejects this high-voltage noise while amplifying the small magnetic speed pulses.</div>
+            </div>
+            </div>
+        </div>
+        
+            </div>
+        </section>
+
+        <section class="topic-section" id="revision-card">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 18]</span> 60-Second Flash / Revision Card</h2>
+            </div>
+            <div class="flashcard">
+                <div class="flashcard-badge">// 60-SECOND REVISION SUMMARY</div>
+                <ul class="flashcard-points"><li>[REV] Golden Rules: I_in = 0, V+ = V-.</li><li>[REV] Inverting: Vout = -(Rf/Rin)*Vin.</li><li>[REV] Non-Inverting: Vout = (1 + Rf/R1)*Vin.</li><li>[REV] Buffer: Gain = 1, Z_in = infinity.</li><li>[REV] fc = 1 / (2*pi*R*C).</li></ul>
+            </div>
+        </section>
+
+        <section class="topic-section" id="personal-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 19]</span> Personal Study Notes (Auto-Saved)</h2>
+            </div>
+            <div class="personal-notes-widget">
+                <p class="notes-hint">Type personal notes or lab observations below. Content auto-saves to your local browser storage.</p>
+                <textarea id="personalNotePad" class="personal-notes-textarea" placeholder="Type personal study notes here..." oninput="savePersonalNote('operational-amplifiers-in-signal-conditioning', this.value)"></textarea>
+                <div class="notes-save-indicator" id="notesSavedTag">✓ Saved locally</div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="sources">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 20]</span> Source Traceability & Curriculum References</h2>
+            </div>
+            <div class="sources-box">
+                <p><strong>Primary Source Reference:</strong> Autotronics Lecture 5 Transcript; Electrical &amp; Electronics Fundamentals PPT Slides 118–140; Course Syllabus Section 5.</p>
+            </div>
+        </section>
+
+        <nav class="topic-pagination">
+            <div class="pagination-prev"><a href="transistors-bjt-and-mosfet-switches.html" class="nav-prev-btn"><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span><span>Previous: Transistors as Switches: BJT &amp; Power MOSFET Driving</span></a></div>
+            <div class="pagination-next"><a href="analog-to-digital-and-digital-to-analog-converters.html" class="nav-next-btn"><span>Next: Data Converters: ADC &amp; DAC Architectures in Automotive ECUs</span><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span></a></div>
+        </nav>
+    </main>
+</div>
+
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-col brand-col">
+            <div class="footer-brand">
+                <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="footer-bits-logo">
+                <div class="footer-brand-text">
+                    <span class="footer-title">Birla Institute of Technology & Science, Pilani</span>
+                    <span class="footer-sub">Work Integrated Learning Programmes (WILP)</span>
+                </div>
+            </div>
+            <p class="footer-desc">Institutional knowledge base engineered from official lecture transcripts, handouts, and laboratory sessions for M.Tech Automotive Engineering.</p>
+            <div class="footer-tags">
+                <span class="badge badge-info">BITS WILP</span>
+                <span class="badge badge-success">4 Core Courses</span>
+                <span class="badge badge-warning">Exam & Viva Ready</span>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Semester 1 Courses</h4>
+            <ul>
+                <li><a href="../../subjects/automotive-communication.html">Automotive Communication (AELZG513)</a></li>
+                <li><a href="../../subjects/automotive-vehicle.html">Automotive Vehicle (AELZC441)</a></li>
+                <li><a href="../../subjects/autotronics.html">Autotronics (AEZG533)</a></li>
+                <li><a href="../../subjects/embedded-system-design.html">Embedded System Design (AEZG512)</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="../../index.html">Master Portal Home</a></li>
+                <li><a href="../../semesters/sem1.html">Semester 1 Overview & Credits</a></li>
+                <li><a href="javascript:void(0)" onclick="openSearchModal()">Global Topic Search</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-bottom-content">
+            <span>© 2026 M.Tech Automotive Engineering Knowledge Base. Built for High-Performance Academic Study.</span>
+            <span>Birla Institute of Technology & Science, Pilani.</span>
+        </div>
+    </div>
+</footer>
+
+
+<div class="search-modal-overlay" id="searchModal" onclick="closeSearchModal(event)">
+    <div class="search-modal-container" onclick="event.stopPropagation()">
+        <div class="search-modal-header">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <input type="text" id="searchInput" class="search-modal-input" placeholder="Type to search curriculum, formulas, registers, exam questions..." autocomplete="off" oninput="handleSearch(this.value)">
+            <button class="search-modal-close" onclick="closeSearchModal()">&times;</button>
+        </div>
+        <div class="search-modal-filters">
+            <button class="search-filter-btn active" data-subject="all" onclick="setSearchFilter('all')">All Courses</button>
+            <button class="search-filter-btn" data-subject="automotive-communication" onclick="setSearchFilter('automotive-communication')">Communication</button>
+            <button class="search-filter-btn" data-subject="automotive-vehicle" onclick="setSearchFilter('automotive-vehicle')">Vehicle</button>
+            <button class="search-filter-btn" data-subject="autotronics" onclick="setSearchFilter('autotronics')">Autotronics</button>
+            <button class="search-filter-btn" data-subject="embedded-system-design" onclick="setSearchFilter('embedded-system-design')">Embedded</button>
+        </div>
+        <div class="search-modal-results" id="searchResults">
+            <div class="search-empty-state">
+                <span>Start typing to search across 33+ comprehensive M.Tech topics...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../../js/app.js"></script>
+<script src="../../js/search-index.js"></script>
+</body>
+</html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embedded System Design (AEZG512 / AELZC512) | BITS Pilani M.Tech Study Guide</title>
+    <meta name="description" content="Hardware and software design of modern automotive embedded systems: ARM Cortex-M4 processor architecture, Thumb-2 assembly programming, NVIC exception handling, NXP S32K144 automotive MCU peripheral drivers (GPIO, LPIT, FTM PWM, ADC, LPUART, FlexCAN), and remote lab workflows.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-subject-id="embedded-system-design">
+
+
+<header class="navbar">
+    <div class="navbar-container">
+        <a href="../index.html" class="nav-brand">
+            <img src="../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="nav-brand-logo">
+            <div class="brand-details">
+                <span class="brand-inst">Birla Institute of Technology & Science, Pilani</span>
+                <span class="brand-dept">Work Integrated Learning Programmes • Automotive Engineering</span>
+            </div>
+        </a>
+        <div class="nav-search-box" onclick="openSearchModal()">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <span class="search-placeholder">Search curriculum, formulas, registers, questions...</span>
+            <span class="search-shortcut">Ctrl+K</span>
+        </div>
+        <div class="nav-actions">
+            <a href="../semesters/sem1.html" class="nav-link">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></span>
+                <span>Semester 1 Hub</span>
+            </a>
+            <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Toggle Theme">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+                <span>Theme</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+
+<header class="subject-hero">
+    <div class="container">
+        <div class="hero-pill">
+            <span class="status-dot"></span>
+            <span>BITS Pilani WILP • Course Code: AEZG512 / AELZC512 • 1-1-2 (4 Units)</span>
+        </div>
+        <div class="breadcrumbs">
+            <a href="../index.html">Home</a> / 
+            <a href="../semesters/sem1.html">Semester 1</a> / 
+            <span class="curr-crumb">Embedded System Design</span>
+        </div>
+        <h1 class="hero-title">Embedded System Design</h1>
+        <p class="hero-subtitle">Hardware and software design of modern automotive embedded systems: ARM Cortex-M4 processor architecture, Thumb-2 assembly programming, NVIC exception handling, NXP S32K144 automotive MCU peripheral drivers (GPIO, LPIT, FTM PWM, ADC, LPUART, FlexCAN), and remote lab workflows.</p>
+        
+        <div class="hero-stats-grid">
+            <div class="stat-box">
+                <div class="stat-icon-wrapper"><span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></span></div>
+                <div class="stat-info">
+                    <span class="stat-value">7</span>
+                    <span class="stat-label">In-Depth Topics</span>
+                </div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-icon-wrapper"><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span></div>
+                <div class="stat-info">
+                    <span class="stat-value">4</span>
+                    <span class="stat-label">Learning Modules</span>
+                </div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-icon-wrapper"><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span></div>
+                <div class="stat-info">
+                    <span class="stat-value">100%</span>
+                    <span class="stat-label">Transcript Coverage</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="subject-main-container">
+    <div class="subject-content-wrapper">
+        <div class="subject-modules-container">
+            
+        <div class="dashboard-module-block">
+            <div class="module-block-header">
+                <h2>Embedded Fundamentals</h2>
+                <span class="module-count">2 Topics</span>
+            </div>
+            <div class="dashboard-topics-grid">
+                
+            <div class="dashboard-topic-card" data-topic-id="embedded-systems-overview-and-classification">
+                <div class="topic-card-top">
+                    <span class="topic-level-badge level-beginner">Beginner</span>
+                    <span class="topic-stars">WEIGHT: 5/5</span>
+                </div>
+                <h3 class="topic-card-title"><a href="../topics/embedded-system-design/embedded-systems-overview-and-classification.html">Embedded Systems Foundations &amp; Real-Time Constraints</a></h3>
+                <p class="topic-card-desc">An embedded system is an application-specific, purpose-built computing system that integrates processing cores, memory, and specialized hard...</p>
+                <div class="topic-card-footer">
+                    <span class="topic-status-tag" id="tag_embedded-systems-overview-and-classification">☐ Not Started</span>
+                    <a href="../topics/embedded-system-design/embedded-systems-overview-and-classification.html" class="study-btn">Study Topic →</a>
+                </div>
+            </div>
+            
+            <div class="dashboard-topic-card" data-topic-id="microprocessor-vs-microcontroller-architectures">
+                <div class="topic-card-top">
+                    <span class="topic-level-badge level-beginner">Beginner</span>
+                    <span class="topic-stars">WEIGHT: 5/5</span>
+                </div>
+                <h3 class="topic-card-title"><a href="../topics/embedded-system-design/microprocessor-vs-microcontroller-architectures.html">Microprocessor vs Microcontroller &amp; Processor Architectures</a></h3>
+                <p class="topic-card-desc">The selection between a Microprocessor (MPU) and a Microcontroller (MCU) represents the fundamental architectural division in computer engin...</p>
+                <div class="topic-card-footer">
+                    <span class="topic-status-tag" id="tag_microprocessor-vs-microcontroller-architectures">☐ Not Started</span>
+                    <a href="../topics/embedded-system-design/microprocessor-vs-microcontroller-architectures.html" class="study-btn">Study Topic →</a>
+                </div>
+            </div>
+            
+            </div>
+        </div>
+        
+        <div class="dashboard-module-block">
+            <div class="module-block-header">
+                <h2>Processor Architecture</h2>
+                <span class="module-count">2 Topics</span>
+            </div>
+            <div class="dashboard-topics-grid">
+                
+            <div class="dashboard-topic-card" data-topic-id="arm-cortex-m4-core-architecture">
+                <div class="topic-card-top">
+                    <span class="topic-level-badge level-intermediate">Intermediate</span>
+                    <span class="topic-stars">WEIGHT: 5/5</span>
+                </div>
+                <h3 class="topic-card-title"><a href="../topics/embedded-system-design/arm-cortex-m4-core-architecture.html">ARM Cortex-M4 Core Architecture &amp; Bus Matrix</a></h3>
+                <p class="topic-card-desc">The ARM Cortex-M4 is an industry-standard 32-bit RISC processor core engineered specifically for deterministic, high-performance, cost-sensi...</p>
+                <div class="topic-card-footer">
+                    <span class="topic-status-tag" id="tag_arm-cortex-m4-core-architecture">☐ Not Started</span>
+                    <a href="../topics/embedded-system-design/arm-cortex-m4-core-architecture.html" class="study-btn">Study Topic →</a>
+                </div>
+            </div>
+            
+            <div class="dashboard-topic-card" data-topic-id="arm-cortex-m4-programmers-model">
+                <div class="topic-card-top">
+                    <span class="topic-level-badge level-intermediate">Intermediate</span>
+                    <span class="topic-stars">WEIGHT: 5/5</span>
+                </div>
+                <h3 class="topic-card-title"><a href="../topics/embedded-system-design/arm-cortex-m4-programmers-model.html">ARM Cortex-M4 Programmer&#x27;s Model &amp; Register Set</a></h3>
+                <p class="topic-card-desc">The programmer&#x27;s model defines the register set, operating modes, privilege levels, and execution states visible to software running on the ...</p>
+                <div class="topic-card-footer">
+                    <span class="topic-status-tag" id="tag_arm-cortex-m4-programmers-model">☐ Not Started</span>
+                    <a href="../topics/embedded-system-design/arm-cortex-m4-programmers-model.html" class="study-btn">Study Topic →</a>
+                </div>
+            </div>
+            
+            </div>
+        </div>
+        
+        <div class="dashboard-module-block">
+            <div class="module-block-header">
+                <h2>Interrupts &amp; Peripherals</h2>
+                <span class="module-count">1 Topics</span>
+            </div>
+            <div class="dashboard-topics-grid">
+                
+            <div class="dashboard-topic-card" data-topic-id="arm-cortex-m4-nvic-and-exceptions">
+                <div class="topic-card-top">
+                    <span class="topic-level-badge level-intermediate">Intermediate</span>
+                    <span class="topic-stars">WEIGHT: 5/5</span>
+                </div>
+                <h3 class="topic-card-title"><a href="../topics/embedded-system-design/arm-cortex-m4-nvic-and-exceptions.html">Nested Vectored Interrupt Controller (NVIC) &amp; Exception Handling</a></h3>
+                <p class="topic-card-desc">Real-time automotive microcontrollers must respond instantaneously to asynchronous external events (such as CAN message reception, timer ove...</p>
+                <div class="topic-card-footer">
+                    <span class="topic-status-tag" id="tag_arm-cortex-m4-nvic-and-exceptions">☐ Not Started</span>
+                    <a href="../topics/embedded-system-design/arm-cortex-m4-nvic-and-exceptions.html" class="study-btn">Study Topic →</a>
+                </div>
+            </div>
+            
+            </div>
+        </div>
+        
+        <div class="dashboard-module-block">
+            <div class="module-block-header">
+                <h2>Microcontroller Peripherals</h2>
+                <span class="module-count">2 Topics</span>
+            </div>
+            <div class="dashboard-topics-grid">
+                
+            <div class="dashboard-topic-card" data-topic-id="s32k144-gpio-configuration-and-driver">
+                <div class="topic-card-top">
+                    <span class="topic-level-badge level-intermediate">Intermediate</span>
+                    <span class="topic-stars">WEIGHT: 5/5</span>
+                </div>
+                <h3 class="topic-card-title"><a href="../topics/embedded-system-design/s32k144-gpio-configuration-and-driver.html">NXP S32K144 GPIO Architecture &amp; Low-Level Driver Development</a></h3>
+                <p class="topic-card-desc">General Purpose Input/Output (GPIO) ports provide the primary digital interface between the NXP S32K144 automotive microcontroller and exter...</p>
+                <div class="topic-card-footer">
+                    <span class="topic-status-tag" id="tag_s32k144-gpio-configuration-and-driver">☐ Not Started</span>
+                    <a href="../topics/embedded-system-design/s32k144-gpio-configuration-and-driver.html" class="study-btn">Study Topic →</a>
+                </div>
+            </div>
+            
+            <div class="dashboard-topic-card" data-topic-id="s32k144-flexcan-automotive-network-controller">
+                <div class="topic-card-top">
+                    <span class="topic-level-badge level-advanced">Advanced</span>
+                    <span class="topic-stars">WEIGHT: 5/5</span>
+                </div>
+                <h3 class="topic-card-title"><a href="../topics/embedded-system-design/s32k144-flexcan-automotive-network-controller.html">NXP S32K144 FlexCAN Controller &amp; CAN-FD Implementation</a></h3>
+                <p class="topic-card-desc">The FlexCAN module in the NXP S32K144 is a full-featured, silicon-hardened automotive network controller implementing ISO 11898-1 Classic CA...</p>
+                <div class="topic-card-footer">
+                    <span class="topic-status-tag" id="tag_s32k144-flexcan-automotive-network-controller">☐ Not Started</span>
+                    <a href="../topics/embedded-system-design/s32k144-flexcan-automotive-network-controller.html" class="study-btn">Study Topic →</a>
+                </div>
+            </div>
+            
+            </div>
+        </div>
+        
+        </div>
+    </div>
+</main>
+
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-col brand-col">
+            <div class="footer-brand">
+                <img src="../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="footer-bits-logo">
+                <div class="footer-brand-text">
+                    <span class="footer-title">Birla Institute of Technology & Science, Pilani</span>
+                    <span class="footer-sub">Work Integrated Learning Programmes (WILP)</span>
+                </div>
+            </div>
+            <p class="footer-desc">Institutional knowledge base engineered from official lecture transcripts, handouts, and laboratory sessions for M.Tech Automotive Engineering.</p>
+            <div class="footer-tags">
+                <span class="badge badge-info">BITS WILP</span>
+                <span class="badge badge-success">4 Core Courses</span>
+                <span class="badge badge-warning">Exam & Viva Ready</span>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Semester 1 Courses</h4>
+            <ul>
+                <li><a href="../subjects/automotive-communication.html">Automotive Communication (AELZG513)</a></li>
+                <li><a href="../subjects/automotive-vehicle.html">Automotive Vehicle (AELZC441)</a></li>
+                <li><a href="../subjects/autotronics.html">Autotronics (AEZG533)</a></li>
+                <li><a href="../subjects/embedded-system-design.html">Embedded System Design (AEZG512)</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="../index.html">Master Portal Home</a></li>
+                <li><a href="../semesters/sem1.html">Semester 1 Overview & Credits</a></li>
+                <li><a href="javascript:void(0)" onclick="openSearchModal()">Global Topic Search</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-bottom-content">
+            <span>© 2026 M.Tech Automotive Engineering Knowledge Base. Built for High-Performance Academic Study.</span>
+            <span>Birla Institute of Technology & Science, Pilani.</span>
+        </div>
+    </div>
+</footer>
+
+
+<div class="search-modal-overlay" id="searchModal" onclick="closeSearchModal(event)">
+    <div class="search-modal-container" onclick="event.stopPropagation()">
+        <div class="search-modal-header">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <input type="text" id="searchInput" class="search-modal-input" placeholder="Type to search curriculum, formulas, registers, exam questions..." autocomplete="off" oninput="handleSearch(this.value)">
+            <button class="search-modal-close" onclick="closeSearchModal()">&times;</button>
+        </div>
+        <div class="search-modal-filters">
+            <button class="search-filter-btn active" data-subject="all" onclick="setSearchFilter('all')">All Courses</button>
+            <button class="search-filter-btn" data-subject="automotive-communication" onclick="setSearchFilter('automotive-communication')">Communication</button>
+            <button class="search-filter-btn" data-subject="automotive-vehicle" onclick="setSearchFilter('automotive-vehicle')">Vehicle</button>
+            <button class="search-filter-btn" data-subject="autotronics" onclick="setSearchFilter('autotronics')">Autotronics</button>
+            <button class="search-filter-btn" data-subject="embedded-system-design" onclick="setSearchFilter('embedded-system-design')">Embedded</button>
+        </div>
+        <div class="search-modal-results" id="searchResults">
+            <div class="search-empty-state">
+                <span>Start typing to search across 33+ comprehensive M.Tech topics...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../js/app.js"></script>
+<script src="../js/search-index.js"></script>
+</body>
+</html>

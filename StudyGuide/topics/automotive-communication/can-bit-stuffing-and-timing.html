@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAN Bit Stuffing Mechanism, Bit Timing &amp; Synchronization | Automotive Communication Systems</title>
+    <meta name="description" content="To maintain clock synchronization between unsynchronized node crystal oscillators without dedicating a separate clock wire, CAN employs two critical l">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body data-topic-id="can-bit-stuffing-and-timing" data-subject-id="automotive-communication">
+
+
+<header class="navbar">
+    <div class="navbar-container">
+        <a href="../../index.html" class="nav-brand">
+            <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="nav-brand-logo">
+            <div class="brand-details">
+                <span class="brand-inst">Birla Institute of Technology & Science, Pilani</span>
+                <span class="brand-dept">Work Integrated Learning Programmes • Automotive Engineering</span>
+            </div>
+        </a>
+        <div class="nav-search-box" onclick="openSearchModal()">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <span class="search-placeholder">Search curriculum, formulas, registers, questions...</span>
+            <span class="search-shortcut">Ctrl+K</span>
+        </div>
+        <div class="nav-actions">
+            <a href="../../semesters/sem1.html" class="nav-link">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></span>
+                <span>Semester 1 Hub</span>
+            </a>
+            <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Toggle Theme">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+                <span>Theme</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+
+<div class="topic-page-layout">
+    <aside class="topic-sidebar">
+        <div class="sidebar-header">
+            <a href="../../subjects/automotive-communication.html" class="sidebar-back">
+                <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span>
+                <span>Automotive Communication Systems</span>
+            </a>
+            <div class="sidebar-subject-badge">AELZG513</div>
+        </div>
+        <div class="sidebar-toc">
+            <h4>Table of Contents</h4>
+            <ul>
+                <li><a href="#overview">Quick Overview</a></li>
+                <li><a href="#objectives">Learning Objectives</a></li>
+                <li><a href="#core-concept">Core Concept & Intuition</a></li>
+                <li><a href="#lecture-notes">In-Class Lecture Notes</a></li>
+                <li><a href="#extra-explanation">Comprehensive Theory</a></li>
+                
+                
+                <li><a href="#working-principle">Working Principle</a></li>
+                <li><a href="#application">Automotive Application</a></li>
+                <li><a href="#comparison">Specifications Table</a></li>
+                <li><a href="#formulas">Math Formulas & Numericals</a></li>
+                <li><a href="#code">Embedded Driver / Registers</a></li>
+                <li><a href="#exam-questions">Exam & Viva Q&A</a></li>
+                <li><a href="#revision-card">60-Second Flash Card</a></li>
+                <li><a href="#personal-notes">My Personal Notes</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-progress-widget">
+            <h4>Topic Status</h4>
+            <div class="status-btn-group">
+                <button class="status-btn" id="statusNotStarted" onclick="setTopicStatus('can-bit-stuffing-and-timing', 'not_started')">☐ Not Started</button>
+                <button class="status-btn" id="statusInProgress" onclick="setTopicStatus('can-bit-stuffing-and-timing', 'in_progress')">◐ In Progress</button>
+                <button class="status-btn" id="statusCompleted" onclick="setTopicStatus('can-bit-stuffing-and-timing', 'completed')">☑ Mastered</button>
+            </div>
+            <button class="bookmark-btn" id="bookmarkBtn" onclick="toggleBookmark('can-bit-stuffing-and-timing')">★ Bookmark for Revision</button>
+        </div>
+    </aside>
+
+    <main class="topic-main-content">
+        <header class="topic-header">
+            <div class="breadcrumbs">
+                <a href="../../index.html">Home</a> / 
+                <a href="../../semesters/sem1.html">Semester 1</a> / 
+                <a href="../../subjects/automotive-communication.html">Automotive Communication Systems</a> / 
+                <span class="curr-crumb">CAN Bit Stuffing Mechanism, Bit Timing &amp; Synchronization</span>
+            </div>
+            
+            <div class="topic-meta-row">
+                <span class="meta-pill module-pill">MODULE: In-Vehicle Networks &amp; Protocols</span>
+                <span class="meta-pill level-pill">LEVEL: Advanced</span>
+                <span class="meta-pill importance-pill">WEIGHT: 5/5</span>
+                <span class="meta-pill code-pill">AELZG513</span>
+            </div>
+
+            <h1 class="topic-main-title">CAN Bit Stuffing Mechanism, Bit Timing &amp; Synchronization</h1>
+
+            <div class="action-bar-top">
+                <div class="read-estimate">Estimated Read Time: <strong>12–15 mins</strong></div>
+                <div class="action-buttons-group">
+                    <button class="print-btn" onclick="window.print()" title="Print this complete note page or save as PDF">
+                        <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg></span>
+                        <span>Print / Save PDF</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <section class="topic-section" id="overview">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 01]</span> Quick Overview</h2>
+            </div>
+            <p class="overview-lead">To maintain clock synchronization between unsynchronized node crystal oscillators without dedicating a separate clock wire, CAN employs two critical lower-layer mechanisms: Bit Stuffing (which guarantees frequent signal edges) and Nominal Bit Timing Segmentation (which divides every bit into time quanta to account for propagation delays and phase drift).</p>
+        </section>
+
+        <section class="topic-section" id="objectives">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 02]</span> Learning Objectives & Prerequisites</h2>
+            </div>
+            <div class="objectives-card">
+                <h5>What You Will Master:</h5>
+                <ul class="objectives-list">
+                    <li>Explain the rule of Bit Stuffing (5 consecutive identical polarity bits).</li><li>Identify which frame fields are bit-stuffed and which are fixed-form (unstuffed).</li><li>Analyze Nominal Bit Time segments: Sync_Seg, Prop_Seg, Phase_Seg1, and Phase_Seg2.</li><li>Calculate CAN baud rates, Time Quanta ($T_q$), sample point percentages, and Synchronization Jump Width (SJW).</li>
+                </ul>
+                <div class="prereq-note">
+                    <strong>Prerequisites:</strong> CAN Protocol Architecture &amp; Differential Physical Layer, CAN Frame Format.
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="core-concept">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 03]</span> Core Concept & Physical Intuition</h2>
+            </div>
+            <div class="concept-body">
+                <p>CAN does not have a clock line. Receivers stay synchronized by detecting falling voltage edges (recessive-to-dominant transitions). If a data payload contains all zeros (e.g., 64 dominant bits), a receiver clock that is slightly fast or slow will drift and miscount the bits. To prevent this, the transmitter automatically injects an opposite-polarity &#x27;stuff bit&#x27; after every 5 consecutive identical bits. The receiver recognizes and removes this extra bit before passing data to the microcontroller.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="lecture-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 04]</span> In-Class Lecture Transcript Breakdown</h2>
+            </div>
+            <div class="callout callout-lecture">
+                <div class="callout-header">// LECTURE TRANSCRIPT SYNTHESIS</div>
+                <div class="callout-body">
+                    <p>Lecture 5 and Lab 2 transcripts discussed bit timing and bit stuffing in detail. The professor highlighted: &#x27;Bit stuffing applies only from Start of Frame (SOF) to the end of the CRC Sequence. It does NOT apply to CRC Delimiter, ACK field, or EOF because those fields must have a fixed, uncorrupted shape.&#x27; The lecturer also walked through the four segments of a CAN bit: Synchronization Segment (1 Tq), Propagation Segment, Phase Buffer 1, and Phase Buffer 2, emphasizing that the Sample Point should typically be positioned at 75% to 80% of the total bit time for robust automotive operation.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="extra-explanation">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 05]</span> Rigorous Engineering Theory & Derivations</h2>
+            </div>
+            <div class="callout callout-deep">
+                <div class="callout-header">// RIGOROUS ENGINEERING THEORY</div>
+                <div class="callout-body">
+                    <p>Let&#x27;s analyze Nominal Bit Time ($t_{bit}$) segmentation in detail:
+
+A single CAN bit time is divided into non-overlapping Time Quanta ($T_q$), derived from the microcontroller peripheral clock ($f_{osc}$) via a Baud Rate Prescaler (BRP):
+$$T_q = \frac{BRP}{f_{osc}}$$
+
+The bit is partitioned into four functional segments:
+1. **SYNC_SEG (1 $T_q$):** Used to synchronize the various nodes on the bus. An edge is expected to lie within this segment.
+2. **PROP_SEG (1 to 8 $T_q$):** Compensates for physical propagation delays across cables, transceivers, and input comparators.
+3. **PHASE_SEG1 (1 to 8 $T_q$):** Compensates for phase edge errors. May be lengthened by resynchronization.
+4. **PHASE_SEG2 (2 to 8 $T_q$):** Compensates for phase edge errors. May be shortened by resynchronization.
+
+**Sample Point:** The precise instant in time where the CAN controller reads the bus state: $\text{Sample Point} = \frac{\text{SYNC\_SEG} + \text{PROP\_SEG} + \text{PHASE\_SEG1}}{\text{Total } T_q} \times 100\%$.
+
+**Synchronization Jump Width (SJW):** The maximum number of Time Quanta by which Phase_Seg1 can be lengthened or Phase_Seg2 shortened during resynchronization (typically 1 to 4 $T_q$).</p>
+                </div>
+            </div>
+        </section>
+
+        
+        
+
+        <section class="topic-section" id="working-principle">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 08]</span> Step-by-Step Operational Principle</h2>
+            </div>
+            <div class="principle-body">
+                <p>Hard Synchronization vs Resynchronization:
+1. **Hard Synchronization:** Occurs on the falling edge of the Start-of-Frame (SOF) bit. The receiver&#x27;s internal bit counter is instantly reset to zero within SYNC_SEG.
+2. **Resynchronization:** Occurs on subsequent recessive-to-dominant edges during frame transmission. If an edge occurs before SYNC_SEG (early edge), Phase_Seg2 is shortened by up to SJW. If an edge occurs after SYNC_SEG (late edge), Phase_Seg1 is lengthened by up to SJW. This dynamically eliminates clock drift.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="application">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 09]</span> Real Automotive Application</h2>
+            </div>
+            <div class="callout callout-application">
+                <div class="callout-header">// AUTOMOTIVE OEM CASE STUDY</div>
+                <div class="callout-body">
+                    <p></p>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="topic-section table-section" id="comparison">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 10]</span> Technical Specifications & Benchmarks</h2>
+            </div>
+            <div class="table-responsive">
+                <table class="specs-table">
+                    <thead><tr><th>Bit Timing Parameter</th><th>Recommended Range</th><th>Function</th><th>Automotive Design Constraint</th></tr></thead>
+                    <tbody><tr><td>Total Time Quanta (Tq)</td><td>8 to 32 Tq per bit</td><td>Granularity of bit time division</td><td>Higher Tq allows finer sample point placement</td></tr><tr><td>Sample Point</td><td>75% to 80% (High-Speed)</td><td>Point where physical bus level is read</td><td>Must be placed after all line reflections settle</td></tr><tr><td>Sync Jump Width (SJW)</td><td>1 to 4 Tq</td><td>Max clock drift correction per edge</td><td>Must compensate for crystal oscillator tolerance</td></tr><tr><td>Bit Stuffing Scope</td><td>SOF to CRC Sequence</td><td>Guarantees clock edges</td><td>Fixed-form fields (CRC Del, ACK, EOF) are NOT stuffed</td></tr></tbody>
+                </table>
+            </div>
+        </section>
+        
+        
+        <section class="topic-section formulas-section" id="formulas">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 11]</span> Mathematical Formulas & Numerical Breakdown</h2>
+            </div>
+            <div class="formulas-grid">
+                
+            <div class="formula-card">
+                <div class="formula-name">Nominal Bit Rate and Time Quanta Equations</div>
+                <div class="formula-math"><code>T_q = \frac{BRP}{f_{clk}}, \quad T_{bit} = T_q \cdot (SYNC\_SEG + PROP\_SEG + PHASE\_SEG1 + PHASE\_SEG2), \quad \text{Baud} = \frac{1}{T_{bit}}</code></div>
+                <div class="formula-details">
+                    <h5>Parameter Definitions:</h5>
+                    <ul class="formula-vars"><li><code>B</code>: R</li><li><code>f</code>: _</li><li><code>T</code>: _</li><li><code>T</code>: _</li></ul>
+                    <div class="formula-example"><strong>Worked Numerical Example:</strong><br>For f_clk = 40 MHz, BRP = 5 -&gt; T_q = 5 / 40 MHz = 125 ns. If total T_q count = 16, then T_bit = 16 × 125 ns = 2000 ns = 2 μs. Baud rate = 1 / 2 μs = 500,000 bps = 500 kbps.</div>
+                </div>
+            </div>
+            
+            </div>
+        </section>
+        
+        
+        <section class="topic-section code-section" id="code">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 12]</span> Embedded C Driver & Register Interface</h2>
+                <button class="copy-btn" onclick="copyCodeBlock('codeBlock')">
+                    <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+                    <span>Copy Code</span>
+                </button>
+            </div>
+            <div class="code-container">
+                <pre><code id="codeBlock" class="language-c">// S32K144 / ARM Cortex-M4 FlexCAN Bit Timing Register Configuration (500 kbps)
+void configure_flexcan_bit_timing(void) {
+    // Enable CAN clock gate in PCC
+    PCC-&gt;PCCn[PCC_FlexCAN0_INDEX] |= PCC_PCCn_CGC_MASK;
+    
+    // Set CTRL1 Register bit timing fields:
+    // PRESDIV (BRP-1) = 4 (Divider = 5)
+    // PROPSEG = 6 (7 Tq)
+    // PSEG1   = 4 (5 Tq)
+    // PSEG2   = 2 (3 Tq)
+    // RJW     = 1 (2 Tq)
+    // Total Tq = 1 (Sync) + 7 + 5 + 3 = 16 Tq.
+    // Sample Point = (1 + 7 + 5) / 16 = 13/16 = 81.25%
+    CAN0-&gt;CTRL1 = CAN_CTRL1_PRESDIV(4)  |
+                  CAN_CTRL1_PROPSEG(6)  |
+                  CAN_CTRL1_PSEG1(4)    |
+                  CAN_CTRL1_PSEG2(2)    |
+                  CAN_CTRL1_RJW(1)      |
+                  CAN_CTRL1_CLKSRC(1);  // Bus Clock (40 MHz)
+}</code></pre>
+            </div>
+        </section>
+        
+
+        <section class="topic-section" id="must-remember">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 13]</span> Must-Remember Key Points for Exams</h2>
+            </div>
+            <div class="must-remember-card">
+                <ul><li>[KEY] Bit stuffing inserts an opposite polarity bit after 5 consecutive identical bits.</li><li>[KEY] Stuffing applies strictly from Start of Frame (SOF) to CRC Sequence.</li><li>[KEY] Fixed-form fields (CRC Delimiter, ACK, EOF, IFS) are NEVER bit-stuffed.</li><li>[KEY] If 6 consecutive identical bits are detected in a stuffed field, a Stuff Error is triggered.</li><li>[KEY] Sample Point is typically configured at 75% - 80% of Nominal Bit Time.</li></ul>
+            </div>
+        </section>
+
+        
+        <div class="callout callout-warning">
+            <div class="callout-header">// COMMON EXAM TRAPS & MISCONCEPTIONS</div>
+            <div class="callout-body">
+                <ul><li><strong>Trap:</strong> Applying bit stuffing to the End-of-Frame (EOF) field. EOF is 7 fixed recessive bits; stuffing does NOT apply to it.</li><li><strong>Trap:</strong> Placing the sample point at 50% of the bit time. 50% is too early because physical transceiver and cable propagation delays have not yet settled.</li></ul>
+            </div>
+        </div>
+        
+
+        <section class="topic-section" id="exam-questions">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 15]</span> Exam Preparation & Model Questions</h2>
+            </div>
+            <div class="exam-qa-container">
+                
+        <div class="exam-qa-block">
+            <h3>Short Answer Questions (1–2 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> Why is bit stuffing used in Controller Area Networks?</div>
+                <div class="qa-answer">Because CAN does not have a separate clock wire. Receivers rely on signal transitions (edges) to synchronize their internal bit clocks. Bit stuffing guarantees an edge at least every 5 bits, preventing clock drift during long sequences of identical bits.</div>
+            </div>
+            
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> Which fields in a CAN 2.0A frame are NOT subject to bit stuffing?</div>
+                <div class="qa-answer">The CRC Delimiter, ACK Slot, ACK Delimiter, End of Frame (EOF), and Interframe Space (IFS) are fixed-form fields and are not bit-stuffed.</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Comprehensive Long Answer Questions (5–10 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item long-qa-item">
+                <div class="qa-question"><span class="q-badge">10 MARKS</span> Explain the complete CAN Bit Timing model and Bit Stuffing mechanism. Calculate the register settings (PRESDIV, PROPSEG, PSEG1, PSEG2) to achieve 500 kbps at an 80% sample point from an 80 MHz clock source.</div>
+                <div class="qa-answer">A complete answer covers: (1) Bit timing segmentation diagram (Sync_Seg, Prop_Seg, Phase_Seg1, Phase_Seg2); (2) Hard synchronization vs Resynchronization with SJW; (3) Bit stuffing rule with injection and destuffing examples; (4) Mathematical calculations showing T_q = 62.5 ns (BRP=5), 32 total T_q, and allocation yielding 500 kbps and 80% sample point.</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Viva Voce & Technical Interview Questions</h3>
+            <div class="qa-list">
+            <div class="qa-item viva-qa-item">
+                <div class="qa-question"><span class="q-badge">VIVA / INTERVIEW</span> What happens if an ECU detects 6 consecutive dominant bits in the Data Field of a received CAN frame?</div>
+                <div class="qa-answer">The receiving ECU immediately detects a <strong>Stuff Error</strong>, halts frame processing, and broadcasts an <strong>Active Error Flag</strong> (6 consecutive dominant bits) to destroy the invalid frame on the bus and force the transmitter to re-send.</div>
+            </div>
+            </div>
+        </div>
+        
+            </div>
+        </section>
+
+        <section class="topic-section" id="revision-card">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 18]</span> 60-Second Flash / Revision Card</h2>
+            </div>
+            <div class="flashcard">
+                <div class="flashcard-badge">// 60-SECOND REVISION SUMMARY</div>
+                <ul class="flashcard-points"><li>[REV] 5 identical bits -&gt; 1 opposite stuff bit injected.</li><li>[REV] Stuffing zone: SOF through CRC Sequence only.</li><li>[REV] Bit segments: Sync(1) + Prop + Phase1 + Phase2.</li><li>[REV] Sample point target: 75% - 80% for automotive networks.</li></ul>
+            </div>
+        </section>
+
+        <section class="topic-section" id="personal-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 19]</span> Personal Study Notes (Auto-Saved)</h2>
+            </div>
+            <div class="personal-notes-widget">
+                <p class="notes-hint">Type personal notes or lab observations below. Content auto-saves to your local browser storage.</p>
+                <textarea id="personalNotePad" class="personal-notes-textarea" placeholder="Type personal study notes here..." oninput="savePersonalNote('can-bit-stuffing-and-timing', this.value)"></textarea>
+                <div class="notes-save-indicator" id="notesSavedTag">✓ Saved locally</div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="sources">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 20]</span> Source Traceability & Curriculum References</h2>
+            </div>
+            <div class="sources-box">
+                <p><strong>Primary Source Reference:</strong> Automotive Communication Systems Lecture 5 Transcript; Lab 2 Bit Timing Notes; ISO 11898-1 Standard.</p>
+            </div>
+        </section>
+
+        <nav class="topic-pagination">
+            <div class="pagination-prev"><a href="can-arbitration-mechanism.html" class="nav-prev-btn"><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span><span>Previous: CAN Bus Non-Destructive Bitwise Arbitration</span></a></div>
+            <div class="pagination-next"><a href="can-error-handling-fault-confinement.html" class="nav-next-btn"><span>Next: CAN Error Detection Types &amp; Fault Confinement Mechanism</span><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span></a></div>
+        </nav>
+    </main>
+</div>
+
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-col brand-col">
+            <div class="footer-brand">
+                <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="footer-bits-logo">
+                <div class="footer-brand-text">
+                    <span class="footer-title">Birla Institute of Technology & Science, Pilani</span>
+                    <span class="footer-sub">Work Integrated Learning Programmes (WILP)</span>
+                </div>
+            </div>
+            <p class="footer-desc">Institutional knowledge base engineered from official lecture transcripts, handouts, and laboratory sessions for M.Tech Automotive Engineering.</p>
+            <div class="footer-tags">
+                <span class="badge badge-info">BITS WILP</span>
+                <span class="badge badge-success">4 Core Courses</span>
+                <span class="badge badge-warning">Exam & Viva Ready</span>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Semester 1 Courses</h4>
+            <ul>
+                <li><a href="../../subjects/automotive-communication.html">Automotive Communication (AELZG513)</a></li>
+                <li><a href="../../subjects/automotive-vehicle.html">Automotive Vehicle (AELZC441)</a></li>
+                <li><a href="../../subjects/autotronics.html">Autotronics (AEZG533)</a></li>
+                <li><a href="../../subjects/embedded-system-design.html">Embedded System Design (AEZG512)</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="../../index.html">Master Portal Home</a></li>
+                <li><a href="../../semesters/sem1.html">Semester 1 Overview & Credits</a></li>
+                <li><a href="javascript:void(0)" onclick="openSearchModal()">Global Topic Search</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-bottom-content">
+            <span>© 2026 M.Tech Automotive Engineering Knowledge Base. Built for High-Performance Academic Study.</span>
+            <span>Birla Institute of Technology & Science, Pilani.</span>
+        </div>
+    </div>
+</footer>
+
+
+<div class="search-modal-overlay" id="searchModal" onclick="closeSearchModal(event)">
+    <div class="search-modal-container" onclick="event.stopPropagation()">
+        <div class="search-modal-header">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <input type="text" id="searchInput" class="search-modal-input" placeholder="Type to search curriculum, formulas, registers, exam questions..." autocomplete="off" oninput="handleSearch(this.value)">
+            <button class="search-modal-close" onclick="closeSearchModal()">&times;</button>
+        </div>
+        <div class="search-modal-filters">
+            <button class="search-filter-btn active" data-subject="all" onclick="setSearchFilter('all')">All Courses</button>
+            <button class="search-filter-btn" data-subject="automotive-communication" onclick="setSearchFilter('automotive-communication')">Communication</button>
+            <button class="search-filter-btn" data-subject="automotive-vehicle" onclick="setSearchFilter('automotive-vehicle')">Vehicle</button>
+            <button class="search-filter-btn" data-subject="autotronics" onclick="setSearchFilter('autotronics')">Autotronics</button>
+            <button class="search-filter-btn" data-subject="embedded-system-design" onclick="setSearchFilter('embedded-system-design')">Embedded</button>
+        </div>
+        <div class="search-modal-results" id="searchResults">
+            <div class="search-empty-state">
+                <span>Start typing to search across 33+ comprehensive M.Tech topics...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../../js/app.js"></script>
+<script src="../../js/search-index.js"></script>
+</body>
+</html>

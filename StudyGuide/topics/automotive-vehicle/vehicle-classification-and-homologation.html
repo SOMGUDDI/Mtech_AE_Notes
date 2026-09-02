@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automobile Classification, Homologation &amp; Architecture | Automotive Vehicle</title>
+    <meta name="description" content="Automotive engineering requires strict adherence to international classification standards and regulatory homologation frameworks. Vehicles are classi">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body data-topic-id="vehicle-classification-and-homologation" data-subject-id="automotive-vehicle">
+
+
+<header class="navbar">
+    <div class="navbar-container">
+        <a href="../../index.html" class="nav-brand">
+            <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="nav-brand-logo">
+            <div class="brand-details">
+                <span class="brand-inst">Birla Institute of Technology & Science, Pilani</span>
+                <span class="brand-dept">Work Integrated Learning Programmes • Automotive Engineering</span>
+            </div>
+        </a>
+        <div class="nav-search-box" onclick="openSearchModal()">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <span class="search-placeholder">Search curriculum, formulas, registers, questions...</span>
+            <span class="search-shortcut">Ctrl+K</span>
+        </div>
+        <div class="nav-actions">
+            <a href="../../semesters/sem1.html" class="nav-link">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></span>
+                <span>Semester 1 Hub</span>
+            </a>
+            <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Toggle Theme">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+                <span>Theme</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+
+<div class="topic-page-layout">
+    <aside class="topic-sidebar">
+        <div class="sidebar-header">
+            <a href="../../subjects/automotive-vehicle.html" class="sidebar-back">
+                <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span>
+                <span>Automotive Vehicle</span>
+            </a>
+            <div class="sidebar-subject-badge">AELZC441</div>
+        </div>
+        <div class="sidebar-toc">
+            <h4>Table of Contents</h4>
+            <ul>
+                <li><a href="#overview">Quick Overview</a></li>
+                <li><a href="#objectives">Learning Objectives</a></li>
+                <li><a href="#core-concept">Core Concept & Intuition</a></li>
+                <li><a href="#lecture-notes">In-Class Lecture Notes</a></li>
+                <li><a href="#extra-explanation">Comprehensive Theory</a></li>
+                
+                
+                <li><a href="#working-principle">Working Principle</a></li>
+                <li><a href="#application">Automotive Application</a></li>
+                <li><a href="#comparison">Specifications Table</a></li>
+                <li><a href="#formulas">Math Formulas & Numericals</a></li>
+                <li><a href="#code">Embedded Driver / Registers</a></li>
+                <li><a href="#exam-questions">Exam & Viva Q&A</a></li>
+                <li><a href="#revision-card">60-Second Flash Card</a></li>
+                <li><a href="#personal-notes">My Personal Notes</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-progress-widget">
+            <h4>Topic Status</h4>
+            <div class="status-btn-group">
+                <button class="status-btn" id="statusNotStarted" onclick="setTopicStatus('vehicle-classification-and-homologation', 'not_started')">☐ Not Started</button>
+                <button class="status-btn" id="statusInProgress" onclick="setTopicStatus('vehicle-classification-and-homologation', 'in_progress')">◐ In Progress</button>
+                <button class="status-btn" id="statusCompleted" onclick="setTopicStatus('vehicle-classification-and-homologation', 'completed')">☑ Mastered</button>
+            </div>
+            <button class="bookmark-btn" id="bookmarkBtn" onclick="toggleBookmark('vehicle-classification-and-homologation')">★ Bookmark for Revision</button>
+        </div>
+    </aside>
+
+    <main class="topic-main-content">
+        <header class="topic-header">
+            <div class="breadcrumbs">
+                <a href="../../index.html">Home</a> / 
+                <a href="../../semesters/sem1.html">Semester 1</a> / 
+                <a href="../../subjects/automotive-vehicle.html">Automotive Vehicle</a> / 
+                <span class="curr-crumb">Automobile Classification, Homologation &amp; Architecture</span>
+            </div>
+            
+            <div class="topic-meta-row">
+                <span class="meta-pill module-pill">MODULE: Vehicle Architecture &amp; Classification</span>
+                <span class="meta-pill level-pill">LEVEL: Beginner</span>
+                <span class="meta-pill importance-pill">WEIGHT: 4/5</span>
+                <span class="meta-pill code-pill">AELZC441</span>
+            </div>
+
+            <h1 class="topic-main-title">Automobile Classification, Homologation &amp; Architecture</h1>
+
+            <div class="action-bar-top">
+                <div class="read-estimate">Estimated Read Time: <strong>12–15 mins</strong></div>
+                <div class="action-buttons-group">
+                    <button class="print-btn" onclick="window.print()" title="Print this complete note page or save as PDF">
+                        <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg></span>
+                        <span>Print / Save PDF</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <section class="topic-section" id="overview">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 01]</span> Quick Overview</h2>
+            </div>
+            <p class="overview-lead">Automotive engineering requires strict adherence to international classification standards and regulatory homologation frameworks. Vehicles are classified based on purpose, gross vehicle weight (GVW), seating capacity, and powertrain topology (UN ECE / AIS standards). Homologation is the mandatory government approval process certifying that a vehicle meets all safety, crashworthiness, emission, and electromagnetic compatibility standards before public sale.</p>
+        </section>
+
+        <section class="topic-section" id="objectives">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 02]</span> Learning Objectives & Prerequisites</h2>
+            </div>
+            <div class="objectives-card">
+                <h5>What You Will Master:</h5>
+                <ul class="objectives-list">
+                    <li>Understand international vehicle classification categories: Category M (Passenger), Category N (Goods), and Category L (2/3 Wheelers).</li><li>Explain the vehicle development lifecycle: Concept, Virtual Engineering (CAE/CFD), Prototyping, and Homologation.</li><li>Analyze statutory safety standards (AIS, UN ECE, FMVSS) and emission regulations (Euro 6 / BS-VI).</li><li>Understand the fundamental engineering trade-offs between packaging, curb weight, payload, and structural rigidity.</li>
+                </ul>
+                <div class="prereq-note">
+                    <strong>Prerequisites:</strong> Basic understanding of automotive mechanical systems and engineering design principles.
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="core-concept">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 03]</span> Core Concept & Physical Intuition</h2>
+            </div>
+            <div class="concept-body">
+                <p>A vehicle is not merely a collection of isolated parts; it is an integrated socio-technical system governed by strict regulatory boundaries. For example, a vehicle designed as Category M1 (passenger car up to 8 seats + driver) must pass dynamic barrier crash tests (frontal offset, side impact, pedestrian protection) and stringent evaporative/exhaust emission cycles before a single unit can legally be registered and driven on public roads.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="lecture-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 04]</span> In-Class Lecture Transcript Breakdown</h2>
+            </div>
+            <div class="callout callout-lecture">
+                <div class="callout-header">// LECTURE TRANSCRIPT SYNTHESIS</div>
+                <div class="callout-body">
+                    <p>Lecture 1 of Automotive Vehicle framed the subject as the structural and dynamic &#x27;chassis&#x27; of the entire M.Tech degree. The professor stressed: &#x27;Before we dive into sensors, microcontrollers, or microprocessors, you must understand the physical plant—the vehicle itself.&#x27; The lecturer walked through Category M1, M2, M3 (passenger transport) and Category N1, N2, N3 (goods carriers), highlighting Gross Vehicle Weight Rating (GVWR) as the primary legal differentiator governing braking distances and structural requirements.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="extra-explanation">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 05]</span> Rigorous Engineering Theory & Derivations</h2>
+            </div>
+            <div class="callout callout-deep">
+                <div class="callout-header">// RIGOROUS ENGINEERING THEORY</div>
+                <div class="callout-body">
+                    <p>Let&#x27;s review the standardized regulatory categories according to UN ECE / AIS standards:
+1. **Category M (Passenger Transport):**
+   - **M1:** Vehicles with $\le 8$ seats in addition to the driver&#x27;s seat (passenger cars, SUVs, hatchbacks).
+   - **M2:** Vehicles with $&gt; 8$ seats and maximum mass $\le 5$ tonnes (minibuses).
+   - **M3:** Vehicles with $&gt; 8$ seats and maximum mass $&gt; 5$ tonnes (city and intercity buses).
+2. **Category N (Goods Transport):**
+   - **N1:** Goods vehicles with Gross Vehicle Weight (GVW) $\le 3.5$ tonnes (light pickup trucks, delivery vans).
+   - **N2:** Goods vehicles with $3.5\text{ tonnes} &lt; \text{GVW} \le 12\text{ tonnes}$.
+   - **N3:** Heavy commercial trucks with $\text{GVW} &gt; 12\text{ tonnes}$.
+
+**Virtual Engineering Workflow:** Modern OEMs rely heavily on Digital Prototyping and Model-Based Systems Engineering (MBSE). Finite Element Analysis (FEA) simulates crashworthiness and torsional stiffness; Computational Fluid Dynamics (CFD) optimizes drag coefficient ($C_d$); and Multi-Body Dynamics (MBD, e.g., Adams/Car) simulates suspension ride and handling before physical sheet metal tooling begins.</p>
+                </div>
+            </div>
+        </section>
+
+        
+        
+
+        <section class="topic-section" id="working-principle">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 08]</span> Step-by-Step Operational Principle</h2>
+            </div>
+            <div class="principle-body">
+                <p>Homologation Verification Steps:
+1. The vehicle manufacturer submits technical drawings, component test certificates, and physical prototype vehicles to an accredited testing agency (e.g., ARAI, ICAT, TÜV, UTAC).
+2. Testing covers Active Safety (ECE R13H braking distances under dry/wet conditions), Passive Safety (ECE R94 56 km/h 40% frontal offset deformable barrier crash), Environmental Compliance (WLTP chassis dynamometer emissions and evaporative fuel losses), and Electrical Safety (ECE R100 high-voltage isolation for EVs).
+3. Successful completion grants the &#x27;Certificate of Conformity&#x27; (CoC).</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="application">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 09]</span> Real Automotive Application</h2>
+            </div>
+            <div class="callout callout-application">
+                <div class="callout-header">// AUTOMOTIVE OEM CASE STUDY</div>
+                <div class="callout-body">
+                    <p></p>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="topic-section table-section" id="comparison">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 10]</span> Technical Specifications & Benchmarks</h2>
+            </div>
+            <div class="table-responsive">
+                <table class="specs-table">
+                    <thead><tr><th>Vehicle Category</th><th>Primary Use</th><th>Weight / Seat Limit</th><th>Key Regulatory Challenge</th></tr></thead>
+                    <tbody><tr><td>Category L (2/3W)</td><td>Motorcycles, scooters, rickshaws</td><td>&lt; 1000 kg</td><td>Helmet impact, lighting angles, ABS mandates</td></tr><tr><td>Category M1</td><td>Passenger cars, SUVs</td><td>≤ 8 passenger seats</td><td>Frontal/side crash barrier tests, Euro 6 / BS6 emissions</td></tr><tr><td>Category M2 / M3</td><td>Minibuses and large transit buses</td><td>&gt; 8 seats, up to / over 5 tonnes</td><td>Roll-over strength (ECE R66), emergency egress doors</td></tr><tr><td>Category N1</td><td>Light commercial delivery vans</td><td>Gross mass ≤ 3.5 tonnes</td><td>Rear underrun protection, payload distribution</td></tr><tr><td>Category N2 / N3</td><td>Heavy freight trucks &amp; articulated haulers</td><td>Gross mass &gt; 3.5 / 12 tonnes</td><td>Dual air braking, cabin strength, side underrun guards</td></tr></tbody>
+                </table>
+            </div>
+        </section>
+        
+        
+        <section class="topic-section formulas-section" id="formulas">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 11]</span> Mathematical Formulas & Numerical Breakdown</h2>
+            </div>
+            <div class="formulas-grid">
+                
+            <div class="formula-card">
+                <div class="formula-name">Gross Vehicle Weight (GVW) Equation</div>
+                <div class="formula-math"><code>\text{GVW} = \text{Curb Weight} + \text{Payload Weight} + (N_{passengers} \times 75\text{ kg})</code></div>
+                <div class="formula-details">
+                    <h5>Parameter Definitions:</h5>
+                    <ul class="formula-vars"><li><code>C</code>: u</li><li><code>P</code>: a</li><li><code>N</code>: _</li><li><code>7</code>: 5</li></ul>
+                    <div class="formula-example"><strong>Worked Numerical Example:</strong><br>A 5-seater compact SUV with curb weight = 1250 kg and rated luggage payload = 150 kg has a GVW = 1250 + 150 + (5 × 75) = 1775 kg (Classified under Category M1, mass &lt; 3.5 tonnes).</div>
+                </div>
+            </div>
+            
+            </div>
+        </section>
+        
+        
+        <section class="topic-section code-section" id="code">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 12]</span> Embedded C Driver & Register Interface</h2>
+                <button class="copy-btn" onclick="copyCodeBlock('codeBlock')">
+                    <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+                    <span>Copy Code</span>
+                </button>
+            </div>
+            <div class="code-container">
+                <pre><code id="codeBlock" class="language-c">// Python Vehicle Homologation Category Evaluator
+def classify_vehicle(num_seats, gvw_tonnes, is_passenger):
+    if is_passenger:
+        if num_seats &lt;= 9:  # 8 passengers + 1 driver
+            return &quot;Category M1 (Passenger Car / SUV)&quot;
+        elif gvw_tonnes &lt;= 5.0:
+            return &quot;Category M2 (Minibus)&quot;
+        else:
+            return &quot;Category M3 (Large City/Intercity Bus)&quot;
+    else:
+        if gvw_tonnes &lt;= 3.5:
+            return &quot;Category N1 (Light Commercial Vehicle)&quot;
+        elif gvw_tonnes &lt;= 12.0:
+            return &quot;Category N2 (Medium Duty Truck)&quot;
+        else:
+            return &quot;Category N3 (Heavy Commercial Truck)&quot;
+
+print(classify_vehicle(num_seats=5, gvw_tonnes=1.8, is_passenger=True))
+print(classify_vehicle(num_seats=2, gvw_tonnes=16.0, is_passenger=False))</code></pre>
+            </div>
+        </section>
+        
+
+        <section class="topic-section" id="must-remember">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 13]</span> Must-Remember Key Points for Exams</h2>
+            </div>
+            <div class="must-remember-card">
+                <ul><li>[KEY] Category M = Passenger transport (M1: &lt;= 8 seats + driver, M2: &lt;= 5 tonnes, M3: &gt; 5 tonnes).</li><li>[KEY] Category N = Goods transport (N1: &lt;= 3.5t, N2: 3.5t to 12t, N3: &gt; 12t).</li><li>[KEY] Homologation is the legal type approval certifying compliance with crash, emission, and braking laws.</li><li>[KEY] Gross Vehicle Weight = Curb Weight + Cargo Payload + Passenger Allowance.</li></ul>
+            </div>
+        </section>
+
+        
+        <div class="callout callout-warning">
+            <div class="callout-header">// COMMON EXAM TRAPS & MISCONCEPTIONS</div>
+            <div class="callout-body">
+                <ul><li><strong>Trap:</strong> Confusing Curb Weight with Gross Vehicle Weight (GVW). Curb weight is the unladen vehicle; GVW is the maximum legally permitted total loaded mass.</li><li><strong>Trap:</strong> Assuming homologation is only for IC engines. Electric vehicles must undergo strict battery thermal, electrical shock, and fire safety homologation (UN ECE R100).</li></ul>
+            </div>
+        </div>
+        
+
+        <section class="topic-section" id="exam-questions">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 15]</span> Exam Preparation & Model Questions</h2>
+            </div>
+            <div class="exam-qa-container">
+                
+        <div class="exam-qa-block">
+            <h3>Short Answer Questions (1–2 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> What is the difference between Category M1 and Category N1 vehicles?</div>
+                <div class="qa-answer">Category M1 comprises passenger motor vehicles having no more than 8 seats in addition to the driver's seat. Category N1 comprises motor vehicles used for the carriage of goods and having a maximum Gross Vehicle Weight (GVW) not exceeding 3.5 tonnes.</div>
+            </div>
+            
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> What is automotive homologation?</div>
+                <div class="qa-answer">Homologation is the mandatory government regulatory approval process where an independent accredited testing agency certifies that a vehicle model meets all statutory safety, crashworthiness, emissions, and roadworthiness standards before commercial sale.</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Comprehensive Long Answer Questions (5–10 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item long-qa-item">
+                <div class="qa-question"><span class="q-badge">10 MARKS</span> Explain the vehicle classification framework according to UN ECE / AIS standards. Outline the complete vehicle development lifecycle from concept design to homologation.</div>
+                <div class="qa-answer">A complete answer covers: (1) Detailed definitions of Categories M1, M2, M3, N1, N2, N3, and L; (2) Definition of Curb Weight and Gross Vehicle Weight (GVW); (3) Phases of vehicle development: Concept, Styling, CAE (FEA/CFD/MBD), Prototyping, Validation; (4) Homologation test suites: Crash testing (AIS 096/098), emissions (WLTP), braking (ECE R13H), and EV high-voltage safety (ECE R100).</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Viva Voce & Technical Interview Questions</h3>
+            <div class="qa-list">
+            <div class="qa-item viva-qa-item">
+                <div class="qa-question"><span class="q-badge">VIVA / INTERVIEW</span> Why is virtual engineering (CAE/FEA) mandatory in modern vehicle design before physical prototype crashes?</div>
+                <div class="qa-answer">Physical prototype vehicles cost over $500,000 each to hand-build. Non-linear explicit dynamic FEA (e.g., LS-DYNA) accurately simulates crash deformations, airbag timing, and occupant injury scores, allowing engineers to optimize crumple zones virtually and achieve a 5-star crash rating on the first physical test.</div>
+            </div>
+            </div>
+        </div>
+        
+            </div>
+        </section>
+
+        <section class="topic-section" id="revision-card">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 18]</span> 60-Second Flash / Revision Card</h2>
+            </div>
+            <div class="flashcard">
+                <div class="flashcard-badge">// 60-SECOND REVISION SUMMARY</div>
+                <ul class="flashcard-points"><li>[REV] M1: Passenger car &lt;= 8 seats.</li><li>[REV] N1: Light commercial &lt;= 3.5 tonnes.</li><li>[REV] Homologation = Legal Type Approval for public road use.</li><li>[REV] CAE includes FEA (structure), CFD (aero), and MBD (suspension).</li></ul>
+            </div>
+        </section>
+
+        <section class="topic-section" id="personal-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 19]</span> Personal Study Notes (Auto-Saved)</h2>
+            </div>
+            <div class="personal-notes-widget">
+                <p class="notes-hint">Type personal notes or lab observations below. Content auto-saves to your local browser storage.</p>
+                <textarea id="personalNotePad" class="personal-notes-textarea" placeholder="Type personal study notes here..." oninput="savePersonalNote('vehicle-classification-and-homologation', this.value)"></textarea>
+                <div class="notes-save-indicator" id="notesSavedTag">✓ Saved locally</div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="sources">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 20]</span> Source Traceability & Curriculum References</h2>
+            </div>
+            <div class="sources-box">
+                <p><strong>Primary Source Reference:</strong> Automotive Vehicle Lecture 1 Transcript; Session 1 Introduction PDF; UN ECE Consolidated Resolution on the Construction of Vehicles (R.E.3).</p>
+            </div>
+        </section>
+
+        <nav class="topic-pagination">
+            <div class="pagination-prev"><span class="nav-disabled">First Topic in Course</span></div>
+            <div class="pagination-next"><a href="tractive-force-and-road-loads.html" class="nav-next-btn"><span>Next: Tractive Effort &amp; Longitudinal Road Resistances</span><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span></a></div>
+        </nav>
+    </main>
+</div>
+
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-col brand-col">
+            <div class="footer-brand">
+                <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="footer-bits-logo">
+                <div class="footer-brand-text">
+                    <span class="footer-title">Birla Institute of Technology & Science, Pilani</span>
+                    <span class="footer-sub">Work Integrated Learning Programmes (WILP)</span>
+                </div>
+            </div>
+            <p class="footer-desc">Institutional knowledge base engineered from official lecture transcripts, handouts, and laboratory sessions for M.Tech Automotive Engineering.</p>
+            <div class="footer-tags">
+                <span class="badge badge-info">BITS WILP</span>
+                <span class="badge badge-success">4 Core Courses</span>
+                <span class="badge badge-warning">Exam & Viva Ready</span>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Semester 1 Courses</h4>
+            <ul>
+                <li><a href="../../subjects/automotive-communication.html">Automotive Communication (AELZG513)</a></li>
+                <li><a href="../../subjects/automotive-vehicle.html">Automotive Vehicle (AELZC441)</a></li>
+                <li><a href="../../subjects/autotronics.html">Autotronics (AEZG533)</a></li>
+                <li><a href="../../subjects/embedded-system-design.html">Embedded System Design (AEZG512)</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="../../index.html">Master Portal Home</a></li>
+                <li><a href="../../semesters/sem1.html">Semester 1 Overview & Credits</a></li>
+                <li><a href="javascript:void(0)" onclick="openSearchModal()">Global Topic Search</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-bottom-content">
+            <span>© 2026 M.Tech Automotive Engineering Knowledge Base. Built for High-Performance Academic Study.</span>
+            <span>Birla Institute of Technology & Science, Pilani.</span>
+        </div>
+    </div>
+</footer>
+
+
+<div class="search-modal-overlay" id="searchModal" onclick="closeSearchModal(event)">
+    <div class="search-modal-container" onclick="event.stopPropagation()">
+        <div class="search-modal-header">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <input type="text" id="searchInput" class="search-modal-input" placeholder="Type to search curriculum, formulas, registers, exam questions..." autocomplete="off" oninput="handleSearch(this.value)">
+            <button class="search-modal-close" onclick="closeSearchModal()">&times;</button>
+        </div>
+        <div class="search-modal-filters">
+            <button class="search-filter-btn active" data-subject="all" onclick="setSearchFilter('all')">All Courses</button>
+            <button class="search-filter-btn" data-subject="automotive-communication" onclick="setSearchFilter('automotive-communication')">Communication</button>
+            <button class="search-filter-btn" data-subject="automotive-vehicle" onclick="setSearchFilter('automotive-vehicle')">Vehicle</button>
+            <button class="search-filter-btn" data-subject="autotronics" onclick="setSearchFilter('autotronics')">Autotronics</button>
+            <button class="search-filter-btn" data-subject="embedded-system-design" onclick="setSearchFilter('embedded-system-design')">Embedded</button>
+        </div>
+        <div class="search-modal-results" id="searchResults">
+            <div class="search-empty-state">
+                <span>Start typing to search across 33+ comprehensive M.Tech topics...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../../js/app.js"></script>
+<script src="../../js/search-index.js"></script>
+</body>
+</html>

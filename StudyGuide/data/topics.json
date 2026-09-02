@@ -1,0 +1,266 @@
+[
+  {
+    "slug": "v2x-overview",
+    "subject": "automotive-communication",
+    "title": "V2X Communication Overview & Cooperative ITS",
+    "module": "Vehicular Communications & V2X",
+    "importance": 5,
+    "url": "topics/automotive-communication/v2x-overview.html"
+  },
+  {
+    "slug": "dsrc-vs-cv2x",
+    "subject": "automotive-communication",
+    "title": "DSRC (IEEE 802.11p) vs Cellular V2X (C-V2X / 5G NR)",
+    "module": "Vehicular Communications & V2X",
+    "importance": 5,
+    "url": "topics/automotive-communication/dsrc-vs-cv2x.html"
+  },
+  {
+    "slug": "wireless-channel-propagation",
+    "subject": "automotive-communication",
+    "title": "Wireless Channel Propagation & Large-Scale Fading",
+    "module": "Wireless Fundamentals & Channel Models",
+    "importance": 4,
+    "url": "topics/automotive-communication/wireless-channel-propagation.html"
+  },
+  {
+    "slug": "small-scale-fading-doppler",
+    "subject": "automotive-communication",
+    "title": "Small-Scale Fading, RMS Delay Spread & Doppler Effect",
+    "module": "Wireless Fundamentals & Channel Models",
+    "importance": 5,
+    "url": "topics/automotive-communication/small-scale-fading-doppler.html"
+  },
+  {
+    "slug": "in-vehicle-networks-ee-architecture",
+    "subject": "automotive-communication",
+    "title": "In-Vehicle Networks & Automotive E/E Architecture Evolution",
+    "module": "In-Vehicle Networks & Protocols",
+    "importance": 5,
+    "url": "topics/automotive-communication/in-vehicle-networks-ee-architecture.html"
+  },
+  {
+    "slug": "can-protocol-overview",
+    "subject": "automotive-communication",
+    "title": "CAN Protocol Architecture & Differential Physical Layer",
+    "module": "In-Vehicle Networks & Protocols",
+    "importance": 5,
+    "url": "topics/automotive-communication/can-protocol-overview.html"
+  },
+  {
+    "slug": "can-frame-format",
+    "subject": "automotive-communication",
+    "title": "CAN Frame Architecture & Field Formats",
+    "module": "In-Vehicle Networks & Protocols",
+    "importance": 5,
+    "url": "topics/automotive-communication/can-frame-format.html"
+  },
+  {
+    "slug": "can-arbitration-mechanism",
+    "subject": "automotive-communication",
+    "title": "CAN Bus Non-Destructive Bitwise Arbitration",
+    "module": "In-Vehicle Networks & Protocols",
+    "importance": 5,
+    "url": "topics/automotive-communication/can-arbitration-mechanism.html"
+  },
+  {
+    "slug": "can-bit-stuffing-and-timing",
+    "subject": "automotive-communication",
+    "title": "CAN Bit Stuffing Mechanism, Bit Timing & Synchronization",
+    "module": "In-Vehicle Networks & Protocols",
+    "importance": 5,
+    "url": "topics/automotive-communication/can-bit-stuffing-and-timing.html"
+  },
+  {
+    "slug": "can-error-handling-fault-confinement",
+    "subject": "automotive-communication",
+    "title": "CAN Error Detection Types & Fault Confinement Mechanism",
+    "module": "In-Vehicle Networks & Protocols",
+    "importance": 5,
+    "url": "topics/automotive-communication/can-error-handling-fault-confinement.html"
+  },
+  {
+    "slug": "can-fd-protocol",
+    "subject": "automotive-communication",
+    "title": "CAN with Flexible Data-Rate (CAN-FD) Architecture",
+    "module": "In-Vehicle Networks & Protocols",
+    "importance": 5,
+    "url": "topics/automotive-communication/can-fd-protocol.html"
+  },
+  {
+    "slug": "vehicle-classification-and-homologation",
+    "subject": "automotive-vehicle",
+    "title": "Automobile Classification, Homologation & Architecture",
+    "module": "Vehicle Architecture & Classification",
+    "importance": 4,
+    "url": "topics/automotive-vehicle/vehicle-classification-and-homologation.html"
+  },
+  {
+    "slug": "tractive-force-and-road-loads",
+    "subject": "automotive-vehicle",
+    "title": "Tractive Effort & Longitudinal Road Resistances",
+    "module": "Vehicle Dynamics & Propulsion",
+    "importance": 5,
+    "url": "topics/automotive-vehicle/tractive-force-and-road-loads.html"
+  },
+  {
+    "slug": "powertrain-architectures-and-layouts",
+    "subject": "automotive-vehicle",
+    "title": "Powertrain Architectures & Layout Topologies",
+    "module": "Powertrain Fundamentals",
+    "importance": 5,
+    "url": "topics/automotive-vehicle/powertrain-architectures-and-layouts.html"
+  },
+  {
+    "slug": "ic-engine-thermodynamic-cycles",
+    "subject": "automotive-vehicle",
+    "title": "IC Engine Fundamentals: 4-Stroke Otto & Diesel Cycles",
+    "module": "IC Engine Fundamentals",
+    "importance": 5,
+    "url": "topics/automotive-vehicle/ic-engine-thermodynamic-cycles.html"
+  },
+  {
+    "slug": "engine-performance-parameters",
+    "subject": "automotive-vehicle",
+    "title": "Engine Performance Parameters: Power, Torque & BSFC",
+    "module": "IC Engine Fundamentals",
+    "importance": 5,
+    "url": "topics/automotive-vehicle/engine-performance-parameters.html"
+  },
+  {
+    "slug": "transmission-systems-and-gearboxes",
+    "subject": "automotive-vehicle",
+    "title": "Transmission Systems: MT, AT, DCT, CVT & Planetary Gearsets",
+    "module": "Powertrain Fundamentals",
+    "importance": 5,
+    "url": "topics/automotive-vehicle/transmission-systems-and-gearboxes.html"
+  },
+  {
+    "slug": "ev-motors-inverters-battery-packs",
+    "subject": "automotive-vehicle",
+    "title": "EV Powertrains: Traction Motors, Inverters & Battery Packs",
+    "module": "Electric & Hybrid Vehicles",
+    "importance": 5,
+    "url": "topics/automotive-vehicle/ev-motors-inverters-battery-packs.html"
+  },
+  {
+    "slug": "automotive-systems-signal-flow",
+    "subject": "autotronics",
+    "title": "Automotive Systems Architecture & Signal Flow",
+    "module": "System Foundations",
+    "importance": 5,
+    "url": "topics/autotronics/automotive-systems-signal-flow.html"
+  },
+  {
+    "slug": "resistors-and-voltage-divider-circuits",
+    "subject": "autotronics",
+    "title": "Resistors, Voltage Dividers & Sensor Interfacing",
+    "module": "Electrical & Electronics Fundamentals",
+    "importance": 5,
+    "url": "topics/autotronics/resistors-and-voltage-divider-circuits.html"
+  },
+  {
+    "slug": "capacitors-and-energy-storage",
+    "subject": "autotronics",
+    "title": "Capacitors, Energy Storage & RC Timing Circuits",
+    "module": "Electrical & Electronics Fundamentals",
+    "importance": 5,
+    "url": "topics/autotronics/capacitors-and-energy-storage.html"
+  },
+  {
+    "slug": "inductors-magnetism-and-transformers",
+    "subject": "autotronics",
+    "title": "Inductors, Magnetic Fields & Ignition Coil Transformers",
+    "module": "Electrical & Electronics Fundamentals",
+    "importance": 5,
+    "url": "topics/autotronics/inductors-magnetism-and-transformers.html"
+  },
+  {
+    "slug": "circuit-laws-mesh-nodal-thevenin",
+    "subject": "autotronics",
+    "title": "Circuit Theorems: KCL, KVL, Mesh, Nodal & Th\u00e9venin Equivalent",
+    "module": "Electrical & Electronics Fundamentals",
+    "importance": 5,
+    "url": "topics/autotronics/circuit-laws-mesh-nodal-thevenin.html"
+  },
+  {
+    "slug": "transistors-bjt-and-mosfet-switches",
+    "subject": "autotronics",
+    "title": "Transistors as Switches: BJT & Power MOSFET Driving",
+    "module": "Semiconductors & Power Electronics",
+    "importance": 5,
+    "url": "topics/autotronics/transistors-bjt-and-mosfet-switches.html"
+  },
+  {
+    "slug": "operational-amplifiers-in-signal-conditioning",
+    "subject": "autotronics",
+    "title": "Operational Amplifiers & Sensor Signal Conditioning",
+    "module": "Analog Signal Conditioning",
+    "importance": 5,
+    "url": "topics/autotronics/operational-amplifiers-in-signal-conditioning.html"
+  },
+  {
+    "slug": "analog-to-digital-and-digital-to-analog-converters",
+    "subject": "autotronics",
+    "title": "Data Converters: ADC & DAC Architectures in Automotive ECUs",
+    "module": "Analog-to-Digital Conversion",
+    "importance": 5,
+    "url": "topics/autotronics/analog-to-digital-and-digital-to-analog-converters.html"
+  },
+  {
+    "slug": "embedded-systems-overview-and-classification",
+    "subject": "embedded-system-design",
+    "title": "Embedded Systems Foundations & Real-Time Constraints",
+    "module": "Embedded Fundamentals",
+    "importance": 5,
+    "url": "topics/embedded-system-design/embedded-systems-overview-and-classification.html"
+  },
+  {
+    "slug": "microprocessor-vs-microcontroller-architectures",
+    "subject": "embedded-system-design",
+    "title": "Microprocessor vs Microcontroller & Processor Architectures",
+    "module": "Embedded Fundamentals",
+    "importance": 5,
+    "url": "topics/embedded-system-design/microprocessor-vs-microcontroller-architectures.html"
+  },
+  {
+    "slug": "arm-cortex-m4-core-architecture",
+    "subject": "embedded-system-design",
+    "title": "ARM Cortex-M4 Core Architecture & Bus Matrix",
+    "module": "Processor Architecture",
+    "importance": 5,
+    "url": "topics/embedded-system-design/arm-cortex-m4-core-architecture.html"
+  },
+  {
+    "slug": "arm-cortex-m4-programmers-model",
+    "subject": "embedded-system-design",
+    "title": "ARM Cortex-M4 Programmer's Model & Register Set",
+    "module": "Processor Architecture",
+    "importance": 5,
+    "url": "topics/embedded-system-design/arm-cortex-m4-programmers-model.html"
+  },
+  {
+    "slug": "arm-cortex-m4-nvic-and-exceptions",
+    "subject": "embedded-system-design",
+    "title": "Nested Vectored Interrupt Controller (NVIC) & Exception Handling",
+    "module": "Interrupts & Peripherals",
+    "importance": 5,
+    "url": "topics/embedded-system-design/arm-cortex-m4-nvic-and-exceptions.html"
+  },
+  {
+    "slug": "s32k144-gpio-configuration-and-driver",
+    "subject": "embedded-system-design",
+    "title": "NXP S32K144 GPIO Architecture & Low-Level Driver Development",
+    "module": "Microcontroller Peripherals",
+    "importance": 5,
+    "url": "topics/embedded-system-design/s32k144-gpio-configuration-and-driver.html"
+  },
+  {
+    "slug": "s32k144-flexcan-automotive-network-controller",
+    "subject": "embedded-system-design",
+    "title": "NXP S32K144 FlexCAN Controller & CAN-FD Implementation",
+    "module": "Microcontroller Peripherals",
+    "importance": 5,
+    "url": "topics/embedded-system-design/s32k144-flexcan-automotive-network-controller.html"
+  }
+]

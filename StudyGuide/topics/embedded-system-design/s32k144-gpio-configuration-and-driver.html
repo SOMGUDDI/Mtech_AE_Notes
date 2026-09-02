@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NXP S32K144 GPIO Architecture &amp; Low-Level Driver Development | Embedded System Design</title>
+    <meta name="description" content="General Purpose Input/Output (GPIO) ports provide the primary digital interface between the NXP S32K144 automotive microcontroller and external hardwa">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body data-topic-id="s32k144-gpio-configuration-and-driver" data-subject-id="embedded-system-design">
+
+
+<header class="navbar">
+    <div class="navbar-container">
+        <a href="../../index.html" class="nav-brand">
+            <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="nav-brand-logo">
+            <div class="brand-details">
+                <span class="brand-inst">Birla Institute of Technology & Science, Pilani</span>
+                <span class="brand-dept">Work Integrated Learning Programmes • Automotive Engineering</span>
+            </div>
+        </a>
+        <div class="nav-search-box" onclick="openSearchModal()">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <span class="search-placeholder">Search curriculum, formulas, registers, questions...</span>
+            <span class="search-shortcut">Ctrl+K</span>
+        </div>
+        <div class="nav-actions">
+            <a href="../../semesters/sem1.html" class="nav-link">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></span>
+                <span>Semester 1 Hub</span>
+            </a>
+            <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Toggle Theme">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+                <span>Theme</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+
+<div class="topic-page-layout">
+    <aside class="topic-sidebar">
+        <div class="sidebar-header">
+            <a href="../../subjects/embedded-system-design.html" class="sidebar-back">
+                <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span>
+                <span>Embedded System Design</span>
+            </a>
+            <div class="sidebar-subject-badge">AEZG512 / AELZC512</div>
+        </div>
+        <div class="sidebar-toc">
+            <h4>Table of Contents</h4>
+            <ul>
+                <li><a href="#overview">Quick Overview</a></li>
+                <li><a href="#objectives">Learning Objectives</a></li>
+                <li><a href="#core-concept">Core Concept & Intuition</a></li>
+                <li><a href="#lecture-notes">In-Class Lecture Notes</a></li>
+                <li><a href="#extra-explanation">Comprehensive Theory</a></li>
+                
+                
+                <li><a href="#working-principle">Working Principle</a></li>
+                <li><a href="#application">Automotive Application</a></li>
+                <li><a href="#comparison">Specifications Table</a></li>
+                <li><a href="#formulas">Math Formulas & Numericals</a></li>
+                <li><a href="#code">Embedded Driver / Registers</a></li>
+                <li><a href="#exam-questions">Exam & Viva Q&A</a></li>
+                <li><a href="#revision-card">60-Second Flash Card</a></li>
+                <li><a href="#personal-notes">My Personal Notes</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-progress-widget">
+            <h4>Topic Status</h4>
+            <div class="status-btn-group">
+                <button class="status-btn" id="statusNotStarted" onclick="setTopicStatus('s32k144-gpio-configuration-and-driver', 'not_started')">☐ Not Started</button>
+                <button class="status-btn" id="statusInProgress" onclick="setTopicStatus('s32k144-gpio-configuration-and-driver', 'in_progress')">◐ In Progress</button>
+                <button class="status-btn" id="statusCompleted" onclick="setTopicStatus('s32k144-gpio-configuration-and-driver', 'completed')">☑ Mastered</button>
+            </div>
+            <button class="bookmark-btn" id="bookmarkBtn" onclick="toggleBookmark('s32k144-gpio-configuration-and-driver')">★ Bookmark for Revision</button>
+        </div>
+    </aside>
+
+    <main class="topic-main-content">
+        <header class="topic-header">
+            <div class="breadcrumbs">
+                <a href="../../index.html">Home</a> / 
+                <a href="../../semesters/sem1.html">Semester 1</a> / 
+                <a href="../../subjects/embedded-system-design.html">Embedded System Design</a> / 
+                <span class="curr-crumb">NXP S32K144 GPIO Architecture &amp; Low-Level Driver Development</span>
+            </div>
+            
+            <div class="topic-meta-row">
+                <span class="meta-pill module-pill">MODULE: Microcontroller Peripherals</span>
+                <span class="meta-pill level-pill">LEVEL: Intermediate</span>
+                <span class="meta-pill importance-pill">WEIGHT: 5/5</span>
+                <span class="meta-pill code-pill">AEZG512 / AELZC512</span>
+            </div>
+
+            <h1 class="topic-main-title">NXP S32K144 GPIO Architecture &amp; Low-Level Driver Development</h1>
+
+            <div class="action-bar-top">
+                <div class="read-estimate">Estimated Read Time: <strong>12–15 mins</strong></div>
+                <div class="action-buttons-group">
+                    <button class="print-btn" onclick="window.print()" title="Print this complete note page or save as PDF">
+                        <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg></span>
+                        <span>Print / Save PDF</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <section class="topic-section" id="overview">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 01]</span> Quick Overview</h2>
+            </div>
+            <p class="overview-lead">General Purpose Input/Output (GPIO) ports provide the primary digital interface between the NXP S32K144 automotive microcontroller and external hardware circuits (switches, LEDs, relays, and transceivers). S32K144 GPIO configuration requires a 3-tier hardware register hierarchy: Peripheral Clock Control (PCC), Port Control Register (PORT_PCR for multiplexing, pull-up/down, and pin interrupts), and GPIO Data Direction / Output Registers (PDDR, PDOR, PSOR, PCOR, PTOR, and PDIR).</p>
+        </section>
+
+        <section class="topic-section" id="objectives">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 02]</span> Learning Objectives & Prerequisites</h2>
+            </div>
+            <div class="objectives-card">
+                <h5>What You Will Master:</h5>
+                <ul class="objectives-list">
+                    <li>Deconstruct the 3-step S32K144 GPIO initialization workflow: Clock Gating, Pin Muxing, and Data Direction.</li><li>Configure Peripheral Clock Control (PCC) registers to enable clock trees to Port modules.</li><li>Configure Pin Control Registers (PORT_PCRn) for GPIO multiplexing (MUX=001), internal pull-up/pull-down, and passive filtering.</li><li>Write bare-metal register-level embedded C drivers to read digital inputs and toggle outputs using atomic bit-set and bit-clear registers.</li>
+                </ul>
+                <div class="prereq-note">
+                    <strong>Prerequisites:</strong> ARM Cortex-M4 Core, Embedded C, Memory-Mapped I/O, Bitwise Operations (`|`, `&amp;`, `^`, `~`).
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="core-concept">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 03]</span> Core Concept & Physical Intuition</h2>
+            </div>
+            <div class="concept-body">
+                <p>To maximize energy efficiency, all peripherals in the S32K144 are powered down with their clocks turned off upon reset. You cannot simply write to a GPIO pin! You must first: (1) Turn ON the clock gate in the PCC module, (2) Configure the pin multiplexer in the PORT module so the physical package pin connects to the internal GPIO hardware block, and (3) Set pin direction (Input or Output) in the GPIO module.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="lecture-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 04]</span> In-Class Lecture Transcript Breakdown</h2>
+            </div>
+            <div class="callout callout-lecture">
+                <div class="callout-header">// LECTURE TRANSCRIPT SYNTHESIS</div>
+                <div class="callout-body">
+                    <p>Lecture 2, 4, and 6 of Embedded System Design and Lab Session 1 detailed S32K144 GPIO programming. Prof. S. S. Kendre and Prof. Shree Prasad M. emphasized: &#x27;The S32K144 has 5 GPIO ports: PTA, PTB, PTC, PTD, and PTE. Each pin has a dedicated PORT_PCR register. If you forget to enable the clock in PCC_PORTx or forget to set MUX = 0b001, your GPIO code will fail silently!&#x27; The instructors walked through atomic bit manipulation using PSOR (Set) and PCOR (Clear) registers.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="extra-explanation">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 05]</span> Rigorous Engineering Theory & Derivations</h2>
+            </div>
+            <div class="callout callout-deep">
+                <div class="callout-header">// RIGOROUS ENGINEERING THEORY</div>
+                <div class="callout-body">
+                    <p>Let&#x27;s analyze the **3-Tier S32K144 GPIO Register Hierarchy**:
+
+1. **Tier 1: Peripheral Clock Control (PCC):**
+   - Enables the clock signal to the Port hardware module.
+   - Register: `PCC-&gt;PCCn[PCC_PORTD_INDEX] |= PCC_PCCn_CGC_MASK;` (Sets Clock Gating Control bit).
+
+2. **Tier 2: Port Control Register (PORT_PCRn):**
+   - Configures the electrical characteristics and pin routing of individual pin $n$ ($0$ to $31$).
+   - **MUX Bits (Bits 10-8):** `000` = Analog, `001` = GPIO, `010-111` = Alternate peripheral functions (UART, SPI, CAN, PWM).
+   - **PE (Bit 1):** Pull Enable ($1 = \text{Active}$, $0 = \text{Disabled}$).
+   - **PS (Bit 0):** Pull Select ($1 = \text{Pull-Up}$, $0 = \text{Pull-Down}$).
+   - **IRQC (Bits 19-16):** Interrupt Configuration (Rising edge, falling edge, both edges, or logic low).
+
+3. **Tier 3: GPIO Direction &amp; Data Registers (GPIO_Type):**
+   - **PDDR (Port Data Direction):** Bit $n = 1$ configures Pin $n$ as **Output**; Bit $n = 0$ configures Pin $n$ as **Input**.
+   - **PDOR (Port Data Output):** Read/write full 32-bit output latch.
+   - **PSOR (Port Set Output):** Writing 1 atomically drives pin HIGH (writing 0 has no effect).
+   - **PCOR (Port Clear Output):** Writing 1 atomically drives pin LOW (writing 0 has no effect).
+   - **PTOR (Port Toggle Output):** Writing 1 atomically inverts the pin state.
+   - **PDIR (Port Data Input):** Read-only register reflecting the physical logic level (1 or 0) on the external pin.</p>
+                </div>
+            </div>
+        </section>
+
+        
+        
+
+        <section class="topic-section" id="working-principle">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 08]</span> Step-by-Step Operational Principle</h2>
+            </div>
+            <div class="principle-body">
+                <p>Why Atomic Bit Registers (PSOR / PCOR) are Essential:
+In multi-tasking and interrupt-driven embedded systems, modifying a shared output register using standard read-modify-write syntax (`PDOR |= (1 &lt;&lt; 15);`) is a major race condition bug: if an interrupt occurs midway through the 3-cycle load-or-store instruction sequence, other pin states are corrupted. **PSOR and PCOR** allow writing a `1` directly to the target bit in a single atomic bus transaction with zero impact on other pins and zero race conditions.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="application">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 09]</span> Real Automotive Application</h2>
+            </div>
+            <div class="callout callout-application">
+                <div class="callout-header">// AUTOMOTIVE OEM CASE STUDY</div>
+                <div class="callout-body">
+                    <p></p>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="topic-section table-section" id="comparison">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 10]</span> Technical Specifications & Benchmarks</h2>
+            </div>
+            <div class="table-responsive">
+                <table class="specs-table">
+                    <thead><tr><th>Register Name</th><th>Full Description</th><th>Access Mode</th><th>Primary Function</th></tr></thead>
+                    <tbody><tr><td>PCC_PORTx</td><td>Peripheral Clock Control</td><td>Read / Write</td><td>Enables clock gate (CGC bit) to Port module</td></tr><tr><td>PORTx_PCRn</td><td>Port Pin Control Register n</td><td>Read / Write</td><td>Pin multiplexer (MUX), pull-up/down, slew rate, interrupt mode</td></tr><tr><td>GPIOx_PDDR</td><td>Port Data Direction Register</td><td>Read / Write</td><td>Configures individual pin as Input (0) or Output (1)</td></tr><tr><td>GPIOx_PSOR</td><td>Port Set Output Register</td><td>Write Only</td><td>Writing 1 atomically drives pin HIGH (3.3V / 5.0V)</td></tr><tr><td>GPIOx_PCOR</td><td>Port Clear Output Register</td><td>Write Only</td><td>Writing 1 atomically drives pin LOW (0.0V Ground)</td></tr><tr><td>GPIOx_PTOR</td><td>Port Toggle Output Register</td><td>Write Only</td><td>Writing 1 atomically inverts current output state</td></tr><tr><td>GPIOx_PDIR</td><td>Port Data Input Register</td><td>Read Only</td><td>Reads raw digital logic level present on physical external pin</td></tr></tbody>
+                </table>
+            </div>
+        </section>
+        
+        
+        <section class="topic-section formulas-section" id="formulas">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 11]</span> Mathematical Formulas & Numerical Breakdown</h2>
+            </div>
+            <div class="formulas-grid">
+                
+            <div class="formula-card">
+                <div class="formula-name">GPIO Atomic Bit Mask Calculation</div>
+                <div class="formula-math"><code>\text{Mask} = (1 \ll \text{Pin Number}), \quad \text{Set: } \text{PSOR} = \text{Mask}, \quad \text{Clear: } \text{PCOR} = \text{Mask}</code></div>
+                <div class="formula-details">
+                    <h5>Parameter Definitions:</h5>
+                    <ul class="formula-vars"><li><code>P</code>: i</li><li><code>1</code>:  </li></ul>
+                    <div class="formula-example"><strong>Worked Numerical Example:</strong><br>To toggle RGB Blue LED on Port D Pin 0 (PTD0): Mask = (1 &lt;&lt; 0) = 0x00000001. PTD-&gt;PTOR = 0x00000001.</div>
+                </div>
+            </div>
+            
+            </div>
+        </section>
+        
+        
+        <section class="topic-section code-section" id="code">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 12]</span> Embedded C Driver & Register Interface</h2>
+                <button class="copy-btn" onclick="copyCodeBlock('codeBlock')">
+                    <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+                    <span>Copy Code</span>
+                </button>
+            </div>
+            <div class="code-container">
+                <pre><code id="codeBlock" class="language-c">// S32K144 Complete Bare-Metal GPIO Driver Example (RGB LED Control)
+#include &quot;S32K144.h&quot;
+
+#define RED_LED_PIN    15  // PTD15
+#define BLUE_LED_PIN   0   // PTD0
+#define BUTTON_PIN     12  // PTC12 (Input with Pull-Up)
+
+void gpio_init(void) {
+    // 1. Enable Clocks to PORTC and PORTD
+    PCC-&gt;PCCn[PCC_PORTC_INDEX] |= PCC_PCCn_CGC_MASK;
+    PCC-&gt;PCCn[PCC_PORTD_INDEX] |= PCC_PCCn_CGC_MASK;
+    
+    // 2. Configure PTD15 and PTD0 as GPIO Outputs
+    PORTD-&gt;PCR[RED_LED_PIN] = PORT_PCR_MUX(1);
+    PORTD-&gt;PCR[BLUE_LED_PIN] = PORT_PCR_MUX(1);
+    PTD-&gt;PDDR |= (1 &lt;&lt; RED_LED_PIN) | (1 &lt;&lt; BLUE_LED_PIN);
+    
+    // 3. Configure PTC12 as GPIO Input with Internal Pull-Up Resistor
+    PORTC-&gt;PCR[BUTTON_PIN] = PORT_PCR_MUX(1) | PORT_PCR_PE_MASK | PORT_PCR_PS_MASK;
+    PTC-&gt;PDDR &amp;= ~(1 &lt;&lt; BUTTON_PIN); // Input direction
+}
+
+int main(void) {
+    gpio_init();
+    while (1) {
+        // Read button state (Active Low: 0 when pressed)
+        if ((PTC-&gt;PDIR &amp; (1 &lt;&lt; BUTTON_PIN)) == 0) {
+            PTD-&gt;PSOR = (1 &lt;&lt; RED_LED_PIN);  // Turn ON Red LED
+            PTD-&gt;PCOR = (1 &lt;&lt; BLUE_LED_PIN); // Turn OFF Blue LED
+        } else {
+            PTD-&gt;PCOR = (1 &lt;&lt; RED_LED_PIN);  // Turn OFF Red LED
+            PTD-&gt;PSOR = (1 &lt;&lt; BLUE_LED_PIN); // Turn ON Blue LED
+        }
+    }
+}</code></pre>
+            </div>
+        </section>
+        
+
+        <section class="topic-section" id="must-remember">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 13]</span> Must-Remember Key Points for Exams</h2>
+            </div>
+            <div class="must-remember-card">
+                <ul><li>[KEY] 3-step GPIO initialization: (1) Clock in PCC, (2) Pin MUX in PORT_PCR, (3) Direction in PDDR.</li><li>[KEY] MUX = 0b001 (MUX=1) selects GPIO mode in PORT_PCRn.</li><li>[KEY] Use PSOR (Set) and PCOR (Clear) for atomic thread-safe pin manipulation.</li><li>[KEY] PDIR is read-only for digital inputs; PDDR configures direction (1=Output, 0=Input).</li></ul>
+            </div>
+        </section>
+
+        
+        <div class="callout callout-warning">
+            <div class="callout-header">// COMMON EXAM TRAPS & MISCONCEPTIONS</div>
+            <div class="callout-body">
+                <ul><li><strong>Trap:</strong> Writing to `PORT_PCR` or `GPIO_PDDR` without first enabling the clock in `PCC`. This causes an immediate HardFault exception.</li><li><strong>Trap:</strong> Setting `PTD-&gt;PDDR = (1 &lt;&lt; 15)` instead of `PTD-&gt;PDDR |= (1 &lt;&lt; 15)`. Using `=` overwrites all other 31 pin directions on that port to inputs!</li></ul>
+            </div>
+        </div>
+        
+
+        <section class="topic-section" id="exam-questions">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 15]</span> Exam Preparation & Model Questions</h2>
+            </div>
+            <div class="exam-qa-container">
+                
+        <div class="exam-qa-block">
+            <h3>Short Answer Questions (1–2 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> What are the three essential register configuration steps required to initialize a GPIO output pin on the NXP S32K144?</div>
+                <div class="qa-answer">Step 1: Enable the peripheral clock for the corresponding Port in the Peripheral Clock Control (PCC) register (set CGC bit). Step 2: Configure the pin multiplexer in `PORTx_PCRn` to GPIO mode (`MUX = 001`). Step 3: Set the pin direction bit to Output (`1`) in the Port Data Direction Register (`GPIOx_PDDR`).</div>
+            </div>
+            
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> Why should an embedded developer use the PSOR and PCOR registers instead of writing directly to PDOR?</div>
+                <div class="qa-answer">Modifying `PDOR` directly (`PDOR |= (1 << pin)`) requires a multi-cycle Read-Modify-Write operation that is prone to race conditions if an interrupt occurs mid-execution. `PSOR` (Set) and `PCOR` (Clear) perform single-cycle atomic write operations that modify only the targeted pin without affecting other pins on the port.</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Comprehensive Long Answer Questions (5–10 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item long-qa-item">
+                <div class="qa-question"><span class="q-badge">10 MARKS</span> Explain the complete 3-tier GPIO architecture of the NXP S32K144 microcontroller. Detail the roles of PCC, PORT, and GPIO register blocks. Write a complete bare-metal C program to configure Port D Pin 15 as an output LED and Port C Pin 12 as an input push-button with an internal pull-up resistor.</div>
+                <div class="qa-answer">A complete answer covers: (1) 3-tier register block diagram (PCC -> PORT_PCR -> GPIO); (2) Explanation of PCC clock gating, PORT_PCR multiplexing/pull-up/interrupt bits, and GPIO direction/data registers; (3) Explanation of atomic PSOR/PCOR/PTOR registers; (4) Fully commented bare-metal C code demonstrating clock initialization, pin muxing, pull-up configuration, and polling loop.</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Viva Voce & Technical Interview Questions</h3>
+            <div class="qa-list">
+            <div class="qa-item viva-qa-item">
+                <div class="qa-question"><span class="q-badge">VIVA / INTERVIEW</span> What happens if you attempt to write to `PORTD-&gt;PCR[15]` before enabling `PCC_PCCn_CGC_MASK` in the PCC register?</div>
+                <div class="qa-answer">Because the clock tree to PORTD is gated off (unpowered), the bus matrix cannot communicate with the PORTD peripheral address space. The CPU core encounters a bus access timeout and immediately triggers an unrecoverable <strong>BusFault / HardFault</strong> exception.</div>
+            </div>
+            </div>
+        </div>
+        
+            </div>
+        </section>
+
+        <section class="topic-section" id="revision-card">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 18]</span> 60-Second Flash / Revision Card</h2>
+            </div>
+            <div class="flashcard">
+                <div class="flashcard-badge">// 60-SECOND REVISION SUMMARY</div>
+                <ul class="flashcard-points"><li>[REV] 1. PCC: Enable Clock (CGC=1).</li><li>[REV] 2. PORT_PCR: Set MUX=1 (GPIO) + Pull-up/down.</li><li>[REV] 3. GPIO_PDDR: 1=Output, 0=Input.</li><li>[REV] 4. Control: PSOR (Set), PCOR (Clear), PTOR (Toggle), PDIR (Read).</li></ul>
+            </div>
+        </section>
+
+        <section class="topic-section" id="personal-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 19]</span> Personal Study Notes (Auto-Saved)</h2>
+            </div>
+            <div class="personal-notes-widget">
+                <p class="notes-hint">Type personal notes or lab observations below. Content auto-saves to your local browser storage.</p>
+                <textarea id="personalNotePad" class="personal-notes-textarea" placeholder="Type personal study notes here..." oninput="savePersonalNote('s32k144-gpio-configuration-and-driver', this.value)"></textarea>
+                <div class="notes-save-indicator" id="notesSavedTag">✓ Saved locally</div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="sources">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 20]</span> Source Traceability & Curriculum References</h2>
+            </div>
+            <div class="sources-box">
+                <p><strong>Primary Source Reference:</strong> Embedded System Design Lecture 2 &amp; 4 Transcripts; S32K144 Reference Manual Chapter 11 (PORT) &amp; Chapter 12 (GPIO); Lab 1 Manual.</p>
+            </div>
+        </section>
+
+        <nav class="topic-pagination">
+            <div class="pagination-prev"><a href="arm-cortex-m4-nvic-and-exceptions.html" class="nav-prev-btn"><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span><span>Previous: Nested Vectored Interrupt Controller (NVIC) &amp; Exception Handling</span></a></div>
+            <div class="pagination-next"><a href="s32k144-flexcan-automotive-network-controller.html" class="nav-next-btn"><span>Next: NXP S32K144 FlexCAN Controller &amp; CAN-FD Implementation</span><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span></a></div>
+        </nav>
+    </main>
+</div>
+
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-col brand-col">
+            <div class="footer-brand">
+                <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="footer-bits-logo">
+                <div class="footer-brand-text">
+                    <span class="footer-title">Birla Institute of Technology & Science, Pilani</span>
+                    <span class="footer-sub">Work Integrated Learning Programmes (WILP)</span>
+                </div>
+            </div>
+            <p class="footer-desc">Institutional knowledge base engineered from official lecture transcripts, handouts, and laboratory sessions for M.Tech Automotive Engineering.</p>
+            <div class="footer-tags">
+                <span class="badge badge-info">BITS WILP</span>
+                <span class="badge badge-success">4 Core Courses</span>
+                <span class="badge badge-warning">Exam & Viva Ready</span>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Semester 1 Courses</h4>
+            <ul>
+                <li><a href="../../subjects/automotive-communication.html">Automotive Communication (AELZG513)</a></li>
+                <li><a href="../../subjects/automotive-vehicle.html">Automotive Vehicle (AELZC441)</a></li>
+                <li><a href="../../subjects/autotronics.html">Autotronics (AEZG533)</a></li>
+                <li><a href="../../subjects/embedded-system-design.html">Embedded System Design (AEZG512)</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="../../index.html">Master Portal Home</a></li>
+                <li><a href="../../semesters/sem1.html">Semester 1 Overview & Credits</a></li>
+                <li><a href="javascript:void(0)" onclick="openSearchModal()">Global Topic Search</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-bottom-content">
+            <span>© 2026 M.Tech Automotive Engineering Knowledge Base. Built for High-Performance Academic Study.</span>
+            <span>Birla Institute of Technology & Science, Pilani.</span>
+        </div>
+    </div>
+</footer>
+
+
+<div class="search-modal-overlay" id="searchModal" onclick="closeSearchModal(event)">
+    <div class="search-modal-container" onclick="event.stopPropagation()">
+        <div class="search-modal-header">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <input type="text" id="searchInput" class="search-modal-input" placeholder="Type to search curriculum, formulas, registers, exam questions..." autocomplete="off" oninput="handleSearch(this.value)">
+            <button class="search-modal-close" onclick="closeSearchModal()">&times;</button>
+        </div>
+        <div class="search-modal-filters">
+            <button class="search-filter-btn active" data-subject="all" onclick="setSearchFilter('all')">All Courses</button>
+            <button class="search-filter-btn" data-subject="automotive-communication" onclick="setSearchFilter('automotive-communication')">Communication</button>
+            <button class="search-filter-btn" data-subject="automotive-vehicle" onclick="setSearchFilter('automotive-vehicle')">Vehicle</button>
+            <button class="search-filter-btn" data-subject="autotronics" onclick="setSearchFilter('autotronics')">Autotronics</button>
+            <button class="search-filter-btn" data-subject="embedded-system-design" onclick="setSearchFilter('embedded-system-design')">Embedded</button>
+        </div>
+        <div class="search-modal-results" id="searchResults">
+            <div class="search-empty-state">
+                <span>Start typing to search across 33+ comprehensive M.Tech topics...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../../js/app.js"></script>
+<script src="../../js/search-index.js"></script>
+</body>
+</html>

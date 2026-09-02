@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V2X Communication Overview &amp; Cooperative ITS | Automotive Communication Systems</title>
+    <meta name="description" content="Vehicle-to-Everything (V2X) communication is the cornerstone of Cooperative Intelligent Transport Systems (C-ITS). It extends a vehicle&#x27;s situational ">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body data-topic-id="v2x-overview" data-subject-id="automotive-communication">
+
+
+<header class="navbar">
+    <div class="navbar-container">
+        <a href="../../index.html" class="nav-brand">
+            <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="nav-brand-logo">
+            <div class="brand-details">
+                <span class="brand-inst">Birla Institute of Technology & Science, Pilani</span>
+                <span class="brand-dept">Work Integrated Learning Programmes • Automotive Engineering</span>
+            </div>
+        </a>
+        <div class="nav-search-box" onclick="openSearchModal()">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <span class="search-placeholder">Search curriculum, formulas, registers, questions...</span>
+            <span class="search-shortcut">Ctrl+K</span>
+        </div>
+        <div class="nav-actions">
+            <a href="../../semesters/sem1.html" class="nav-link">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></span>
+                <span>Semester 1 Hub</span>
+            </a>
+            <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Toggle Theme">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+                <span>Theme</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+
+<div class="topic-page-layout">
+    <aside class="topic-sidebar">
+        <div class="sidebar-header">
+            <a href="../../subjects/automotive-communication.html" class="sidebar-back">
+                <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span>
+                <span>Automotive Communication Systems</span>
+            </a>
+            <div class="sidebar-subject-badge">AELZG513</div>
+        </div>
+        <div class="sidebar-toc">
+            <h4>Table of Contents</h4>
+            <ul>
+                <li><a href="#overview">Quick Overview</a></li>
+                <li><a href="#objectives">Learning Objectives</a></li>
+                <li><a href="#core-concept">Core Concept & Intuition</a></li>
+                <li><a href="#lecture-notes">In-Class Lecture Notes</a></li>
+                <li><a href="#extra-explanation">Comprehensive Theory</a></li>
+                
+                
+                <li><a href="#working-principle">Working Principle</a></li>
+                <li><a href="#application">Automotive Application</a></li>
+                <li><a href="#comparison">Specifications Table</a></li>
+                <li><a href="#formulas">Math Formulas & Numericals</a></li>
+                <li><a href="#code">Embedded Driver / Registers</a></li>
+                <li><a href="#exam-questions">Exam & Viva Q&A</a></li>
+                <li><a href="#revision-card">60-Second Flash Card</a></li>
+                <li><a href="#personal-notes">My Personal Notes</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-progress-widget">
+            <h4>Topic Status</h4>
+            <div class="status-btn-group">
+                <button class="status-btn" id="statusNotStarted" onclick="setTopicStatus('v2x-overview', 'not_started')">☐ Not Started</button>
+                <button class="status-btn" id="statusInProgress" onclick="setTopicStatus('v2x-overview', 'in_progress')">◐ In Progress</button>
+                <button class="status-btn" id="statusCompleted" onclick="setTopicStatus('v2x-overview', 'completed')">☑ Mastered</button>
+            </div>
+            <button class="bookmark-btn" id="bookmarkBtn" onclick="toggleBookmark('v2x-overview')">★ Bookmark for Revision</button>
+        </div>
+    </aside>
+
+    <main class="topic-main-content">
+        <header class="topic-header">
+            <div class="breadcrumbs">
+                <a href="../../index.html">Home</a> / 
+                <a href="../../semesters/sem1.html">Semester 1</a> / 
+                <a href="../../subjects/automotive-communication.html">Automotive Communication Systems</a> / 
+                <span class="curr-crumb">V2X Communication Overview &amp; Cooperative ITS</span>
+            </div>
+            
+            <div class="topic-meta-row">
+                <span class="meta-pill module-pill">MODULE: Vehicular Communications &amp; V2X</span>
+                <span class="meta-pill level-pill">LEVEL: Beginner</span>
+                <span class="meta-pill importance-pill">WEIGHT: 5/5</span>
+                <span class="meta-pill code-pill">AELZG513</span>
+            </div>
+
+            <h1 class="topic-main-title">V2X Communication Overview &amp; Cooperative ITS</h1>
+
+            <div class="action-bar-top">
+                <div class="read-estimate">Estimated Read Time: <strong>12–15 mins</strong></div>
+                <div class="action-buttons-group">
+                    <button class="print-btn" onclick="window.print()" title="Print this complete note page or save as PDF">
+                        <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg></span>
+                        <span>Print / Save PDF</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <section class="topic-section" id="overview">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 01]</span> Quick Overview</h2>
+            </div>
+            <p class="overview-lead">Vehicle-to-Everything (V2X) communication is the cornerstone of Cooperative Intelligent Transport Systems (C-ITS). It extends a vehicle&#x27;s situational awareness beyond the direct line-of-sight (LOS) limitations of onboard perception sensors such as cameras, radars, and LiDARs by establishing high-speed, low-latency wireless communication links between vehicles, surrounding road infrastructure, vulnerable road users, and wide-area cloud networks.</p>
+        </section>
+
+        <section class="topic-section" id="objectives">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 02]</span> Learning Objectives & Prerequisites</h2>
+            </div>
+            <div class="objectives-card">
+                <h5>What You Will Master:</h5>
+                <ul class="objectives-list">
+                    <li>Understand the core architecture of V2X and its sub-domains (V2V, V2I, V2P, V2N).</li><li>Differentiate between onboard perception sensors (radar/camera) and cooperative V2X communication.</li><li>Analyze active safety, traffic efficiency, and autonomous driving use cases enabled by V2X.</li><li>Understand the standard frequency allocations and latency requirements for safety-critical vehicular messages.</li>
+                </ul>
+                <div class="prereq-note">
+                    <strong>Prerequisites:</strong> Basic understanding of wireless communication links and automotive electronic control units (ECUs).
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="core-concept">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 03]</span> Core Concept & Physical Intuition</h2>
+            </div>
+            <div class="concept-body">
+                <p>While traditional Advanced Driver Assistance Systems (ADAS) rely on autonomous perception (sensors &#x27;seeing&#x27; what is immediately in front or around the vehicle), V2X provides &#x27;non-line-of-sight&#x27; (NLOS) 360-degree awareness. For example, if a vehicle 300 meters ahead around a blind corner executes emergency braking, onboard radar cannot detect it due to visual obstruction; however, an emergency V2V broadcast message arrives within milliseconds, allowing trailing vehicles to brake well before visual contact.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="lecture-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 04]</span> In-Class Lecture Transcript Breakdown</h2>
+            </div>
+            <div class="callout callout-lecture">
+                <div class="callout-header">// LECTURE TRANSCRIPT SYNTHESIS</div>
+                <div class="callout-body">
+                    <p>Lecture 1 &amp; 2 transcripts emphasize that V2X does not seek to replace onboard perception sensors (radar, LiDAR, camera), but rather acts as an indispensable complementary cooperative layer. The professor highlighted: &#x27;Radar gives you high precision distance and velocity; camera gives you classification and lane boundaries; but V2X gives you intent and non-line-of-sight awareness.&#x27; In-class discussions stressed standard message types including Basic Safety Messages (BSM in SAE J2735) and Cooperative Awareness Messages (CAM in ETSI), which transmit position, speed, heading, acceleration, and brake status at 10 Hz frequency.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="extra-explanation">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 05]</span> Rigorous Engineering Theory & Derivations</h2>
+            </div>
+            <div class="callout callout-deep">
+                <div class="callout-header">// RIGOROUS ENGINEERING THEORY</div>
+                <div class="callout-body">
+                    <p>V2X is taxonomized into four fundamental communication paradigms:
+1. **Vehicle-to-Vehicle (V2V):** Direct peer-to-peer exchange between moving vehicles (e.g., Emergency Electronic Brake Light - EEBL, Blind Spot Warning - BSW, Left Turn Assist - LTA).
+2. **Vehicle-to-Infrastructure (V2I):** Bi-directional exchange between vehicles and Roadside Units (RSUs) or Traffic Controllers (e.g., Signal Phase and Timing - SPaT, Green Light Optimal Speed Advisory - GLOSA, In-Vehicle Signage).
+3. **Vehicle-to-Pedestrian (V2P):** Communication with smartphones or dedicated wearables carried by vulnerable road users (VRUs) for pedestrian collision mitigation.
+4. **Vehicle-to-Network (V2N):** Cellular connectivity back to cloud traffic management centers for dynamic route guidance, real-time weather advisories, and Over-The-Air (OTA) firmware updates.
+
+Global spectrum regulators allocated dedicated 5.9 GHz ITS bands (5.850–5.925 GHz, 75 MHz bandwidth) specifically reserved for safety-critical vehicular communications to prevent interference from commercial Wi-Fi and mobile broadband.</p>
+                </div>
+            </div>
+        </section>
+
+        
+        
+
+        <section class="topic-section" id="working-principle">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 08]</span> Step-by-Step Operational Principle</h2>
+            </div>
+            <div class="principle-body">
+                <p>1. **Triggering/Periodic Generation:** An On-Board Unit (OBU) queries the vehicle&#x27;s High-Speed CAN or Automotive Ethernet bus at 100 ms intervals (10 Hz) to retrieve current GPS latitude/longitude, speed, yaw rate, steering wheel angle, and brake pedal status.
+2. **Message Encoding &amp; Security Signing:** The OBU formats this state into a standardized ASN.1 schema (BSM or CAM). A Public Key Infrastructure (PKI) hardware security module (HSM) attaches an elliptic-curve digital signature (ECDSA) to ensure authenticity and prevent spoofing.
+3. **Physical Transmission:** The packet is modulated and broadcast via 5.9 GHz RF transceivers across the dedicated control channel (CCH).
+4. **Reception &amp; Threat Assessment:** Surrounding vehicles receive the RF packet, verify the ECDSA signature, calculate the relative trajectory between the sender and receiver, and assess whether a collision path exists.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="application">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 09]</span> Real Automotive Application</h2>
+            </div>
+            <div class="callout callout-application">
+                <div class="callout-header">// AUTOMOTIVE OEM CASE STUDY</div>
+                <div class="callout-body">
+                    <p></p>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="topic-section table-section" id="comparison">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 10]</span> Technical Specifications & Benchmarks</h2>
+            </div>
+            <div class="table-responsive">
+                <table class="specs-table">
+                    <thead><tr><th>Parameter / Feature</th><th>V2V</th><th>V2I</th><th>V2P</th><th>V2N</th></tr></thead>
+                    <tbody><tr><td>Communication Medium</td><td>Direct RF (DSRC / PC5)</td><td>Direct RF (DSRC / PC5)</td><td>Direct RF / Bluetooth / Cellular</td><td>Cellular (4G LTE / 5G NR)</td></tr><tr><td>Typical Latency</td><td>&lt; 10 ms (Ultra-low)</td><td>&lt; 20 ms</td><td>&lt; 100 ms</td><td>100 ms – 2 seconds</td></tr><tr><td>Operational Range</td><td>300 m – 500 m</td><td>500 m – 1000 m</td><td>50 m – 100 m</td><td>Global / Cellular Coverage</td></tr><tr><td>Primary Purpose</td><td>Collision avoidance &amp; active safety</td><td>Traffic signal optimization &amp; road hazard alerts</td><td>Pedestrian protection</td><td>Traffic management, infotainment &amp; OTA</td></tr></tbody>
+                </table>
+            </div>
+        </section>
+        
+        
+        <section class="topic-section formulas-section" id="formulas">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 11]</span> Mathematical Formulas & Numerical Breakdown</h2>
+            </div>
+            <div class="formulas-grid">
+                
+            <div class="formula-card">
+                <div class="formula-name">End-to-End Latency Requirement for Safety Messages</div>
+                <div class="formula-math"><code>T_{total} = T_{gen} + T_{crypto} + T_{mac} + T_{prop} + T_{proc} \le 100\text{ ms (Target: } &lt; 20\text{ ms)}</code></div>
+                <div class="formula-details">
+                    <h5>Parameter Definitions:</h5>
+                    <ul class="formula-vars"><li><code>T</code>: _</li><li><code>T</code>: _</li><li><code>T</code>: _</li><li><code>T</code>: _</li><li><code>T</code>: _</li></ul>
+                    <div class="formula-example"><strong>Worked Numerical Example:</strong><br>If T_gen = 5 ms, T_crypto = 4 ms, T_mac = 8 ms, and T_proc = 3 ms, total latency is 20 ms, which easily satisfies the 100 ms safety threshold.</div>
+                </div>
+            </div>
+            
+            </div>
+        </section>
+        
+        
+        <section class="topic-section code-section" id="code">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 12]</span> Embedded C Driver & Register Interface</h2>
+                <button class="copy-btn" onclick="copyCodeBlock('codeBlock')">
+                    <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+                    <span>Copy Code</span>
+                </button>
+            </div>
+            <div class="code-container">
+                <pre><code id="codeBlock" class="language-c">// Pseudo-structure of a standardized SAE J2735 Basic Safety Message (BSM)
+typedef struct {
+    uint32_t msgCount;          // Sequence counter (0..127)
+    uint8_t  stationID[4];      // Temporary randomized pseudonymous ID
+    uint32_t secMark;           // Milliseconds within the current minute (0..59999)
+    int32_t  latitude;          // In units of 1/10th microdegree
+    int32_t  longitude;         // In units of 1/10th microdegree
+    int16_t  elevation;         // Elevation in units of 10 cm
+    uint16_t speed;             // Vehicle speed in units of 0.02 m/s
+    uint16_t heading;           // Heading angle in units of 0.0125 degrees
+    int16_t  steeringWheelAngle;// Steering angle in units of 1.5 degrees
+    struct {
+        int16_t lonAccel;       // Longitudinal acceleration (0.01 m/s^2)
+        int16_t latAccel;       // Lateral acceleration (0.01 m/s^2)
+        int8_t  yawRate;        // Yaw rate (0.01 deg/s)
+    } accelSet;
+    uint16_t brakeStatus;       // Bitmask: Active, ABS, Traction, Stability
+} __attribute__((packed)) SAE_J2735_BSM_t;</code></pre>
+            </div>
+        </section>
+        
+
+        <section class="topic-section" id="must-remember">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 13]</span> Must-Remember Key Points for Exams</h2>
+            </div>
+            <div class="must-remember-card">
+                <ul><li>[KEY] V2X complements (never replaces) onboard sensors by providing non-line-of-sight (NLOS) awareness.</li><li>[KEY] Operates primarily in the dedicated 5.9 GHz ITS frequency band (5.850 - 5.925 GHz).</li><li>[KEY] Core message sets: BSM (USA, SAE J2735) and CAM / DENM (Europe, ETSI).</li><li>[KEY] Target broadcast rate is typically 10 Hz (every 100 ms) with safety latency budget &lt; 20 ms.</li></ul>
+            </div>
+        </section>
+
+        
+        <div class="callout callout-warning">
+            <div class="callout-header">// COMMON EXAM TRAPS & MISCONCEPTIONS</div>
+            <div class="callout-body">
+                <ul><li><strong>Trap:</strong> Confusing V2X with standard consumer cellular internet. Safety V2X uses direct ad-hoc peer-to-peer RF links (PC5/DSRC) that do NOT rely on cellular network base stations or SIM card subscriptions.</li><li><strong>Trap:</strong> Assuming V2X replaces radars and cameras. V2X is a complementary data source; it cannot detect non-communicating obstacles like fallen rocks or debris.</li></ul>
+            </div>
+        </div>
+        
+
+        <section class="topic-section" id="exam-questions">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 15]</span> Exam Preparation & Model Questions</h2>
+            </div>
+            <div class="exam-qa-container">
+                
+        <div class="exam-qa-block">
+            <h3>Short Answer Questions (1–2 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> What is the primary difference between onboard ADAS sensors and V2X communication?</div>
+                <div class="qa-answer">Onboard sensors (camera, radar, LiDAR) require a direct optical/radio line-of-sight and are limited by weather and physical obstacles. V2X uses omnidirectional RF broadcast to exchange kinematic data through buildings, weather, and blind corners (non-line-of-sight).</div>
+            </div>
+            
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> What are the four core sub-domains of V2X?</div>
+                <div class="qa-answer">V2V (Vehicle-to-Vehicle), V2I (Vehicle-to-Infrastructure), V2P (Vehicle-to-Pedestrian), and V2N (Vehicle-to-Network).</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Comprehensive Long Answer Questions (5–10 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item long-qa-item">
+                <div class="qa-question"><span class="q-badge">10 MARKS</span> Explain the complete architectural framework of V2X communication, detailing message types, frequency bands, and active safety use cases with a suitable block diagram.</div>
+                <div class="qa-answer">A complete answer covers: (1) System architecture diagram showing OBU, RSU, Vulnerable Road Users, and Cellular Cloud; (2) Detailed breakdown of V2V, V2I, V2P, V2N; (3) 5.9 GHz ITS band allocation; (4) Standards bodies (SAE J2735 BSM vs ETSI CAM/DENM); (5) Active safety applications like EEBL, Blind Spot Warnings, and Intersection Movement Assist; (6) Latency and reliability constraints.</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Viva Voce & Technical Interview Questions</h3>
+            <div class="qa-list">
+            <div class="qa-item viva-qa-item">
+                <div class="qa-question"><span class="q-badge">VIVA / INTERVIEW</span> Why is pseudonym rotation used in V2X transmissions?</div>
+                <div class="qa-answer">To protect user privacy and prevent unauthorized tracking of vehicles, the 4-byte temporary station ID and security certificates are rotated periodically (e.g., every 5 minutes or several kilometers) so external eavesdroppers cannot track the vehicle's long-term journey.</div>
+            </div>
+            </div>
+        </div>
+        
+            </div>
+        </section>
+
+        <section class="topic-section" id="revision-card">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 18]</span> 60-Second Flash / Revision Card</h2>
+            </div>
+            <div class="flashcard">
+                <div class="flashcard-badge">// 60-SECOND REVISION SUMMARY</div>
+                <ul class="flashcard-points"><li>[REV] V2X = V2V + V2I + V2P + V2N.</li><li>[REV] 5.9 GHz dedicated band; 10 Hz periodic transmission rate.</li><li>[REV] Provides 360-degree Non-Line-of-Sight (NLOS) safety awareness up to 300-500 meters.</li><li>[REV] BSM (SAE J2735) in North America; CAM / DENM (ETSI) in Europe.</li></ul>
+            </div>
+        </section>
+
+        <section class="topic-section" id="personal-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 19]</span> Personal Study Notes (Auto-Saved)</h2>
+            </div>
+            <div class="personal-notes-widget">
+                <p class="notes-hint">Type personal notes or lab observations below. Content auto-saves to your local browser storage.</p>
+                <textarea id="personalNotePad" class="personal-notes-textarea" placeholder="Type personal study notes here..." oninput="savePersonalNote('v2x-overview', this.value)"></textarea>
+                <div class="notes-save-indicator" id="notesSavedTag">✓ Saved locally</div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="sources">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 20]</span> Source Traceability & Curriculum References</h2>
+            </div>
+            <div class="sources-box">
+                <p><strong>Primary Source Reference:</strong> Automotive Communication Systems Lecture 1 &amp; 2 Transcripts; Course Syllabus Section 1 (Vehicular Communications, ITS and IoV).</p>
+            </div>
+        </section>
+
+        <nav class="topic-pagination">
+            <div class="pagination-prev"><span class="nav-disabled">First Topic in Course</span></div>
+            <div class="pagination-next"><a href="dsrc-vs-cv2x.html" class="nav-next-btn"><span>Next: DSRC (IEEE 802.11p) vs Cellular V2X (C-V2X / 5G NR)</span><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span></a></div>
+        </nav>
+    </main>
+</div>
+
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-col brand-col">
+            <div class="footer-brand">
+                <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="footer-bits-logo">
+                <div class="footer-brand-text">
+                    <span class="footer-title">Birla Institute of Technology & Science, Pilani</span>
+                    <span class="footer-sub">Work Integrated Learning Programmes (WILP)</span>
+                </div>
+            </div>
+            <p class="footer-desc">Institutional knowledge base engineered from official lecture transcripts, handouts, and laboratory sessions for M.Tech Automotive Engineering.</p>
+            <div class="footer-tags">
+                <span class="badge badge-info">BITS WILP</span>
+                <span class="badge badge-success">4 Core Courses</span>
+                <span class="badge badge-warning">Exam & Viva Ready</span>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Semester 1 Courses</h4>
+            <ul>
+                <li><a href="../../subjects/automotive-communication.html">Automotive Communication (AELZG513)</a></li>
+                <li><a href="../../subjects/automotive-vehicle.html">Automotive Vehicle (AELZC441)</a></li>
+                <li><a href="../../subjects/autotronics.html">Autotronics (AEZG533)</a></li>
+                <li><a href="../../subjects/embedded-system-design.html">Embedded System Design (AEZG512)</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="../../index.html">Master Portal Home</a></li>
+                <li><a href="../../semesters/sem1.html">Semester 1 Overview & Credits</a></li>
+                <li><a href="javascript:void(0)" onclick="openSearchModal()">Global Topic Search</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-bottom-content">
+            <span>© 2026 M.Tech Automotive Engineering Knowledge Base. Built for High-Performance Academic Study.</span>
+            <span>Birla Institute of Technology & Science, Pilani.</span>
+        </div>
+    </div>
+</footer>
+
+
+<div class="search-modal-overlay" id="searchModal" onclick="closeSearchModal(event)">
+    <div class="search-modal-container" onclick="event.stopPropagation()">
+        <div class="search-modal-header">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <input type="text" id="searchInput" class="search-modal-input" placeholder="Type to search curriculum, formulas, registers, exam questions..." autocomplete="off" oninput="handleSearch(this.value)">
+            <button class="search-modal-close" onclick="closeSearchModal()">&times;</button>
+        </div>
+        <div class="search-modal-filters">
+            <button class="search-filter-btn active" data-subject="all" onclick="setSearchFilter('all')">All Courses</button>
+            <button class="search-filter-btn" data-subject="automotive-communication" onclick="setSearchFilter('automotive-communication')">Communication</button>
+            <button class="search-filter-btn" data-subject="automotive-vehicle" onclick="setSearchFilter('automotive-vehicle')">Vehicle</button>
+            <button class="search-filter-btn" data-subject="autotronics" onclick="setSearchFilter('autotronics')">Autotronics</button>
+            <button class="search-filter-btn" data-subject="embedded-system-design" onclick="setSearchFilter('embedded-system-design')">Embedded</button>
+        </div>
+        <div class="search-modal-results" id="searchResults">
+            <div class="search-empty-state">
+                <span>Start typing to search across 33+ comprehensive M.Tech topics...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../../js/app.js"></script>
+<script src="../../js/search-index.js"></script>
+</body>
+</html>

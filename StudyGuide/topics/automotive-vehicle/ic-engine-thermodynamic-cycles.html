@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IC Engine Fundamentals: 4-Stroke Otto &amp; Diesel Cycles | Automotive Vehicle</title>
+    <meta name="description" content="Internal Combustion (IC) engines convert the chemical energy stored in hydrocarbon fuels into mechanical shaft work through cyclic thermodynamic combu">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body data-topic-id="ic-engine-thermodynamic-cycles" data-subject-id="automotive-vehicle">
+
+
+<header class="navbar">
+    <div class="navbar-container">
+        <a href="../../index.html" class="nav-brand">
+            <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="nav-brand-logo">
+            <div class="brand-details">
+                <span class="brand-inst">Birla Institute of Technology & Science, Pilani</span>
+                <span class="brand-dept">Work Integrated Learning Programmes • Automotive Engineering</span>
+            </div>
+        </a>
+        <div class="nav-search-box" onclick="openSearchModal()">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <span class="search-placeholder">Search curriculum, formulas, registers, questions...</span>
+            <span class="search-shortcut">Ctrl+K</span>
+        </div>
+        <div class="nav-actions">
+            <a href="../../semesters/sem1.html" class="nav-link">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></span>
+                <span>Semester 1 Hub</span>
+            </a>
+            <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Toggle Theme">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+                <span>Theme</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+
+<div class="topic-page-layout">
+    <aside class="topic-sidebar">
+        <div class="sidebar-header">
+            <a href="../../subjects/automotive-vehicle.html" class="sidebar-back">
+                <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span>
+                <span>Automotive Vehicle</span>
+            </a>
+            <div class="sidebar-subject-badge">AELZC441</div>
+        </div>
+        <div class="sidebar-toc">
+            <h4>Table of Contents</h4>
+            <ul>
+                <li><a href="#overview">Quick Overview</a></li>
+                <li><a href="#objectives">Learning Objectives</a></li>
+                <li><a href="#core-concept">Core Concept & Intuition</a></li>
+                <li><a href="#lecture-notes">In-Class Lecture Notes</a></li>
+                <li><a href="#extra-explanation">Comprehensive Theory</a></li>
+                
+                
+                <li><a href="#working-principle">Working Principle</a></li>
+                <li><a href="#application">Automotive Application</a></li>
+                <li><a href="#comparison">Specifications Table</a></li>
+                <li><a href="#formulas">Math Formulas & Numericals</a></li>
+                <li><a href="#code">Embedded Driver / Registers</a></li>
+                <li><a href="#exam-questions">Exam & Viva Q&A</a></li>
+                <li><a href="#revision-card">60-Second Flash Card</a></li>
+                <li><a href="#personal-notes">My Personal Notes</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-progress-widget">
+            <h4>Topic Status</h4>
+            <div class="status-btn-group">
+                <button class="status-btn" id="statusNotStarted" onclick="setTopicStatus('ic-engine-thermodynamic-cycles', 'not_started')">☐ Not Started</button>
+                <button class="status-btn" id="statusInProgress" onclick="setTopicStatus('ic-engine-thermodynamic-cycles', 'in_progress')">◐ In Progress</button>
+                <button class="status-btn" id="statusCompleted" onclick="setTopicStatus('ic-engine-thermodynamic-cycles', 'completed')">☑ Mastered</button>
+            </div>
+            <button class="bookmark-btn" id="bookmarkBtn" onclick="toggleBookmark('ic-engine-thermodynamic-cycles')">★ Bookmark for Revision</button>
+        </div>
+    </aside>
+
+    <main class="topic-main-content">
+        <header class="topic-header">
+            <div class="breadcrumbs">
+                <a href="../../index.html">Home</a> / 
+                <a href="../../semesters/sem1.html">Semester 1</a> / 
+                <a href="../../subjects/automotive-vehicle.html">Automotive Vehicle</a> / 
+                <span class="curr-crumb">IC Engine Fundamentals: 4-Stroke Otto &amp; Diesel Cycles</span>
+            </div>
+            
+            <div class="topic-meta-row">
+                <span class="meta-pill module-pill">MODULE: IC Engine Fundamentals</span>
+                <span class="meta-pill level-pill">LEVEL: Intermediate</span>
+                <span class="meta-pill importance-pill">WEIGHT: 5/5</span>
+                <span class="meta-pill code-pill">AELZC441</span>
+            </div>
+
+            <h1 class="topic-main-title">IC Engine Fundamentals: 4-Stroke Otto &amp; Diesel Cycles</h1>
+
+            <div class="action-bar-top">
+                <div class="read-estimate">Estimated Read Time: <strong>12–15 mins</strong></div>
+                <div class="action-buttons-group">
+                    <button class="print-btn" onclick="window.print()" title="Print this complete note page or save as PDF">
+                        <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg></span>
+                        <span>Print / Save PDF</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <section class="topic-section" id="overview">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 01]</span> Quick Overview</h2>
+            </div>
+            <p class="overview-lead">Internal Combustion (IC) engines convert the chemical energy stored in hydrocarbon fuels into mechanical shaft work through cyclic thermodynamic combustion processes. The two canonical thermodynamic cycles governing automotive IC engines are the constant-volume Otto Cycle (Four-Stroke Spark Ignition / Gasoline) and the constant-pressure Diesel Cycle (Four-Stroke Compression Ignition / Diesel).</p>
+        </section>
+
+        <section class="topic-section" id="objectives">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 02]</span> Learning Objectives & Prerequisites</h2>
+            </div>
+            <div class="objectives-card">
+                <h5>What You Will Master:</h5>
+                <ul class="objectives-list">
+                    <li>Analyze the 4-stroke mechanical sequence: Suction, Compression, Power, and Exhaust strokes.</li><li>Trace ideal vs actual $P-V$ (Pressure-Volume) and $T-s$ (Temperature-Entropy) indicator diagrams.</li><li>Derive the air-standard thermal efficiency formula for the Otto and Diesel cycles.</li><li>Understand the impact of compression ratio ($r$) on thermal efficiency and knocking/detonation limits.</li>
+                </ul>
+                <div class="prereq-note">
+                    <strong>Prerequisites:</strong> Thermodynamics (First &amp; Second Laws, ideal gas laws, adiabatic expansion).
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="core-concept">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 03]</span> Core Concept & Physical Intuition</h2>
+            </div>
+            <div class="concept-body">
+                <p>In a 4-stroke engine, the piston travels up and down the cylinder 4 times (two full 360-degree crankshaft revolutions) to produce ONE power stroke. In a gasoline engine, air-fuel mixture is drawn in and compressed to ~10:1 ratio before being ignited by an electric spark (Otto cycle). In a diesel engine, pure air is squeezed under extreme compression (~18:1 ratio), raising its temperature above 600°C so that injected diesel fuel self-ignites spontaneously without a spark plug (Diesel cycle).</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="lecture-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 04]</span> In-Class Lecture Transcript Breakdown</h2>
+            </div>
+            <div class="callout callout-lecture">
+                <div class="callout-header">// LECTURE TRANSCRIPT SYNTHESIS</div>
+                <div class="callout-body">
+                    <p>Lecture 6 and Session 6 covered IC Engine Fundamentals. The professor emphasized: &#x27;Notice that an internal combustion engine is a chemical-to-mechanical conversion device. Its efficiency is fundamentally governed by the compression ratio r and the specific heat ratio gamma.&#x27; The instructor walked through the 4 strokes, showing that real engine indicator diagrams differ from ideal cycles due to valve overlap, blowdown losses, finite combustion duration, and wall heat transfer.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="extra-explanation">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 05]</span> Rigorous Engineering Theory & Derivations</h2>
+            </div>
+            <div class="callout callout-deep">
+                <div class="callout-header">// RIGOROUS ENGINEERING THEORY</div>
+                <div class="callout-body">
+                    <p>Let&#x27;s analyze the 4-stroke cycle phases in detail:
+
+1. **Suction Stroke ($0^\circ$ to $180^\circ$ Crank Angle):**
+   - Inlet valve open, exhaust valve closed. Piston descends from Top Dead Center (TDC) to Bottom Dead Center (BDC), drawing in fresh charge (air-fuel mixture in PFI, pure air in GDI/Diesel).
+
+2. **Compression Stroke ($180^\circ$ to $360^\circ$ Crank Angle):**
+   - Both valves closed. Piston ascends from BDC to TDC, compressing the gas adiabatically ($PV^\gamma = C$). Pressure rises to $15 - 20\text{ bar}$ (Gasoline) or $35 - 50\text{ bar}$ (Diesel). Temperature reaches $400 - 650^\circ\text{C}$.
+
+3. **Power / Expansion Stroke ($360^\circ$ to $540^\circ$ Crank Angle):**
+   - Near TDC, combustion occurs. Pressure spikes to $60 - 100\text{ bar}$ (Gasoline) or $120 - 180\text{ bar}$ (Diesel). Hot expanding gases push the piston down from TDC to BDC, producing net positive mechanical work.
+
+4. **Exhaust Stroke ($540^\circ$ to $720^\circ$ Crank Angle):**
+   - Exhaust valve opens. Piston ascends from BDC to TDC, expelling burned combustion gases into the exhaust manifold.</p>
+                </div>
+            </div>
+        </section>
+
+        
+        
+
+        <section class="topic-section" id="working-principle">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 08]</span> Step-by-Step Operational Principle</h2>
+            </div>
+            <div class="principle-body">
+                <p>Engine Knock &amp; Compression Ratio Limits:
+Why can&#x27;t gasoline engines use a high compression ratio like 18:1 to get 60% efficiency? Because high compression heats the unburned &#x27;end-gas&#x27; mixture above its autoignition temperature. If the end-gas spontaneously explodes before the flame front arrives, violent pressure shockwaves hammer the piston and cylinder walls (**Engine Knock / Detonation**), which can destroy the piston crown in seconds. Gasoline engines are thus limited to $r \approx 9.5:1 - 12:1$, whereas Diesel engines compress only pure air and are immune to knock.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="application">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 09]</span> Real Automotive Application</h2>
+            </div>
+            <div class="callout callout-application">
+                <div class="callout-header">// AUTOMOTIVE OEM CASE STUDY</div>
+                <div class="callout-body">
+                    <p></p>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="topic-section table-section" id="comparison">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 10]</span> Technical Specifications & Benchmarks</h2>
+            </div>
+            <div class="table-responsive">
+                <table class="specs-table">
+                    <thead><tr><th>Characteristic</th><th>Four-Stroke Otto (Gasoline)</th><th>Four-Stroke Diesel (CI)</th></tr></thead>
+                    <tbody><tr><td>Fuel Induction</td><td>Air + Fuel mixture (PFI) or Direct Injection</td><td>Pure air during suction; Diesel injected at TDC</td></tr><tr><td>Ignition Mechanism</td><td>Spark Plug ignition (Timed electrical discharge)</td><td>Compression Ignition (Self-ignition via high heat)</td></tr><tr><td>Compression Ratio (r)</td><td>8.5 : 1 to 12.0 : 1 (Knock limited)</td><td>15.0 : 1 to 22.0 : 1 (High thermal efficiency)</td></tr><tr><td>Thermodynamic Heat Addition</td><td>Constant Volume (Isochoric)</td><td>Constant Pressure (Isobaric)</td></tr><tr><td>Thermal Efficiency</td><td>28% to 35% (Peak)</td><td>38% to 45% (Peak, higher fuel economy)</td></tr><tr><td>Peak Combustion Pressure</td><td>60 to 90 bar</td><td>130 to 200 bar (Requires reinforced block)</td></tr></tbody>
+                </table>
+            </div>
+        </section>
+        
+        
+        <section class="topic-section formulas-section" id="formulas">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 11]</span> Mathematical Formulas & Numerical Breakdown</h2>
+            </div>
+            <div class="formulas-grid">
+                
+            <div class="formula-card">
+                <div class="formula-name">Air-Standard Otto Cycle Thermal Efficiency</div>
+                <div class="formula-math"><code>\eta_{Otto} = 1 - \frac{1}{r^{\gamma - 1}}</code></div>
+                <div class="formula-details">
+                    <h5>Parameter Definitions:</h5>
+                    <ul class="formula-vars"><li><code>r</code>:  </li><li><code>\</code>: g</li><li><code>V</code>: _</li><li><code>V</code>: _</li></ul>
+                    <div class="formula-example"><strong>Worked Numerical Example:</strong><br>For a gasoline engine with compression ratio r = 10.0 and γ = 1.4: η_Otto = 1 - (1 / 10^(1.4 - 1)) = 1 - (1 / 10^0.4) = 1 - (1 / 2.512) = 1 - 0.398 = 60.2% ideal air-standard efficiency.</div>
+                </div>
+            </div>
+            
+            </div>
+        </section>
+        
+        
+        <section class="topic-section code-section" id="code">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 12]</span> Embedded C Driver & Register Interface</h2>
+                <button class="copy-btn" onclick="copyCodeBlock('codeBlock')">
+                    <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+                    <span>Copy Code</span>
+                </button>
+            </div>
+            <div class="code-container">
+                <pre><code id="codeBlock" class="language-c">// Python Calculation of Otto vs Diesel Thermal Efficiency
+import numpy as np
+
+def calculate_otto_efficiency(cr, gamma=1.4):
+    return 1.0 - (1.0 / (cr ** (gamma - 1.0)))
+
+def calculate_diesel_efficiency(cr, cutoff_ratio=2.0, gamma=1.4):
+    term1 = 1.0 / (cr ** (gamma - 1.0))
+    term2 = ((cutoff_ratio ** gamma) - 1.0) / (gamma * (cutoff_ratio - 1.0))
+    return 1.0 - (term1 * term2)
+
+cr_otto = 10.5
+cr_diesel = 18.0
+print(f&quot;Otto Cycle (r={cr_otto}) Efficiency  : {calculate_otto_efficiency(cr_otto)*100:.2f}%&quot;)
+print(f&quot;Diesel Cycle (r={cr_diesel}) Efficiency: {calculate_diesel_efficiency(cr_diesel)*100:.2f}%&quot;)</code></pre>
+            </div>
+        </section>
+        
+
+        <section class="topic-section" id="must-remember">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 13]</span> Must-Remember Key Points for Exams</h2>
+            </div>
+            <div class="must-remember-card">
+                <ul><li>[KEY] 4 strokes: Suction, Compression, Power, Exhaust (2 crankshaft revolutions per cycle).</li><li>[KEY] Otto cycle uses constant-volume heat addition; Diesel uses constant-pressure heat addition.</li><li>[KEY] Otto efficiency formula: η = 1 - 1 / r^(γ-1).</li><li>[KEY] Compression ratio r = (Vs + Vc) / Vc; gasoline is knock-limited to r ≈ 10-12.</li></ul>
+            </div>
+        </section>
+
+        
+        <div class="callout callout-warning">
+            <div class="callout-header">// COMMON EXAM TRAPS & MISCONCEPTIONS</div>
+            <div class="callout-body">
+                <ul><li><strong>Trap:</strong> Assuming 1 cycle = 1 crankshaft revolution. A 4-stroke engine requires **two complete crankshaft revolutions ($720^\circ$)** per power stroke.</li><li><strong>Trap:</strong> Confusing the Otto cycle (constant volume heat addition) with the Diesel cycle (constant pressure heat addition).</li></ul>
+            </div>
+        </div>
+        
+
+        <section class="topic-section" id="exam-questions">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 15]</span> Exam Preparation & Model Questions</h2>
+            </div>
+            <div class="exam-qa-container">
+                
+        <div class="exam-qa-block">
+            <h3>Short Answer Questions (1–2 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> Why is the compression ratio of a spark-ignition gasoline engine limited to approximately 12:1?</div>
+                <div class="qa-answer">Because compressing an air-gasoline mixture beyond 12:1 raises the charge temperature above the fuel's autoignition point, causing premature detonation (engine knock), which damages pistons, valves, and cylinder heads.</div>
+            </div>
+            
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> What is clearance volume ($V_c$) and swept volume ($V_s$)?</div>
+                <div class="qa-answer">Swept volume ($V_s$) is the volume displaced by the piston as it moves between Top Dead Center (TDC) and Bottom Dead Center (BDC). Clearance volume ($V_c$) is the remaining combustion chamber volume above the piston when it reaches TDC.</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Comprehensive Long Answer Questions (5–10 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item long-qa-item">
+                <div class="qa-question"><span class="q-badge">10 MARKS</span> Draw and label the P-V diagram of an ideal 4-stroke Otto cycle. Derive the formula for its air-standard thermal efficiency and explain why actual indicated thermal efficiency is lower than ideal air-standard efficiency.</div>
+                <div class="qa-answer">A complete answer covers: (1) Accurate P-V and T-s indicator diagrams; (2) Process breakdown: 1-2 Isentropic compression, 2-3 Constant volume heat addition, 3-4 Isentropic expansion, 4-1 Constant volume heat rejection; (3) Full mathematical derivation of η = 1 - (1/r^(γ-1)); (4) Real-world loss mechanisms: finite flame speed, blowdown exhaust loss, wall heat conduction, pumping losses, and dissociation.</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Viva Voce & Technical Interview Questions</h3>
+            <div class="qa-list">
+            <div class="qa-item viva-qa-item">
+                <div class="qa-question"><span class="q-badge">VIVA / INTERVIEW</span> Why does a Diesel engine achieve higher fuel economy than a Gasoline engine of the same displacement?</div>
+                <div class="qa-answer">Diesel engines operate at much higher compression ratios ($r \approx 18:1$ vs $10:1$) which inherently yields higher thermodynamic thermal efficiency. Furthermore, diesel engines do not use a throttle plate to regulate power (they vary fuel injection quantity directly), completely eliminating intake throttling pumping losses at part load.</div>
+            </div>
+            </div>
+        </div>
+        
+            </div>
+        </section>
+
+        <section class="topic-section" id="revision-card">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 18]</span> 60-Second Flash / Revision Card</h2>
+            </div>
+            <div class="flashcard">
+                <div class="flashcard-badge">// 60-SECOND REVISION SUMMARY</div>
+                <ul class="flashcard-points"><li>[REV] 4 Strokes: Suction -&gt; Compression -&gt; Power -&gt; Exhaust.</li><li>[REV] Otto = Spark Ignition, Constant Volume, r ≈ 10:1.</li><li>[REV] Diesel = Compression Ignition, Constant Pressure, r ≈ 18:1.</li><li>[REV] η_Otto = 1 - (1 / r^(γ-1)).</li></ul>
+            </div>
+        </section>
+
+        <section class="topic-section" id="personal-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 19]</span> Personal Study Notes (Auto-Saved)</h2>
+            </div>
+            <div class="personal-notes-widget">
+                <p class="notes-hint">Type personal notes or lab observations below. Content auto-saves to your local browser storage.</p>
+                <textarea id="personalNotePad" class="personal-notes-textarea" placeholder="Type personal study notes here..." oninput="savePersonalNote('ic-engine-thermodynamic-cycles', this.value)"></textarea>
+                <div class="notes-save-indicator" id="notesSavedTag">✓ Saved locally</div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="sources">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 20]</span> Source Traceability & Curriculum References</h2>
+            </div>
+            <div class="sources-box">
+                <p><strong>Primary Source Reference:</strong> Automotive Vehicle Lecture 6 Transcript; Session 6 IC Engines PDF; Syllabus Section 4 (Fundamentals of IC Engines).</p>
+            </div>
+        </section>
+
+        <nav class="topic-pagination">
+            <div class="pagination-prev"><a href="powertrain-architectures-and-layouts.html" class="nav-prev-btn"><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span><span>Previous: Powertrain Architectures &amp; Layout Topologies</span></a></div>
+            <div class="pagination-next"><a href="engine-performance-parameters.html" class="nav-next-btn"><span>Next: Engine Performance Parameters: Power, Torque &amp; BSFC</span><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span></a></div>
+        </nav>
+    </main>
+</div>
+
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-col brand-col">
+            <div class="footer-brand">
+                <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="footer-bits-logo">
+                <div class="footer-brand-text">
+                    <span class="footer-title">Birla Institute of Technology & Science, Pilani</span>
+                    <span class="footer-sub">Work Integrated Learning Programmes (WILP)</span>
+                </div>
+            </div>
+            <p class="footer-desc">Institutional knowledge base engineered from official lecture transcripts, handouts, and laboratory sessions for M.Tech Automotive Engineering.</p>
+            <div class="footer-tags">
+                <span class="badge badge-info">BITS WILP</span>
+                <span class="badge badge-success">4 Core Courses</span>
+                <span class="badge badge-warning">Exam & Viva Ready</span>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Semester 1 Courses</h4>
+            <ul>
+                <li><a href="../../subjects/automotive-communication.html">Automotive Communication (AELZG513)</a></li>
+                <li><a href="../../subjects/automotive-vehicle.html">Automotive Vehicle (AELZC441)</a></li>
+                <li><a href="../../subjects/autotronics.html">Autotronics (AEZG533)</a></li>
+                <li><a href="../../subjects/embedded-system-design.html">Embedded System Design (AEZG512)</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="../../index.html">Master Portal Home</a></li>
+                <li><a href="../../semesters/sem1.html">Semester 1 Overview & Credits</a></li>
+                <li><a href="javascript:void(0)" onclick="openSearchModal()">Global Topic Search</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-bottom-content">
+            <span>© 2026 M.Tech Automotive Engineering Knowledge Base. Built for High-Performance Academic Study.</span>
+            <span>Birla Institute of Technology & Science, Pilani.</span>
+        </div>
+    </div>
+</footer>
+
+
+<div class="search-modal-overlay" id="searchModal" onclick="closeSearchModal(event)">
+    <div class="search-modal-container" onclick="event.stopPropagation()">
+        <div class="search-modal-header">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <input type="text" id="searchInput" class="search-modal-input" placeholder="Type to search curriculum, formulas, registers, exam questions..." autocomplete="off" oninput="handleSearch(this.value)">
+            <button class="search-modal-close" onclick="closeSearchModal()">&times;</button>
+        </div>
+        <div class="search-modal-filters">
+            <button class="search-filter-btn active" data-subject="all" onclick="setSearchFilter('all')">All Courses</button>
+            <button class="search-filter-btn" data-subject="automotive-communication" onclick="setSearchFilter('automotive-communication')">Communication</button>
+            <button class="search-filter-btn" data-subject="automotive-vehicle" onclick="setSearchFilter('automotive-vehicle')">Vehicle</button>
+            <button class="search-filter-btn" data-subject="autotronics" onclick="setSearchFilter('autotronics')">Autotronics</button>
+            <button class="search-filter-btn" data-subject="embedded-system-design" onclick="setSearchFilter('embedded-system-design')">Embedded</button>
+        </div>
+        <div class="search-modal-results" id="searchResults">
+            <div class="search-empty-state">
+                <span>Start typing to search across 33+ comprehensive M.Tech topics...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../../js/app.js"></script>
+<script src="../../js/search-index.js"></script>
+</body>
+</html>

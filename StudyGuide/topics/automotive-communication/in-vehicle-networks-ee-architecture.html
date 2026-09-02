@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>In-Vehicle Networks &amp; Automotive E/E Architecture Evolution | Automotive Communication Systems</title>
+    <meta name="description" content="Modern luxury and software-defined vehicles contain over 100 Electronic Control Units (ECUs) exchanging gigabytes of telemetry, control, and multimedi">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body data-topic-id="in-vehicle-networks-ee-architecture" data-subject-id="automotive-communication">
+
+
+<header class="navbar">
+    <div class="navbar-container">
+        <a href="../../index.html" class="nav-brand">
+            <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="nav-brand-logo">
+            <div class="brand-details">
+                <span class="brand-inst">Birla Institute of Technology & Science, Pilani</span>
+                <span class="brand-dept">Work Integrated Learning Programmes • Automotive Engineering</span>
+            </div>
+        </a>
+        <div class="nav-search-box" onclick="openSearchModal()">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <span class="search-placeholder">Search curriculum, formulas, registers, questions...</span>
+            <span class="search-shortcut">Ctrl+K</span>
+        </div>
+        <div class="nav-actions">
+            <a href="../../semesters/sem1.html" class="nav-link">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></span>
+                <span>Semester 1 Hub</span>
+            </a>
+            <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Toggle Theme">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+                <span>Theme</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+
+<div class="topic-page-layout">
+    <aside class="topic-sidebar">
+        <div class="sidebar-header">
+            <a href="../../subjects/automotive-communication.html" class="sidebar-back">
+                <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span>
+                <span>Automotive Communication Systems</span>
+            </a>
+            <div class="sidebar-subject-badge">AELZG513</div>
+        </div>
+        <div class="sidebar-toc">
+            <h4>Table of Contents</h4>
+            <ul>
+                <li><a href="#overview">Quick Overview</a></li>
+                <li><a href="#objectives">Learning Objectives</a></li>
+                <li><a href="#core-concept">Core Concept & Intuition</a></li>
+                <li><a href="#lecture-notes">In-Class Lecture Notes</a></li>
+                <li><a href="#extra-explanation">Comprehensive Theory</a></li>
+                
+                
+                <li><a href="#working-principle">Working Principle</a></li>
+                <li><a href="#application">Automotive Application</a></li>
+                <li><a href="#comparison">Specifications Table</a></li>
+                <li><a href="#formulas">Math Formulas & Numericals</a></li>
+                <li><a href="#code">Embedded Driver / Registers</a></li>
+                <li><a href="#exam-questions">Exam & Viva Q&A</a></li>
+                <li><a href="#revision-card">60-Second Flash Card</a></li>
+                <li><a href="#personal-notes">My Personal Notes</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-progress-widget">
+            <h4>Topic Status</h4>
+            <div class="status-btn-group">
+                <button class="status-btn" id="statusNotStarted" onclick="setTopicStatus('in-vehicle-networks-ee-architecture', 'not_started')">☐ Not Started</button>
+                <button class="status-btn" id="statusInProgress" onclick="setTopicStatus('in-vehicle-networks-ee-architecture', 'in_progress')">◐ In Progress</button>
+                <button class="status-btn" id="statusCompleted" onclick="setTopicStatus('in-vehicle-networks-ee-architecture', 'completed')">☑ Mastered</button>
+            </div>
+            <button class="bookmark-btn" id="bookmarkBtn" onclick="toggleBookmark('in-vehicle-networks-ee-architecture')">★ Bookmark for Revision</button>
+        </div>
+    </aside>
+
+    <main class="topic-main-content">
+        <header class="topic-header">
+            <div class="breadcrumbs">
+                <a href="../../index.html">Home</a> / 
+                <a href="../../semesters/sem1.html">Semester 1</a> / 
+                <a href="../../subjects/automotive-communication.html">Automotive Communication Systems</a> / 
+                <span class="curr-crumb">In-Vehicle Networks &amp; Automotive E/E Architecture Evolution</span>
+            </div>
+            
+            <div class="topic-meta-row">
+                <span class="meta-pill module-pill">MODULE: In-Vehicle Networks &amp; Protocols</span>
+                <span class="meta-pill level-pill">LEVEL: Intermediate</span>
+                <span class="meta-pill importance-pill">WEIGHT: 5/5</span>
+                <span class="meta-pill code-pill">AELZG513</span>
+            </div>
+
+            <h1 class="topic-main-title">In-Vehicle Networks &amp; Automotive E/E Architecture Evolution</h1>
+
+            <div class="action-bar-top">
+                <div class="read-estimate">Estimated Read Time: <strong>12–15 mins</strong></div>
+                <div class="action-buttons-group">
+                    <button class="print-btn" onclick="window.print()" title="Print this complete note page or save as PDF">
+                        <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg></span>
+                        <span>Print / Save PDF</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <section class="topic-section" id="overview">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 01]</span> Quick Overview</h2>
+            </div>
+            <p class="overview-lead">Modern luxury and software-defined vehicles contain over 100 Electronic Control Units (ECUs) exchanging gigabytes of telemetry, control, and multimedia data every second. Automotive Electrical/Electronic (E/E) architecture has evolved from point-to-point wiring harnesses to multiplexed bus domains, and is now transitioning toward centralized Zonal Controllers connected by multi-gigabit Automotive Ethernet backbones.</p>
+        </section>
+
+        <section class="topic-section" id="objectives">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 02]</span> Learning Objectives & Prerequisites</h2>
+            </div>
+            <div class="objectives-card">
+                <h5>What You Will Master:</h5>
+                <ul class="objectives-list">
+                    <li>Understand the historical evolution of automotive E/E architecture: Point-to-Point, Distributed Domain, and Zonal E/E.</li><li>Analyze the trade-offs of major in-vehicle protocols: CAN, CAN-FD, LIN, FlexRay, and Automotive Ethernet.</li><li>Understand the architectural role of Central Gateway ECUs in protocol translation and cybersecurity isolation.</li><li>Evaluate harness weight, cost, bandwidth, and latency trade-offs in modern E/E designs.</li>
+                </ul>
+                <div class="prereq-note">
+                    <strong>Prerequisites:</strong> Basic understanding of automotive ECUs, sensors, actuators, and communication buses.
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="core-concept">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 03]</span> Core Concept & Physical Intuition</h2>
+            </div>
+            <div class="concept-body">
+                <p>In early automobiles, every switch and sensor was directly connected to its actuator via dedicated copper wires. By the 1980s, wiring harnesses weighed over 50 kg and contained miles of cabling. Multiplexed in-vehicle networks solved this by allowing multiple ECUs to share a single two-wire bus, using message identifiers and software protocols to communicate with zero redundant copper wiring.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="lecture-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 04]</span> In-Class Lecture Transcript Breakdown</h2>
+            </div>
+            <div class="callout callout-lecture">
+                <div class="callout-header">// LECTURE TRANSCRIPT SYNTHESIS</div>
+                <div class="callout-body">
+                    <p>Lecture 4 and 5 detailed the transition from mechanical systems to E/E architecture. The instructor emphasized: &#x27;If a modern car used point-to-point wiring, the harness would weigh more than 100 kg and the manufacturing failure rate would be catastrophic.&#x27; The professor traced the automotive protocol hierarchy: LIN for low-cost body electronics (&lt; 20 kbps), CAN for powertrain and chassis (500 kbps), CAN-FD for high-payload flashing (up to 5 Mbps), FlexRay for deterministic x-by-wire (10 Mbps), and Automotive Ethernet for ADAS, cameras, and domain gateways (100 Mbps to 10 Gbps).</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="extra-explanation">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 05]</span> Rigorous Engineering Theory & Derivations</h2>
+            </div>
+            <div class="callout callout-deep">
+                <div class="callout-header">// RIGOROUS ENGINEERING THEORY</div>
+                <div class="callout-body">
+                    <p>Let&#x27;s examine the three architectural generations:
+1. **Distributed Domain Architecture (Current Standard):**
+   - ECUs are clustered by functional domain: Powertrain Domain (CAN/CAN-FD), Chassis/Safety Domain (CAN/FlexRay), Body/Comfort Domain (LIN/CAN), and Infotainment/Telematics Domain (Ethernet/MOST).
+   - A **Central Gateway (CGW)** routes cross-domain messages (e.g., passing vehicle speed from the Powertrain CAN bus to the Infotainment Ethernet head unit).
+2. **Zonal E/E Architecture (Next-Gen Software-Defined Vehicles):**
+   - Instead of functional clustering, vehicles are divided geographically into zones (Front-Left Zone, Front-Right Zone, Rear Zone Controller).
+   - Sensors/actuators connect to their nearest local Zone Controller via short LIN/CAN-FD runs. The Zone Controllers aggregate all I/O and communicate with a High-Performance Compute (HPC) central brain over a 1 Gbps / 10 Gbps Automotive Ethernet ring backbone.
+   - Reduces wiring harness weight by up to 30 kg and drastically simplifies automated vehicle assembly.</p>
+                </div>
+            </div>
+        </section>
+
+        
+        
+
+        <section class="topic-section" id="working-principle">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 08]</span> Step-by-Step Operational Principle</h2>
+            </div>
+            <div class="principle-body">
+                <p>Cross-Domain Routing via Central Gateway:
+1. A Wheel Speed Sensor attached to the ABS ECU generates speed data broadcast on the Chassis CAN bus (ID `0x201`, 500 kbps).
+2. The Central Gateway ECU listens on Chassis CAN, matches `0x201` in its routing table, and extracts the 16-bit speed field.
+3. The Gateway re-packages the speed field into an Automotive Ethernet SOME/IP packet and broadcasts it over the 100BASE-T1 link to the Head Unit (for digital speedometer rendering) and ADAS Domain Controller (for adaptive cruise control).
+4. The Gateway enforces firewall rules, discarding unauthorized diagnostic or spoofed frames.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="application">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 09]</span> Real Automotive Application</h2>
+            </div>
+            <div class="callout callout-application">
+                <div class="callout-header">// AUTOMOTIVE OEM CASE STUDY</div>
+                <div class="callout-body">
+                    <p></p>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="topic-section table-section" id="comparison">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 10]</span> Technical Specifications & Benchmarks</h2>
+            </div>
+            <div class="table-responsive">
+                <table class="specs-table">
+                    <thead><tr><th>Network Protocol</th><th>Maximum Speed</th><th>Cost per Node</th><th>Physical Medium</th><th>Primary Vehicle Domain</th></tr></thead>
+                    <tbody><tr><td>LIN (Local Interconnect)</td><td>20 kbps</td><td>Lowest ($)</td><td>Single wire (12V)</td><td>Window lifters, mirrors, wipers, climate</td></tr><tr><td>CAN (Classic)</td><td>500 kbps – 1 Mbps</td><td>Low ($$)</td><td>Shielded/Unshielded Twisted Pair</td><td>General powertrain, body, diagnostics</td></tr><tr><td>CAN-FD (Flexible Data)</td><td>2 – 5 Mbps</td><td>Moderate ($$)</td><td>Twisted Pair (Differential)</td><td>Engine management, EV BMS, ADAS radar</td></tr><tr><td>FlexRay</td><td>10 Mbps</td><td>High ($$$)</td><td>Shielded Twisted Pair / Dual Channel</td><td>Steer-by-wire, active suspension, brake-by-wire</td></tr><tr><td>Automotive Ethernet</td><td>100 Mbps – 10 Gbps</td><td>Higher ($$$$)</td><td>Single Unshielded Twisted Pair (UTP)</td><td>Surround cameras, LiDAR, Infotainment, Zonal HPC</td></tr></tbody>
+                </table>
+            </div>
+        </section>
+        
+        
+        <section class="topic-section formulas-section" id="formulas">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 11]</span> Mathematical Formulas & Numerical Breakdown</h2>
+            </div>
+            <div class="formulas-grid">
+                
+            <div class="formula-card">
+                <div class="formula-name">Bus Utilization Factor Calculation</div>
+                <div class="formula-math"><code>U = \sum_{i=1}^{N} \frac{C_i}{T_i} = \sum_{i=1}^{N} \frac{L_i / R}{T_i} \le 0.70\ (70\%\text{ recommended max})</code></div>
+                <div class="formula-details">
+                    <h5>Parameter Definitions:</h5>
+                    <ul class="formula-vars"><li><code>N</code>:  </li><li><code>C</code>: _</li><li><code>L</code>: _</li><li><code>R</code>:  </li><li><code>T</code>: _</li></ul>
+                    <div class="formula-example"><strong>Worked Numerical Example:</strong><br>If a CAN bus at 500 kbps transmits 10 messages of 125 bits each every 10 ms (T_i = 0.01 s), total bus load is U = 10 × [(125 / 500,000) / 0.01] = 10 × [0.00025 / 0.01] = 25% bus utilization.</div>
+                </div>
+            </div>
+            
+            </div>
+        </section>
+        
+        
+        <section class="topic-section code-section" id="code">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 12]</span> Embedded C Driver & Register Interface</h2>
+                <button class="copy-btn" onclick="copyCodeBlock('codeBlock')">
+                    <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+                    <span>Copy Code</span>
+                </button>
+            </div>
+            <div class="code-container">
+                <pre><code id="codeBlock" class="language-c">// Gateway Routing Table Lookup Logic (C Implementation)
+typedef struct {
+    uint32_t source_id;
+    uint8_t  source_bus;       // 0: CAN_POWERTRAIN, 1: CAN_CHASSIS
+    uint32_t dest_id;
+    uint8_t  dest_bus;         // 2: ETH_SOMEIP, 3: CAN_BODY
+    uint8_t  start_bit;
+    uint8_t  bit_length;
+} GatewayRouteEntry_t;
+
+void route_can_frame(const CAN_Message_t* in_msg, uint8_t src_bus) {
+    for (int i = 0; i &lt; NUM_ROUTES; i++) {
+        if (routes[i].source_id == in_msg-&gt;id &amp;&amp; routes[i].source_bus == src_bus) {
+            uint64_t raw_signal = extract_bits(in_msg-&gt;data, routes[i].start_bit, routes[i].bit_length);
+            forward_to_destination_bus(routes[i].dest_bus, routes[i].dest_id, raw_signal);
+        }
+    }
+}</code></pre>
+            </div>
+        </section>
+        
+
+        <section class="topic-section" id="must-remember">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 13]</span> Must-Remember Key Points for Exams</h2>
+            </div>
+            <div class="must-remember-card">
+                <ul><li>[KEY] E/E architecture has evolved from Point-to-Point -&gt; Distributed Domain -&gt; Zonal Architecture.</li><li>[KEY] LIN is single-wire, low-cost (20 kbps); CAN is 500 kbps; CAN-FD is 2-5 Mbps; Ethernet is 100M-10Gbps.</li><li>[KEY] Central Gateways perform cross-domain message translation, filtering, and cybersecurity firewalling.</li><li>[KEY] Automotive bus utilization must be kept under 70% to guarantee deterministic real-time delivery.</li></ul>
+            </div>
+        </section>
+
+        
+        <div class="callout callout-warning">
+            <div class="callout-header">// COMMON EXAM TRAPS & MISCONCEPTIONS</div>
+            <div class="callout-body">
+                <ul><li><strong>Trap:</strong> Believing Ethernet replaces all CAN and LIN buses. Ethernet transceivers and microcontrollers are too expensive for simple switches or door mirrors. LIN and CAN remain the cost-optimal choice for edge actuators.</li><li><strong>Trap:</strong> Assuming bus utilization can safely reach 100%. In CAN networks, utilization above 70-80% leads to message latency spikes and arbitration starvation for lower-priority IDs.</li></ul>
+            </div>
+        </div>
+        
+
+        <section class="topic-section" id="exam-questions">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 15]</span> Exam Preparation & Model Questions</h2>
+            </div>
+            <div class="exam-qa-container">
+                
+        <div class="exam-qa-block">
+            <h3>Short Answer Questions (1–2 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> Why is automotive E/E architecture transitioning from Domain-based to Zonal-based?</div>
+                <div class="qa-answer">Domain architecture requires long, complex wire harnesses running from sensors everywhere in the car to centralized domain ECUs. Zonal architecture connects all local sensors to a nearby Zone Controller, using a single lightweight Ethernet ring backbone to reduce harness weight by 30% and simplify automated manufacturing.</div>
+            </div>
+            
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> What is the primary function of an Automotive Central Gateway (CGW)?</div>
+                <div class="qa-answer">The Central Gateway bridges disparate communication buses (CAN, LIN, FlexRay, Ethernet), translates message protocols, synchronizes vehicle timebases, enforces cybersecurity firewalls, and routes diagnostic and OTA flashing traffic.</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Comprehensive Long Answer Questions (5–10 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item long-qa-item">
+                <div class="qa-question"><span class="q-badge">10 MARKS</span> Analyze the evolution of automotive E/E architectures from distributed point-to-point to centralized Zonal architectures. Compare the protocols used in each domain and calculate the bus utilization for a multi-ECU CAN cluster.</div>
+                <div class="qa-answer">A complete answer covers: (1) Architectural evolution diagram; (2) Detailed characteristics of LIN, CAN, CAN-FD, FlexRay, and Automotive Ethernet; (3) Gateway routing and translation mechanisms; (4) Zonal architecture benefits; (5) Bus utilization formula and numerical example.</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Viva Voce & Technical Interview Questions</h3>
+            <div class="qa-list">
+            <div class="qa-item viva-qa-item">
+                <div class="qa-question"><span class="q-badge">VIVA / INTERVIEW</span> What happens if the Central Gateway in a vehicle experiences a fatal hardware crash?</div>
+                <div class="qa-answer">To prevent total vehicle shutdown, safety-critical sub-buses (such as Powertrain CAN and Chassis CAN) have dedicated fail-operational bypass paths, while the gateway uses dual-core lockstep microcontrollers with hardware watchdog monitors to reboot within milliseconds.</div>
+            </div>
+            </div>
+        </div>
+        
+            </div>
+        </section>
+
+        <section class="topic-section" id="revision-card">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 18]</span> 60-Second Flash / Revision Card</h2>
+            </div>
+            <div class="flashcard">
+                <div class="flashcard-badge">// 60-SECOND REVISION SUMMARY</div>
+                <ul class="flashcard-points"><li>[REV] Hierarchy: LIN (20k) &lt; CAN (500k) &lt; CAN-FD (5M) &lt; FlexRay (10M) &lt; Ethernet (100M-10G).</li><li>[REV] Distributed Domain clusters by function; Zonal clusters by physical vehicle location.</li><li>[REV] Central Gateway isolates security domains and translates protocols.</li><li>[REV] Target bus load &lt; 70% for deterministic CAN performance.</li></ul>
+            </div>
+        </section>
+
+        <section class="topic-section" id="personal-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 19]</span> Personal Study Notes (Auto-Saved)</h2>
+            </div>
+            <div class="personal-notes-widget">
+                <p class="notes-hint">Type personal notes or lab observations below. Content auto-saves to your local browser storage.</p>
+                <textarea id="personalNotePad" class="personal-notes-textarea" placeholder="Type personal study notes here..." oninput="savePersonalNote('in-vehicle-networks-ee-architecture', this.value)"></textarea>
+                <div class="notes-save-indicator" id="notesSavedTag">✓ Saved locally</div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="sources">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 20]</span> Source Traceability & Curriculum References</h2>
+            </div>
+            <div class="sources-box">
+                <p><strong>Primary Source Reference:</strong> Automotive Communication Systems Lecture 4 &amp; 5 Transcripts; Course Syllabus Section 2 (In-Vehicle Networks and Multiplex Systems).</p>
+            </div>
+        </section>
+
+        <nav class="topic-pagination">
+            <div class="pagination-prev"><a href="small-scale-fading-doppler.html" class="nav-prev-btn"><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span><span>Previous: Small-Scale Fading, RMS Delay Spread &amp; Doppler Effect</span></a></div>
+            <div class="pagination-next"><a href="can-protocol-overview.html" class="nav-next-btn"><span>Next: CAN Protocol Architecture &amp; Differential Physical Layer</span><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span></a></div>
+        </nav>
+    </main>
+</div>
+
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-col brand-col">
+            <div class="footer-brand">
+                <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="footer-bits-logo">
+                <div class="footer-brand-text">
+                    <span class="footer-title">Birla Institute of Technology & Science, Pilani</span>
+                    <span class="footer-sub">Work Integrated Learning Programmes (WILP)</span>
+                </div>
+            </div>
+            <p class="footer-desc">Institutional knowledge base engineered from official lecture transcripts, handouts, and laboratory sessions for M.Tech Automotive Engineering.</p>
+            <div class="footer-tags">
+                <span class="badge badge-info">BITS WILP</span>
+                <span class="badge badge-success">4 Core Courses</span>
+                <span class="badge badge-warning">Exam & Viva Ready</span>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Semester 1 Courses</h4>
+            <ul>
+                <li><a href="../../subjects/automotive-communication.html">Automotive Communication (AELZG513)</a></li>
+                <li><a href="../../subjects/automotive-vehicle.html">Automotive Vehicle (AELZC441)</a></li>
+                <li><a href="../../subjects/autotronics.html">Autotronics (AEZG533)</a></li>
+                <li><a href="../../subjects/embedded-system-design.html">Embedded System Design (AEZG512)</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="../../index.html">Master Portal Home</a></li>
+                <li><a href="../../semesters/sem1.html">Semester 1 Overview & Credits</a></li>
+                <li><a href="javascript:void(0)" onclick="openSearchModal()">Global Topic Search</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-bottom-content">
+            <span>© 2026 M.Tech Automotive Engineering Knowledge Base. Built for High-Performance Academic Study.</span>
+            <span>Birla Institute of Technology & Science, Pilani.</span>
+        </div>
+    </div>
+</footer>
+
+
+<div class="search-modal-overlay" id="searchModal" onclick="closeSearchModal(event)">
+    <div class="search-modal-container" onclick="event.stopPropagation()">
+        <div class="search-modal-header">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <input type="text" id="searchInput" class="search-modal-input" placeholder="Type to search curriculum, formulas, registers, exam questions..." autocomplete="off" oninput="handleSearch(this.value)">
+            <button class="search-modal-close" onclick="closeSearchModal()">&times;</button>
+        </div>
+        <div class="search-modal-filters">
+            <button class="search-filter-btn active" data-subject="all" onclick="setSearchFilter('all')">All Courses</button>
+            <button class="search-filter-btn" data-subject="automotive-communication" onclick="setSearchFilter('automotive-communication')">Communication</button>
+            <button class="search-filter-btn" data-subject="automotive-vehicle" onclick="setSearchFilter('automotive-vehicle')">Vehicle</button>
+            <button class="search-filter-btn" data-subject="autotronics" onclick="setSearchFilter('autotronics')">Autotronics</button>
+            <button class="search-filter-btn" data-subject="embedded-system-design" onclick="setSearchFilter('embedded-system-design')">Embedded</button>
+        </div>
+        <div class="search-modal-results" id="searchResults">
+            <div class="search-empty-state">
+                <span>Start typing to search across 33+ comprehensive M.Tech topics...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../../js/app.js"></script>
+<script src="../../js/search-index.js"></script>
+</body>
+</html>

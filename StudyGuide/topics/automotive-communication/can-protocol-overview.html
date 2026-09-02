@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAN Protocol Architecture &amp; Differential Physical Layer | Automotive Communication Systems</title>
+    <meta name="description" content="Controller Area Network (CAN), standardized under ISO 11898, is the most widely adopted in-vehicle networking standard in automotive history. Develope">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body data-topic-id="can-protocol-overview" data-subject-id="automotive-communication">
+
+
+<header class="navbar">
+    <div class="navbar-container">
+        <a href="../../index.html" class="nav-brand">
+            <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="nav-brand-logo">
+            <div class="brand-details">
+                <span class="brand-inst">Birla Institute of Technology & Science, Pilani</span>
+                <span class="brand-dept">Work Integrated Learning Programmes • Automotive Engineering</span>
+            </div>
+        </a>
+        <div class="nav-search-box" onclick="openSearchModal()">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <span class="search-placeholder">Search curriculum, formulas, registers, questions...</span>
+            <span class="search-shortcut">Ctrl+K</span>
+        </div>
+        <div class="nav-actions">
+            <a href="../../semesters/sem1.html" class="nav-link">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></span>
+                <span>Semester 1 Hub</span>
+            </a>
+            <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Toggle Theme">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+                <span>Theme</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+
+<div class="topic-page-layout">
+    <aside class="topic-sidebar">
+        <div class="sidebar-header">
+            <a href="../../subjects/automotive-communication.html" class="sidebar-back">
+                <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span>
+                <span>Automotive Communication Systems</span>
+            </a>
+            <div class="sidebar-subject-badge">AELZG513</div>
+        </div>
+        <div class="sidebar-toc">
+            <h4>Table of Contents</h4>
+            <ul>
+                <li><a href="#overview">Quick Overview</a></li>
+                <li><a href="#objectives">Learning Objectives</a></li>
+                <li><a href="#core-concept">Core Concept & Intuition</a></li>
+                <li><a href="#lecture-notes">In-Class Lecture Notes</a></li>
+                <li><a href="#extra-explanation">Comprehensive Theory</a></li>
+                
+                
+                <li><a href="#working-principle">Working Principle</a></li>
+                <li><a href="#application">Automotive Application</a></li>
+                <li><a href="#comparison">Specifications Table</a></li>
+                <li><a href="#formulas">Math Formulas & Numericals</a></li>
+                <li><a href="#code">Embedded Driver / Registers</a></li>
+                <li><a href="#exam-questions">Exam & Viva Q&A</a></li>
+                <li><a href="#revision-card">60-Second Flash Card</a></li>
+                <li><a href="#personal-notes">My Personal Notes</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-progress-widget">
+            <h4>Topic Status</h4>
+            <div class="status-btn-group">
+                <button class="status-btn" id="statusNotStarted" onclick="setTopicStatus('can-protocol-overview', 'not_started')">☐ Not Started</button>
+                <button class="status-btn" id="statusInProgress" onclick="setTopicStatus('can-protocol-overview', 'in_progress')">◐ In Progress</button>
+                <button class="status-btn" id="statusCompleted" onclick="setTopicStatus('can-protocol-overview', 'completed')">☑ Mastered</button>
+            </div>
+            <button class="bookmark-btn" id="bookmarkBtn" onclick="toggleBookmark('can-protocol-overview')">★ Bookmark for Revision</button>
+        </div>
+    </aside>
+
+    <main class="topic-main-content">
+        <header class="topic-header">
+            <div class="breadcrumbs">
+                <a href="../../index.html">Home</a> / 
+                <a href="../../semesters/sem1.html">Semester 1</a> / 
+                <a href="../../subjects/automotive-communication.html">Automotive Communication Systems</a> / 
+                <span class="curr-crumb">CAN Protocol Architecture &amp; Differential Physical Layer</span>
+            </div>
+            
+            <div class="topic-meta-row">
+                <span class="meta-pill module-pill">MODULE: In-Vehicle Networks &amp; Protocols</span>
+                <span class="meta-pill level-pill">LEVEL: Intermediate</span>
+                <span class="meta-pill importance-pill">WEIGHT: 5/5</span>
+                <span class="meta-pill code-pill">AELZG513</span>
+            </div>
+
+            <h1 class="topic-main-title">CAN Protocol Architecture &amp; Differential Physical Layer</h1>
+
+            <div class="action-bar-top">
+                <div class="read-estimate">Estimated Read Time: <strong>12–15 mins</strong></div>
+                <div class="action-buttons-group">
+                    <button class="print-btn" onclick="window.print()" title="Print this complete note page or save as PDF">
+                        <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg></span>
+                        <span>Print / Save PDF</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <section class="topic-section" id="overview">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 01]</span> Quick Overview</h2>
+            </div>
+            <p class="overview-lead">Controller Area Network (CAN), standardized under ISO 11898, is the most widely adopted in-vehicle networking standard in automotive history. Developed by Robert Bosch GmbH, CAN is a multi-master, message-broadcast serial bus system that utilizes differential voltage signaling over a twisted wire pair to deliver high electromagnetic immunity (EMI) in harsh automotive operating environments.</p>
+        </section>
+
+        <section class="topic-section" id="objectives">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 02]</span> Learning Objectives & Prerequisites</h2>
+            </div>
+            <div class="objectives-card">
+                <h5>What You Will Master:</h5>
+                <ul class="objectives-list">
+                    <li>Understand the OSI reference model mapping of CAN (Physical Layer &amp; Data Link Layer).</li><li>Explain differential signaling: CAN_High, CAN_Low, Dominant (Logic 0), and Recessive (Logic 1) states.</li><li>Understand the necessity of 120-ohm termination resistors at the physical bus endpoints.</li><li>Differentiate between ISO 11898-2 (High-Speed CAN up to 1 Mbps) and ISO 11898-3 (Fault-Tolerant Low-Speed CAN).</li>
+                </ul>
+                <div class="prereq-note">
+                    <strong>Prerequisites:</strong> Electrical fundamentals (resistors, differential voltage, Ohm&#x27;s law).
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="core-concept">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 03]</span> Core Concept & Physical Intuition</h2>
+            </div>
+            <div class="concept-body">
+                <p>In automotive environments, ignition sparks, motor switches, and solenoids generate massive electrical noise spikes. Single-ended wires pick up this noise, corrupting the digital signal. CAN solves this using a **differential twisted pair** ($CAN\_H$ and $CAN\_L$). Any external electromagnetic noise couples equally onto both wires (common-mode noise). The receiver subtracts the two voltages ($V_{diff} = CAN\_H - CAN\_L$), which completely cancels out the noise while preserving the signal.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="lecture-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 04]</span> In-Class Lecture Transcript Breakdown</h2>
+            </div>
+            <div class="callout callout-lecture">
+                <div class="callout-header">// LECTURE TRANSCRIPT SYNTHESIS</div>
+                <div class="callout-body">
+                    <p>Lecture 5 and Lab 2 covered the CAN physical layer extensively. The professor emphasized: &#x27;On a CAN bus, there are no node addresses—only message IDs. Every ECU hears every message. The physical bus uses open-collector transceiver drivers creating a wired-AND logic: Logic 0 is Dominant, and Logic 1 is Recessive.&#x27; In the lab session on TS Master, the instructor demonstrated that omitting the two 120-ohm termination resistors creates high-frequency signal reflections that completely destroy the CAN waveform at 500 kbps.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="extra-explanation">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 05]</span> Rigorous Engineering Theory & Derivations</h2>
+            </div>
+            <div class="callout callout-deep">
+                <div class="callout-header">// RIGOROUS ENGINEERING THEORY</div>
+                <div class="callout-body">
+                    <p>Let&#x27;s analyze the electrical signaling levels for High-Speed CAN (ISO 11898-2, up to 1 Mbps):
+
+1. **Recessive State (Logic 1):**
+   - Neither $CAN\_H$ nor $CAN\_L$ is actively driven. Both wires float at a nominal bias voltage of **2.5 V**.
+   - Differential Voltage: $V_{diff} = CAN\_H - CAN\_L = 2.5\text{ V} - 2.5\text{ V} = \mathbf{0.0\text{ V}}$ (Receiver interprets as Logic 1).
+
+2. **Dominant State (Logic 0):**
+   - Transceiver transistors actively pull $CAN\_H$ up to **3.5 V** and $CAN\_L$ down to **1.5 V**.
+   - Differential Voltage: $V_{diff} = CAN\_H - CAN\_L = 3.5\text{ V} - 1.5\text{ V} = \mathbf{2.0\text{ V}}$ (Receiver interprets as Logic 0).
+
+**Wired-AND Physical Property:** Because a dominant state actively drives current through the termination resistors while a recessive state merely lets the lines float, if Node A outputs Dominant (0) and Node B outputs Recessive (1) at the exact same instant, the bus voltage is 2.0 V (Dominant). **Dominant 0 always overwrites Recessive 1 on the physical wire.**</p>
+                </div>
+            </div>
+        </section>
+
+        
+        
+
+        <section class="topic-section" id="working-principle">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 08]</span> Step-by-Step Operational Principle</h2>
+            </div>
+            <div class="principle-body">
+                <p>Bus Termination &amp; Reflection Elimination:
+High-speed transmission lines behave like RF waveguides. When a digital pulse reaches the end of an unterminated cable, the impedance discontinuity reflects the wave backward, causing ringing and pulse distortion. To eliminate reflections, a **120-ohm resistor** matching the characteristic impedance of the twisted-pair cable ($Z_0 = 120\ \Omega$) is placed at each physical end of the main bus trunk. The effective DC resistance measured between $CAN\_H$ and $CAN\_L$ is $R_{eq} = 120\ \Omega \parallel 120\ \Omega = \mathbf{60\ \Omega}$.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="application">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 09]</span> Real Automotive Application</h2>
+            </div>
+            <div class="callout callout-application">
+                <div class="callout-header">// AUTOMOTIVE OEM CASE STUDY</div>
+                <div class="callout-body">
+                    <p></p>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="topic-section table-section" id="comparison">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 10]</span> Technical Specifications & Benchmarks</h2>
+            </div>
+            <div class="table-responsive">
+                <table class="specs-table">
+                    <thead><tr><th>CAN Bus State</th><th>CAN_High Voltage</th><th>CAN_Low Voltage</th><th>Differential (Vdiff)</th><th>Logical Interpretation</th></tr></thead>
+                    <tbody><tr><td>Recessive (Idle)</td><td>2.5 V (Nominal)</td><td>2.5 V (Nominal)</td><td>0.0 V (-0.5V to +0.5V)</td><td>Logic 1 (Bus Idle / Non-driven)</td></tr><tr><td>Dominant (Active)</td><td>3.5 V (Nominal)</td><td>1.5 V (Nominal)</td><td>2.0 V (+1.5V to +3.0V)</td><td>Logic 0 (Overwrites Recessive)</td></tr></tbody>
+                </table>
+            </div>
+        </section>
+        
+        
+        <section class="topic-section formulas-section" id="formulas">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 11]</span> Mathematical Formulas & Numerical Breakdown</h2>
+            </div>
+            <div class="formulas-grid">
+                
+            <div class="formula-card">
+                <div class="formula-name">Equivalent Bus Termination Resistance</div>
+                <div class="formula-math"><code>R_{bus} = \frac{R_{term1} \cdot R_{term2}}{R_{term1} + R_{term2}} = \frac{120 \cdot 120}{120 + 120} = 60\ \Omega</code></div>
+                <div class="formula-details">
+                    <h5>Parameter Definitions:</h5>
+                    <ul class="formula-vars"><li><code>R</code>: _</li><li><code>R</code>: _</li></ul>
+                    <div class="formula-example"><strong>Worked Numerical Example:</strong><br>A technician testing a vehicle&#x27;s OBD-II port measures resistance between Pin 6 (CAN_H) and Pin 14 (CAN_L) using a multimeter. If the reading is 60 Ω, both terminators are intact. If the reading is 120 Ω, one terminator is missing or disconnected. If 0 Ω, lines are shorted.</div>
+                </div>
+            </div>
+            
+            </div>
+        </section>
+        
+        
+        <section class="topic-section code-section" id="code">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 12]</span> Embedded C Driver & Register Interface</h2>
+                <button class="copy-btn" onclick="copyCodeBlock('codeBlock')">
+                    <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+                    <span>Copy Code</span>
+                </button>
+            </div>
+            <div class="code-container">
+                <pre><code id="codeBlock" class="language-c">// Practical CAN Bus Diagnostic Test (Multimeter Resistance Check)
+float measure_can_bus_health(float measured_resistance_ohms) {
+    if (measured_resistance_ohms &gt;= 55.0 &amp;&amp; measured_resistance_ohms &lt;= 65.0) {
+        printf(&quot;HEALTHY: Dual 120-ohm terminators present (Req = 60 ohms).\n&quot;);
+        return 1.0;
+    } else if (measured_resistance_ohms &gt;= 110.0 &amp;&amp; measured_resistance_ohms &lt;= 130.0) {
+        printf(&quot;FAULT: Open circuit in one 120-ohm terminator (Req = 120 ohms).\n&quot;);
+        return 0.5;
+    } else {
+        printf(&quot;CRITICAL FAULT: Short or cable damage.\n&quot;);
+        return 0.0;
+    }
+}</code></pre>
+            </div>
+        </section>
+        
+
+        <section class="topic-section" id="must-remember">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 13]</span> Must-Remember Key Points for Exams</h2>
+            </div>
+            <div class="must-remember-card">
+                <ul><li>[KEY] CAN uses differential signaling over twisted pair for common-mode noise cancellation.</li><li>[KEY] Dominant = Logic 0 (CAN_H = 3.5V, CAN_L = 1.5V, Vdiff = 2.0V).</li><li>[KEY] Recessive = Logic 1 (CAN_H = 2.5V, CAN_L = 2.5V, Vdiff = 0.0V).</li><li>[KEY] Bus termination requires two 120-ohm resistors (one at each end), resulting in Req = 60 ohms.</li><li>[KEY] Dominant bit always overwrites a recessive bit (Wired-AND mechanism).</li></ul>
+            </div>
+        </section>
+
+        
+        <div class="callout callout-warning">
+            <div class="callout-header">// COMMON EXAM TRAPS & MISCONCEPTIONS</div>
+            <div class="callout-body">
+                <ul><li><strong>Trap:</strong> Confusing Dominant with Logic 1. In CAN, Dominant is Logic 0 and Recessive is Logic 1.</li><li><strong>Trap:</strong> Placing termination resistors at every ECU node. Only the two extreme physical ends of the main trunk cable must have 120-ohm resistors.</li></ul>
+            </div>
+        </div>
+        
+
+        <section class="topic-section" id="exam-questions">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 15]</span> Exam Preparation & Model Questions</h2>
+            </div>
+            <div class="exam-qa-container">
+                
+        <div class="exam-qa-block">
+            <h3>Short Answer Questions (1–2 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> What is the difference between Dominant and Recessive states on a CAN bus?</div>
+                <div class="qa-answer">A Dominant state represents Logic 0 and is actively driven by transceivers to create a 2.0V differential (CAN_H=3.5V, CAN_L=1.5V). A Recessive state represents Logic 1 where the bus floats at 2.5V (Vdiff=0V). Dominant always overrides Recessive on the physical wire.</div>
+            </div>
+            
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> Why are 120-ohm termination resistors placed at the ends of a CAN network?</div>
+                <div class="qa-answer">To prevent high-frequency signal reflections from bouncing back from the cable ends and corrupting data bits. Two 120-ohm resistors in parallel match the 60-ohm characteristic impedance of the twisted-pair line.</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Comprehensive Long Answer Questions (5–10 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item long-qa-item">
+                <div class="qa-question"><span class="q-badge">10 MARKS</span> Explain the complete physical layer architecture of ISO 11898-2 High-Speed CAN. Describe differential signaling levels, the wired-AND mechanism, noise immunity, and termination resistor design.</div>
+                <div class="qa-answer">A complete answer covers: (1) Transceiver block diagram; (2) Differential signaling diagram with CAN_H, CAN_L, and V_diff waveforms; (3) Exact voltage levels for Dominant (0) and Recessive (1); (4) Common-mode noise rejection mechanism; (5) Wired-AND property; (6) 120-ohm termination calculation and OBD-II pin measurement.</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Viva Voce & Technical Interview Questions</h3>
+            <div class="qa-list">
+            <div class="qa-item viva-qa-item">
+                <div class="qa-question"><span class="q-badge">VIVA / INTERVIEW</span> If a technician measures the resistance between CAN_H and CAN_L on an unpowered vehicle and gets 120 ohms, what is the exact physical fault?</div>
+                <div class="qa-answer">One of the two 120-ohm termination resistors is missing, disconnected, or has an open-circuit trace on its ECU circuit board. The network will suffer from signal reflections at higher bit rates.</div>
+            </div>
+            </div>
+        </div>
+        
+            </div>
+        </section>
+
+        <section class="topic-section" id="revision-card">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 18]</span> 60-Second Flash / Revision Card</h2>
+            </div>
+            <div class="flashcard">
+                <div class="flashcard-badge">// 60-SECOND REVISION SUMMARY</div>
+                <ul class="flashcard-points"><li>[REV] CAN_H = 3.5V, CAN_L = 1.5V -&gt; Dominant (Logic 0).</li><li>[REV] CAN_H = 2.5V, CAN_L = 2.5V -&gt; Recessive (Logic 1).</li><li>[REV] V_diff = 2.0V for 0, 0.0V for 1.</li><li>[REV] Total bus termination: R_eq = 60 Ω.</li><li>[REV] Wired-AND: Dominant 0 wins.</li></ul>
+            </div>
+        </section>
+
+        <section class="topic-section" id="personal-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 19]</span> Personal Study Notes (Auto-Saved)</h2>
+            </div>
+            <div class="personal-notes-widget">
+                <p class="notes-hint">Type personal notes or lab observations below. Content auto-saves to your local browser storage.</p>
+                <textarea id="personalNotePad" class="personal-notes-textarea" placeholder="Type personal study notes here..." oninput="savePersonalNote('can-protocol-overview', this.value)"></textarea>
+                <div class="notes-save-indicator" id="notesSavedTag">✓ Saved locally</div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="sources">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 20]</span> Source Traceability & Curriculum References</h2>
+            </div>
+            <div class="sources-box">
+                <p><strong>Primary Source Reference:</strong> Automotive Communication Systems Lecture 5 Transcript; Lab 2 PPT; Course Syllabus Section 2 (Intra-Vehicular Protocols - CAN Physical Layer).</p>
+            </div>
+        </section>
+
+        <nav class="topic-pagination">
+            <div class="pagination-prev"><a href="in-vehicle-networks-ee-architecture.html" class="nav-prev-btn"><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span><span>Previous: In-Vehicle Networks &amp; Automotive E/E Architecture Evolution</span></a></div>
+            <div class="pagination-next"><a href="can-frame-format.html" class="nav-next-btn"><span>Next: CAN Frame Architecture &amp; Field Formats</span><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span></a></div>
+        </nav>
+    </main>
+</div>
+
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-col brand-col">
+            <div class="footer-brand">
+                <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="footer-bits-logo">
+                <div class="footer-brand-text">
+                    <span class="footer-title">Birla Institute of Technology & Science, Pilani</span>
+                    <span class="footer-sub">Work Integrated Learning Programmes (WILP)</span>
+                </div>
+            </div>
+            <p class="footer-desc">Institutional knowledge base engineered from official lecture transcripts, handouts, and laboratory sessions for M.Tech Automotive Engineering.</p>
+            <div class="footer-tags">
+                <span class="badge badge-info">BITS WILP</span>
+                <span class="badge badge-success">4 Core Courses</span>
+                <span class="badge badge-warning">Exam & Viva Ready</span>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Semester 1 Courses</h4>
+            <ul>
+                <li><a href="../../subjects/automotive-communication.html">Automotive Communication (AELZG513)</a></li>
+                <li><a href="../../subjects/automotive-vehicle.html">Automotive Vehicle (AELZC441)</a></li>
+                <li><a href="../../subjects/autotronics.html">Autotronics (AEZG533)</a></li>
+                <li><a href="../../subjects/embedded-system-design.html">Embedded System Design (AEZG512)</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="../../index.html">Master Portal Home</a></li>
+                <li><a href="../../semesters/sem1.html">Semester 1 Overview & Credits</a></li>
+                <li><a href="javascript:void(0)" onclick="openSearchModal()">Global Topic Search</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-bottom-content">
+            <span>© 2026 M.Tech Automotive Engineering Knowledge Base. Built for High-Performance Academic Study.</span>
+            <span>Birla Institute of Technology & Science, Pilani.</span>
+        </div>
+    </div>
+</footer>
+
+
+<div class="search-modal-overlay" id="searchModal" onclick="closeSearchModal(event)">
+    <div class="search-modal-container" onclick="event.stopPropagation()">
+        <div class="search-modal-header">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <input type="text" id="searchInput" class="search-modal-input" placeholder="Type to search curriculum, formulas, registers, exam questions..." autocomplete="off" oninput="handleSearch(this.value)">
+            <button class="search-modal-close" onclick="closeSearchModal()">&times;</button>
+        </div>
+        <div class="search-modal-filters">
+            <button class="search-filter-btn active" data-subject="all" onclick="setSearchFilter('all')">All Courses</button>
+            <button class="search-filter-btn" data-subject="automotive-communication" onclick="setSearchFilter('automotive-communication')">Communication</button>
+            <button class="search-filter-btn" data-subject="automotive-vehicle" onclick="setSearchFilter('automotive-vehicle')">Vehicle</button>
+            <button class="search-filter-btn" data-subject="autotronics" onclick="setSearchFilter('autotronics')">Autotronics</button>
+            <button class="search-filter-btn" data-subject="embedded-system-design" onclick="setSearchFilter('embedded-system-design')">Embedded</button>
+        </div>
+        <div class="search-modal-results" id="searchResults">
+            <div class="search-empty-state">
+                <span>Start typing to search across 33+ comprehensive M.Tech topics...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../../js/app.js"></script>
+<script src="../../js/search-index.js"></script>
+</body>
+</html>

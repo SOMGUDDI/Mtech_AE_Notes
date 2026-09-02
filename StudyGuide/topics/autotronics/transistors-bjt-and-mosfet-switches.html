@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transistors as Switches: BJT &amp; Power MOSFET Driving | Autotronics</title>
+    <meta name="description" content="Microcontrollers operate on sensitive 3.3V or 5V digital logic and can output only 10 to 25 mA of current. Automotive actuators (fuel injectors, ignit">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body data-topic-id="transistors-bjt-and-mosfet-switches" data-subject-id="autotronics">
+
+
+<header class="navbar">
+    <div class="navbar-container">
+        <a href="../../index.html" class="nav-brand">
+            <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="nav-brand-logo">
+            <div class="brand-details">
+                <span class="brand-inst">Birla Institute of Technology & Science, Pilani</span>
+                <span class="brand-dept">Work Integrated Learning Programmes • Automotive Engineering</span>
+            </div>
+        </a>
+        <div class="nav-search-box" onclick="openSearchModal()">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <span class="search-placeholder">Search curriculum, formulas, registers, questions...</span>
+            <span class="search-shortcut">Ctrl+K</span>
+        </div>
+        <div class="nav-actions">
+            <a href="../../semesters/sem1.html" class="nav-link">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></span>
+                <span>Semester 1 Hub</span>
+            </a>
+            <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Toggle Theme">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+                <span>Theme</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+
+<div class="topic-page-layout">
+    <aside class="topic-sidebar">
+        <div class="sidebar-header">
+            <a href="../../subjects/autotronics.html" class="sidebar-back">
+                <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span>
+                <span>Autotronics</span>
+            </a>
+            <div class="sidebar-subject-badge">AEZG533 / AELZG533</div>
+        </div>
+        <div class="sidebar-toc">
+            <h4>Table of Contents</h4>
+            <ul>
+                <li><a href="#overview">Quick Overview</a></li>
+                <li><a href="#objectives">Learning Objectives</a></li>
+                <li><a href="#core-concept">Core Concept & Intuition</a></li>
+                <li><a href="#lecture-notes">In-Class Lecture Notes</a></li>
+                <li><a href="#extra-explanation">Comprehensive Theory</a></li>
+                
+                
+                <li><a href="#working-principle">Working Principle</a></li>
+                <li><a href="#application">Automotive Application</a></li>
+                <li><a href="#comparison">Specifications Table</a></li>
+                <li><a href="#formulas">Math Formulas & Numericals</a></li>
+                <li><a href="#code">Embedded Driver / Registers</a></li>
+                <li><a href="#exam-questions">Exam & Viva Q&A</a></li>
+                <li><a href="#revision-card">60-Second Flash Card</a></li>
+                <li><a href="#personal-notes">My Personal Notes</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-progress-widget">
+            <h4>Topic Status</h4>
+            <div class="status-btn-group">
+                <button class="status-btn" id="statusNotStarted" onclick="setTopicStatus('transistors-bjt-and-mosfet-switches', 'not_started')">☐ Not Started</button>
+                <button class="status-btn" id="statusInProgress" onclick="setTopicStatus('transistors-bjt-and-mosfet-switches', 'in_progress')">◐ In Progress</button>
+                <button class="status-btn" id="statusCompleted" onclick="setTopicStatus('transistors-bjt-and-mosfet-switches', 'completed')">☑ Mastered</button>
+            </div>
+            <button class="bookmark-btn" id="bookmarkBtn" onclick="toggleBookmark('transistors-bjt-and-mosfet-switches')">★ Bookmark for Revision</button>
+        </div>
+    </aside>
+
+    <main class="topic-main-content">
+        <header class="topic-header">
+            <div class="breadcrumbs">
+                <a href="../../index.html">Home</a> / 
+                <a href="../../semesters/sem1.html">Semester 1</a> / 
+                <a href="../../subjects/autotronics.html">Autotronics</a> / 
+                <span class="curr-crumb">Transistors as Switches: BJT &amp; Power MOSFET Driving</span>
+            </div>
+            
+            <div class="topic-meta-row">
+                <span class="meta-pill module-pill">MODULE: Semiconductors &amp; Power Electronics</span>
+                <span class="meta-pill level-pill">LEVEL: Intermediate</span>
+                <span class="meta-pill importance-pill">WEIGHT: 5/5</span>
+                <span class="meta-pill code-pill">AEZG533 / AELZG533</span>
+            </div>
+
+            <h1 class="topic-main-title">Transistors as Switches: BJT &amp; Power MOSFET Driving</h1>
+
+            <div class="action-bar-top">
+                <div class="read-estimate">Estimated Read Time: <strong>12–15 mins</strong></div>
+                <div class="action-buttons-group">
+                    <button class="print-btn" onclick="window.print()" title="Print this complete note page or save as PDF">
+                        <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg></span>
+                        <span>Print / Save PDF</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <section class="topic-section" id="overview">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 01]</span> Quick Overview</h2>
+            </div>
+            <p class="overview-lead">Microcontrollers operate on sensitive 3.3V or 5V digital logic and can output only 10 to 25 mA of current. Automotive actuators (fuel injectors, ignition coils, solenoids, headlamps, cooling fans, and motors) require 12V to 48V operating voltages and 1 to 50 Amperes of current. Transistors—specifically Bipolar Junction Transistors (BJTs) and Power MOSFETs—act as electronic switches that allow low-power microcontroller GPIO pins to control high-power automotive loads.</p>
+        </section>
+
+        <section class="topic-section" id="objectives">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 02]</span> Learning Objectives & Prerequisites</h2>
+            </div>
+            <div class="objectives-card">
+                <h5>What You Will Master:</h5>
+                <ul class="objectives-list">
+                    <li>Understand the three BJT operating regions: Cutoff (OFF), Active (Amplifier), and Saturation (ON).</li><li>Design a BJT switch circuit and calculate required base resistor ($R_b$) for deep saturation.</li><li>Analyze N-Channel and P-Channel Enhancement Power MOSFET operation ($V_{GS(th)}$, $R_{DS(on)}$, Gate Charge).</li><li>Differentiate between Low-Side Switching (N-Channel) and High-Side Switching (P-Channel / Smart High-Side Drivers with charge pumps).</li>
+                </ul>
+                <div class="prereq-note">
+                    <strong>Prerequisites:</strong> Semiconductor Physics, PN Junction Diode, Resistors &amp; Voltage Dividers.
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="core-concept">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 03]</span> Core Concept & Physical Intuition</h2>
+            </div>
+            <div class="concept-body">
+                <p>A mechanical relay has moving copper contacts that wear out, spark, and take 10 ms to close. A transistor is a solid-state electronic switch with zero moving parts. Applying a tiny voltage/current to its control terminal (Base in BJT, Gate in MOSFET) causes the main conduction channel (Collector-Emitter in BJT, Drain-Source in MOSFET) to transition from infinite resistance (OFF switch) to nearly zero resistance (ON switch) in nanoseconds.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="lecture-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 04]</span> In-Class Lecture Transcript Breakdown</h2>
+            </div>
+            <div class="callout callout-lecture">
+                <div class="callout-header">// LECTURE TRANSCRIPT SYNTHESIS</div>
+                <div class="callout-body">
+                    <p>Lecture 4 and 5 detailed BJT and MOSFET switches. Dr. Madhuri Bayya stressed: &#x27;When using a transistor as a switch, you must drive it into complete SATURATION, not the active region! In saturation, the voltage drop across the switch V_CE(sat) drops to ~0.2V, minimizing power dissipation ($P = V \cdot I$). If it enters the active region, the transistor acts like a resistor and burns out instantly.&#x27; The professor also compared BJTs (current-controlled) with MOSFETs (voltage-controlled, near-zero gate drive power).</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="extra-explanation">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 05]</span> Rigorous Engineering Theory & Derivations</h2>
+            </div>
+            <div class="callout callout-deep">
+                <div class="callout-header">// RIGOROUS ENGINEERING THEORY</div>
+                <div class="callout-body">
+                    <p>Let&#x27;s analyze the electrical design rules for transistor switches:
+
+1. **BJT Switch Design (NPN Low-Side):**
+   - **Cutoff State (OFF):** $V_{BE} &lt; 0.6\text{ V} \implies I_B = 0, I_C = 0$. Load is completely de-energized.
+   - **Saturation State (ON):** Base is overdriven with current such that $I_B &gt; \frac{I_{C(sat)}}{\beta_{forced}}$ (typically use forced $\beta = 10$ to guarantee hard saturation).
+   - Base resistor calculation:
+     $$R_b = \frac{V_{GPIO} - V_{BE(sat)}}{I_B} = \frac{V_{GPIO} - 0.7\text{ V}}{I_{load} / 10}$$
+   - Power dissipated in BJT: $P_{loss} = V_{CE(sat)} \cdot I_{load} \approx 0.2\text{ V} \times I_{load}$.
+
+2. **Power MOSFET Switch Design (N-Channel):**
+   - MOSFET is a **voltage-controlled device**. Conduction occurs when Gate-to-Source voltage exceeds threshold: $V_{GS} &gt; V_{GS(th)}$ (typically $2.0 - 4.5\text{ V}$; Logic-Level MOSFETs turn on fully at $3.3\text{ V} - 5\text{ V}$).
+   - Conduction loss is governed strictly by On-State Resistance ($R_{DS(on)}$, typically $2 - 20\text{ m}\Omega$):
+     $$P_{loss} = I_{load}^2 \cdot R_{DS(on)}$$
+   - Example: A $10\text{ A}$ load through a $5\text{ m}\Omega$ MOSFET dissipates only $P = 10^2 \times 0.005 = \mathbf{0.50\text{ Watts}}$, requiring zero heatsink!</p>
+                </div>
+            </div>
+        </section>
+
+        
+        
+
+        <section class="topic-section" id="working-principle">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 08]</span> Step-by-Step Operational Principle</h2>
+            </div>
+            <div class="principle-body">
+                <p>Low-Side vs High-Side Automotive Switching:
+- **Low-Side Switch (N-MOSFET):** Placed between the Load and Ground. Simple to drive directly from a 5V MCU pin. However, if the harness wire between load and switch shorts to the metal vehicle chassis (ground), the load turns on permanently and cannot be turned off.
+- **High-Side Switch (P-MOSFET / Smart High-Side Driver):** Placed between the $+12\text{V}$ battery supply and the Load. If the load wire shorts to the chassis, it simply blows a fuse safely. Standard in automotive lighting and safety systems (e.g., Infineon PROFET).</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="application">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 09]</span> Real Automotive Application</h2>
+            </div>
+            <div class="callout callout-application">
+                <div class="callout-header">// AUTOMOTIVE OEM CASE STUDY</div>
+                <div class="callout-body">
+                    <p></p>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="topic-section table-section" id="comparison">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 10]</span> Technical Specifications & Benchmarks</h2>
+            </div>
+            <div class="table-responsive">
+                <table class="specs-table">
+                    <thead><tr><th>Parameter / Feature</th><th>Bipolar Junction Transistor (BJT)</th><th>Power MOSFET</th><th>Smart High-Side Switch (PROFET)</th></tr></thead>
+                    <tbody><tr><td>Control Input</td><td>Current-controlled ($I_B$ required)</td><td>Voltage-controlled ($V_{GS}$ voltage)</td><td>Digital Logic Input (3.3V/5V compatible)</td></tr><tr><td>Drive Current</td><td>High ($I_B = I_C / 10$ continuous)</td><td>Zero static current (Only gate charge charging)</td><td>Microamps logic drive</td></tr><tr><td>ON-State Voltage / Drop</td><td>V_CE(sat) ≈ 0.2V – 0.4V (Constant drop)</td><td>V_DS = I * R_DS(on) (Ultra-low mV drop)</td><td>V_DS = I * R_DS(on)</td></tr><tr><td>Conduction Loss</td><td>P = V_CE(sat) * I_load</td><td>P = I_load^2 * R_DS(on)</td><td>P = I_load^2 * R_DS(on)</td></tr><tr><td>Switching Speed</td><td>Moderate (1 – 10 μs)</td><td>Ultra-fast (10 – 100 ns)</td><td>Fast with integrated slew-rate control</td></tr><tr><td>Built-in Protections</td><td>None (External diodes needed)</td><td>Body diode only</td><td>Over-current, over-temp, short-circuit, diagnostic sense pin</td></tr></tbody>
+                </table>
+            </div>
+        </section>
+        
+        
+        <section class="topic-section formulas-section" id="formulas">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 11]</span> Mathematical Formulas & Numerical Breakdown</h2>
+            </div>
+            <div class="formulas-grid">
+                
+            <div class="formula-card">
+                <div class="formula-name">BJT Base Resistor Sizing (Forced Saturation)</div>
+                <div class="formula-math"><code>R_b = \frac{V_{GPIO} - V_{BE(sat)}}{I_B} = \frac{V_{GPIO} - 0.7\text{ V}}{I_{C(sat)} / \beta_{forced}} \quad (\text{use } \beta_{forced} = 10)</code></div>
+                <div class="formula-details">
+                    <h5>Parameter Definitions:</h5>
+                    <ul class="formula-vars"><li><code>V</code>: _</li><li><code>V</code>: _</li><li><code>I</code>: _</li><li><code>\</code>: b</li></ul>
+                    <div class="formula-example"><strong>Worked Numerical Example:</strong><br>To drive a 12V / 500 mA (0.5A) relay coil using a 5V MCU: I_B = 0.5 / 10 = 0.05 A (50 mA). R_b = (5.0 - 0.7) / 0.05 = 4.3 / 0.05 = 86 Ω (Use standard 82 Ω or 75 Ω).</div>
+                </div>
+            </div>
+            
+            <div class="formula-card">
+                <div class="formula-name">MOSFET Conduction Power Loss</div>
+                <div class="formula-math"><code>P_{cond} = I_{RMS}^2 \cdot R_{DS(on)}</code></div>
+                <div class="formula-details">
+                    <h5>Parameter Definitions:</h5>
+                    <ul class="formula-vars"><li><code>I</code>: _</li><li><code>R</code>: _</li></ul>
+                    <div class="formula-example"><strong>Worked Numerical Example:</strong><br>A 15A headlamp current through a Power MOSFET with RDS(on) = 6 mΩ (0.006 Ω) dissipates P = (15)^2 × 0.006 = 225 × 0.006 = 1.35 Watts.</div>
+                </div>
+            </div>
+            
+            </div>
+        </section>
+        
+        
+        <section class="topic-section code-section" id="code">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 12]</span> Embedded C Driver & Register Interface</h2>
+                <button class="copy-btn" onclick="copyCodeBlock('codeBlock')">
+                    <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+                    <span>Copy Code</span>
+                </button>
+            </div>
+            <div class="code-container">
+                <pre><code id="codeBlock" class="language-c">// Arduino / C Embedded GPIO Driver for MOSFET PWM Fan Control
+#define FAN_PWM_PIN  9
+
+void init_fan_driver(void) {
+    pinMode(FAN_PWM_PIN, OUTPUT);
+    analogWrite(FAN_PWM_PIN, 0); // 0% Duty Cycle (Fan OFF)
+}
+
+void set_fan_speed_percent(uint8_t speed_pct) {
+    if (speed_pct &gt; 100) speed_pct = 100;
+    // Map 0-100% to 8-bit timer PWM (0 to 255)
+    uint8_t pwm_val = (speed_pct * 255) / 100;
+    analogWrite(FAN_PWM_PIN, pwm_val);
+}</code></pre>
+            </div>
+        </section>
+        
+
+        <section class="topic-section" id="must-remember">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 13]</span> Must-Remember Key Points for Exams</h2>
+            </div>
+            <div class="must-remember-card">
+                <ul><li>[KEY] Transistors used as switches must operate in SATURATION (ON) or CUTOFF (OFF).</li><li>[KEY] BJT is current-controlled; requires forced beta (β_forced = 10) for hard saturation.</li><li>[KEY] MOSFET is voltage-controlled; conduction loss P = I^2 * RDS(on).</li><li>[KEY] Gate pull-down resistor (10 kΩ) ensures MOSFET stays OFF during MCU reboot.</li><li>[KEY] High-side switches prevent accidental load activation if wiring shorts to chassis ground.</li></ul>
+            </div>
+        </section>
+
+        
+        <div class="callout callout-warning">
+            <div class="callout-header">// COMMON EXAM TRAPS & MISCONCEPTIONS</div>
+            <div class="callout-body">
+                <ul><li><strong>Trap:</strong> Operating a BJT in the active linear region when designing a switch. If $I_B$ is insufficient, $V_{CE}$ stays high (~2V), causing the transistor to dissipate watts of heat and burn out.</li><li><strong>Trap:</strong> Omitting the freewheeling diode across inductive solenoids. The resulting 200V flyback pulse will destroy the MOSFET&#x27;s drain-source junction instantly.</li></ul>
+            </div>
+        </div>
+        
+
+        <section class="topic-section" id="exam-questions">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 15]</span> Exam Preparation & Model Questions</h2>
+            </div>
+            <div class="exam-qa-container">
+                
+        <div class="exam-qa-block">
+            <h3>Short Answer Questions (1–2 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> Why is a Power MOSFET preferred over a BJT for high-current automotive switching?</div>
+                <div class="qa-answer">Power MOSFETs are voltage-controlled devices with near-zero static gate drive current, ultra-low on-state resistance ($R_{DS(on)} < 5\text{ m}\Omega$), nanosecond switching speeds, and much lower conduction power losses ($I^2 R_{DS(on)}$ vs $V_{CE(sat)} \cdot I$).</div>
+            </div>
+            
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> What is the purpose of the 10 kΩ pull-down resistor connected to the gate of an N-MOSFET?</div>
+                <div class="qa-answer">When the microcontroller powers up or undergoes a reset, its GPIO pins float in a high-impedance (tri-state) mode. The 10 kΩ pull-down resistor pulls the gate to 0V ground, preventing parasitic charges from accidentally turning on the MOSFET.</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Comprehensive Long Answer Questions (5–10 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item long-qa-item">
+                <div class="qa-question"><span class="q-badge">10 MARKS</span> Explain the operation of BJT and Power MOSFET switches in automotive electronic systems. Design an NPN BJT switch circuit to drive a 12V / 300 mA solenoid from a 3.3V microcontroller GPIO. Compare Low-Side vs High-Side switching topologies.</div>
+                <div class="qa-answer">A complete answer covers: (1) Output characteristics of BJT (Cutoff, Active, Saturation) and MOSFET (Cutoff, Ohmic, Saturation); (2) Calculation of base resistor R_b = (3.3 - 0.7) / (0.3 / 10) = 2.6 / 0.03 = 86.6 Ω; (3) Schematic showing freewheeling diode; (4) Detailed comparison between Low-Side and High-Side switching.</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Viva Voce & Technical Interview Questions</h3>
+            <div class="qa-list">
+            <div class="qa-item viva-qa-item">
+                <div class="qa-question"><span class="q-badge">VIVA / INTERVIEW</span> Why do automotive smart high-side drivers (like Infineon PROFETs) integrate an internal charge pump?</div>
+                <div class="qa-answer">High-side switching requires placing an N-Channel MOSFET between the +12V battery rail and the load. To turn on an N-MOSFET, the Gate voltage must be 5V to 10V HIGHER than the Source ($V_G \ge 12\text{V} + 10\text{V} = 22\text{V}$). The internal charge pump oscillator boosts 12V battery power to 22V to drive the gate.</div>
+            </div>
+            </div>
+        </div>
+        
+            </div>
+        </section>
+
+        <section class="topic-section" id="revision-card">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 18]</span> 60-Second Flash / Revision Card</h2>
+            </div>
+            <div class="flashcard">
+                <div class="flashcard-badge">// 60-SECOND REVISION SUMMARY</div>
+                <ul class="flashcard-points"><li>[REV] BJT Switch: Saturation (ON), Cutoff (OFF).</li><li>[REV] BJT Base Resistor: R_b = (V_gpio - 0.7) / (I_load / 10).</li><li>[REV] MOSFET Loss: P = I^2 * R_DS(on).</li><li>[REV] Low-Side = N-channel to Ground; High-Side = P-channel/N-channel+charge pump to Battery.</li></ul>
+            </div>
+        </section>
+
+        <section class="topic-section" id="personal-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 19]</span> Personal Study Notes (Auto-Saved)</h2>
+            </div>
+            <div class="personal-notes-widget">
+                <p class="notes-hint">Type personal notes or lab observations below. Content auto-saves to your local browser storage.</p>
+                <textarea id="personalNotePad" class="personal-notes-textarea" placeholder="Type personal study notes here..." oninput="savePersonalNote('transistors-bjt-and-mosfet-switches', this.value)"></textarea>
+                <div class="notes-save-indicator" id="notesSavedTag">✓ Saved locally</div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="sources">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 20]</span> Source Traceability & Curriculum References</h2>
+            </div>
+            <div class="sources-box">
+                <p><strong>Primary Source Reference:</strong> Autotronics Lecture 4 Transcript; Electrical &amp; Electronics Fundamentals PPT Slides 96–117; Course Syllabus Section 4.</p>
+            </div>
+        </section>
+
+        <nav class="topic-pagination">
+            <div class="pagination-prev"><a href="circuit-laws-mesh-nodal-thevenin.html" class="nav-prev-btn"><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span><span>Previous: Circuit Theorems: KCL, KVL, Mesh, Nodal &amp; Thévenin Equivalent</span></a></div>
+            <div class="pagination-next"><a href="operational-amplifiers-in-signal-conditioning.html" class="nav-next-btn"><span>Next: Operational Amplifiers &amp; Sensor Signal Conditioning</span><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span></a></div>
+        </nav>
+    </main>
+</div>
+
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-col brand-col">
+            <div class="footer-brand">
+                <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="footer-bits-logo">
+                <div class="footer-brand-text">
+                    <span class="footer-title">Birla Institute of Technology & Science, Pilani</span>
+                    <span class="footer-sub">Work Integrated Learning Programmes (WILP)</span>
+                </div>
+            </div>
+            <p class="footer-desc">Institutional knowledge base engineered from official lecture transcripts, handouts, and laboratory sessions for M.Tech Automotive Engineering.</p>
+            <div class="footer-tags">
+                <span class="badge badge-info">BITS WILP</span>
+                <span class="badge badge-success">4 Core Courses</span>
+                <span class="badge badge-warning">Exam & Viva Ready</span>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Semester 1 Courses</h4>
+            <ul>
+                <li><a href="../../subjects/automotive-communication.html">Automotive Communication (AELZG513)</a></li>
+                <li><a href="../../subjects/automotive-vehicle.html">Automotive Vehicle (AELZC441)</a></li>
+                <li><a href="../../subjects/autotronics.html">Autotronics (AEZG533)</a></li>
+                <li><a href="../../subjects/embedded-system-design.html">Embedded System Design (AEZG512)</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="../../index.html">Master Portal Home</a></li>
+                <li><a href="../../semesters/sem1.html">Semester 1 Overview & Credits</a></li>
+                <li><a href="javascript:void(0)" onclick="openSearchModal()">Global Topic Search</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-bottom-content">
+            <span>© 2026 M.Tech Automotive Engineering Knowledge Base. Built for High-Performance Academic Study.</span>
+            <span>Birla Institute of Technology & Science, Pilani.</span>
+        </div>
+    </div>
+</footer>
+
+
+<div class="search-modal-overlay" id="searchModal" onclick="closeSearchModal(event)">
+    <div class="search-modal-container" onclick="event.stopPropagation()">
+        <div class="search-modal-header">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <input type="text" id="searchInput" class="search-modal-input" placeholder="Type to search curriculum, formulas, registers, exam questions..." autocomplete="off" oninput="handleSearch(this.value)">
+            <button class="search-modal-close" onclick="closeSearchModal()">&times;</button>
+        </div>
+        <div class="search-modal-filters">
+            <button class="search-filter-btn active" data-subject="all" onclick="setSearchFilter('all')">All Courses</button>
+            <button class="search-filter-btn" data-subject="automotive-communication" onclick="setSearchFilter('automotive-communication')">Communication</button>
+            <button class="search-filter-btn" data-subject="automotive-vehicle" onclick="setSearchFilter('automotive-vehicle')">Vehicle</button>
+            <button class="search-filter-btn" data-subject="autotronics" onclick="setSearchFilter('autotronics')">Autotronics</button>
+            <button class="search-filter-btn" data-subject="embedded-system-design" onclick="setSearchFilter('embedded-system-design')">Embedded</button>
+        </div>
+        <div class="search-modal-results" id="searchResults">
+            <div class="search-empty-state">
+                <span>Start typing to search across 33+ comprehensive M.Tech topics...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../../js/app.js"></script>
+<script src="../../js/search-index.js"></script>
+</body>
+</html>

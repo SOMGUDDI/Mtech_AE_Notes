@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAN Error Detection Types &amp; Fault Confinement Mechanism | Automotive Communication Systems</title>
+    <meta name="description" content="To ensure extreme reliability in safety-critical automotive systems, CAN implements five distinct mathematical and logical error-detection mechanisms.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body data-topic-id="can-error-handling-fault-confinement" data-subject-id="automotive-communication">
+
+
+<header class="navbar">
+    <div class="navbar-container">
+        <a href="../../index.html" class="nav-brand">
+            <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="nav-brand-logo">
+            <div class="brand-details">
+                <span class="brand-inst">Birla Institute of Technology & Science, Pilani</span>
+                <span class="brand-dept">Work Integrated Learning Programmes • Automotive Engineering</span>
+            </div>
+        </a>
+        <div class="nav-search-box" onclick="openSearchModal()">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <span class="search-placeholder">Search curriculum, formulas, registers, questions...</span>
+            <span class="search-shortcut">Ctrl+K</span>
+        </div>
+        <div class="nav-actions">
+            <a href="../../semesters/sem1.html" class="nav-link">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></span>
+                <span>Semester 1 Hub</span>
+            </a>
+            <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Toggle Theme">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+                <span>Theme</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+
+<div class="topic-page-layout">
+    <aside class="topic-sidebar">
+        <div class="sidebar-header">
+            <a href="../../subjects/automotive-communication.html" class="sidebar-back">
+                <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span>
+                <span>Automotive Communication Systems</span>
+            </a>
+            <div class="sidebar-subject-badge">AELZG513</div>
+        </div>
+        <div class="sidebar-toc">
+            <h4>Table of Contents</h4>
+            <ul>
+                <li><a href="#overview">Quick Overview</a></li>
+                <li><a href="#objectives">Learning Objectives</a></li>
+                <li><a href="#core-concept">Core Concept & Intuition</a></li>
+                <li><a href="#lecture-notes">In-Class Lecture Notes</a></li>
+                <li><a href="#extra-explanation">Comprehensive Theory</a></li>
+                
+                
+                <li><a href="#working-principle">Working Principle</a></li>
+                <li><a href="#application">Automotive Application</a></li>
+                <li><a href="#comparison">Specifications Table</a></li>
+                <li><a href="#formulas">Math Formulas & Numericals</a></li>
+                <li><a href="#code">Embedded Driver / Registers</a></li>
+                <li><a href="#exam-questions">Exam & Viva Q&A</a></li>
+                <li><a href="#revision-card">60-Second Flash Card</a></li>
+                <li><a href="#personal-notes">My Personal Notes</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-progress-widget">
+            <h4>Topic Status</h4>
+            <div class="status-btn-group">
+                <button class="status-btn" id="statusNotStarted" onclick="setTopicStatus('can-error-handling-fault-confinement', 'not_started')">☐ Not Started</button>
+                <button class="status-btn" id="statusInProgress" onclick="setTopicStatus('can-error-handling-fault-confinement', 'in_progress')">◐ In Progress</button>
+                <button class="status-btn" id="statusCompleted" onclick="setTopicStatus('can-error-handling-fault-confinement', 'completed')">☑ Mastered</button>
+            </div>
+            <button class="bookmark-btn" id="bookmarkBtn" onclick="toggleBookmark('can-error-handling-fault-confinement')">★ Bookmark for Revision</button>
+        </div>
+    </aside>
+
+    <main class="topic-main-content">
+        <header class="topic-header">
+            <div class="breadcrumbs">
+                <a href="../../index.html">Home</a> / 
+                <a href="../../semesters/sem1.html">Semester 1</a> / 
+                <a href="../../subjects/automotive-communication.html">Automotive Communication Systems</a> / 
+                <span class="curr-crumb">CAN Error Detection Types &amp; Fault Confinement Mechanism</span>
+            </div>
+            
+            <div class="topic-meta-row">
+                <span class="meta-pill module-pill">MODULE: In-Vehicle Networks &amp; Protocols</span>
+                <span class="meta-pill level-pill">LEVEL: Advanced</span>
+                <span class="meta-pill importance-pill">WEIGHT: 5/5</span>
+                <span class="meta-pill code-pill">AELZG513</span>
+            </div>
+
+            <h1 class="topic-main-title">CAN Error Detection Types &amp; Fault Confinement Mechanism</h1>
+
+            <div class="action-bar-top">
+                <div class="read-estimate">Estimated Read Time: <strong>12–15 mins</strong></div>
+                <div class="action-buttons-group">
+                    <button class="print-btn" onclick="window.print()" title="Print this complete note page or save as PDF">
+                        <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg></span>
+                        <span>Print / Save PDF</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <section class="topic-section" id="overview">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 01]</span> Quick Overview</h2>
+            </div>
+            <p class="overview-lead">To ensure extreme reliability in safety-critical automotive systems, CAN implements five distinct mathematical and logical error-detection mechanisms. Furthermore, to prevent a single malfunctioning or &#x27;babbling&#x27; ECU from permanently blocking the shared bus, CAN features an intelligent, autonomous Fault Confinement state machine based on Transmit and Receive Error Counters (TEC and REC).</p>
+        </section>
+
+        <section class="topic-section" id="objectives">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 02]</span> Learning Objectives & Prerequisites</h2>
+            </div>
+            <div class="objectives-card">
+                <h5>What You Will Master:</h5>
+                <ul class="objectives-list">
+                    <li>Explain the 5 types of CAN errors: Bit Error, Stuff Error, CRC Error, Form Error, and Acknowledgment (ACK) Error.</li><li>Analyze the operation of Active Error Flags (6 dominant bits) vs Passive Error Flags (6 recessive bits).</li><li>Trace Transmit Error Counter (TEC) and Receive Error Counter (REC) increment and decrement rules.</li><li>Understand the three node operating states: Error Active, Error Passive, and Bus-Off, along with the Bus-Off recovery protocol.</li>
+                </ul>
+                <div class="prereq-note">
+                    <strong>Prerequisites:</strong> CAN Protocol Architecture &amp; Physical Layer, CAN Frame Format, CAN Bit Stuffing.
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="core-concept">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 03]</span> Core Concept & Physical Intuition</h2>
+            </div>
+            <div class="concept-body">
+                <p>In automotive networks, an ECU can fail due to software bugs, connector corrosion, or internal silicon faults. If a damaged ECU were allowed to shout errors continuously, the entire car would lose communication. CAN solves this by giving every ECU two internal &#x27;penalty point&#x27; counters (TEC and REC). If a node makes repeated errors, it gets demoted to Error Passive (it can no longer interrupt others), and if errors continue, it is electronically disconnected from the bus (Bus-Off), allowing all other ECUs to continue operating normally.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="lecture-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 04]</span> In-Class Lecture Transcript Breakdown</h2>
+            </div>
+            <div class="callout callout-lecture">
+                <div class="callout-header">// LECTURE TRANSCRIPT SYNTHESIS</div>
+                <div class="callout-body">
+                    <p>Lecture 5 covered CAN error handling and fault confinement in depth. The professor stressed: &#x27;CAN is self-diagnosing and self-healing. There are 5 error types. When an error is detected by any node, it immediately transmits an Active Error Flag—6 dominant bits—which deliberately violates the bit stuffing rule, forcing every other ECU on the bus to discard the corrupt frame.&#x27; The lecturer detailed the TEC/REC counter arithmetic (+8 for transmit failures, -1 for successful frames) and explained that a node enters Bus-Off when TEC exceeds 255.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="extra-explanation">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 05]</span> Rigorous Engineering Theory & Derivations</h2>
+            </div>
+            <div class="callout callout-deep">
+                <div class="callout-header">// RIGOROUS ENGINEERING THEORY</div>
+                <div class="callout-body">
+                    <p>Let&#x27;s analyze the **5 CAN Error Types**:
+1. **Bit Error:** Transmitting node reads back a bit value opposite to what it sent (except during Arbitration and ACK slot).
+2. **Stuff Error:** 6 consecutive identical polarity bits detected in a bit-stuffed field.
+3. **CRC Error:** Locally calculated CRC does not match the 15-bit CRC sequence received in the frame.
+4. **Form (Format) Error:** A fixed-form field (CRC Delimiter, ACK Delimiter, EOF) contains an invalid dominant bit.
+5. **ACK Error:** Transmitter sends a recessive bit in the ACK slot but does not detect any dominant acknowledge bit.
+
+**The Three Fault Confinement States:**
+- **1. Error Active (TEC $\le 127$ and REC $\le 127$):** Normal operating state. Node participates fully and transmits **Active Error Flags** (6 dominant bits) when it detects an error.
+- **2. Error Passive (TEC $&gt; 127$ or REC $&gt; 127$):** Node is suspected of being degraded. It can still transmit and receive, but when it detects an error, it transmits a **Passive Error Flag** (6 recessive bits), preventing it from destroying frames heard correctly by other nodes. It must also wait an additional 8-bit **Suspend Transmission Time** before starting a new message.
+- **3. Bus-Off (TEC $&gt; 255$):** Node is severely damaged. Transceiver output drivers are turned off electronically. The node cannot transmit or receive anything. It can only recover by completing a reset protocol (detecting 128 occurrences of 11 consecutive recessive bits).</p>
+                </div>
+            </div>
+        </section>
+
+        
+        
+
+        <section class="topic-section" id="working-principle">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 08]</span> Step-by-Step Operational Principle</h2>
+            </div>
+            <div class="principle-body">
+                <p>Asymmetric Counter Increment/Decrement Logic:
+- When a transmitter fails, it increases TEC by **+8**.
+- When a receiver fails, it increases REC by **+1** (because receivers are more prone to local ground noise).
+- When a frame is successfully transmitted, TEC decreases by **-1**.
+- When a frame is successfully received, REC decreases by **-1** (if between 1 and 127).
+This asymmetry ensures that the transmitter (which is usually the cause of corrupted bus data) reaches Error Passive and Bus-Off 8 times faster than innocent listening nodes.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="application">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 09]</span> Real Automotive Application</h2>
+            </div>
+            <div class="callout callout-application">
+                <div class="callout-header">// AUTOMOTIVE OEM CASE STUDY</div>
+                <div class="callout-body">
+                    <p></p>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="topic-section table-section" id="comparison">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 10]</span> Technical Specifications & Benchmarks</h2>
+            </div>
+            <div class="table-responsive">
+                <table class="specs-table">
+                    <thead><tr><th>Operating State</th><th>TEC / REC Range</th><th>Error Flag Type</th><th>Bus Impact</th><th>Transmit Capability</th></tr></thead>
+                    <tbody><tr><td>Error Active</td><td>TEC ≤ 127 and REC ≤ 127</td><td>Active (6 Dominant bits)</td><td>Destroys corrupted frame immediately</td><td>Normal priority transmission</td></tr><tr><td>Error Passive</td><td>TEC &gt; 127 or REC &gt; 127</td><td>Passive (6 Recessive bits)</td><td>Does NOT destroy frame for other nodes</td><td>Must wait Suspend Transmission (8 bits)</td></tr><tr><td>Bus-Off</td><td>TEC &gt; 255</td><td>None (Transceiver disconnected)</td><td>Zero bus impact (Completely isolated)</td><td>Disabled (Cannot transmit or receive)</td></tr></tbody>
+                </table>
+            </div>
+        </section>
+        
+        
+        <section class="topic-section formulas-section" id="formulas">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 11]</span> Mathematical Formulas & Numerical Breakdown</h2>
+            </div>
+            <div class="formulas-grid">
+                
+            <div class="formula-card">
+                <div class="formula-name">Transmitter Bus-Off Time Calculation</div>
+                <div class="formula-math"><code>N_{errors} = \lceil \frac{256}{8} \rceil = 32\text{ consecutive transmission errors}</code></div>
+                <div class="formula-details">
+                    <h5>Parameter Definitions:</h5>
+                    <ul class="formula-vars"><li><code>2</code>: 5</li><li><code>8</code>:  </li><li><code>N</code>: _</li></ul>
+                    <div class="formula-example"><strong>Worked Numerical Example:</strong><br>If a CAN transmitter has an open circuit and cannot receive ACK, it increments TEC by 8 on every attempt. After exactly 32 attempts (32 × 8 = 256), the ECU enters Bus-Off and stops transmitting.</div>
+                </div>
+            </div>
+            
+            </div>
+        </section>
+        
+        
+        <section class="topic-section code-section" id="code">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 12]</span> Embedded C Driver & Register Interface</h2>
+                <button class="copy-btn" onclick="copyCodeBlock('codeBlock')">
+                    <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+                    <span>Copy Code</span>
+                </button>
+            </div>
+            <div class="code-container">
+                <pre><code id="codeBlock" class="language-c">// FlexCAN Bus-Off Interrupt Handler &amp; Recovery Protocol (ARM Cortex-M4)
+void CAN0_BusOff_IRQHandler(void) {
+    if (CAN0-&gt;ESR1 &amp; CAN_ESR1_BOFFINT_MASK) {
+        // Clear Bus-Off Interrupt Flag
+        CAN0-&gt;ESR1 |= CAN_ESR1_BOFFINT_MASK;
+        
+        printf(&quot;CRITICAL ALERT: FlexCAN0 entered BUS-OFF state!\n&quot;);
+        printf(&quot;Fault Diagnostics: TEC=%d, REC=%d\n&quot;, 
+               (CAN0-&gt;ECR &amp; CAN_ECR_TXERRCNT_MASK) &gt;&gt; CAN_ECR_TXERRCNT_SHIFT,
+               (CAN0-&gt;ECR &amp; CAN_ECR_RXERRCNT_MASK) &gt;&gt; CAN_ECR_RXERRCNT_SHIFT);
+               
+        // Initiate AUTOSAR Bus-Off Recovery Timer (Wait 100 ms then soft-reset)
+        start_bus_off_recovery_timer(100);
+    }
+}</code></pre>
+            </div>
+        </section>
+        
+
+        <section class="topic-section" id="must-remember">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 13]</span> Must-Remember Key Points for Exams</h2>
+            </div>
+            <div class="must-remember-card">
+                <ul><li>[KEY] 5 Error Types: Bit Error, Stuff Error, CRC Error, Form Error, ACK Error.</li><li>[KEY] Active Error Flag = 6 Dominant bits (destroys frame); Passive Error Flag = 6 Recessive bits.</li><li>[KEY] TEC &gt; 127 or REC &gt; 127 -&gt; Error Passive state.</li><li>[KEY] TEC &gt; 255 -&gt; Bus-Off state (transceiver driver disabled).</li><li>[KEY] Transmitter penalizes itself 8x faster (+8 TEC) than receiver (+1 REC).</li></ul>
+            </div>
+        </section>
+
+        
+        <div class="callout callout-warning">
+            <div class="callout-header">// COMMON EXAM TRAPS & MISCONCEPTIONS</div>
+            <div class="callout-body">
+                <ul><li><strong>Trap:</strong> Believing an Error Passive node cannot transmit. An Error Passive node CAN still transmit messages; however, when it detects an error, it transmits a Passive Error Flag (recessive) and must wait an extra 8-bit delay.</li><li><strong>Trap:</strong> Assuming Bus-Off requires a permanent vehicle power cycle. An ECU can recover automatically from Bus-Off by monitoring the bus for 128 sequences of 11 consecutive recessive bits.</li></ul>
+            </div>
+        </div>
+        
+
+        <section class="topic-section" id="exam-questions">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 15]</span> Exam Preparation & Model Questions</h2>
+            </div>
+            <div class="exam-qa-container">
+                
+        <div class="exam-qa-block">
+            <h3>Short Answer Questions (1–2 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> What are the 5 types of errors detected by a CAN controller?</div>
+                <div class="qa-answer">Bit Error, Stuff Error, CRC Error, Form Error, and Acknowledgment (ACK) Error.</div>
+            </div>
+            
+            <div class="qa-item short-qa-item">
+                <div class="qa-question"><span class="q-badge">2 MARKS</span> What is the difference between an Active Error Flag and a Passive Error Flag?</div>
+                <div class="qa-answer">An Active Error Flag consists of 6 consecutive Dominant bits (000000) and deliberately violates the bit-stuffing rule to force all nodes to discard the frame. A Passive Error Flag consists of 6 consecutive Recessive bits (111111) and does not corrupt the bus for other nodes.</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Comprehensive Long Answer Questions (5–10 Marks)</h3>
+            <div class="qa-list">
+            <div class="qa-item long-qa-item">
+                <div class="qa-question"><span class="q-badge">10 MARKS</span> Describe the complete CAN Fault Confinement mechanism. Detail the five error types, the role of TEC/REC error counters, and the state transitions between Error Active, Error Passive, and Bus-Off with a state diagram.</div>
+                <div class="qa-answer">A complete answer covers: (1) Detailed definitions of all 5 error types; (2) Active Error Flag vs Passive Error Flag; (3) Exact TEC/REC increment/decrement arithmetic (+8, +1, -1); (4) State diagram showing Error Active, Error Passive, and Bus-Off with exact threshold values (127 and 255); (5) Bus-Off recovery sequence (128 occurrences of 11 recessive bits).</div>
+            </div>
+            </div>
+        </div>
+        
+                
+        <div class="exam-qa-block">
+            <h3>Viva Voce & Technical Interview Questions</h3>
+            <div class="qa-list">
+            <div class="qa-item viva-qa-item">
+                <div class="qa-question"><span class="q-badge">VIVA / INTERVIEW</span> Why does the CAN protocol increment the Transmit Error Counter (TEC) by +8 on an error, while the Receive Error Counter (REC) is only incremented by +1?</div>
+                <div class="qa-answer">Because transmitter errors affect all nodes and represent a direct attempt to output bad data, whereas receiver errors are often caused by local noise or ground shifts unique to that specific receiver. Penalizing the transmitter 8x faster ensures the faulty transmitter reaches Bus-Off quickly without taking down innocent listening nodes.</div>
+            </div>
+            </div>
+        </div>
+        
+            </div>
+        </section>
+
+        <section class="topic-section" id="revision-card">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 18]</span> 60-Second Flash / Revision Card</h2>
+            </div>
+            <div class="flashcard">
+                <div class="flashcard-badge">// 60-SECOND REVISION SUMMARY</div>
+                <ul class="flashcard-points"><li>[REV] 5 Errors: Bit, Stuff, CRC, Form, ACK.</li><li>[REV] TEC/REC &lt;= 127: Error Active.</li><li>[REV] TEC/REC &gt; 127: Error Passive (+8 bit suspend delay).</li><li>[REV] TEC &gt; 255: Bus-Off (node isolated).</li><li>[REV] Transmitter error = +8 TEC; Receiver error = +1 REC; Success = -1.</li></ul>
+            </div>
+        </section>
+
+        <section class="topic-section" id="personal-notes">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 19]</span> Personal Study Notes (Auto-Saved)</h2>
+            </div>
+            <div class="personal-notes-widget">
+                <p class="notes-hint">Type personal notes or lab observations below. Content auto-saves to your local browser storage.</p>
+                <textarea id="personalNotePad" class="personal-notes-textarea" placeholder="Type personal study notes here..." oninput="savePersonalNote('can-error-handling-fault-confinement', this.value)"></textarea>
+                <div class="notes-save-indicator" id="notesSavedTag">✓ Saved locally</div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="sources">
+            <div class="section-header">
+                <h2><span class="sec-tag">[SEC 20]</span> Source Traceability & Curriculum References</h2>
+            </div>
+            <div class="sources-box">
+                <p><strong>Primary Source Reference:</strong> Automotive Communication Systems Lecture 5 Transcript; Lab 2 Fault Confinement Discussion; ISO 11898-1 Section 12.</p>
+            </div>
+        </section>
+
+        <nav class="topic-pagination">
+            <div class="pagination-prev"><a href="can-bit-stuffing-and-timing.html" class="nav-prev-btn"><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span><span>Previous: CAN Bit Stuffing Mechanism, Bit Timing &amp; Synchronization</span></a></div>
+            <div class="pagination-next"><a href="can-fd-protocol.html" class="nav-next-btn"><span>Next: CAN with Flexible Data-Rate (CAN-FD) Architecture</span><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span></a></div>
+        </nav>
+    </main>
+</div>
+
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-col brand-col">
+            <div class="footer-brand">
+                <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="footer-bits-logo">
+                <div class="footer-brand-text">
+                    <span class="footer-title">Birla Institute of Technology & Science, Pilani</span>
+                    <span class="footer-sub">Work Integrated Learning Programmes (WILP)</span>
+                </div>
+            </div>
+            <p class="footer-desc">Institutional knowledge base engineered from official lecture transcripts, handouts, and laboratory sessions for M.Tech Automotive Engineering.</p>
+            <div class="footer-tags">
+                <span class="badge badge-info">BITS WILP</span>
+                <span class="badge badge-success">4 Core Courses</span>
+                <span class="badge badge-warning">Exam & Viva Ready</span>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Semester 1 Courses</h4>
+            <ul>
+                <li><a href="../../subjects/automotive-communication.html">Automotive Communication (AELZG513)</a></li>
+                <li><a href="../../subjects/automotive-vehicle.html">Automotive Vehicle (AELZC441)</a></li>
+                <li><a href="../../subjects/autotronics.html">Autotronics (AEZG533)</a></li>
+                <li><a href="../../subjects/embedded-system-design.html">Embedded System Design (AEZG512)</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="../../index.html">Master Portal Home</a></li>
+                <li><a href="../../semesters/sem1.html">Semester 1 Overview & Credits</a></li>
+                <li><a href="javascript:void(0)" onclick="openSearchModal()">Global Topic Search</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-bottom-content">
+            <span>© 2026 M.Tech Automotive Engineering Knowledge Base. Built for High-Performance Academic Study.</span>
+            <span>Birla Institute of Technology & Science, Pilani.</span>
+        </div>
+    </div>
+</footer>
+
+
+<div class="search-modal-overlay" id="searchModal" onclick="closeSearchModal(event)">
+    <div class="search-modal-container" onclick="event.stopPropagation()">
+        <div class="search-modal-header">
+            <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <input type="text" id="searchInput" class="search-modal-input" placeholder="Type to search curriculum, formulas, registers, exam questions..." autocomplete="off" oninput="handleSearch(this.value)">
+            <button class="search-modal-close" onclick="closeSearchModal()">&times;</button>
+        </div>
+        <div class="search-modal-filters">
+            <button class="search-filter-btn active" data-subject="all" onclick="setSearchFilter('all')">All Courses</button>
+            <button class="search-filter-btn" data-subject="automotive-communication" onclick="setSearchFilter('automotive-communication')">Communication</button>
+            <button class="search-filter-btn" data-subject="automotive-vehicle" onclick="setSearchFilter('automotive-vehicle')">Vehicle</button>
+            <button class="search-filter-btn" data-subject="autotronics" onclick="setSearchFilter('autotronics')">Autotronics</button>
+            <button class="search-filter-btn" data-subject="embedded-system-design" onclick="setSearchFilter('embedded-system-design')">Embedded</button>
+        </div>
+        <div class="search-modal-results" id="searchResults">
+            <div class="search-empty-state">
+                <span>Start typing to search across 33+ comprehensive M.Tech topics...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../../js/app.js"></script>
+<script src="../../js/search-index.js"></script>
+</body>
+</html>
