@@ -1587,13 +1587,92 @@ pre code {
 }
 
 /* =========================================================================
+   Logo Sizing Constraints (Strict Sizing Across All Pages)
+   ========================================================================= */
+.nav-brand-logo, .logo img {
+  height: 38px !important;
+  width: auto !important;
+  max-height: 38px !important;
+  max-width: 120px !important;
+  object-fit: contain !important;
+}
+
+.hero-bits-logo, .hub-bits-logo {
+  height: 32px !important;
+  width: auto !important;
+  max-height: 32px !important;
+  max-width: 100px !important;
+  object-fit: contain !important;
+}
+
+.footer-bits-logo {
+  height: 36px !important;
+  width: auto !important;
+  max-height: 36px !important;
+  max-width: 100px !important;
+  object-fit: contain !important;
+  display: block !important;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 0.85rem;
+}
+
+.footer-brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-title {
+  font-family: var(--font-mono);
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+}
+
+.footer-sub {
+  font-size: 0.74rem;
+  color: var(--muted);
+}
+
+.footer-desc {
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.footer-tags {
+  display: flex;
+  gap: 6px;
+}
+
+.badge {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--radius-xs);
+}
+
+.badge-info { background: var(--solder-soft); color: var(--solder); }
+.badge-success { background: var(--trace-soft); color: var(--trace); }
+.badge-warning { background: var(--signal-soft); color: var(--signal); }
+
+/* =========================================================================
    Footer
    ========================================================================= */
 .site-footer {
   background: var(--bg-subtle);
   border-top: 1px solid var(--border);
   color: var(--muted);
-  padding: 2.5rem 1.5rem 1.75rem;
+  padding: 3rem 1.5rem 2rem;
   margin-top: auto;
   position: relative;
   z-index: 1;
@@ -1602,12 +1681,59 @@ pre code {
 .footer-container {
   max-width: 1140px;
   margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1.2fr 1fr;
+  gap: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+.footer-col h4 {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+  margin-bottom: 0.85rem;
+}
+
+.footer-col ul {
+  list-style: none;
+}
+
+.footer-col li {
+  margin-bottom: 0.45rem;
+}
+
+.footer-col a {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.footer-col a:hover {
+  color: var(--accent);
+}
+
+.footer-bottom {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.footer-bottom-content {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   flex-wrap: wrap;
-  gap: 1.5rem;
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  color: var(--muted);
+  gap: 10px;
 }

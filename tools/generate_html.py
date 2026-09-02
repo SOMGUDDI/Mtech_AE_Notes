@@ -46,7 +46,7 @@ def render_navbar(relative_root=".."):
 <header class="navbar">
     <div class="navbar-container">
         <a href="{relative_root}/index.html" class="nav-brand" title="Return to Master Home / Landing Page">
-            <img src="{relative_root}/assets/img/bits_logo.png" alt="BITS Pilani Logo" class="nav-brand-logo">
+            <img src="{relative_root}/assets/img/bits_logo.png" alt="BITS Pilani Logo" class="nav-brand-logo" width="38" height="38" style="height:38px; width:auto; max-height:38px; object-fit:contain;">
             <div class="brand-details">
                 <span class="brand-inst">Birla Institute of Technology & Science, Pilani</span>
                 <span class="brand-dept">Work Integrated Learning Programmes • Automotive Engineering</span>
@@ -81,7 +81,7 @@ def render_footer(relative_root=".."):
     <div class="footer-container">
         <div class="footer-col brand-col">
             <div class="footer-brand">
-                <img src="{relative_root}/assets/img/bits_logo.png" alt="BITS Pilani Logo" class="footer-bits-logo">
+                <img src="{relative_root}/assets/img/bits_logo.png" alt="BITS Pilani Logo" class="footer-bits-logo" width="36" height="36" style="height:36px; width:auto; max-height:36px; object-fit:contain;">
                 <div class="footer-brand-text">
                     <span class="footer-title">Birla Institute of Technology & Science, Pilani</span>
                     <span class="footer-sub">Work Integrated Learning Programmes (WILP)</span>
