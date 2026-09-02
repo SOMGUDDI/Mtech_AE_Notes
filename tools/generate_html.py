@@ -1,5 +1,5 @@
 """Master Institutional HTML Generator for M.Tech Study Guide Website.
-Theme and layout modeled after institutional academic portals (Fraunces + Inter + JetBrains Mono).
+Theme and layout: Blueprint Aesthetic for Landing Page + Comprehensive Institutional Subject Hubs & Topic Notes.
 """
 import sys
 import json
@@ -144,6 +144,309 @@ def render_search_modal():
         </div>
     </div>
 </div>
+"""
+
+def render_home_page():
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M.Tech Notes — BITS Pilani • Automotive Engineering</title>
+    <meta name="description" content="A focused home for M.Tech Automotive Engineering notes, lectures, labs, and reference material—arranged by semester and subject.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+      (function(){{
+        const savedTheme = localStorage.getItem('sg-theme') || localStorage.getItem('mtech_theme') || 'light';
+        if (savedTheme === 'dark') {{ document.documentElement.setAttribute('data-theme', 'dark'); }}
+      }})();
+    </script>
+</head>
+<body>
+
+{render_navbar(relative_root=".")}
+
+<section class="home-hero">
+    <div class="container">
+        <div class="eyebrow">// M.TECH AUTOMOTIVE ENGINEERING · WILP 2026</div>
+        <h1 class="hero-title">Study the systems that move <em style="color:var(--accent); font-style:normal;">machines.</em></h1>
+        <p class="hero-subtitle">A focused home for M.Tech Automotive Engineering notes, lectures, labs, and reference material—arranged by semester and subject.</p>
+
+        <div class="hero-actions">
+            <a href="semesters/sem1.html" class="btn btn-primary">
+                <span>OPEN INTERACTIVE STUDY GUIDE →</span>
+            </a>
+            <a href="semesters/sem1.html" class="btn btn-secondary">
+                <span>SEMESTER 1 HUB</span>
+            </a>
+        </div>
+
+        <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; margin-top:2rem; line-height:1.8;">
+            <div>SYSTEM STATUS</div>
+            <div>AE</div>
+            <div>SEMESTER 01 • <strong style="color:var(--accent);">ACTIVE</strong></div>
+        </div>
+    </div>
+</section>
+
+<main class="home-main-container">
+    <div class="section-head" style="margin-bottom:1.5rem;">
+        <div>
+            <div class="kicker">// COURSE ROADMAP</div>
+            <h2>Choose a semester</h2>
+            <p>Each semester is a dedicated workspace for subject notes and study resources.</p>
+        </div>
+    </div>
+
+    <div class="portal-grid">
+        <div class="semester-card" style="border-top:4px solid var(--accent);">
+            <div class="sem-number">01 • ACTIVE</div>
+            <h3><a href="semesters/sem1.html">Semester One</a></h3>
+            <p>Autotronics, automotive communication, vehicle systems, and embedded design.</p>
+            <div class="card-meta">
+                <span>04 SUBJECTS</span> • <span>33+ TOPIC PAGES</span>
+            </div>
+            <a href="semesters/sem1.html" class="card-action-link">
+                <span>Enter semester 1 hub →</span>
+            </a>
+        </div>
+
+        <div class="semester-card" style="opacity:0.75;">
+            <div class="sem-number" style="color:var(--muted);">02 ~ LOCKED</div>
+            <h3 style="color:var(--muted);">Semester Two</h3>
+            <p>Subject workspace will be added as the semester begins.</p>
+            <div class="card-meta" style="color:var(--muted);">
+                <span>COMING SOON</span>
+            </div>
+        </div>
+
+        <div class="semester-card" style="opacity:0.75;">
+            <div class="sem-number" style="color:var(--muted);">03 ~ LOCKED</div>
+            <h3 style="color:var(--muted);">Semester Three</h3>
+            <p>Subject workspace will be added as the semester begins.</p>
+            <div class="card-meta" style="color:var(--muted);">
+                <span>COMING SOON</span>
+            </div>
+        </div>
+
+        <div class="semester-card" style="opacity:0.75;">
+            <div class="sem-number" style="color:var(--muted);">04 ~ LOCKED</div>
+            <h3 style="color:var(--muted);">Semester Four</h3>
+            <p>Subject workspace will be added as the semester begins.</p>
+            <div class="card-meta" style="color:var(--muted);">
+                <span>COMING SOON</span>
+            </div>
+        </div>
+    </div>
+</main>
+
+{render_footer(relative_root=".")}
+{render_search_modal()}
+
+<script src="js/search-index.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
+"""
+
+def render_semester_hub(relative_root=".."):
+    all_subjects_cards = ""
+    for sub_slug, data in topic_data.SUBJECT_DATA.items():
+        meta = data["metadata"]
+        topics = data["topics"]
+        all_subjects_cards += f"""
+        <div class="subject-card">
+            <span class="badge">{escape_text(meta["code"])}</span>
+            <h3><a href="{relative_root}/subjects/{sub_slug}.html">{escape_text(meta["title"])}</a></h3>
+            <p>{escape_text(meta["description"][:130])}...</p>
+            <div class="card-meta">
+                <span>{len(topics)} TOPICS</span> • <span>{escape_text(meta.get("credits", "3 Units"))}</span>
+            </div>
+            <a href="{relative_root}/subjects/{sub_slug}.html" class="card-action-link">
+                <span>Open Subject Guide</span>
+                <span class="icon">{SVG_ARROW_RIGHT}</span>
+            </a>
+        </div>
+        """
+        
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semester 1 Hub | M.Tech Automotive Engineering, BITS Pilani</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{relative_root}/css/style.css">
+    <script>
+      (function(){{
+        const savedTheme = localStorage.getItem('sg-theme') || localStorage.getItem('mtech_theme') || 'light';
+        if (savedTheme === 'dark') {{ document.documentElement.setAttribute('data-theme', 'dark'); }}
+      }})();
+    </script>
+</head>
+<body>
+
+{render_navbar(relative_root=relative_root)}
+
+<header class="hub-hero">
+    <div class="container">
+        <div class="hero-pill">
+            <span class="status-dot"></span>
+            <span>Birla Institute of Technology & Science, Pilani (BITS WILP) • Semester 1</span>
+        </div>
+        <div class="breadcrumbs">
+            <a href="{relative_root}/index.html">Home</a> / 
+            <span class="curr-crumb">Semester 1 Curriculum Hub</span>
+        </div>
+        <h1 class="hero-title">Semester 1 Core Knowledge Base</h1>
+        <p class="hero-subtitle">Foundational pillars of Automotive Engineering: Communication Networks, Vehicle Dynamics & Chassis, Autotronics Mechatronics, and Real-Time Embedded Systems.</p>
+    </div>
+</header>
+
+<main class="hub-main-container">
+    <div class="section-head">
+        <h2>Registered Core Courses</h2>
+        <span class="note">Semester 1 Curriculum • 4 Core Subjects • 33 In-Depth Topic Modules</span>
+    </div>
+    <div class="hub-grid">
+        {all_subjects_cards}
+    </div>
+</main>
+
+{render_footer(relative_root=relative_root)}
+{render_search_modal()}
+
+<script src="{relative_root}/js/search-index.js"></script>
+<script src="{relative_root}/js/app.js"></script>
+</body>
+</html>
+"""
+
+def render_subject_dashboard(subject_slug, relative_root=".."):
+    sub_data = topic_data.SUBJECT_DATA[subject_slug]
+    meta = sub_data["metadata"]
+    topics = sub_data["topics"]
+    
+    # Group topics by module
+    modules = {}
+    for t in topics:
+        m = t.get("module", "Core Topics")
+        if m not in modules:
+            modules[m] = []
+        modules[m].append(t)
+        
+    modules_html = ""
+    for mod_name, mod_topics in modules.items():
+        topic_cards = ""
+        for t in mod_topics:
+            topic_cards += f"""
+            <div class="dashboard-topic-card" data-topic-id="{t['slug']}">
+                <div class="topic-card-top">
+                    <span class="topic-level-badge level-{t.get('level', 'Intermediate').lower()}">{escape_text(t.get('level', 'Intermediate'))}</span>
+                    <span class="topic-stars">WEIGHT: {t.get('importance', 5)}/5</span>
+                </div>
+                <h3 class="topic-card-title"><a href="{relative_root}/topics/{subject_slug}/{t['slug']}.html">{escape_text(t['title'])}</a></h3>
+                <p class="topic-card-desc">{escape_text(t.get('overview', '')[:140])}...</p>
+                <div class="topic-card-footer">
+                    <span class="topic-status-tag" id="tag_{t['slug']}">☐ Not Started</span>
+                    <a href="{relative_root}/topics/{subject_slug}/{t['slug']}.html" class="study-btn">Study Topic →</a>
+                </div>
+            </div>
+            """
+        modules_html += f"""
+        <div class="dashboard-module-block">
+            <div class="module-block-header">
+                <h2>{escape_text(mod_name)}</h2>
+                <span class="module-count">{len(mod_topics)} Topics</span>
+            </div>
+            <div class="dashboard-topics-grid">
+                {topic_cards}
+            </div>
+        </div>
+        """
+
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{escape_text(meta["title"])} ({escape_text(meta["code"])}) | BITS Pilani M.Tech Study Guide</title>
+    <meta name="description" content="{escape_text(meta["description"])}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{relative_root}/css/style.css">
+    <script>
+      (function(){{
+        const savedTheme = localStorage.getItem('sg-theme') || localStorage.getItem('mtech_theme') || 'light';
+        if (savedTheme === 'dark') {{ document.documentElement.setAttribute('data-theme', 'dark'); }}
+      }})();
+    </script>
+</head>
+<body data-subject-id="{subject_slug}">
+
+{render_navbar(relative_root=relative_root)}
+
+<header class="subject-hero">
+    <div class="container">
+        <div class="hero-pill">
+            <span class="status-dot"></span>
+            <span>BITS Pilani WILP • Course Code: {escape_text(meta["code"])} • {escape_text(meta.get("credits", "3 Units"))}</span>
+        </div>
+        <div class="breadcrumbs">
+            <a href="{relative_root}/index.html">Home</a> / 
+            <a href="{relative_root}/semesters/sem1.html">Semester 1</a> / 
+            <span class="curr-crumb">{escape_text(meta["title"])}</span>
+        </div>
+        <h1 class="hero-title">{escape_text(meta["title"])}</h1>
+        <p class="hero-subtitle">{escape_text(meta["description"])}</p>
+        
+        <div class="hero-stats-grid">
+            <div class="stat-box">
+                <div class="stat-icon-wrapper"><span class="icon">{SVG_BOOK}</span></div>
+                <div class="stat-info">
+                    <span class="stat-value">{len(topics)}</span>
+                    <span class="stat-label">In-Depth Topics</span>
+                </div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-icon-wrapper"><span class="icon">{SVG_CHECK}</span></div>
+                <div class="stat-info">
+                    <span class="stat-value">{len(modules)}</span>
+                    <span class="stat-label">Learning Modules</span>
+                </div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-icon-wrapper"><span class="icon">{SVG_CHECK}</span></div>
+                <div class="stat-info">
+                    <span class="stat-value">100%</span>
+                    <span class="stat-label">Transcript Coverage</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="subject-main-container">
+    <div class="subject-content-wrapper">
+        <div class="subject-modules-container">
+            {modules_html}
+        </div>
+    </div>
+</main>
+
+{render_footer(relative_root=relative_root)}
+{render_search_modal()}
+
+<script src="{relative_root}/js/search-index.js"></script>
+<script src="{relative_root}/js/app.js"></script>
+</body>
+</html>
 """
 
 def render_topic_page(subject_slug, topic, all_topics):
@@ -587,352 +890,6 @@ def render_topic_page(subject_slug, topic, all_topics):
 </html>
 """
     return html_content
-
-def render_subject_dashboard(subject_slug, relative_root=".."):
-    sub_data = topic_data.SUBJECT_DATA[subject_slug]
-    meta = sub_data["metadata"]
-    topics = sub_data["topics"]
-    
-    # Group topics by module
-    modules = {}
-    for t in topics:
-        m = t.get("module", "Core Topics")
-        if m not in modules:
-            modules[m] = []
-        modules[m].append(t)
-        
-    modules_html = ""
-    for mod_name, mod_topics in modules.items():
-        topic_cards = ""
-        for t in mod_topics:
-            topic_cards += f"""
-            <div class="dashboard-topic-card" data-topic-id="{t['slug']}">
-                <div class="topic-card-top">
-                    <span class="topic-level-badge level-{t.get('level', 'Intermediate').lower()}">{escape_text(t.get('level', 'Intermediate'))}</span>
-                    <span class="topic-stars">WEIGHT: {t.get('importance', 5)}/5</span>
-                </div>
-                <h3 class="topic-card-title"><a href="{relative_root}/topics/{subject_slug}/{t['slug']}.html">{escape_text(t['title'])}</a></h3>
-                <p class="topic-card-desc">{escape_text(t.get('overview', '')[:140])}...</p>
-                <div class="topic-card-footer">
-                    <span class="topic-status-tag" id="tag_{t['slug']}">☐ Not Started</span>
-                    <a href="{relative_root}/topics/{subject_slug}/{t['slug']}.html" class="study-btn">Study Topic →</a>
-                </div>
-            </div>
-            """
-        modules_html += f"""
-        <div class="dashboard-module-block">
-            <div class="module-block-header">
-                <h2>{escape_text(mod_name)}</h2>
-                <span class="module-count">{len(mod_topics)} Topics</span>
-            </div>
-            <div class="dashboard-topics-grid">
-                {topic_cards}
-            </div>
-        </div>
-        """
-
-    return f"""<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{escape_text(meta["title"])} ({escape_text(meta["code"])}) | BITS Pilani M.Tech Study Guide</title>
-    <meta name="description" content="{escape_text(meta["description"])}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{relative_root}/css/style.css">
-    <script>
-      (function(){{
-        const savedTheme = localStorage.getItem('sg-theme') || localStorage.getItem('mtech_theme') || 'light';
-        if (savedTheme === 'dark') {{ document.documentElement.setAttribute('data-theme', 'dark'); }}
-      }})();
-    </script>
-</head>
-<body data-subject-id="{subject_slug}">
-
-{render_navbar(relative_root=relative_root)}
-
-<header class="subject-hero">
-    <div class="container">
-        <div class="hero-pill">
-            <span class="status-dot"></span>
-            <span>BITS Pilani WILP • Course Code: {escape_text(meta["code"])} • {escape_text(meta.get("credits", "3 Units"))}</span>
-        </div>
-        <div class="breadcrumbs">
-            <a href="{relative_root}/index.html">Home</a> / 
-            <a href="{relative_root}/semesters/sem1.html">Semester 1</a> / 
-            <span class="curr-crumb">{escape_text(meta["title"])}</span>
-        </div>
-        <h1 class="hero-title">{escape_text(meta["title"])}</h1>
-        <p class="hero-subtitle">{escape_text(meta["description"])}</p>
-        
-        <div class="hero-stats-grid">
-            <div class="stat-box">
-                <div class="stat-icon-wrapper"><span class="icon">{SVG_BOOK}</span></div>
-                <div class="stat-info">
-                    <span class="stat-value">{len(topics)}</span>
-                    <span class="stat-label">In-Depth Topics</span>
-                </div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-icon-wrapper"><span class="icon">{SVG_CHECK}</span></div>
-                <div class="stat-info">
-                    <span class="stat-value">{len(modules)}</span>
-                    <span class="stat-label">Learning Modules</span>
-                </div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-icon-wrapper"><span class="icon">{SVG_CHECK}</span></div>
-                <div class="stat-info">
-                    <span class="stat-value">100%</span>
-                    <span class="stat-label">Transcript Coverage</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-
-<main class="subject-main-container">
-    <div class="subject-content-wrapper">
-        <div class="subject-modules-container">
-            {modules_html}
-        </div>
-    </div>
-</main>
-
-{render_footer(relative_root=relative_root)}
-{render_search_modal()}
-
-<script src="{relative_root}/js/search-index.js"></script>
-<script src="{relative_root}/js/app.js"></script>
-</body>
-</html>
-"""
-
-def render_semester_hub(relative_root=".."):
-    all_subjects_cards = ""
-    for sub_slug, data in topic_data.SUBJECT_DATA.items():
-        meta = data["metadata"]
-        topics = data["topics"]
-        all_subjects_cards += f"""
-        <div class="subject-card">
-            <span class="badge">{escape_text(meta["code"])}</span>
-            <h3><a href="{relative_root}/subjects/{sub_slug}.html">{escape_text(meta["title"])}</a></h3>
-            <p>{escape_text(meta["description"][:130])}...</p>
-            <div class="card-meta">
-                <span>{len(topics)} TOPICS</span> • <span>{escape_text(meta.get("credits", "3 Units"))}</span>
-            </div>
-            <a href="{relative_root}/subjects/{sub_slug}.html" class="card-action-link">
-                <span>Open Subject Guide</span>
-                <span class="icon">{SVG_ARROW_RIGHT}</span>
-            </a>
-        </div>
-        """
-        
-    return f"""<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Semester 1 Hub | M.Tech Automotive Engineering, BITS Pilani</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{relative_root}/css/style.css">
-    <script>
-      (function(){{
-        const savedTheme = localStorage.getItem('sg-theme') || localStorage.getItem('mtech_theme') || 'light';
-        if (savedTheme === 'dark') {{ document.documentElement.setAttribute('data-theme', 'dark'); }}
-      }})();
-    </script>
-</head>
-<body>
-
-{render_navbar(relative_root=relative_root)}
-
-<header class="hub-hero">
-    <div class="container">
-        <div class="hero-pill">
-            <span class="status-dot"></span>
-            <span>Birla Institute of Technology & Science, Pilani (BITS WILP) • Semester 1</span>
-        </div>
-        <div class="breadcrumbs">
-            <a href="{relative_root}/index.html">Home</a> / 
-            <span class="curr-crumb">Semester 1 Curriculum Hub</span>
-        </div>
-        <h1 class="hero-title">Semester 1 Core Knowledge Base</h1>
-        <p class="hero-subtitle">Foundational pillars of Automotive Engineering: Communication Networks, Vehicle Dynamics & Chassis, Autotronics Mechatronics, and Real-Time Embedded Systems.</p>
-    </div>
-</header>
-
-<main class="hub-main-container">
-    <div class="section-head">
-        <h2>Registered Core Courses</h2>
-        <span class="note">Semester 1 Curriculum • 4 Core Subjects • 33 In-Depth Topic Modules</span>
-    </div>
-    <div class="hub-grid">
-        {all_subjects_cards}
-    </div>
-</main>
-
-{render_footer(relative_root=relative_root)}
-{render_search_modal()}
-
-<script src="{relative_root}/js/search-index.js"></script>
-<script src="{relative_root}/js/app.js"></script>
-</body>
-</html>
-"""
-
-def render_home_page():
-    total_topics = sum(len(data["topics"]) for data in topic_data.SUBJECT_DATA.values())
-    
-    cards_html = ""
-    for sub_slug, data in topic_data.SUBJECT_DATA.items():
-        meta = data["metadata"]
-        topics = data["topics"]
-        
-        sample_links = "".join([f'<li><a href="topics/{sub_slug}/{t["slug"]}.html">{escape_text(t["title"])}</a></li>' for t in topics[:3]])
-        
-        cards_html += f"""
-        <div class="subject-card">
-            <span class="badge">{escape_text(meta["code"])}</span>
-            <h3><a href="subjects/{sub_slug}.html">{escape_text(meta["title"])}</a></h3>
-            <p>{escape_text(meta["description"][:120])}...</p>
-            
-            <div class="portal-sample-topics">
-                <h5>Featured Core Topics:</h5>
-                <ul>{sample_links}</ul>
-            </div>
-            
-            <a href="subjects/{sub_slug}.html" class="card-action-link">
-                <span>View All {len(topics)} Topics</span>
-                <span class="icon">{SVG_ARROW_RIGHT}</span>
-            </a>
-        </div>
-        """
-
-    return f"""<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M.Tech in Automotive Engineering | BITS Pilani WILP Study Portal</title>
-    <meta name="description" content="Official academic study portal, modular lecture reference, and laboratory repository for M.Tech Automotive Engineering at BITS Pilani.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-    <script>
-      (function(){{
-        const savedTheme = localStorage.getItem('sg-theme') || localStorage.getItem('mtech_theme') || 'light';
-        if (savedTheme === 'dark') {{ document.documentElement.setAttribute('data-theme', 'dark'); }}
-      }})();
-    </script>
-</head>
-<body>
-
-{render_navbar(relative_root=".")}
-
-<section class="hero-section">
-    <div class="container">
-        <div class="hero-pill">
-            <span class="status-dot"></span>
-            <span>M.Tech Automotive Engineering • BITS Pilani WILP • 2026 Academic Term</span>
-        </div>
-
-        <h1 class="hero-title">Master of Technology in Automotive Engineering</h1>
-        <p class="hero-sub">Academic study portal, modular lecture reference, mathematical derivations, and embedded laboratory repository for Work Integrated Learning Programmes at Birla Institute of Technology & Science, Pilani.</p>
-
-        <div class="hero-actions">
-            <a href="semesters/sem1.html" class="btn btn-primary">
-                <span>Open Semester 1 Notes</span>
-                <span class="icon">{SVG_ARROW_RIGHT}</span>
-            </a>
-            <a href="javascript:void(0)" onclick="openSearchModal()" class="btn btn-secondary">
-                <span class="icon">{SVG_SEARCH}</span>
-                <span>Search Notes Portal (Ctrl+K)</span>
-            </a>
-        </div>
-
-        <div class="hero-stats-grid">
-            <div class="stat-box">
-                <div class="stat-icon-wrapper"><span class="icon">{SVG_BOOK}</span></div>
-                <div class="stat-info">
-                    <span class="stat-value">04 Courses</span>
-                    <span class="stat-label">Semester 1 Core</span>
-                </div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-icon-wrapper"><span class="icon">{SVG_CHECK}</span></div>
-                <div class="stat-info">
-                    <span class="stat-value">{total_topics} Modules</span>
-                    <span class="stat-label">In-Depth Topics</span>
-                </div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-icon-wrapper"><span class="icon">{SVG_CHECK}</span></div>
-                <div class="stat-info">
-                    <span class="stat-value">460K+ Words</span>
-                    <span class="stat-label">Transcript Synthesis</span>
-                </div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-icon-wrapper"><span class="icon">{SVG_CHECK}</span></div>
-                <div class="stat-info">
-                    <span class="stat-value">100% Offline</span>
-                    <span class="stat-label">Study Anywhere</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<main class="home-main-container">
-    <div class="section-head">
-        <h2>Semester 1 Core Engineering Disciplines</h2>
-        <span class="note">Select a subject workspace below to access detailed chapter notes, formula sheets, and past exam questions.</span>
-    </div>
-
-    <div class="portal-grid">
-        {cards_html}
-    </div>
-
-    <section class="curriculum-framework-section">
-        <div class="framework-header">
-            <span class="kicker">CURRICULUM ARCHITECTURE</span>
-            <h3>Three-Tiered Engineering Study Framework</h3>
-            <p>Engineered to support foundational physical intuition, deep mathematical hardware rigor, and industry automotive safety standards.</p>
-        </div>
-        <div class="framework-grid">
-            <div class="framework-card">
-                <div class="framework-tag">[TRACK 01 · PHYSICAL INTUITION]</div>
-                <h4>System Analogies & Waveforms</h4>
-                <p>Step-by-step physical analogies, block diagrams, signal flows, highlighted exam traps, and 60-second flash cards for accelerated concept acquisition.</p>
-            </div>
-            <div class="framework-card">
-                <div class="framework-tag">[TRACK 02 · HARDWARE & MATH RIGOR]</div>
-                <h4>Derivations & Bare-Metal C</h4>
-                <p>Rigorous calculus derivations, ARM Cortex-M4 assembly, register bitfield configurations, S32K144 driver implementations, and full 10-mark model answers.</p>
-            </div>
-            <div class="framework-card">
-                <div class="framework-tag">[TRACK 03 · OEM & SAFETY STANDARDS]</div>
-                <h4>ISO 26262 & Automotive Networks</h4>
-                <p>Real-world OEM architectures, UN ECE homologation, CAN-FD / Ethernet specifications, ASIL functional safety, and high-voltage EV powertrain integration.</p>
-            </div>
-        </div>
-    </section>
-</main>
-
-{render_footer(relative_root=".")}
-{render_search_modal()}
-
-<script src="js/search-index.js"></script>
-<script src="js/app.js"></script>
-</body>
-</html>
-"""
 
 def generate_all_html():
     print("Beginning institutional HTML generation...", flush=True)

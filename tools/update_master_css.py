@@ -559,8 +559,15 @@ pre code {
   color: var(--muted);
 }
 
-/* Subject Grid */
-.portal-grid, .hub-grid, .subject-grid, .subjects-grid, .semester-grid {
+/* Subject & Semester Grid */
+.portal-grid, .semester-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 4rem;
+}
+
+.hub-grid, .subject-grid, .subjects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 20px;
@@ -587,6 +594,45 @@ pre code {
   box-shadow: var(--shadow-md);
   border-color: var(--border-strong);
   text-decoration: none;
+}
+
+.sem-number {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.65rem;
+}
+
+.semester-card h3 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--ink);
+}
+
+.semester-card p {
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+  flex: 1;
+}
+
+.semester-card .card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--border);
+  padding-top: 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-top: auto;
 }
 
 .subject-card .badge, .portal-code-badge, .hub-card-code, .subject-code {
