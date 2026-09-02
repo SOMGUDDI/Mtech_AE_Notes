@@ -1,6 +1,6 @@
 /**
- * M.Tech Automotive Engineering Study Guide — Technical Application Engine
- * Offline-First: Theme, Progress Tracking, Bookmarks, Local Notes & Instant Search.
+ * M.Tech Automotive Engineering Study Guide — Core Application Engine
+ * Offline-First: Theme Controller, Smart Token Search, Bookmarks, Local Notes & Progress.
  */
 
 (function () {
@@ -9,20 +9,53 @@
   // 1. Theme Controller
   window.toggleTheme = function () {
     const isDark = document.body.classList.toggle('dark');
-    localStorage.setItem('sg-theme', isDark ? 'dark' : 'light');
+    const theme = isDark ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('sg-theme', theme);
+    localStorage.setItem('mtech_theme', theme);
+    updateThemeToggleIcons(isDark);
   };
 
+  function updateThemeToggleIcons(isDark) {
+    const buttons = document.querySelectorAll('.theme-toggle-btn, #themeToggle, #themeBtn');
+    buttons.forEach(btn => {
+      const textSpan = btn.querySelector('span:not(.icon)');
+      if (textSpan) {
+        textSpan.textContent = isDark ? 'Light' : 'Dark';
+      }
+    });
+  }
+
   function initTheme() {
-    const saved = localStorage.getItem('sg-theme') || 'light';
+    const saved = localStorage.getItem('sg-theme') || localStorage.getItem('mtech_theme') || 'light';
     if (saved === 'dark') {
       document.body.classList.add('dark');
+      document.documentElement.setAttribute('data-theme', 'dark');
+      updateThemeToggleIcons(true);
     } else {
       document.body.classList.remove('dark');
+      document.documentElement.setAttribute('data-theme', 'light');
+      updateThemeToggleIcons(false);
     }
   }
 
-  // 2. Search Modal Controller
+  // 2. Search Engine & Modal Controller
   let currentSubjectFilter = 'all';
+
+  function getRelativeRootPrefix() {
+    const path = window.location.pathname.replace(/\\/g, '/');
+    if (path.includes('/topics/')) return '../../';
+    if (path.includes('/subjects/') || path.includes('/semesters/') || path.includes('/sem-1/')) return '../';
+    return './';
+  }
+
+  function htmlEscape(str) {
+    return String(str || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
 
   window.openSearchModal = function () {
     const modal = document.getElementById('searchModal');
@@ -55,50 +88,122 @@
     if (input) window.handleSearch(input.value);
   };
 
-  window.handleSearch = function (query) {
+  // Robust Search Token Matcher & Scorer
+  window.handleSearch = async function (query) {
     const resultsContainer = document.getElementById('searchResults');
     if (!resultsContainer) return;
 
-    query = (query || '').trim().toLowerCase();
+    query = (query || '').trim();
     if (!query) {
       resultsContainer.innerHTML = '<div class="search-empty-state"><span>Type keywords to search across 33+ comprehensive M.Tech topics...</span></div>';
       return;
     }
 
-    const index = window.SEARCH_INDEX || [];
+    // Ensure search index is available
+    let index = window.SEARCH_INDEX;
+    if (!index || !Array.isArray(index) || index.length === 0) {
+      try {
+        const rootPrefix = getRelativeRootPrefix();
+        const res = await fetch(rootPrefix + 'data/search-index.json');
+        index = await res.json();
+        window.SEARCH_INDEX = index;
+      } catch (err) {
+        console.warn('Failed to load search index JSON:', err);
+      }
+    }
+
+    if (!index || !Array.isArray(index) || index.length === 0) {
+      resultsContainer.innerHTML = '<div class="search-empty-state"><span>Search index is loading, please try again...</span></div>';
+      return;
+    }
+
     const rootPrefix = getRelativeRootPrefix();
 
-    const filtered = index.filter(item => {
-      if (currentSubjectFilter !== 'all' && item.subject_slug !== currentSubjectFilter) {
-        return false;
-      }
-      const fullText = (item.title + ' ' + item.subject + ' ' + item.module + ' ' + (item.overview || '') + ' ' + (item.keywords ? item.keywords.join(' ') : '')).toLowerCase();
-      return query.split(' ').every(w => fullText.includes(w));
-    }).slice(0, 10);
-
-    if (filtered.length === 0) {
-      resultsContainer.innerHTML = `<div class="search-empty-state"><span>No matching topics found for "${htmlEscape(query)}".</span></div>`;
-    } else {
-      resultsContainer.innerHTML = filtered.map(item => `
-        <div class="search-result-item">
-          <a class="search-result-title" href="${rootPrefix}topics/${item.subject_slug}/${item.slug}.html">${htmlEscape(item.title)}</a>
-          <div class="search-result-meta">${htmlEscape(item.subject)} · ${htmlEscape(item.module)}</div>
-          <div class="search-result-snippet">${htmlEscape((item.overview || '').slice(0, 150))}...</div>
-        </div>
-      `).join('');
+    // Extract clean tokens (letters & digits)
+    const rawTokens = query.toLowerCase().match(/[a-z0-9]+/g) || [];
+    if (rawTokens.length === 0) {
+      resultsContainer.innerHTML = '<div class="search-empty-state"><span>Please enter valid search terms.</span></div>';
+      return;
     }
+
+    const scoredResults = [];
+    const queryLower = query.toLowerCase();
+
+    for (const item of index) {
+      const itemSubject = (item.subject || '').toLowerCase();
+      if (currentSubjectFilter !== 'all' && itemSubject !== currentSubjectFilter) {
+        continue;
+      }
+
+      const title = (item.title || '').toLowerCase();
+      const moduleName = (item.module || '').toLowerCase();
+      const summary = (item.summary || '').toLowerCase();
+      const keywords = (typeof item.keywords === 'string' ? item.keywords : (item.keywords || []).join(' ')).toLowerCase();
+      const subjectTitle = (item.subject_title || '').toLowerCase();
+
+      let score = 0;
+
+      // Exact phrase match bonus
+      if (title.includes(queryLower)) score += 120;
+      if (keywords.includes(queryLower)) score += 50;
+      if (summary.includes(queryLower)) score += 40;
+
+      // Token-level scoring
+      let matchedTokens = 0;
+      for (const token of rawTokens) {
+        let tokenFound = false;
+        if (title.includes(token)) {
+          score += 35;
+          tokenFound = true;
+        }
+        if (moduleName.includes(token)) {
+          score += 20;
+          tokenFound = true;
+        }
+        if (subjectTitle.includes(token)) {
+          score += 15;
+          tokenFound = true;
+        }
+        if (keywords.includes(token)) {
+          score += 10;
+          tokenFound = true;
+        }
+        if (summary.includes(token)) {
+          score += 8;
+          tokenFound = true;
+        }
+        if (tokenFound) matchedTokens++;
+      }
+
+      // If at least half of tokens match, or at least 1 token for short queries
+      if (score > 0 && (matchedTokens >= Math.ceil(rawTokens.length / 2) || rawTokens.length === 1)) {
+        scoredResults.push({ item, score });
+      }
+    }
+
+    // Sort by score descending
+    scoredResults.sort((a, b) => b.score - a.score);
+
+    if (scoredResults.length === 0) {
+      resultsContainer.innerHTML = `<div class="search-empty-state"><span>No matching topics found for "<strong>${htmlEscape(query)}</strong>". Try broader keywords.</span></div>`;
+      return;
+    }
+
+    const topResults = scoredResults.slice(0, 10);
+    resultsContainer.innerHTML = topResults.map(({ item }) => {
+      const itemUrl = item.url ? (rootPrefix + item.url) : `${rootPrefix}topics/${item.subject}/${item.id}.html`;
+      const subjTitle = item.subject_title || item.subject_code || item.subject;
+      const snippet = (item.summary || '').slice(0, 160);
+
+      return `
+        <div class="search-result-item">
+          <a class="search-result-title" href="${itemUrl}">${htmlEscape(item.title)}</a>
+          <div class="search-result-meta">${htmlEscape(subjTitle)} &bull; ${htmlEscape(item.module || '')}</div>
+          <div class="search-result-snippet">${htmlEscape(snippet)}...</div>
+        </div>
+      `;
+    }).join('');
   };
-
-  function getRelativeRootPrefix() {
-    const path = window.location.pathname.replace(/\\\\/g, '/');
-    if (path.includes('/topics/')) return '../../';
-    if (path.includes('/subjects/') || path.includes('/semesters/') || path.includes('/sem-1/')) return '../';
-    return './';
-  }
-
-  function htmlEscape(str) {
-    return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-  }
 
   // Keyboard shortcut Ctrl+K or '/'
   window.addEventListener('keydown', (e) => {

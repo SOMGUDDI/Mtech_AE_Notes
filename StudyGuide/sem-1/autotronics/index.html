@@ -9,13 +9,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../css/style.css">
+    <script>
+      (function(){
+        const savedTheme = localStorage.getItem('sg-theme') || localStorage.getItem('mtech_theme') || 'light';
+        if (savedTheme === 'dark') { document.documentElement.setAttribute('data-theme', 'dark'); }
+      })();
+    </script>
 </head>
 <body data-subject-id="autotronics">
 
 
 <header class="navbar">
     <div class="navbar-container">
-        <a href="../../index.html" class="nav-brand">
+        <a href="../../index.html" class="nav-brand" title="Return to Master Home / Landing Page">
             <img src="../../assets/img/bits_logo.png" alt="BITS Pilani Logo" class="nav-brand-logo">
             <div class="brand-details">
                 <span class="brand-inst">Birla Institute of Technology & Science, Pilani</span>
@@ -24,15 +30,19 @@
         </a>
         <div class="nav-search-box" onclick="openSearchModal()">
             <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
-            <span class="search-placeholder">Search curriculum, formulas, registers, questions...</span>
+            <span class="search-placeholder">Search curriculum, formulas, registers, questions (Ctrl+K)...</span>
             <span class="search-shortcut">Ctrl+K</span>
         </div>
         <div class="nav-actions">
-            <a href="../../semesters/sem1.html" class="nav-link">
-                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></span>
-                <span>Semester 1 Hub</span>
+            <a href="../../index.html" class="nav-link" title="Go to Master Home / Landing Page">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></span>
+                <span>Home</span>
             </a>
-            <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Toggle Theme">
+            <a href="../../semesters/sem1.html" class="nav-link" title="Go to Semester 1 Curriculum Hub">
+                <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></span>
+                <span>Semester 1</span>
+            </a>
+            <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
                 <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
                 <span>Theme</span>
             </button>
@@ -271,7 +281,7 @@
             </ul>
         </div>
         <div class="footer-col">
-            <h4>Quick Links</h4>
+            <h4>Navigation</h4>
             <ul>
                 <li><a href="../../index.html">Master Portal Home</a></li>
                 <li><a href="../../semesters/sem1.html">Semester 1 Overview & Credits</a></li>
@@ -311,7 +321,7 @@
 </div>
 
 
-<script src="../../js/app.js"></script>
 <script src="../../js/search-index.js"></script>
+<script src="../../js/app.js"></script>
 </body>
 </html>

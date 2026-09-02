@@ -26,11 +26,18 @@ for page in pages:
     if 'rel="stylesheet"' in text and '<link' not in text:
         errors.append(f'Malformed CSS link: {page.relative_to(ROOT)}')
         
+    # Strip <script> tags for static HTML link validation
+    html_without_scripts = re.sub(r'<script\b[^>]*>[\s\S]*?</script>', '', text, flags=re.IGNORECASE)
+
     # 3. Check internal href links
-    for href in re.findall(r'href="([^"]+)"', text):
+    for href in re.findall(r'href="([^"]+)"', html_without_scripts):
         if href.startswith(('#', 'http://', 'https://', 'javascript:')):
             continue
-        target = (page.parent / href).resolve()
+        # Strip query string or hash
+        clean_href = href.split('?')[0].split('#')[0]
+        if not clean_href:
+            continue
+        target = (page.parent / clean_href).resolve()
         if not target.exists():
             errors.append(f'Broken link in {page.relative_to(ROOT)} -> {href} (Resolved: {target})')
 
@@ -58,7 +65,7 @@ print(f'Total Broken / Invalid Items: {len(errors)}')
 
 if errors:
     for error in errors:
-        print('[ERROR]', error)
+        print(f'[ERROR] {error}')
     sys.exit(1)
 else:
     print('[PASS] Status: ALL CHECKS PASSED (0 broken links, 0 missing assets)')

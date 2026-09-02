@@ -31,7 +31,8 @@ def format_math_markdown(text):
     t = t.replace('\n', '<br>')
     return t
 
-# Clean SVG Icons
+# Clean Feather Vector SVG Icons
+SVG_HOME = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>'
 SVG_SEARCH = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>'
 SVG_BOOK = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>'
 SVG_ARROW_RIGHT = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>'
@@ -44,7 +45,7 @@ def render_navbar(relative_root=".."):
     return f"""
 <header class="navbar">
     <div class="navbar-container">
-        <a href="{relative_root}/index.html" class="nav-brand">
+        <a href="{relative_root}/index.html" class="nav-brand" title="Return to Master Home / Landing Page">
             <img src="{relative_root}/assets/img/bits_logo.png" alt="BITS Pilani Logo" class="nav-brand-logo">
             <div class="brand-details">
                 <span class="brand-inst">Birla Institute of Technology & Science, Pilani</span>
@@ -53,15 +54,19 @@ def render_navbar(relative_root=".."):
         </a>
         <div class="nav-search-box" onclick="openSearchModal()">
             <span class="icon">{SVG_SEARCH}</span>
-            <span class="search-placeholder">Search curriculum, formulas, registers, questions...</span>
+            <span class="search-placeholder">Search curriculum, formulas, registers, questions (Ctrl+K)...</span>
             <span class="search-shortcut">Ctrl+K</span>
         </div>
         <div class="nav-actions">
-            <a href="{relative_root}/semesters/sem1.html" class="nav-link">
-                <span class="icon">{SVG_BOOK}</span>
-                <span>Semester 1 Hub</span>
+            <a href="{relative_root}/index.html" class="nav-link" title="Go to Master Home / Landing Page">
+                <span class="icon">{SVG_HOME}</span>
+                <span>Home</span>
             </a>
-            <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Toggle Theme">
+            <a href="{relative_root}/semesters/sem1.html" class="nav-link" title="Go to Semester 1 Curriculum Hub">
+                <span class="icon">{SVG_BOOK}</span>
+                <span>Semester 1</span>
+            </a>
+            <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
                 <span class="icon">{SVG_MOON}</span>
                 <span>Theme</span>
             </button>
@@ -99,7 +104,7 @@ def render_footer(relative_root=".."):
             </ul>
         </div>
         <div class="footer-col">
-            <h4>Quick Links</h4>
+            <h4>Navigation</h4>
             <ul>
                 <li><a href="{relative_root}/index.html">Master Portal Home</a></li>
                 <li><a href="{relative_root}/semesters/sem1.html">Semester 1 Overview & Credits</a></li>
@@ -351,6 +356,12 @@ def render_topic_page(subject_slug, topic, all_topics):
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../css/style.css">
+    <script>
+      (function(){{
+        const savedTheme = localStorage.getItem('sg-theme') || localStorage.getItem('mtech_theme') || 'light';
+        if (savedTheme === 'dark') {{ document.documentElement.setAttribute('data-theme', 'dark'); }}
+      }})();
+    </script>
 </head>
 <body data-topic-id="{topic['slug']}" data-subject-id="{subject_slug}">
 
@@ -570,8 +581,8 @@ def render_topic_page(subject_slug, topic, all_topics):
 {render_footer(relative_root="../..")}
 {render_search_modal()}
 
-<script src="../../js/app.js"></script>
 <script src="../../js/search-index.js"></script>
+<script src="../../js/app.js"></script>
 </body>
 </html>
 """
@@ -631,6 +642,12 @@ def render_subject_dashboard(subject_slug, relative_root=".."):
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{relative_root}/css/style.css">
+    <script>
+      (function(){{
+        const savedTheme = localStorage.getItem('sg-theme') || localStorage.getItem('mtech_theme') || 'light';
+        if (savedTheme === 'dark') {{ document.documentElement.setAttribute('data-theme', 'dark'); }}
+      }})();
+    </script>
 </head>
 <body data-subject-id="{subject_slug}">
 
@@ -687,8 +704,8 @@ def render_subject_dashboard(subject_slug, relative_root=".."):
 {render_footer(relative_root=relative_root)}
 {render_search_modal()}
 
-<script src="{relative_root}/js/app.js"></script>
 <script src="{relative_root}/js/search-index.js"></script>
+<script src="{relative_root}/js/app.js"></script>
 </body>
 </html>
 """
@@ -723,6 +740,12 @@ def render_semester_hub(relative_root=".."):
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{relative_root}/css/style.css">
+    <script>
+      (function(){{
+        const savedTheme = localStorage.getItem('sg-theme') || localStorage.getItem('mtech_theme') || 'light';
+        if (savedTheme === 'dark') {{ document.documentElement.setAttribute('data-theme', 'dark'); }}
+      }})();
+    </script>
 </head>
 <body>
 
@@ -756,8 +779,8 @@ def render_semester_hub(relative_root=".."):
 {render_footer(relative_root=relative_root)}
 {render_search_modal()}
 
-<script src="{relative_root}/js/app.js"></script>
 <script src="{relative_root}/js/search-index.js"></script>
+<script src="{relative_root}/js/app.js"></script>
 </body>
 </html>
 """
@@ -801,6 +824,12 @@ def render_home_page():
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <script>
+      (function(){{
+        const savedTheme = localStorage.getItem('sg-theme') || localStorage.getItem('mtech_theme') || 'light';
+        if (savedTheme === 'dark') {{ document.documentElement.setAttribute('data-theme', 'dark'); }}
+      }})();
+    </script>
 </head>
 <body>
 
@@ -823,7 +852,7 @@ def render_home_page():
             </a>
             <a href="javascript:void(0)" onclick="openSearchModal()" class="btn btn-secondary">
                 <span class="icon">{SVG_SEARCH}</span>
-                <span>Search Notes Portal</span>
+                <span>Search Notes Portal (Ctrl+K)</span>
             </a>
         </div>
 
@@ -899,8 +928,8 @@ def render_home_page():
 {render_footer(relative_root=".")}
 {render_search_modal()}
 
-<script src="js/app.js"></script>
 <script src="js/search-index.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>
 """

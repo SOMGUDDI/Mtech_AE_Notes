@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Curriculum Search Engine | M.Tech Automotive Engineering, BITS Pilani</title>
+  <meta name="description" content="Instant full-text search across all 33+ M.Tech Automotive Engineering topics, formulas, registers, and exam questions.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    (function(){
+      const savedTheme = localStorage.getItem('sg-theme') || localStorage.getItem('mtech_theme') || 'light';
+      if (savedTheme === 'dark') { document.documentElement.setAttribute('data-theme', 'dark'); }
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="navbar">
+    <div class="navbar-container">
+      <a href="index.html" class="nav-brand" title="Return to Master Home / Landing Page">
+        <img src="assets/img/bits_logo.png" alt="BITS Pilani Logo" class="nav-brand-logo">
+        <div class="brand-details">
+          <span class="brand-inst">Birla Institute of Technology & Science, Pilani</span>
+          <span class="brand-dept">Work Integrated Learning Programmes • Automotive Engineering</span>
+        </div>
+      </a>
+
+      <div class="nav-actions">
+        <a href="index.html" class="nav-link" title="Go to Master Home / Landing Page">
+          <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></span>
+          <span>Home</span>
+        </a>
+        <a href="semesters/sem1.html" class="nav-link" title="Go to Semester 1 Curriculum Hub">
+          <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></span>
+          <span>Semester 1</span>
+        </a>
+        <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
+          <span class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+          <span>Theme</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <header class="hub-hero">
+    <div class="container">
+      <div class="hero-pill">
+        <span class="status-dot"></span>
+        <span>Global Knowledge Base Search • Offline Index Active</span>
+      </div>
+      <div class="breadcrumbs">
+        <a href="index.html">Home</a> / 
+        <span class="curr-crumb">Curriculum Search Engine</span>
+      </div>
+      <h1 class="hero-title">Search Curriculum & Engineering Notes</h1>
+      <p class="hero-subtitle">Type keywords, protocol names (e.g. C-ITS, CAN-FD, FlexRay), formulas, ARM registers, or exam questions to instantly find topics.</p>
+    </div>
+  </header>
+
+  <main class="home-main-container" style="padding-top: 2rem;">
+    <div style="background:var(--surface); border:1px solid var(--border-strong); border-radius:var(--radius-md); padding:1.5rem 2rem; box-shadow:var(--shadow-sm); margin-bottom:2.5rem;">
+      <div style="display:flex; align-items:center; gap:12px; margin-bottom:1.25rem;">
+        <span class="icon" style="color:var(--accent);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+        <input type="text" id="pageSearchInput" class="search-modal-input" placeholder="Type to search (e.g. C-ITS, CAN-FD, Quarter Car, Op-Amps, NVIC)..." autocomplete="off" autofocus oninput="handlePageSearch(this.value)" style="font-size:1.25rem; width:100%; border-bottom:1px solid var(--border); padding-bottom:8px;">
+      </div>
+
+      <div class="search-modal-filters" style="padding:0; background:transparent; border:none;">
+        <button class="search-filter-btn active" data-subject="all" onclick="setPageSearchFilter('all')">All Courses (33)</button>
+        <button class="search-filter-btn" data-subject="automotive-communication" onclick="setPageSearchFilter('automotive-communication')">Communication (9)</button>
+        <button class="search-filter-btn" data-subject="automotive-vehicle" onclick="setPageSearchFilter('automotive-vehicle')">Vehicle (9)</button>
+        <button class="search-filter-btn" data-subject="autotronics" onclick="setPageSearchFilter('autotronics')">Autotronics (8)</button>
+        <button class="search-filter-btn" data-subject="embedded-system-design" onclick="setPageSearchFilter('embedded-system-design')">Embedded (7)</button>
+      </div>
+    </div>
+
+    <div id="pageSearchResults" class="search-modal-results" style="max-height:none; padding:0;">
+      <!-- Populated via script -->
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-col brand-col">
+        <div class="footer-brand">
+          <img src="assets/img/bits_logo.png" alt="BITS Pilani Logo" class="footer-bits-logo">
+          <div class="footer-brand-text">
+            <span class="footer-title">Birla Institute of Technology & Science, Pilani</span>
+            <span class="footer-sub">Work Integrated Learning Programmes (WILP)</span>
+          </div>
+        </div>
+        <p class="footer-desc">Institutional knowledge base engineered for M.Tech Automotive Engineering students.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Semester 1 Courses</h4>
+        <ul>
+          <li><a href="subjects/automotive-communication.html">Automotive Communication</a></li>
+          <li><a href="subjects/automotive-vehicle.html">Automotive Vehicle</a></li>
+          <li><a href="subjects/autotronics.html">Autotronics</a></li>
+          <li><a href="subjects/embedded-system-design.html">Embedded System Design</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Master Portal Home</a></li>
+          <li><a href="semesters/sem1.html">Semester 1 Hub</a></li>
+          <li><a href="search.html">Curriculum Search</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-content">
+        <span>© 2026 M.Tech Automotive Engineering Knowledge Base.</span>
+        <span>Birla Institute of Technology & Science, Pilani.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/search-index.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    let pageFilter = 'all';
+
+    function setPageSearchFilter(subj) {
+      pageFilter = subj;
+      document.querySelectorAll('.search-filter-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.subject === subj);
+      });
+      const input = document.getElementById('pageSearchInput');
+      if (input) handlePageSearch(input.value);
+    }
+
+    function handlePageSearch(query) {
+      const container = document.getElementById('pageSearchResults');
+      if (!container) return;
+
+      query = (query || '').trim();
+      const index = window.SEARCH_INDEX || [];
+      const rawTokens = query.toLowerCase().match(/[a-z0-9]+/g) || [];
+
+      if (rawTokens.length === 0 && !query) {
+        // Show all topics for selected filter
+        const list = index.filter(i => pageFilter === 'all' || (i.subject || '').toLowerCase() === pageFilter);
+        container.innerHTML = `
+          <h3 style="font-size:1.15rem; color:var(--ink); margin-bottom:1rem;">All Topics (${list.length})</h3>
+          <div class="portal-grid" style="margin-bottom:0;">
+            ${list.map(item => `
+              <div class="dashboard-topic-card">
+                <div class="topic-card-top">
+                  <span class="topic-level-badge level-${(item.level || 'intermediate').toLowerCase()}">${item.level || 'Intermediate'}</span>
+                  <span class="topic-stars">WEIGHT: ${item.importance || 5}/5</span>
+                </div>
+                <h3 class="topic-card-title"><a href="${item.url}">${item.title}</a></h3>
+                <p class="topic-card-desc">${(item.summary || '').slice(0, 140)}...</p>
+                <div class="topic-card-footer">
+                  <span class="topic-status-tag">${item.subject_title || item.subject}</span>
+                  <a href="${item.url}" class="study-btn">Study Topic →</a>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+        return;
+      }
+
+      const scored = [];
+      const queryLower = query.toLowerCase();
+
+      for (const item of index) {
+        if (pageFilter !== 'all' && (item.subject || '').toLowerCase() !== pageFilter) continue;
+
+        const title = (item.title || '').toLowerCase();
+        const moduleName = (item.module || '').toLowerCase();
+        const summary = (item.summary || '').toLowerCase();
+        const keywords = (typeof item.keywords === 'string' ? item.keywords : (item.keywords || []).join(' ')).toLowerCase();
+        const subjectTitle = (item.subject_title || '').toLowerCase();
+
+        let score = 0;
+        if (title.includes(queryLower)) score += 120;
+        if (keywords.includes(queryLower)) score += 50;
+        if (summary.includes(queryLower)) score += 40;
+
+        let matched = 0;
+        for (const t of rawTokens) {
+          let found = false;
+          if (title.includes(t)) { score += 35; found = true; }
+          if (moduleName.includes(t)) { score += 20; found = true; }
+          if (subjectTitle.includes(t)) { score += 15; found = true; }
+          if (keywords.includes(t)) { score += 10; found = true; }
+          if (summary.includes(t)) { score += 8; found = true; }
+          if (found) matched++;
+        }
+
+        if (score > 0 && (matched >= Math.ceil(rawTokens.length / 2) || rawTokens.length === 1)) {
+          scored.push({ item, score });
+        }
+      }
+
+      scored.sort((a, b) => b.score - a.score);
+
+      if (scored.length === 0) {
+        container.innerHTML = `<div style="text-align:center; padding:3rem; color:var(--muted); background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-md);">No matching topics found for "<strong>${query}</strong>". Try broader keywords.</div>`;
+        return;
+      }
+
+      container.innerHTML = `
+        <h3 style="font-size:1.15rem; color:var(--ink); margin-bottom:1rem;">Search Results (${scored.length} found)</h3>
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          ${scored.map(({ item }) => `
+            <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-md); padding:1.25rem 1.5rem; box-shadow:var(--shadow-xs);">
+              <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:4px;">
+                <span style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent); font-weight:700;">${item.subject_title || item.subject} &bull; ${item.module || ''}</span>
+                <span class="topic-level-badge level-${(item.level || 'intermediate').toLowerCase()}">${item.level || 'Intermediate'}</span>
+              </div>
+              <h4 style="font-size:1.2rem; margin-bottom:6px;"><a href="${item.url}" style="color:var(--ink);">${item.title}</a></h4>
+              <p style="font-size:0.9rem; color:var(--text); line-height:1.55; margin-bottom:10px;">${(item.summary || '').slice(0, 180)}...</p>
+              <a href="${item.url}" class="card-action-link" style="border-top:none; padding-top:0;">Open Topic Study Guide →</a>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    // Initialize with all topics on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      handlePageSearch('');
+    });
+  </script>
+</body>
+</html>
